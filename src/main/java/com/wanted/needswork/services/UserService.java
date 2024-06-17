@@ -16,4 +16,13 @@ public class UserService
     public List <User> getUsers () {
         return userRepository.findAll();
     }
+
+    public User getUser(Integer userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
+
+    public User addUser(String fullName, String phone, String username){
+        User user = new User(fullName, phone,username);
+        return userRepository.save(user);
+    }
 }

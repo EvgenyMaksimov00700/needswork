@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,8 +15,13 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserService userService;
-    @GetMapping ("/showall")
-    public ResponseEntity <List<User>> showall () {
+    @GetMapping ("/user/all")
+    public ResponseEntity <List<User>> showAll () {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
+    }
+
+    @GetMapping ("/user/{userId}")
+    public ResponseEntity <User> getUserByID (@PathVariable Integer userId) {
+        return new ResponseEntity<>(userService.getUser(userId), HttpStatus.OK);
     }
 }
