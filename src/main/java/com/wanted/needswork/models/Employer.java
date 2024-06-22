@@ -38,8 +38,7 @@ public class Employer {
     @Setter
     private String description;
 
-    public Employer (Integer id, Integer user_id, Integer inn, Integer ogrn, String name, String logo, String description) {
-        this.id = id;
+    public Employer (Integer user_id, Integer inn, Integer ogrn, String name, String logo, String description) {
         this.user_id = user_id;
         this.inn = inn;
         this.ogrn = ogrn;

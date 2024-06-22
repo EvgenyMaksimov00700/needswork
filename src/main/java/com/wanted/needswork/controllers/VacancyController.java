@@ -23,6 +23,8 @@ public class VacancyController {
     public ResponseEntity <List<Vacancy>> showall () {
         return new ResponseEntity<>(vacancyService.getVacancy(), HttpStatus.OK);
     }
+
+    //TODO: GET /vacancy/{vacancyId} - get vacancy by id
     @PostMapping("/vacancy")
     public ResponseEntity <Vacancy> addVacancy (@RequestBody VacancyDTO vacancyDTO) {
         return new ResponseEntity<>(vacancyService.addVacancy(vacancyDTO.getEmployer_id(), vacancyDTO.getIndustry_id(), vacancyDTO.getPosition(),

@@ -26,6 +26,8 @@ public class EmployerController {
         return new ResponseEntity<>(employerService.getEmployers(), HttpStatus.OK);
     }
 
+    //TODO do and fix all 4 methods
+
 //    @GetMapping ("/employer/{employerId}")
 //    public ResponseEntity <Industry> getEmployerByID (@PathVariable Integer employerId) {
 //        return new ResponseEntity<>(Employer.getEmployer(EmployerId), HttpStatus.OK);

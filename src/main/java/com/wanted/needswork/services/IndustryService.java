@@ -20,4 +20,13 @@ public class IndustryService {
     public List<Industry> getIndustryes() {
         return industryRepository.findAll();
     }
+
+    public Industry getIndustry(Integer industryId) {
+        return industryRepository.findById(industryId).orElse(null);
+    }
+
+//    public Industry addIndustry(String industryName) {
+//        Industry industry = new Industry(industryName);
+//        return industryRepository.save(industry);
+//    }
 }

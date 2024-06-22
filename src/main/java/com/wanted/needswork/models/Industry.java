@@ -23,8 +23,7 @@ public class Industry {
     private String category;
 
 
-    public Industry (Integer id, String username, String category) {
-        this.id = id;
+    public Industry (String username, String category) {
         this.username = username;
         this.category = category;
     }

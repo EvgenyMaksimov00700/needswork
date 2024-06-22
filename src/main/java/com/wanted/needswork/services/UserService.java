@@ -28,6 +28,7 @@ public class UserService
     }
 
     public User updateUser(User user, String fullName, String phone, String username) {
+        //TODO check on null values as in updateJobSeeker() method
         user.setFullName(fullName);
         user.setPhone(phone);
         user.setUsername(username);

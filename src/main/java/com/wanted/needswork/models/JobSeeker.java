@@ -9,8 +9,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class JobSeeker {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter

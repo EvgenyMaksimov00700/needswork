@@ -53,8 +53,7 @@ public class Vacancy {
     private Integer date_Time;
 
 
-    public Vacancy(Integer employer_id, Integer employerId, String position, String city, Integer salary, String workShedule, String distantWork, String address, Integer date_Time) {
-        this.id = id;
+    public Vacancy(Integer employer_id, Integer industry_id, String position, String city, Integer salary, String workShedule, String distantWork, String address, Integer date_Time) {
         this.employer_id = employer_id;
         this.industry_id = industry_id;
         this.position = position;

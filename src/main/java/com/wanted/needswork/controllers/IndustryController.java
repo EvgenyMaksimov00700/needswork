@@ -27,6 +27,12 @@ public class IndustryController {
     }
 //    @GetMapping ("/industry/{industryId}")
 //    public ResponseEntity <Industry> getIndustryByID (@PathVariable Integer industryId) {
+//        return new ResponseEntity<>(industryService.getIndustry(industryId), HttpStatus.OK);
+//    }
+
+    //TODO do and fix all 4 methods
+//    @GetMapping ("/industry/{industryId}")
+//    public ResponseEntity <Industry> getIndustryByID (@PathVariable Integer industryId) {
 //        return new ResponseEntity<>(IndustryService.getIndustry(industryId), HttpStatus.OK);
 //
 //    }

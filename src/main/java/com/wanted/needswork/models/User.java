@@ -12,7 +12,6 @@ import java.math.BigInteger;
 @Table(name="\"user\"")
 public class User {
     @Id
-
     @Getter
     @Setter
     private BigInteger id;

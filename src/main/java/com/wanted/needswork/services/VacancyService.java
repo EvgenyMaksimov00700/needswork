@@ -31,6 +31,8 @@ public class VacancyService {
 
     public Vacancy updateVacancy(Vacancy vacancy, Integer employer_id, Integer industry_id, String position, String city,
                               Integer salary, String workShedule, String distantWork, String address, Integer date_Time) {
+        //TODO check on null values as in updateJobSeeker() method
+
         vacancy.setIndustry_id(industry_id);
         vacancy.setEmployer_id(employer_id);
         vacancy.setPosition(position);
