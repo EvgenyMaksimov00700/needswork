@@ -1,5 +1,8 @@
 package com.wanted.needswork.controllers;
 
+import com.wanted.needswork.DTO.request.JobSeekerDTO;
+import com.wanted.needswork.DTO.request.UserDTO;
+import com.wanted.needswork.models.Industry;
 import com.wanted.needswork.models.JobSeeker;
 import com.wanted.needswork.models.User;
 import com.wanted.needswork.services.EmployerService;
@@ -8,8 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,8 +19,26 @@ import java.util.List;
 public class JobSeekerController {
     @Autowired
     JobSeekerService jobSeekerService;
-    @GetMapping ("/JobSeeker/showall")
+    @GetMapping ("/jobSeeker/showall")
     public ResponseEntity <List<JobSeeker>> showall () {
-        return new ResponseEntity<>(JobSeekerService.getJobSeekers(), HttpStatus.OK);
+        return new ResponseEntity<>(jobSeekerService.getJobSeekers(), HttpStatus.OK);
     }
+    @GetMapping ("/jobSeeker/{JobSeekerId}")
+    public ResponseEntity <JobSeeker> getJobSeekerById (@PathVariable Integer jobSeekerId) {
+        return new ResponseEntity<>(jobSeekerService.getJobSeeker(jobSeekerId), HttpStatus.OK);
+    }
+    @PostMapping("/jobSeeker")
+    public ResponseEntity <JobSeeker> addJobSeeker (@RequestBody JobSeekerDTO jobSeekerDTO) {
+        return new ResponseEntity<>(jobSeekerService.addJobSeeker(jobSeekerDTO.getUser_id(), jobSeekerDTO.getVideo_cv(), jobSeekerDTO.getLocation()),
+                HttpStatus.OK);
+    }
+    @PutMapping("/jobSeeker/{jobSeekerId}")
+    public ResponseEntity <JobSeeker> updateJobSeeker (@RequestBody JobSeekerDTO jobSeekerDTO, @PathVariable Integer jobSeekerId) {
+        JobSeeker jobSeeker = jobSeekerService. getJobSeeker(jobSeekerId);
+        if (jobSeeker == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(jobSeekerService.updateJobSeeker(jobSeeker, jobSeekerDTO.getUser_id(), jobSeekerDTO.getVideo_cv(), jobSeekerDTO.getLocation()),
+                HttpStatus.OK);
+    }
+
 }

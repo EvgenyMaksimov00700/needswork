@@ -5,15 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigInteger;
+
 @Entity
 @NoArgsConstructor
 @Table(name="\"user\"")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Getter
     @Setter
-    private Integer id;
+    private BigInteger id;
 
     @Getter
     @Setter
@@ -27,7 +29,8 @@ public class User {
     @Setter
     private String phone;
 
-    public User (String fullName, String username, String phone) {
+    public User (BigInteger ID, String fullName, String username, String phone) {
+        this.id = ID;
         this.fullName = fullName;
         this.username = username;
         this.phone = phone;

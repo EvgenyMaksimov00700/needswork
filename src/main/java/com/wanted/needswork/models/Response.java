@@ -31,8 +31,7 @@ public class Response {
     private Integer date_time;
 
 
-    public Response (Integer id, Integer vacancy_id, Integer job_seeker_id, String comment, Integer date_time) {
-        this.id = id;
+    public Response (Integer vacancy_id, Integer job_seeker_id, String comment, Integer date_time) {
         this.vacancy_id = vacancy_id;
         this.job_seeker_id = job_seeker_id;
         this.comment = comment;

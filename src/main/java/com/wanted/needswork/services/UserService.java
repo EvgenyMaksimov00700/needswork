@@ -5,6 +5,7 @@ import com.wanted.needswork.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -17,12 +18,19 @@ public class UserService
         return userRepository.findAll();
     }
 
-    public User getUser(Integer userId) {
+    public User getUser(BigInteger userId) {
         return userRepository.findById(userId).orElse(null);
     }
 
-    public User addUser(String fullName, String phone, String username){
-        User user = new User(fullName, phone,username);
+    public User addUser(String fullName, String phone, String username, BigInteger ID){
+        User user = new User(ID, fullName, phone, username);
+        return userRepository.save(user);
+    }
+
+    public User updateUser(User user, String fullName, String phone, String username) {
+        user.setFullName(fullName);
+        user.setPhone(phone);
+        user.setUsername(username);
         return userRepository.save(user);
     }
 }

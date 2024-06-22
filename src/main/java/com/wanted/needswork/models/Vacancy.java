@@ -5,14 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigInteger;
+
 @Entity
 @NoArgsConstructor
 public class Vacancy {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Getter
     @Setter
-    private Integer id;
+    private BigInteger id;
 
     @Getter
     @Setter
@@ -32,7 +34,7 @@ public class Vacancy {
 
     @Getter
     @Setter
-    private Integer salary ;
+    private Integer salary;
 
     @Getter
     @Setter
@@ -51,7 +53,7 @@ public class Vacancy {
     private Integer date_Time;
 
 
-    public Vacancy (Integer id, Integer employer_id, Integer industry_id, String position, String city, Integer salary, String workShedule, String distantWork, String address, Integer date_Time) {
+    public Vacancy(Integer employer_id, Integer employerId, String position, String city, Integer salary, String workShedule, String distantWork, String address, Integer date_Time) {
         this.id = id;
         this.employer_id = employer_id;
         this.industry_id = industry_id;
@@ -65,4 +67,5 @@ public class Vacancy {
 
 
     }
+
 }
