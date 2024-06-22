@@ -8,7 +8,7 @@ import java.math.BigInteger;
 @AllArgsConstructor
 public class UserDTO {
     @Getter
-    private BigInteger ID;
+    private BigInteger id;
     @Getter
     private String username;
     @Getter

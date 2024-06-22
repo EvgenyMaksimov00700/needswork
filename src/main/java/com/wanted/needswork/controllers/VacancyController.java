@@ -33,7 +33,7 @@ public class VacancyController {
         Vacancy vacancy = vacancyService. getVacancy(vacancyId);
         if (vacancy == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(vacancyService.addVacancy(vacancyDTO.getEmployer_id(), vacancyDTO.getIndustry_id(), vacancyDTO.getPosition(),
+        return new ResponseEntity<>(vacancyService.updateVacancy(vacancy, vacancyDTO.getEmployer_id(), vacancyDTO.getIndustry_id(), vacancyDTO.getPosition(),
                 vacancyDTO.getCity(), vacancyDTO.getSalary(), vacancyDTO.getWorkShedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress(),vacancyDTO.getDate_Time()),
                 HttpStatus.OK);
     }

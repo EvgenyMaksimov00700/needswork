@@ -1,13 +1,11 @@
 package com.wanted.needswork.controllers;
 
 import com.wanted.needswork.DTO.request.UserDTO;
-import com.wanted.needswork.models.Response;
 import com.wanted.needswork.models.User;
 import com.wanted.needswork.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,12 +30,12 @@ public class UserController {
 
     @PostMapping ("/user")
     public ResponseEntity <User> addUser (@RequestBody UserDTO userDTO) {
-        return new ResponseEntity<>(userService.addUser(userDTO.getFullName(), null, userDTO.getUsername(), userDTO.getID()),
+        return new ResponseEntity<>(userService.addUser(userDTO.getFullName(), userDTO.getPhone(), userDTO.getUsername(), userDTO.getId()),
                 HttpStatus.OK);
     }
     @PutMapping ("/user")
     public ResponseEntity <User> updateUser (@RequestBody UserDTO userDTO) {
-        User user = userService. getUser(userDTO.getID());
+        User user = userService. getUser(userDTO.getId());
         if (user == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(userService.updateUser(user, userDTO.getFullName(), userDTO.getPhone(), userDTO.getUsername()),

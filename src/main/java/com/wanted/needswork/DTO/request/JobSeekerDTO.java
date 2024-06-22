@@ -3,8 +3,6 @@ package com.wanted.needswork.DTO.request;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.math.BigInteger;
-
 @AllArgsConstructor
 public class JobSeekerDTO {
     @Getter
@@ -12,7 +10,9 @@ public class JobSeekerDTO {
     @Getter
     private String video_cv;
     @Getter
-    private Double location;
+    private Double latitude;
+    @Getter
+    private Double longitude;
 
 
 

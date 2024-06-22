@@ -27,13 +27,17 @@ public class JobSeeker {
 
     @Getter
     @Setter
-    private Double location;
+    private Double latitude;
 
+    @Getter
+    @Setter
+    private Double longitude;
 
-    public JobSeeker (Integer user_id, String video_cv, Double location) {
+    public JobSeeker (Integer user_id, String video_cv, Double latitude, Double longitude) {
 
         this.user_id = user_id;
         this.video_cv = video_cv;
-        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 }

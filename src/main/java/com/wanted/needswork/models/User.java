@@ -29,7 +29,7 @@ public class User {
     @Setter
     private String phone;
 
-    public User (BigInteger ID, String fullName, String username, String phone) {
+    public User (BigInteger ID, String fullName, String phone, String username) {
         this.id = ID;
         this.fullName = fullName;
         this.username = username;

@@ -29,7 +29,7 @@ public class VacancyService {
         return vacancyRepository.save(vacancy);
     }
 
-    public Vacancy updateUser(Vacancy vacancy, Integer employer_id, Integer industry_id, String position, String city,
+    public Vacancy updateVacancy(Vacancy vacancy, Integer employer_id, Integer industry_id, String position, String city,
                               Integer salary, String workShedule, String distantWork, String address, Integer date_Time) {
         vacancy.setIndustry_id(industry_id);
         vacancy.setEmployer_id(employer_id);
