@@ -15,7 +15,7 @@ import java.util.List;
 
 public class IndustryService {
     @Autowired
-    static
+
     IndustryRepository industryRepository;
     public List<Industry> getIndustryes() {
         return industryRepository.findAll();
@@ -23,10 +23,23 @@ public class IndustryService {
 
     public Industry getIndustry(Integer industryId) {
         return industryRepository.findById(industryId).orElse(null);
+
+
     }
 
-//    public Industry addIndustry(String industryName) {
-//        Industry industry = new Industry(industryName);
-//        return industryRepository.save(industry);
-//    }
+    public Industry addIndustry (String username, String category){
+        Industry industry = new Industry (username, category);
+        return industryRepository.save(industry);
+    }
+
+    public Industry updateIndustry (Industry industry, String username, String category) {
+        if (username != null) {
+            industry.setUsername(username);
+        }
+        if (category != null) {
+            industry.setCategory(category);
+        }
+        return industryRepository.save(industry);
+    }
+
 }

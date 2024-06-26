@@ -1,6 +1,8 @@
 package com.wanted.needswork.services;
 
 
+import com.wanted.needswork.models.Employer;
+import com.wanted.needswork.models.Industry;
 import com.wanted.needswork.models.Vacancy;
 import com.wanted.needswork.repository.VacancyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,25 +25,44 @@ public class VacancyService {
         return vacancyRepository.findById(vacancyId).orElse(null);
     }
 
-    public Vacancy addVacancy( Integer employer_id, Integer industry_id, String position, String city, Integer salary,
-    String workShedule, String distantWork, String address, Integer date_Time){
-        Vacancy vacancy = new Vacancy(industry_id, employer_id, position, city, salary, workShedule, distantWork, address, date_Time);
+    public Vacancy addVacancy(Employer employer_id, Industry industry_id, String position, String city, Integer salary,
+                              String workShedule, Boolean distantWork, String address, Integer date_Time) {
+        Vacancy vacancy = new Vacancy(employer_id,industry_id, position, city, salary, workShedule, distantWork, address, date_Time);
         return vacancyRepository.save(vacancy);
     }
 
-    public Vacancy updateVacancy(Vacancy vacancy, Integer employer_id, Integer industry_id, String position, String city,
-                              Integer salary, String workShedule, String distantWork, String address, Integer date_Time) {
-        //TODO check on null values as in updateJobSeeker() method
-
-        vacancy.setIndustry_id(industry_id);
-        vacancy.setEmployer_id(employer_id);
-        vacancy.setPosition(position);
-        vacancy.setCity(city);
-        vacancy.setSalary(salary);
-        vacancy.setWorkShedule(workShedule);
-        vacancy.setDistantWork(distantWork);
-        vacancy.setAddress(address);
-        vacancy.setDate_Time(date_Time);
+    public Vacancy updateVacancy(Vacancy vacancy, Employer employer_id, Industry industry_id, String position, String city,
+                                 Integer salary, String workSchedule, Boolean distantWork, String address, Integer date_Time) {
+        if (employer_id != null) {
+            vacancy.setEmployer(employer_id);
+        }
+        if (industry_id != null) {
+            vacancy.setIndustry(industry_id);
+        }
+        if (position != null) {
+            vacancy.setPosition(position);
+        }
+        if (city != null) {
+            vacancy.setCity(city);
+        }
+        if (salary != null) {
+            vacancy.setSalary(salary);
+        }
+        if (workSchedule != null) {
+            vacancy.setWorkSchedule(workSchedule);
+        }
+        if (distantWork != null) {
+            vacancy.setDistantWork(distantWork);
+        }
+        if (address != null) {
+            vacancy.setAddress(address);
+        }
+        if (date_Time != null) {
+            vacancy.setDate_Time(date_Time);
+        }
+        if (date_Time != null) {
+            vacancy.setDate_Time(date_Time);
+        }
         return vacancyRepository.save(vacancy);
     }
 }

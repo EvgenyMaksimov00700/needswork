@@ -1,9 +1,13 @@
 package com.wanted.needswork.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.math.BigInteger;
 
 @Entity
 @NoArgsConstructor
@@ -16,15 +20,17 @@ public class Employer {
 
     @Getter
     @Setter
-    private Integer user_id;
+    @JsonBackReference
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private User user;
 
     @Getter
     @Setter
-    private Integer inn;
+    private BigInteger inn;
 
     @Getter
     @Setter
-    private Integer ogrn;
+    private BigInteger ogrn;
 
     @Getter
     @Setter
@@ -38,8 +44,9 @@ public class Employer {
     @Setter
     private String description;
 
-    public Employer (Integer user_id, Integer inn, Integer ogrn, String name, String logo, String description) {
-        this.user_id = user_id;
+    public Employer (User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description) {
+        this.user
+                = user;
         this.inn = inn;
         this.ogrn = ogrn;
         this.logo = logo;

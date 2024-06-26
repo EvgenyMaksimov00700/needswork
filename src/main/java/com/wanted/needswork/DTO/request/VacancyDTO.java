@@ -21,7 +21,7 @@ public class VacancyDTO {
     @Getter
     private String workShedule;
     @Getter
-    private String distantWork;
+    private Boolean distantWork;
     @Getter
     private String address;
     @Getter

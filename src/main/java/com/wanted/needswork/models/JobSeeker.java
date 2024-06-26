@@ -1,9 +1,13 @@
 package com.wanted.needswork.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.math.BigInteger;
 
 @Entity
 @NoArgsConstructor
@@ -17,7 +21,9 @@ public class JobSeeker {
 
     @Getter
     @Setter
-    private Integer user_id;
+    @JsonBackReference
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private User user;
 
     @Getter
     @Setter
@@ -31,9 +37,9 @@ public class JobSeeker {
     @Setter
     private Double longitude;
 
-    public JobSeeker (Integer user_id, String video_cv, Double latitude, Double longitude) {
+    public JobSeeker (User user, String video_cv, Double latitude, Double longitude) {
 
-        this.user_id = user_id;
+        this.user = user;
         this.video_cv = video_cv;
         this.latitude = latitude;
         this.longitude = longitude;

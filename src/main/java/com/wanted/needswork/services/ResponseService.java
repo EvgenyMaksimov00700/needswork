@@ -4,6 +4,7 @@ import com.wanted.needswork.models.JobSeeker;
 //import com.wanted.needswork.repository.JobSeeker;
 import com.wanted.needswork.models.Response;
 import com.wanted.needswork.models.User;
+import com.wanted.needswork.models.Vacancy;
 import com.wanted.needswork.repository.JobSeekerRepository;
 import com.wanted.needswork.repository.ResponseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import java.util.List;
 
 public class ResponseService {
     @Autowired
-    static
     ResponseRepository responseRepository;
     public List<Response> getResponse() {
         return responseRepository.findAll();
@@ -26,17 +26,25 @@ public class ResponseService {
         return responseRepository.findById(id).orElse(null);
     }
 
-    public Response addResponse(Integer vacancy_id, Integer job_seeker_id, String comment, Integer date_time){
+    public Response addResponse(Vacancy vacancy_id, JobSeeker job_seeker_id, String comment, Integer date_time){
         Response response = new Response(vacancy_id, job_seeker_id, comment, date_time);
         return responseRepository.save(response);
     }
 
-    public Response updateResponse(Response response, Integer vacancy_id, Integer job_seeker_id, String comment,
+    public Response updateResponse(Response response, Vacancy vacancy_id, JobSeeker job_seeker_id, String comment,
                                    Integer date_time) {
-        response.setVacancy_id(vacancy_id);
-        response.setJob_seeker_id(job_seeker_id);
+        if (vacancy_id != null) {
+            response.setVacancy(vacancy_id);
+        }
+        if (job_seeker_id!= null) {
+            response.setJob_seeker(job_seeker_id);
+        }
+        if (comment!= null) {
         response.setComment(comment);
-        response.setDate_time(date_time);
+        }
+        if (date_time!= null) {
+            response.setDate_time(date_time);
+        }
         return responseRepository.save(response);
     }
 }

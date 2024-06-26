@@ -8,11 +8,11 @@ import java.math.BigInteger;
 @AllArgsConstructor
 public class EmployerDTO {
     @Getter
-    private Integer user_id;
+    private BigInteger user_id;
     @Getter
-    private Integer inn;
+    private BigInteger inn;
     @Getter
-    private Integer ogrn;
+    private BigInteger ogrn;
     @Getter
     private String name;
     @Getter

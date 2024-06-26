@@ -2,13 +2,11 @@ package com.wanted.needswork.controllers;
 
 import com.wanted.needswork.DTO.request.ResponseDTO;
 import com.wanted.needswork.DTO.request.UserDTO;
-import com.wanted.needswork.models.Industry;
-import com.wanted.needswork.models.JobSeeker;
-import com.wanted.needswork.models.Response;
-import com.wanted.needswork.models.User;
+import com.wanted.needswork.models.*;
 import com.wanted.needswork.services.EmployerService;
 import com.wanted.needswork.services.JobSeekerService;
 import com.wanted.needswork.services.ResponseService;
+import com.wanted.needswork.services.VacancyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -22,6 +20,10 @@ import java.util.List;
 public class ResponseController {
     @Autowired
     ResponseService responseService;
+    @Autowired
+    JobSeekerService jobSeekerService;
+    @Autowired
+    VacancyService vacancyService;
     @GetMapping ("/Response/showall")
     public ResponseEntity <List<Response>> showall () {
         return new ResponseEntity<>(responseService.getResponse(), HttpStatus.OK);
@@ -32,7 +34,13 @@ public class ResponseController {
     }
     @PostMapping("/response")
     public ResponseEntity <Response> addUser (@RequestBody ResponseDTO responseDTO) {
-        return new ResponseEntity<>(responseService.addResponse(responseDTO.getVacancy_id(), responseDTO.getJob_seeker_id(), responseDTO.getComment(), responseDTO.getDate_time()),
+        Vacancy vacancy = vacancyService.getVacancy(responseDTO.getVacancy_id());
+        if (vacancy == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        JobSeeker jobSeeker = jobSeekerService.getJobSeeker(responseDTO.getJob_seeker_id());
+        if (jobSeeker == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(responseService.addResponse(vacancy, jobSeeker, responseDTO.getComment(), responseDTO.getDate_time()),
                 HttpStatus.OK);
     }
     @PutMapping ("/response/{responseId}")
@@ -40,7 +48,9 @@ public class ResponseController {
         Response response = responseService. getResponse(responseId);
         if (response == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(responseService.updateResponse(response, responseDTO.getVacancy_id(), responseDTO.getJob_seeker_id(), responseDTO.getComment(), responseDTO.getDate_time()),
+        Vacancy vacancy = vacancyService.getVacancy(responseDTO.getVacancy_id());
+        JobSeeker jobSeeker = jobSeekerService.getJobSeeker(responseDTO.getJob_seeker_id());
+        return new ResponseEntity<>(responseService.updateResponse(response,vacancy,jobSeeker, responseDTO.getComment(), responseDTO.getDate_time()),
                 HttpStatus.OK);
     }
 }

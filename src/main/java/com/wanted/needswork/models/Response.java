@@ -1,5 +1,6 @@
 package com.wanted.needswork.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,11 +17,15 @@ public class Response {
 
     @Getter
     @Setter
-    private Integer vacancy_id;
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Vacancy vacancy;
 
     @Getter
     @Setter
-    private Integer job_seeker_id;
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private JobSeeker job_seeker;
 
     @Getter
     @Setter
@@ -31,9 +36,9 @@ public class Response {
     private Integer date_time;
 
 
-    public Response (Integer vacancy_id, Integer job_seeker_id, String comment, Integer date_time) {
-        this.vacancy_id = vacancy_id;
-        this.job_seeker_id = job_seeker_id;
+    public Response (Vacancy vacancy, JobSeeker job_seeker, String comment, Integer date_time) {
+        this.vacancy = vacancy;
+        this.job_seeker = job_seeker;
         this.comment = comment;
         this.date_time = date_time;
     }

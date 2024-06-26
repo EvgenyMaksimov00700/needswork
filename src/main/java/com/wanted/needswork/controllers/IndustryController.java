@@ -25,29 +25,26 @@ public class IndustryController {
     public ResponseEntity <List<Industry>> showall () {
         return new ResponseEntity<>(industryService.getIndustryes(), HttpStatus.OK);
     }
-//    @GetMapping ("/industry/{industryId}")
-//    public ResponseEntity <Industry> getIndustryByID (@PathVariable Integer industryId) {
-//        return new ResponseEntity<>(industryService.getIndustry(industryId), HttpStatus.OK);
-//    }
 
-    //TODO do and fix all 4 methods
-//    @GetMapping ("/industry/{industryId}")
-//    public ResponseEntity <Industry> getIndustryByID (@PathVariable Integer industryId) {
-//        return new ResponseEntity<>(IndustryService.getIndustry(industryId), HttpStatus.OK);
-//
-//    }
 
-//    @PostMapping("/industry")
-//    public ResponseEntity <Industry> addIndustry (@RequestBody IndustryDTO industryDTO) {
-//        return new ResponseEntity<>(industryService.addIndustry(industryDTO.getUsername(), industryDTO.getCategory()),
-//                HttpStatus.OK);
-//    }
-//    @PutMapping ("/industry")
-//    public ResponseEntity <Industry> updateIndustry (@RequestBody IndustryDTO industryDTO) {
-//        Industry industry = industryService. getIndustryes(industryId);
-//        if (industry == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(industryService.updateIndustry(industry, industryDTO.getUsername(), industryDTO.getCategory()),
-//                HttpStatus.OK);
-//    }
+
+    @GetMapping ("/industry/{industryId}")
+    public ResponseEntity <Industry> getIndustryById (@PathVariable Integer industryId) {
+        return new ResponseEntity<>(industryService.getIndustry(industryId), HttpStatus.OK);
+
+    }
+
+    @PostMapping("/industry")
+    public ResponseEntity <Industry> addIndustry (@RequestBody IndustryDTO industryDTO) {
+        return new ResponseEntity<>(industryService.addIndustry(industryDTO.getUsername(), industryDTO.getCategory()),
+                HttpStatus.OK);
+    }
+    @PutMapping ("/industry/{industryId}")
+    public ResponseEntity <Industry> updateIndustry (@RequestBody IndustryDTO industryDTO, @PathVariable Integer industryId) {
+        Industry industry = industryService. getIndustry(industryId);
+        if (industry == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(industryService.updateIndustry(industry, industryDTO.getUsername(), industryDTO.getCategory()),
+                HttpStatus.OK);
+    }
 }

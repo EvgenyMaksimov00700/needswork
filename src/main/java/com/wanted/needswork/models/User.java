@@ -1,5 +1,8 @@
 package com.wanted.needswork.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonMerge;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +30,18 @@ public class User {
     @Getter
     @Setter
     private String phone;
+
+    @Getter
+    @Setter
+    @JsonManagedReference
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    Employer employer;
+
+    @Getter
+    @Setter
+    @JsonManagedReference
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    JobSeeker jobSeeker;
 
     public User (BigInteger ID, String fullName, String phone, String username) {
         this.id = ID;

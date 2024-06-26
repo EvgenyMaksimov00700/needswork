@@ -3,10 +3,12 @@ package com.wanted.needswork.DTO.request;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.math.BigInteger;
+
 @AllArgsConstructor
 public class JobSeekerDTO {
     @Getter
-    private Integer user_id;
+    private BigInteger user_id;
     @Getter
     private String video_cv;
     @Getter
