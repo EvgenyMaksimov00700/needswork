@@ -2,6 +2,8 @@ package com.wanted.needswork.controllers;
 
 import com.wanted.needswork.DTO.request.UserDTO;
 import com.wanted.needswork.DTO.request.VacancyDTO;
+import com.wanted.needswork.DTO.response.EmployerResponseDTO;
+import com.wanted.needswork.DTO.response.VacancyResponseDTO;
 import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.Industry;
 import com.wanted.needswork.models.User;
@@ -28,15 +30,17 @@ public class VacancyController {
     @Autowired
     EmployerService employerService;
     @GetMapping ("/vacancy/showall")
-    public ResponseEntity <List<Vacancy>> showall () {
-        return new ResponseEntity<>(vacancyService.getVacancy(), HttpStatus.OK);
+    public ResponseEntity <List<VacancyResponseDTO>> showall () {
+        List<Vacancy> vacancies = vacancyService.getVacancy();
+        List<VacancyResponseDTO> vacancyResponseDTOs = new java.util.ArrayList<>();
+        for (Vacancy vacancy : vacancies) {
+            vacancyResponseDTOs.add(vacancy.toResponseDTO());
+        }
+        return new ResponseEntity<>(vacancyResponseDTOs, HttpStatus.OK);
     }
-
-
-
     @GetMapping ("/vacancy/{vacancyid}")
-    public ResponseEntity <Vacancy> getVacancyByID (@PathVariable Integer vacancyId) {
-        return new ResponseEntity<>(vacancyService.getVacancy(vacancyId), HttpStatus.OK);
+    public ResponseEntity <VacancyResponseDTO> getVacancyByID (@PathVariable Integer vacancyId) {
+        return new ResponseEntity<>(vacancyService.getVacancy(vacancyId).toResponseDTO(), HttpStatus.OK);
 
     }
     @PostMapping("/vacancy")

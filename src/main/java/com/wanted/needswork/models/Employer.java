@@ -1,7 +1,7 @@
 package com.wanted.needswork.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.wanted.needswork.DTO.response.EmployerResponseDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,8 +45,7 @@ public class Employer {
     private String description;
 
     public Employer (User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description) {
-        this.user
-                = user;
+        this.user = user;
         this.inn = inn;
         this.ogrn = ogrn;
         this.logo = logo;
@@ -54,4 +53,8 @@ public class Employer {
 
 
     }
+
+   public EmployerResponseDTO toResponseDTO() {
+       return new EmployerResponseDTO(id, user.toResponseDTO(), inn, ogrn, name, logo, description);
+  }
 }

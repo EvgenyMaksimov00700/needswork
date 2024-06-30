@@ -1,6 +1,7 @@
 package com.wanted.needswork.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.wanted.needswork.DTO.response.ResponseResponseDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,5 +42,9 @@ public class Response {
         this.job_seeker = job_seeker;
         this.comment = comment;
         this.date_time = date_time;
+    }
+    public ResponseResponseDTO toResponseDTO() {
+      return new ResponseResponseDTO(this.id, this.vacancy.toResponseDTO(), this.job_seeker.toResponseDTO(),
+                this.comment, this.date_time);
     }
 }

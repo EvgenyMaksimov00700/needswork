@@ -1,5 +1,7 @@
 package com.wanted.needswork.models;
 
+import com.wanted.needswork.DTO.response.EmployerResponseDTO;
+import com.wanted.needswork.DTO.response.IndustryResponseDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,4 +29,6 @@ public class Industry {
         this.username = username;
         this.category = category;
     }
+    public IndustryResponseDTO toResponseDTO() {
+        return new IndustryResponseDTO(id, username, category);}
 }

@@ -1,20 +1,16 @@
 package com.wanted.needswork.controllers;
 
 import com.wanted.needswork.DTO.request.EmployerDTO;
-import com.wanted.needswork.DTO.request.IndustryDTO;
+import com.wanted.needswork.DTO.response.EmployerResponseDTO;
 import com.wanted.needswork.models.Employer;
-import com.wanted.needswork.models.Industry;
-import com.wanted.needswork.models.Response;
 import com.wanted.needswork.models.User;
 import com.wanted.needswork.services.EmployerService;
 import com.wanted.needswork.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 import java.util.List;
 
 @RestController
@@ -25,16 +21,20 @@ public class EmployerController {
     UserService userService;
 
     @GetMapping ("/employer/showall")
-    public ResponseEntity <List<Employer>> showall () {
+    public ResponseEntity <List<EmployerResponseDTO>> showall () {
         List<Employer> employers = employerService.getEmployers();
-        return new ResponseEntity<>(employers, HttpStatus.OK);
+        List<EmployerResponseDTO> employerResponseDTOs = new java.util.ArrayList<>();
+        for (Employer employer : employers) {
+            employerResponseDTOs.add(employer.toResponseDTO());
+        }
+        return new ResponseEntity<>(employerResponseDTOs, HttpStatus.OK);
     }
 
 
 
    @GetMapping ("/employer/{employerId}")
-  public ResponseEntity <Employer> getEmployerById (@PathVariable Integer employerId) {
-       return new ResponseEntity<>(employerService.getEmployer(employerId), HttpStatus.OK);
+  public ResponseEntity <EmployerResponseDTO> getEmployerById (@PathVariable Integer employerId) {
+       return new ResponseEntity<>(employerService.getEmployer(employerId).toResponseDTO(), HttpStatus.OK);
 
   }
 

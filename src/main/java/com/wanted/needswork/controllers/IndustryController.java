@@ -2,6 +2,9 @@ package com.wanted.needswork.controllers;
 
 import com.wanted.needswork.DTO.request.IndustryDTO;
 import com.wanted.needswork.DTO.request.UserDTO;
+import com.wanted.needswork.DTO.response.EmployerResponseDTO;
+import com.wanted.needswork.DTO.response.IndustryResponseDTO;
+import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.Industry;
 import com.wanted.needswork.models.User;
 import com.wanted.needswork.models.Vacancy;
@@ -22,15 +25,20 @@ public class IndustryController {
     @Autowired
     IndustryService industryService;
     @GetMapping ("/industry/showall")
-    public ResponseEntity <List<Industry>> showall () {
-        return new ResponseEntity<>(industryService.getIndustryes(), HttpStatus.OK);
+    public ResponseEntity <List<IndustryResponseDTO>> showall () {
+        List<Industry> industryes= industryService.getIndustryes();
+        List<IndustryResponseDTO> industryResponseDTOs = new java.util.ArrayList<>();
+        for (Industry industry : industryes) {
+            industryResponseDTOs.add(industry.toResponseDTO());
+        }
+        return new ResponseEntity<>(industryResponseDTOs, HttpStatus.OK);
     }
 
 
 
     @GetMapping ("/industry/{industryId}")
-    public ResponseEntity <Industry> getIndustryById (@PathVariable Integer industryId) {
-        return new ResponseEntity<>(industryService.getIndustry(industryId), HttpStatus.OK);
+    public ResponseEntity <IndustryResponseDTO> getIndustryById (@PathVariable Integer industryId) {
+        return new ResponseEntity<>(industryService.getIndustry(industryId).toResponseDTO(), HttpStatus.OK);
 
     }
 

@@ -1,6 +1,9 @@
 package com.wanted.needswork.controllers;
 
 import com.wanted.needswork.DTO.request.JobSeekerDTO;
+import com.wanted.needswork.DTO.response.EmployerResponseDTO;
+import com.wanted.needswork.DTO.response.JobSeekerResponseDTO;
+import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.JobSeeker;
 import com.wanted.needswork.models.User;
 import com.wanted.needswork.services.JobSeekerService;
@@ -19,12 +22,19 @@ public class JobSeekerController {
     @Autowired
     UserService userService;
     @GetMapping ("/jobSeeker/showall")
-    public ResponseEntity <List<JobSeeker>> showall () {
-        return new ResponseEntity<>(jobSeekerService.getJobSeekers(), HttpStatus.OK);
+    public ResponseEntity <List<JobSeekerResponseDTO>> showall () {
+        List<JobSeeker> jobSeekers = jobSeekerService.getJobSeekers();
+        List<JobSeekerResponseDTO> jobSeekerResponseDTOs = new java.util.ArrayList<>();
+        for (JobSeeker jobSeeker : jobSeekers) {
+            jobSeekerResponseDTOs.add(jobSeeker.toResponseDTO());
+        }
+
+
+        return new ResponseEntity<>(jobSeekerResponseDTOs, HttpStatus.OK);
     }
     @GetMapping ("/jobSeeker/{jobSeekerId}")
-    public ResponseEntity <JobSeeker> getJobSeekerById (@PathVariable Integer jobSeekerId) {
-        return new ResponseEntity<>(jobSeekerService.getJobSeeker(jobSeekerId), HttpStatus.OK);
+    public ResponseEntity <JobSeekerResponseDTO> getJobSeekerById (@PathVariable Integer jobSeekerId) {
+        return new ResponseEntity<>(jobSeekerService.getJobSeeker(jobSeekerId).toResponseDTO(), HttpStatus.OK);
     }
     @PostMapping("/jobSeeker")
     public ResponseEntity <JobSeeker> addJobSeeker (@RequestBody JobSeekerDTO jobSeekerDTO) {

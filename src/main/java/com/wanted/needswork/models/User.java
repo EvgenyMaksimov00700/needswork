@@ -3,6 +3,8 @@ package com.wanted.needswork.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonMerge;
+import com.wanted.needswork.DTO.response.EmployerResponseDTO;
+import com.wanted.needswork.DTO.response.UserResponseDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -49,4 +51,9 @@ public class User {
         this.username = username;
         this.phone = phone;
     }
+
+    public UserResponseDTO toResponseDTO() {
+        return new UserResponseDTO(id, username, fullName, phone);
+    }
 }
+

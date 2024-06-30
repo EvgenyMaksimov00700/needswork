@@ -2,6 +2,8 @@ package com.wanted.needswork.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.wanted.needswork.DTO.response.JobSeekerResponseDTO;
+import com.wanted.needswork.DTO.response.UserResponseDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,11 +39,15 @@ public class JobSeeker {
     @Setter
     private Double longitude;
 
-    public JobSeeker (User user, String video_cv, Double latitude, Double longitude) {
+    public JobSeeker(User user, String video_cv, Double latitude, Double longitude) {
 
         this.user = user;
         this.video_cv = video_cv;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public JobSeekerResponseDTO toResponseDTO() {
+        return new JobSeekerResponseDTO(id, user.toResponseDTO(), video_cv, latitude, longitude);
     }
 }

@@ -1,6 +1,9 @@
 package com.wanted.needswork.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.wanted.needswork.DTO.response.EmployerResponseDTO;
+import com.wanted.needswork.DTO.response.UserResponseDTO;
+import com.wanted.needswork.DTO.response.VacancyResponseDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -70,4 +73,7 @@ public class Vacancy {
 
     }
 
+    public VacancyResponseDTO toResponseDTO() {
+        return new VacancyResponseDTO(id, employer.toResponseDTO(), industry.toResponseDTO(), position, city, salary, workSchedule, distantWork, address, date_Time);
+    }
 }
