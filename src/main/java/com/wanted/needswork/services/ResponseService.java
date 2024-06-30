@@ -26,13 +26,12 @@ public class ResponseService {
         return responseRepository.findById(id).orElse(null);
     }
 
-    public Response addResponse(Vacancy vacancy_id, JobSeeker job_seeker_id, String comment, Integer date_time){
-        Response response = new Response(vacancy_id, job_seeker_id, comment, date_time);
+    public Response addResponse(Vacancy vacancy_id, JobSeeker job_seeker_id, String comment){
+        Response response = new Response(vacancy_id, job_seeker_id, comment);
         return responseRepository.save(response);
     }
 
-    public Response updateResponse(Response response, Vacancy vacancy_id, JobSeeker job_seeker_id, String comment,
-                                   Integer date_time) {
+    public Response updateResponse(Response response, Vacancy vacancy_id, JobSeeker job_seeker_id, String comment) {
         if (vacancy_id != null) {
             response.setVacancy(vacancy_id);
         }
@@ -41,9 +40,6 @@ public class ResponseService {
         }
         if (comment!= null) {
         response.setComment(comment);
-        }
-        if (date_time!= null) {
-            response.setDate_time(date_time);
         }
         return responseRepository.save(response);
     }

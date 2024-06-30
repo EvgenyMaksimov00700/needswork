@@ -2,6 +2,10 @@ package com.wanted.needswork.DTO.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 public class VacancyResponseDTO {
@@ -24,7 +28,8 @@ public class VacancyResponseDTO {
     @Getter
     private String address;
     @Getter
-    private Integer date_Time;
-
+    private LocalDateTime createdDateTime;
+    @Getter
+    private LocalDateTime lastModifiedDateTime;
 
 }

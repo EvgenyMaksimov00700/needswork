@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 public class ResponseResponseDTO {
     @Getter
@@ -17,7 +19,7 @@ public class ResponseResponseDTO {
     @Getter
     private String comment;
     @Getter
-    private Integer date_time;
+    private LocalDateTime created_at;
 
 
 }

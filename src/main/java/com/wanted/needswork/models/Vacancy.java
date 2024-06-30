@@ -8,6 +8,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -54,12 +60,15 @@ public class Vacancy {
     @Setter
     private String address;
 
+    @CreationTimestamp
     @Getter
-    @Setter
-    private Integer date_Time;
+    private LocalDateTime createdDateTime;
 
+    @UpdateTimestamp
+    @Getter
+    private LocalDateTime lastModifiedDateTime;
 
-    public Vacancy(Employer employer, Industry industry, String position, String city, Integer salary, String workSchedule, Boolean distantWork, String address, Integer date_Time) {
+    public Vacancy(Employer employer, Industry industry, String position, String city, Integer salary, String workSchedule, Boolean distantWork, String address) {
         this.employer = employer;
         this.industry = industry;
         this.position = position;
@@ -68,12 +77,12 @@ public class Vacancy {
         this.workSchedule = workSchedule;
         this.distantWork = distantWork;
         this.address = address;
-        this.date_Time = date_Time;
+
 
 
     }
 
     public VacancyResponseDTO toResponseDTO() {
-        return new VacancyResponseDTO(id, employer.toResponseDTO(), industry.toResponseDTO(), position, city, salary, workSchedule, distantWork, address, date_Time);
+        return new VacancyResponseDTO(id, employer.toResponseDTO(), industry.toResponseDTO(), position, city, salary, workSchedule, distantWork, address, createdDateTime, lastModifiedDateTime);
     }
 }

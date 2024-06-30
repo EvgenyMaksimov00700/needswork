@@ -15,8 +15,7 @@ public class ResponseDTO {
     
     @Getter
     private String comment;
-    @Getter
-    private Integer date_time;
+
 
 
 }

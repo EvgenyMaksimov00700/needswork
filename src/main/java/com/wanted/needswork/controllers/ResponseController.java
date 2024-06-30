@@ -48,7 +48,7 @@ public class ResponseController {
         JobSeeker jobSeeker = jobSeekerService.getJobSeeker(responseDTO.getJob_seeker_id());
         if (jobSeeker == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(responseService.addResponse(vacancy, jobSeeker, responseDTO.getComment(), responseDTO.getDate_time()),
+        return new ResponseEntity<>(responseService.addResponse(vacancy, jobSeeker, responseDTO.getComment()),
                 HttpStatus.OK);
     }
     @PutMapping ("/response/{responseId}")
@@ -58,7 +58,7 @@ public class ResponseController {
         }
         Vacancy vacancy = vacancyService.getVacancy(responseDTO.getVacancy_id());
         JobSeeker jobSeeker = jobSeekerService.getJobSeeker(responseDTO.getJob_seeker_id());
-        return new ResponseEntity<>(responseService.updateResponse(response,vacancy,jobSeeker, responseDTO.getComment(), responseDTO.getDate_time()),
+        return new ResponseEntity<>(responseService.updateResponse(response,vacancy,jobSeeker, responseDTO.getComment()),
                 HttpStatus.OK);
     }
 }

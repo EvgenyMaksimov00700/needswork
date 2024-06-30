@@ -26,13 +26,13 @@ public class VacancyService {
     }
 
     public Vacancy addVacancy(Employer employer_id, Industry industry_id, String position, String city, Integer salary,
-                              String workShedule, Boolean distantWork, String address, Integer date_Time) {
-        Vacancy vacancy = new Vacancy(employer_id,industry_id, position, city, salary, workShedule, distantWork, address, date_Time);
+                              String workShedule, Boolean distantWork, String address) {
+        Vacancy vacancy = new Vacancy(employer_id,industry_id, position, city, salary, workShedule, distantWork, address);
         return vacancyRepository.save(vacancy);
     }
 
     public Vacancy updateVacancy(Vacancy vacancy, Employer employer_id, Industry industry_id, String position, String city,
-                                 Integer salary, String workSchedule, Boolean distantWork, String address, Integer date_Time) {
+                                 Integer salary, String workSchedule, Boolean distantWork, String address) {
         if (employer_id != null) {
             vacancy.setEmployer(employer_id);
         }
@@ -57,12 +57,8 @@ public class VacancyService {
         if (address != null) {
             vacancy.setAddress(address);
         }
-        if (date_Time != null) {
-            vacancy.setDate_Time(date_Time);
-        }
-        if (date_Time != null) {
-            vacancy.setDate_Time(date_Time);
-        }
+
+
         return vacancyRepository.save(vacancy);
     }
 }

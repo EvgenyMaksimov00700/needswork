@@ -24,10 +24,5 @@ public class VacancyDTO {
     private Boolean distantWork;
     @Getter
     private String address;
-    @Getter
-    private Integer date_Time;
-
-
-
 
 }

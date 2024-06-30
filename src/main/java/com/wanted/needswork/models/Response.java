@@ -6,6 +6,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -32,19 +36,19 @@ public class Response {
     @Setter
     private String comment;
 
+    @CreationTimestamp
     @Getter
-    @Setter
-    private Integer date_time;
+    private LocalDateTime createdDateTime;
 
 
-    public Response (Vacancy vacancy, JobSeeker job_seeker, String comment, Integer date_time) {
+    public Response (Vacancy vacancy, JobSeeker job_seeker, String comment) {
         this.vacancy = vacancy;
         this.job_seeker = job_seeker;
         this.comment = comment;
-        this.date_time = date_time;
+
     }
     public ResponseResponseDTO toResponseDTO() {
       return new ResponseResponseDTO(this.id, this.vacancy.toResponseDTO(), this.job_seeker.toResponseDTO(),
-                this.comment, this.date_time);
+                this.comment, this.createdDateTime);
     }
 }

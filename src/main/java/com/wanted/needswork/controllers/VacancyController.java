@@ -52,7 +52,7 @@ public class VacancyController {
         if (industry == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(vacancyService.addVacancy(employer,industry, vacancyDTO.getPosition(),
-                vacancyDTO.getCity(), vacancyDTO.getSalary(), vacancyDTO.getWorkShedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress(),vacancyDTO.getDate_Time()),HttpStatus.OK);
+                vacancyDTO.getCity(), vacancyDTO.getSalary(), vacancyDTO.getWorkShedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress()),HttpStatus.OK);
     }
 
 
@@ -67,7 +67,7 @@ public class VacancyController {
         }
         Industry industry = industryService.getIndustry(vacancyDTO.getIndustry_id());
         return new ResponseEntity<>(vacancyService.updateVacancy(vacancy,employer, industry, vacancyDTO.getPosition(),
-                vacancyDTO.getCity(), vacancyDTO.getSalary(), vacancyDTO.getWorkShedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress(),vacancyDTO.getDate_Time()),
+                vacancyDTO.getCity(), vacancyDTO.getSalary(), vacancyDTO.getWorkShedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress()),
                 HttpStatus.OK);
     }
 }
