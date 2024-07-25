@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание вакансии</title>
+    <style>
+        body {
+          background-color: #111;
+          color: #fff;
+          font-family: sans-serif;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+        }
+
+        .container {
+          background-color: #222;
+          padding: 20px;
+          border-radius: 5px;
+        }
+
+        .section-title {
+          text-align: center;
+          margin-bottom: 15px;
+        }
+
+        .input-group {
+          margin-bottom: 15px;
+        }
+
+        .input-group label {
+          display: block;
+          margin-bottom: 5px;
+        }
+
+        .input-group input,
+        .input-group textarea {
+          width: 95%;
+          padding: 10px;
+          border: 1px solid #333;
+          border-radius: 3px;
+          background-color: #333;
+          color: #fff;
+        }
+
+        .button-group {
+          display: flex;
+          justify-content: space-around;
+        }
+
+        .button-group button {
+          background-color: #4CAF50;
+          color: white;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          flex: 1;
+          margin: 0 5px;
+        }
+
+        select {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #333;
+          border-radius: 3px;
+          background-color: #333;
+          color: #fff;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background-image: url("data:image/svg+xml;utf8,<svg fill='%23333' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+          background-repeat: no-repeat;
+          background-position: right 10px center;
+          background-size: 16px 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="section-title">Создание вакансии</h1>
+    <h2 class="section-title">Основная информация</h2>
+    <div class="input-group">
+        <label for="vacancy-name">Название Вакансии:</label>
+        <input type="text" id="vacancy-name" name="vacancy-name">
+    </div>
+    <div class="input-group">
+        <label for="industry">Укажите отрасль:</label>
+        <input type="text" id="industry" name="industry">
+    </div>
+    <div class="input-group">
+        <label for="city">Укажите город в которых доступна вакансия:</label>
+        <div style="display: flex;">
+            <input type="text" id="city-input" name="city-input" placeholder="Введите город" onkeyup="filterCities()">
+            <select id="city-select" name="city-select">
+                <option value="">Выберите город</option>
+                <!-- Здесь будет код для автоматической генерации городов -->
+            </select>
+        </div>
+    </div>
+    <div class="input-group">
+        <label for="responsibilities">Обязанности:</label>
+        <textarea id="responsibilities" name="responsibilities"></textarea>
+    </div>
+    <div class="input-group">
+        <label for="requirements">Требования:</label>
+        <textarea id="requirements" name="requirements"></textarea>
+    </div>
+    <div class="input-group">
+        <label for="conditions">Условия:</label>
+        <textarea id="conditions" name="conditions"></textarea>
+    </div>
+    <div class="input-group">
+        <label for="skills">Ключевые навыки:</label>
+        <textarea id="skills" name="skills"></textarea>
+    </div>
+    <div class="input-group">
+        <label for="address">Укажите адрес места работы:</label>
+        <input type="text" id="address" name="address">
+    </div>
+    <h2 class="section-title">Укажите требуемый опыт работы</h2>
+    <div class="button-group">
+        <button type="button">Нет опыта</button>
+        <button type="button">от 1 года до 3 лет</button>
+        <button type="button">от 3 до 5 лет</button>
+        <button type="button">Более 5 лет</button>
+    </div>
+    <h2 class="section-title">Желаемый доход в месяц (руб)</h2>
+    <div class="input-group">
+        <label for="salary-from">от</label>
+        <input type="number" id="salary-from" name="salary-from">
+    </div>
+    <div class="input-group">
+        <label for="salary-to">до</label>
+        <input type="number" id="salary-to" name="salary-to">
+    </div>
+    <button type="submit">Опубликовать</button>
+</div>
+
+<script>
+    // Массив с городами России (можете получить его из внешнего файла или API)
+    const russianCities = [
+      "Москва", "Санкт-Петербург", "Екатеринбург", "Новосибирск",
+      // ... Добавьте другие города
+    ];
+
+    // Функция для заполнения выпадающего списка
+    function populateCitySelect() {
+      const citySelect = document.getElementById('city-select');
+      russianCities.forEach(city => {
+        const option = document.createElement('option');
+        option.value = city.toLowerCase();
+        option.text = city;
+        citySelect.appendChild(option);
+      });
+    }
+
+    // Вызываем функцию после загрузки страницы
+    window.onload = populateCitySelect;
+
+    // Функция для фильтрации городов
+    function filterCities() {
+      const inputValue = document.getElementById('city-input').value.toLowerCase();
+      const citySelect = document.getElementById('city-select');
+      const options = citySelect.getElementsByTagName('option');
+
+      for (let i = 0; i < options.length; i++) {
+        const optionValue = options[i].value.toLowerCase();
+        if (optionValue.indexOf(inputValue) > -1) {
+          options[i].style.display = 'block';
+        } else {
+          options[i].style.display = 'none';
+        }
+      }
+    }
+</script>
+</body>
+</html>
