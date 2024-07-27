@@ -49,7 +49,7 @@ public class User {
         this.id = ID;
         this.fullName = fullName;
         this.username = username;
-
+        this.phone = null;
     }
 
     public UserResponseDTO toResponseDTO() {
