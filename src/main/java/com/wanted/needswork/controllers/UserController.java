@@ -39,7 +39,7 @@ public class UserController {
 
     @PostMapping ("/user")
     public ResponseEntity <User> addUser (@RequestBody UserDTO userDTO) {
-        return new ResponseEntity<>(userService.addUser(userDTO.getFullName(), userDTO.getPhone(), userDTO.getUsername(), userDTO.getId()),
+        return new ResponseEntity<>(userService.addUser(userDTO.getFullName(), userDTO.getUsername(), userDTO.getId()),
                 HttpStatus.OK);
     }
     @PutMapping ("/user")

@@ -45,11 +45,11 @@ public class User {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     JobSeeker jobSeeker;
 
-    public User (BigInteger ID, String fullName, String phone, String username) {
+    public User (BigInteger ID, String fullName, String username) {
         this.id = ID;
         this.fullName = fullName;
         this.username = username;
-        this.phone = phone;
+
     }
 
     public UserResponseDTO toResponseDTO() {

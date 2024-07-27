@@ -22,8 +22,11 @@ public class UserService
         return userRepository.findById(userId).orElse(null);
     }
 
-    public User addUser(String fullName, String phone, String username, BigInteger ID){
-        User user = new User(ID, fullName, phone, username);
+    public User addUser(String fullName, String username, BigInteger ID){
+        User user = new User(ID, fullName, username);
+        if (getUser(ID)==null) {
+            return getUser(ID);
+        }
         return userRepository.save(user);
     }
 

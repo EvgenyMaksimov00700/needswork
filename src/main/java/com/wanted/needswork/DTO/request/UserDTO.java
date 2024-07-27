@@ -16,6 +16,10 @@ public class UserDTO {
     @Getter
     private String phone;
 
-
+    UserDTO(BigInteger id, String username, String fullName) {
+        this.id = id;
+        this.username = username;
+        this.fullName = fullName;
+    }
 
 }
