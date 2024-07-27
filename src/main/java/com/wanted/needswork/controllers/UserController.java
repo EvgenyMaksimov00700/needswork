@@ -1,6 +1,7 @@
 package com.wanted.needswork.controllers;
 
 import com.wanted.needswork.DTO.request.UserDTO;
+import com.wanted.needswork.DTO.request.UserWithoutPhoneDTO;
 import com.wanted.needswork.DTO.response.EmployerResponseDTO;
 import com.wanted.needswork.DTO.response.UserResponseDTO;
 import com.wanted.needswork.models.Employer;
@@ -38,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping ("/user")
-    public ResponseEntity <User> addUser (@RequestBody UserDTO userDTO) {
+    public ResponseEntity <User> addUser (@RequestBody UserWithoutPhoneDTO userDTO) {
         return new ResponseEntity<>(userService.addUser(userDTO.getFullName(), userDTO.getUsername(), userDTO.getId()),
                 HttpStatus.OK);
     }
