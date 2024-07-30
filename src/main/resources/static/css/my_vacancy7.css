@@ -1,4 +1,4 @@
-body {
+html {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #1a1a1a;
@@ -6,8 +6,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 844px; /* Заданный размер экрана */
-    width: 390px; /* Заданный размер экрана */
+    height: 100%;
 }
 
 .container {
