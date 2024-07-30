@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фильтры</title>
+    <link rel="stylesheet" href="../static/css/filtress.css">
 </head>
 <body>
-
+<div class="container">
+    <h2>Фильтры</h2>
+    <form>
+        <div class="form-group">
+            <input type="text" placeholder="Поиск компании">
+        </div>
+        <div class="form-group">
+            <input type="text" placeholder="Уровень дохода, от (руб)">
+        </div>
+        <div class="form-group">
+            <label for="country">Страна</label>
+            <input type="text" id="country">
+        </div>
+        <div class="form-group">
+            <label for="city">Город</label>
+            <input type="text" id="city">
+        </div>
+        <div class="form-group">
+            <label for="region">Район</label>
+            <input type="text" id="region">
+        </div>
+        <div class="form-group">
+            <label>Требуемый опыт</label>
+            <div class="button-group">
+                <button type="button">Нет опыта</button>
+                <button type="button">от 1 года до 3 лет</button>
+                <button type="button">от 3 до 5 лет</button>
+                <button type="button">Более 5 лет</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Тип занятости</label>
+            <div class="button-group">
+                <button type="button">Полная занятость</button>
+                <button type="button">Удаленка</button>
+                <button type="button">Подработка</button>
+                <button type="button">Стажировка</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="disability">для людей с инвалидностью</label>
+            <input type="text" id="disability">
+        </div>
+        <div class="form-group">
+            <label>Время публикации</label>
+            <div class="button-group">
+                <button type="button">За месяц</button>
+                <button type="button">За неделю</button>
+                <button type="button">За 3 дня</button>
+                <button type="button">Сутки</button>
+            </div>
+        </div>
+        <button type="submit" class="apply">Применить</button>
+    </form>
+</div>
 </body>
 </html>

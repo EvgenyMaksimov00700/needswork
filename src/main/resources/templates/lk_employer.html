@@ -4,68 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Личный кабинет работодателя</title>
-    <style>
-        body {
-          background-color: #111;
-          color: #fff;
-          font-family: sans-serif;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          min-height: 100vh;
-        }
-
-        .container {
-          background-color: #222;
-          padding: 20px;
-          border-radius: 5px;
-        }
-
-        .button-group {
-          margin-bottom: 15px;
-        }
-
-        .button-group button {
-          width: 100%;
-          padding: 12px;
-          border: none;
-          border-radius: 4px;
-          background-color: #333;
-          color: white;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-        }
-
-        .button-group button:hover {
-          background-color: #444;
-        }
-
-        .continue-button {
-          background-color: #4CAF50;
-          color: white;
-          padding: 12px 20px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-        }
-
-        .continue-button:hover {
-          background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="../static/css/lk_employer.css">
 </head>
 <body>
 <div class="container">
-    <h1>Личный кабинет работодателя</h1>
-    <div class="button-group">
-        <button type="button">Разместить вакансию</button>
-        <button type="button">Мои вакансии</button>
-        <button type="button">Сведения о компании</button>
-        <button type="button">Отклики</button>
-    </div>
-    <button type="button" class="continue-button">Далее</button>
+    <h2>Личный кабинет работодателя</h2>
+    <form>
+        <div class="form-group">
+            <input type="button" value="Разместить вакансию">
+        </div>
+        <div class="form-group">
+            <input type="button" value="Мои вакансии">
+        </div>
+        <div class="form-group">
+            <input type="button" value="Сведения о компании">
+        </div>
+        <div class="form-group">
+            <input type="button" value="Отклики">
+        </div>
+        <button type="button" class="next">Далее</button>
+    </form>
 </div>
 </body>
+</html>
 </html>

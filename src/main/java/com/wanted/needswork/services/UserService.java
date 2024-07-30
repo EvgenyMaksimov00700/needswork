@@ -24,7 +24,7 @@ public class UserService
 
     public User addUser(String fullName, String username, BigInteger ID){
         User user = new User(ID, fullName, username);
-        if (getUser(ID)==null) {
+        if (getUser(ID)!=null) {
             return getUser(ID);
         }
         return userRepository.save(user);

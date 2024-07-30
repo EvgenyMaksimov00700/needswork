@@ -40,8 +40,8 @@ public class UserController {
 
     @PostMapping ("/user")
     public ResponseEntity <User> addUser (@RequestBody UserWithoutPhoneDTO userDTO) {
-        return new ResponseEntity<>(userService.addUser(userDTO.getFullName(), userDTO.getUsername(), userDTO.getId()),
-                HttpStatus.OK);
+        User user = userService.addUser(userDTO.getFullName(), userDTO.getUsername(), userDTO.getId());
+        return new ResponseEntity<>(user,HttpStatus.OK);
     }
     @PutMapping ("/user")
     public ResponseEntity <User> updateUser (@RequestBody UserDTO userDTO) {

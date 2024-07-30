@@ -4,82 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Управление клиентами</title>
-    <style>
-        body {
-          background-color: #111;
-          color: #fff;
-          font-family: sans-serif;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          min-height: 100vh;
-        }
-
-        .container {
-          background-color: #222;
-          padding: 20px;
-          border-radius: 5px;
-        }
-
-        .input-group {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 15px;
-        }
-
-        .input-group label {
-          margin-right: 10px;
-        }
-
-        .input-group input {
-          width: 60%;
-          padding: 10px;
-          border: 1px solid #333;
-          border-radius: 3px;
-          background-color: #333;
-          color: #fff;
-        }
-
-        button {
-          background-color: #4CAF50;
-          color: white;
-          padding: 12px 20px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="../static/css/admin_clients1.css">
 </head>
 <body>
 <div class="container">
-    <h1>Управление клиентами</h1>
-    <div class="input-group">
-        <label for="vacancy-count">количество размещенных вакансий:</label>
-        <input type="number" id="vacancy-count" name="vacancy-count">
-    </div>
-    <div class="input-group">
-        <label for="response-count">количество откликов:</label>
-        <input type="number" id="response-count" name="response-count">
-    </div>
-    <div class="input-group">
-        <label for="paid-vacancies">оплачено вакансий:</label>
-        <input type="number" id="paid-vacancies" name="paid-vacancies">
-    </div>
-    <div class="input-group">
-        <label for="client-name">наименование клиента:</label>
-        <input type="text" id="client-name" name="client-name">
-        <label for="inn">ИНН:</label>
-        <input type="text" id="inn" name="inn">
-    </div>
-    <div class="input-group">
-        <label for="seeker-name">наименование соискателя:</label>
-        <input type="text" id="seeker-name" name="seeker-name">
-        <label for="tg-nick">ник в ТГ:</label>
-        <input type="text" id="tg-nick" name="tg-nick">
-    </div>
-    <button type="submit">Далее</button>
+    <h2>Управление клиентами</h2>
+    <form>
+        <div class="form-group">
+            <label for="vacancies">количество размещенных вакансий</label>
+            <input type="text" id="vacancies">
+        </div>
+        <div class="form-group">
+            <label for="responses">количество откликов</label>
+            <input type="text" id="responses">
+        </div>
+        <div class="form-group">
+            <label for="paid-vacancies">оплачено вакансий</label>
+            <input type="text" id="paid-vacancies">
+        </div>
+        <div class="form-group">
+            <label for="client-name">наименование клиента</label>
+            <input type="text" id="client-name" placeholder="ИНН">
+        </div>
+        <div class="form-group">
+            <label for="applicant-name">наименование соискателя</label>
+            <input type="text" id="applicant-name" placeholder="НИК В ТГ">
+        </div>
+        <button type="button" class="next">далее</button>
+    </form>
 </div>
 </body>
 </html>
