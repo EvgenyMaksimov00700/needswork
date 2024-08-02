@@ -9,4 +9,8 @@ public class WebUpController {
         return "reg_employer";
 
     }
+    @GetMapping("/employer/lk")
+    public String getEmployerLk() {
+        return "lk_employer";
+    }
 }
