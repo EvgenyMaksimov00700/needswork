@@ -50,7 +50,7 @@ public class Employer {
         this.ogrn = ogrn;
         this.logo = logo;
         this.description = description;
-
+        this.name = name;
 
     }
 
