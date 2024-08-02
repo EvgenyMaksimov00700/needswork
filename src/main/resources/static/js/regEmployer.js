@@ -1,10 +1,11 @@
 
 let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
+window.Telegram.WebApp.expand();
 document.getElementById("next" ).addEventListener("click", async function( event ) {
   event.preventDefault();
   const inn = document.getElementById("inn").value;
   const ogrn = document.getElementById("ogrn").value;
-  const name = document.getElementById("name").value;
+  const name = document.getElementById("nameCompany").value;
   const logo = document.getElementById("logo").value;
   const description = document.getElementById("description").value;
   const url = "/employer"; // Replace with your API URL
@@ -24,6 +25,7 @@ document.getElementById("next" ).addEventListener("click", async function( event
 
           const jsonData = await response.json(); // Парсим и возвращаем ответ как JSON
           console.log(jsonData); // Обрабатываем данные ответа
+          window.location.href = "/employer/lk/"; // Redirect to dashboard page after successful registration
       } catch (error) {
           console.error('Ошибка:', error); // Обрабатываем ошибку
       }})
