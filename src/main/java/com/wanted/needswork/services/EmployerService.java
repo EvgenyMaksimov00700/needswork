@@ -21,36 +21,43 @@ public class EmployerService {
     @Autowired
     EmployerRepository employerRepository;
 
-    public List<Employer> getEmployers() {return employerRepository.findAll(); }
+    public List<Employer> getEmployers() {
+        return employerRepository.findAll();
+    }
 
-    public Employer getEmployer (Integer employerId) {
+    public Employer getEmployer(Integer employerId) {
         return employerRepository.findById(employerId).orElse(null);
 
 
     }
+    public Employer getEmployerByUser(Integer userId) {
+        return employerRepository.findByUserId(userId);
 
-    public Employer addEmployer (User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description){
-        Employer employer = new Employer (user, inn, ogrn, name, logo, description);
+
+    }
+
+    public Employer addEmployer(User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description) {
+        Employer employer = new Employer(user, inn, ogrn, name, logo, description);
         return employerRepository.save(employer);
     }
 
-    public Employer updateEmployer (Employer employer, User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description) {
+    public Employer updateEmployer(Employer employer, User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description) {
         if (user != null) {
             employer.setUser(user);
         }
-        if (inn!= null) {
+        if (inn != null) {
             employer.setInn(inn);
         }
-        if (ogrn!= null) {
+        if (ogrn != null) {
             employer.setOgrn(ogrn);
         }
-        if (name!= null) {
+        if (name != null) {
             employer.setName(name);
         }
-        if (logo!= null) {
+        if (logo != null) {
             employer.setLogo(logo);
         }
-        if (description!= null) {
+        if (description != null) {
             employer.setDescription(description);
         }
 

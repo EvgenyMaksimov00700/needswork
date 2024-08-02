@@ -20,8 +20,8 @@ public class EmployerController {
     @Autowired
     UserService userService;
 
-    @GetMapping ("/employer/showall")
-    public ResponseEntity <List<EmployerResponseDTO>> showall () {
+    @GetMapping("/employer/showall")
+    public ResponseEntity<List<EmployerResponseDTO>> showall() {
         List<Employer> employers = employerService.getEmployers();
         List<EmployerResponseDTO> employerResponseDTOs = new java.util.ArrayList<>();
         for (Employer employer : employers) {
@@ -31,32 +31,47 @@ public class EmployerController {
     }
 
 
+    @GetMapping("/employer/get/{employerId}")
+    public ResponseEntity<EmployerResponseDTO> getEmployerById(@PathVariable Integer employerId) {
+        Employer employer = employerService.getEmployer(employerId);
+        if (employer == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(employer.toResponseDTO(), HttpStatus.OK);
 
-   @GetMapping ("/employer/{employerId}")
-  public ResponseEntity <EmployerResponseDTO> getEmployerById (@PathVariable Integer employerId) {
-       return new ResponseEntity<>(employerService.getEmployer(employerId).toResponseDTO(), HttpStatus.OK);
+    }
 
-  }
+    @GetMapping("/employer/user/{userId}")
+    public ResponseEntity<EmployerResponseDTO> getEmployerByUserId(@PathVariable Integer userId) {
+        Employer employer = employerService.getEmployerByUser(userId);
+        if (employer == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(employer.toResponseDTO(), HttpStatus.OK);
 
-   @PostMapping("/employer")
-   public ResponseEntity <Employer> addEmployer (@RequestBody EmployerDTO employerDTO) {
+    }
+
+    @PostMapping("/employer")
+    public ResponseEntity<Employer> addEmployer(@RequestBody EmployerDTO employerDTO) {
         User user = userService.getUser(employerDTO.getUser_id());
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(employerService.addEmployer(user, employerDTO.getInn(), employerDTO.getOgrn(),
-               employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription()), HttpStatus.OK);
-   }
-   @PutMapping ("/employer/{employerId}")
-   public ResponseEntity <Employer> updateEmployer (@RequestBody EmployerDTO employerDTO, @PathVariable Integer employerId) {
-       Employer employer = employerService. getEmployer(employerId);
-       User user = userService.getUser(employerDTO.getUser_id());
-       if (employer == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-       }
-       return new ResponseEntity<>(employerService.updateEmployer(employer, user, employerDTO.getInn(), employerDTO.getOgrn(),
-              employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription()),
+                employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription()), HttpStatus.OK);
+    }
+
+    @PutMapping("/employer/{employerId}")
+    public ResponseEntity<Employer> updateEmployer(@RequestBody EmployerDTO employerDTO, @PathVariable Integer employerId) {
+        Employer employer = employerService.getEmployer(employerId);
+        User user = userService.getUser(employerDTO.getUser_id());
+        if (employer == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(employerService.updateEmployer(employer, user, employerDTO.getInn(), employerDTO.getOgrn(),
+                employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription()),
                 HttpStatus.OK);
-  }
+    }
 }
 
 
