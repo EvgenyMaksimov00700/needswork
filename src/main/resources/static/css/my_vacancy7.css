@@ -27,7 +27,7 @@ h2 {
 }
 
 .vacancy {
-    background-color: green;
+    background-color: #4CAF50;
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 15px;
@@ -41,7 +41,7 @@ button.back {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    background-color: green;
+    background-color: #4CAF50;
     color: white;
     margin-top: 20px;
 }
