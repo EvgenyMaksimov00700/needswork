@@ -30,7 +30,7 @@ public class EmployerService {
 
 
     }
-    public Employer getEmployerByUser(Integer userId) {
+    public Employer getEmployerByUser(BigInteger userId) {
         return employerRepository.findByUserId(userId);
 
 

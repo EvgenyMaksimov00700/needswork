@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @RestController
@@ -42,7 +43,7 @@ public class EmployerController {
     }
 
     @GetMapping("/employer/user/{userId}")
-    public ResponseEntity<EmployerResponseDTO> getEmployerByUserId(@PathVariable Integer userId) {
+    public ResponseEntity<EmployerResponseDTO> getEmployerByUserId(@PathVariable BigInteger userId) {
         Employer employer = employerService.getEmployerByUser(userId);
         if (employer == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
