@@ -1,7 +1,6 @@
 // Инициализация Telegram Web App
-let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
 window.Telegram.WebApp.expand();
-
+let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
 // Функция для получения данных из API и отображения их на странице
 async function fetchAndDisplayData() {
     const url = `/employer/user/${clientID}`; // Замените на свой URL API
