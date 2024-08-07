@@ -54,7 +54,7 @@ document.getElementById("next").addEventListener("click", async function(event) 
 
     try {
         const response = await fetch(url, {
-            method: 'POST', // Метод запроса
+            method: 'PUT', // Метод запроса
             headers: {
                 'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
             },
