@@ -13,4 +13,20 @@ public class WebUpController {
     public String getEmployerLk() {
         return "lk_employer";
     }
+    @GetMapping("/employer/vacancy/create")
+    public String getCreateVacancyForm() {
+        return "create_vacancy_form";
+    }
+    @GetMapping("/employer/my_vacancy7/show")
+    public String getMyVacancy7() {
+        return "my_vacancy7";
+    }
+    @GetMapping("/employer/reg_employer1/reg")
+    public String getRegEmployer1() {
+        return "reg_employer1";
+    }
+    @GetMapping("/employer/responses7/show")
+    public String getResponses7() {
+        return "responses7";
+    }
 }
