@@ -44,7 +44,7 @@ document.getElementById("next").addEventListener("click", async function(event) 
     const description = document.getElementById("description").value;
 
     // Данные для отправки на сервер
-    const url ="/employer/" + employer.id; // Замените на свой URL API
+    const url ="/employer/" + employer.employer_id; // Замените на свой URL API
     const data = {
         inn: inn,
         ogrn: ogrn,
