@@ -71,3 +71,14 @@
           background-position: right 10px center;
           background-size: 16px 16px;
         }
+button.back {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 20px;
+}
