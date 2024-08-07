@@ -1,6 +1,7 @@
 // Инициализация Telegram Web App
 window.Telegram.WebApp.expand();
 let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
+let employer ;
 // Функция для получения данных из API и отображения их на странице
 async function fetchAndDisplayData() {
     const url = `/employer/user/${clientID}`; // Замените на свой URL API
@@ -17,6 +18,7 @@ async function fetchAndDisplayData() {
         }
 
         const data = await response.json(); // Парсим и возвращаем ответ как JSON
+        employer = data;
         console.log(data); // Логируем данные для проверки
 
         // Заполняем поля формы данными из API
@@ -42,7 +44,7 @@ document.getElementById("next").addEventListener("click", async function(event) 
     const description = document.getElementById("description").value;
 
     // Данные для отправки на сервер
-    const url = "/employer"; // Замените на свой URL API
+    const url ="/employer/" + employer.id; // Замените на свой URL API
     const data = {
         inn: inn,
         ogrn: ogrn,
@@ -69,7 +71,7 @@ document.getElementById("next").addEventListener("click", async function(event) 
         console.log(jsonData); // Обрабатываем данные ответа
 
         // Закрываем Telegram Web App
-        window.Telegram.WebApp.close();
+        window.location.href='/employer/lk/';
     } catch (error) {
         console.error('Ошибка:', error); // Обрабатываем ошибку
     }
