@@ -1,84 +1,89 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-        body {
-          background-color: #111;
-          color: #fff;
-          font-family: sans-serif;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          min-height: 100vh;
-        }
+.container {
+    width: 90%;
+    max-width: 390px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    border: 2px solid white;
+}
 
-        .container {
-          background-color: #222;
-          padding: 20px;
-          border-radius: 5px;
-        }
+h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-        .section-title {
-          text-align: center;
-          margin-bottom: 15px;
-        }
+.input-field, .textarea-field, .input-salary {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    box-sizing: border-box;
+}
 
-        .input-group {
-          margin-bottom: 15px;
-        }
+.textarea-field {
+    height: 100px;
+    resize: none;
+}
 
-        .input-group label {
-          display: block;
-          margin-bottom: 5px;
-        }
+.experience-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
 
-        .input-group input,
-        .input-group textarea {
-          width: 95%;
-          padding: 10px;
-          border: 1px solid #333;
-          border-radius: 3px;
-          background-color: #333;
-          color: #fff;
-        }
+.experience-button {
+    width: 48%;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: green;
+    color: black;
+    font-size: 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
 
-        .button-group {
-          display: flex;
-          justify-content: space-around;
-        }
+.salary-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
 
-        .button-group button {
-          background-color: #4CAF50;
-          color: white;
-          padding: 12px 20px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          flex: 1;
-          margin: 0 5px;
-        }
+.input-salary {
+    width: 48%;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    font-size: 16px;
+    box-sizing: border-box;
+}
 
-        select {
-          width: 100%;
-          padding: 10px;
-          border: 1px solid #333;
-          border-radius: 3px;
-          background-color: #333;
-          color: #fff;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          appearance: none;
-          background-image: url("data:image/svg+xml;utf8,<svg fill='%23333' xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-          background-repeat: no-repeat;
-          background-position: right 10px center;
-          background-size: 16px 16px;
-        }
-button.back {
+.submit-button {
     width: 100%;
     padding: 15px;
-    border: none;
+    border: 2px solid white;
     border-radius: 5px;
+    background-color: green;
+    color: black;
     font-size: 16px;
     cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    margin-top: 20px;
 }

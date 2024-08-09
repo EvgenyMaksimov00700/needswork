@@ -8,65 +8,52 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="section-title">Создание вакансии</h1>
-    <h2 class="section-title">Основная информация</h2>
-    <div class="input-group">
-        <label for="vacancy-name">Название Вакансии:</label>
-        <input type="text" id="vacancy-name" name="vacancy-name">
+    <h2>Создание вакансии</h2>
+    <h3>Основная информация</h3>
+
+    <input type="text" placeholder="Название Вакансии" class="input-field">
+
+    <select class="input-field">
+        <option disabled selected>Укажите отрасль</option>
+        <option>IT</option>
+        <option>Финансы</option>
+        <option>Маркетинг</option>
+        <option>Производство</option>
+    </select>
+
+    <select class="input-field">
+        <option disabled selected>Укажите город</option>
+        <option>Москва</option>
+        <option>Санкт-Петербург</option>
+        <option>Новосибирск</option>
+        <option>Екатеринбург</option>
+    </select>
+
+    <textarea placeholder="Обязанности:&#10;Требования:&#10;Условия:&#10;Ключевые навыки:" class="textarea-field"></textarea>
+
+    <input type="text" placeholder="Укажите адрес места работы" class="input-field">
+
+    <h3>Укажите требуемый опыт работы</h3>
+
+    <div class="experience-group">
+        <button class="experience-button">Нет опыта</button>
+        <button class="experience-button">от 1 года до 3 лет</button>
+        <button class="experience-button">от 3 до 5 лет</button>
+        <button class="experience-button">Более 5 лет</button>
     </div>
-    <div class="input-group">
-        <label for="industry">Укажите отрасль:</label>
-        <input type="text" id="industry" name="industry">
+
+    <h3>Желаемый доход в месяц (руб)</h3>
+    <div class="salary-group">
+        <input type="number" placeholder="от" class="input-salary">
+        <input type="number" placeholder="до" class="input-salary">
     </div>
-    <div class="input-group">
-        <label for="city">Укажите город в которых доступна вакансия:</label>
-        <div style="display: flex;">
-            <input type="text" id="city-input" name="city-input" placeholder="Введите город" onkeyup="filterCities()">
-            <select id="city-select" name="city-select">
-                <option value="">Выберите город</option>
-                <!-- Здесь будет код для автоматической генерации городов -->
-            </select>
-        </div>
-    </div>
-    <div class="input-group">
-        <label for="responsibilities">Обязанности:</label>
-        <textarea id="responsibilities" name="responsibilities"></textarea>
-    </div>
-    <div class="input-group">
-        <label for="requirements">Требования:</label>
-        <textarea id="requirements" name="requirements"></textarea>
-    </div>
-    <div class="input-group">
-        <label for="conditions">Условия:</label>
-        <textarea id="conditions" name="conditions"></textarea>
-    </div>
-    <div class="input-group">
-        <label for="skills">Ключевые навыки:</label>
-        <textarea id="skills" name="skills"></textarea>
-    </div>
-    <div class="input-group">
-        <label for="address">Укажите адрес места работы:</label>
-        <input type="text" id="address" name="address">
-    </div>
-    <h2 class="section-title">Укажите требуемый опыт работы</h2>
-    <div class="button-group">
-        <button type="button">Нет опыта</button>
-        <button type="button">от 1 года до 3 лет</button>
-        <button type="button">от 3 до 5 лет</button>
-        <button type="button">Более 5 лет</button>
-    </div>
-    <h2 class="section-title">Желаемый доход в месяц (руб)</h2>
-    <div class="input-group">
-        <label for="salary-from">от</label>
-        <input type="number" id="salary-from" name="salary-from">
-    </div>
-    <div class="input-group">
-        <label for="salary-to">до</label>
-        <input type="number" id="salary-to" name="salary-to">
-    </div>
-    <button type="submit" class="back">Опубликовать</button>
-    <button type="button" class="back" onclick="window.location.href='/employer/lk/'">Назад</button>
-</div>
+
+    <button class="submit-button">Опубликовать
+        <button type="button" class="back" onclick="window.location.href='/employer/lk/'">Назад</button>
+
+</body>
+</html>
+
 
 <script>
     // Массив с городами России (можете получить его из внешнего файла или API)
