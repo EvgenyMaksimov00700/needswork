@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,7 +30,7 @@ public class VacancyService {
 
     public Vacancy addVacancy(Employer employer_id, Industry industry_id, String position, String city, Integer salary,
                               String workShedule, Boolean distantWork, String address) {
-        Vacancy vacancy = new Vacancy(employer_id,industry_id, position, city, salary, workShedule, distantWork, address);
+        Vacancy vacancy = new Vacancy(employer_id, industry_id, position, city, salary, workShedule, distantWork, address);
         return vacancyRepository.save(vacancy);
     }
 
@@ -61,4 +64,26 @@ public class VacancyService {
 
         return vacancyRepository.save(vacancy);
     }
+
+    public List<String> getCities() {
+        String filePath = "src/main/resources/static/text/cities.txt";
+
+        // Список для хранения городов
+        List<String> cityList = new ArrayList<>();
+
+        // Чтение файла
+
+
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                cityList.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return cityList;
+    }
 }
+

@@ -13,20 +13,14 @@
 
     <input type="text" placeholder="Название Вакансии" class="input-field">
 
-    <select class="input-field">
+
+        <select id='industry-select' class="input-field">
         <option disabled selected>Укажите отрасль</option>
-        <option>IT</option>
-        <option>Финансы</option>
-        <option>Маркетинг</option>
-        <option>Производство</option>
+
     </select>
 
-    <select class="input-field">
+    <select id='city-select' class="input-field">
         <option disabled selected>Укажите город</option>
-        <option>Москва</option>
-        <option>Санкт-Петербург</option>
-        <option>Новосибирск</option>
-        <option>Екатеринбург</option>
     </select>
 
     <textarea placeholder="Обязанности:&#10;Требования:&#10;Условия:&#10;Ключевые навыки:" class="textarea-field"></textarea>
@@ -36,10 +30,10 @@
     <h3>Укажите требуемый опыт работы</h3>
 
     <div class="experience-group">
-        <button class="experience-button">Нет опыта</button>
-        <button class="experience-button">от 1 года до 3 лет</button>
-        <button class="experience-button">от 3 до 5 лет</button>
-        <button class="experience-button">Более 5 лет</button>
+        <button id = 'no-experience' class="experience-button" onclick="chooseWorkExperience(this)">Нет опыта</button>
+        <button id='1-3' class="experience-button" onclick="chooseWorkExperience(this)">от 1 года до 3 лет</button>
+        <button id = '3-5' class="experience-button" onclick="chooseWorkExperience(this)">от 3 до 5 лет</button>
+        <button id='5+' class="experience-button" onclick="chooseWorkExperience(this)">Более 5 лет</button>
     </div>
 
     <h3>Желаемый доход в месяц (руб)</h3>
@@ -48,49 +42,11 @@
         <input type="number" placeholder="до" class="input-salary">
     </div>
 
-    <button class="submit-button">Опубликовать
-        <button type="button" class="back" onclick="window.location.href='/employer/lk/'">Назад</button>
-
+    <button class="submit-button">Опубликовать </button>
+        <button type="button" class="submit-button" onclick="window.location.href='/employer/lk/'">Назад</button>
+</div>
 </body>
 </html>
-
-
-<script>
-    // Массив с городами России (можете получить его из внешнего файла или API)
-    const russianCities = [
-      "Москва", "Санкт-Петербург", "Екатеринбург", "Новосибирск",
-      // ... Добавьте другие города
-    ];
-
-    // Функция для заполнения выпадающего списка
-    function populateCitySelect() {
-      const citySelect = document.getElementById('city-select');
-      russianCities.forEach(city => {
-        const option = document.createElement('option');
-        option.value = city.toLowerCase();
-        option.text = city;
-        citySelect.appendChild(option);
-      });
-    }
-
-    // Вызываем функцию после загрузки страницы
-    window.onload = populateCitySelect;
-
-    // Функция для фильтрации городов
-    function filterCities() {
-      const inputValue = document.getElementById('city-input').value.toLowerCase();
-      const citySelect = document.getElementById('city-select');
-      const options = citySelect.getElementsByTagName('option');
-
-      for (let i = 0; i < options.length; i++) {
-        const optionValue = options[i].value.toLowerCase();
-        if (optionValue.indexOf(inputValue) > -1) {
-          options[i].style.display = 'block';
-        } else {
-          options[i].style.display = 'none';
-        }
-      }
-    }
-</script>
+<script src="/js/createVacancyForm.js"></script>
 </body>
 </html>

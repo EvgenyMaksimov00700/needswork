@@ -70,5 +70,11 @@ public class VacancyController {
                 vacancyDTO.getCity(), vacancyDTO.getSalary(), vacancyDTO.getWorkShedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress()),
                 HttpStatus.OK);
     }
+
+    @GetMapping("/vacancy/city")
+    public ResponseEntity <List<String>> getCities () {
+        List<String> cities = vacancyService.getCities();
+        return new ResponseEntity<>(cities, HttpStatus.OK);
+    }
 }
 
