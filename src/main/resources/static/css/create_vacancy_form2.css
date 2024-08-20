@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #222;
+    color: black;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid white;
+    box-sizing: border-box;
+    background-color: black;
+}
+
+.container input[type="text"],
+.container textarea,
+.container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 2px solid white;
+    background-color: white;
+    color: black;
+    font-size: 16px;
+}
+
+.container label {
+    color: white;
+    font-weight: bold;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.checkbox-container input {
+    margin-right: 10px;
+}
+
+textarea {
+    height: 100px;
+    resize: none;
+}

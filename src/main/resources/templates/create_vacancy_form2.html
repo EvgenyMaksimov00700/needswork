@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание вакансии</title>
+    <link rel="stylesheet" href="../static/css/create_vacancy_form2.css">
+</head>
+<body>
+
+<div class="container">
+    <input type="text" placeholder="Наименование Вакансии">
+    <input type="text" placeholder="Укажите отрасль">
+
+    <select>
+        <option value="" disabled selected>Тип занятости</option>
+        <option value="fulltime">Полная занятость</option>
+        <option value="parttime">Частичная занятость</option>
+        <option value="freelance">Фриланс</option>
+    </select>
+
+    <div class="checkbox-container">
+        <input type="checkbox" id="remoteWork">
+        <label for="remoteWork">Возможность удаленной работы</label>
+    </div>
+
+    <input type="text" placeholder="Укажите город">
+
+    <textarea placeholder="Обязанности:&#10;Требования:&#10;Условия:&#10;Ключевые навыки:"></textarea>
+</div>
+
+</body>
+</html>

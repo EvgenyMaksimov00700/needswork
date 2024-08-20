@@ -55,9 +55,61 @@ function chooseWorkExperience(button){
     exp_1_3.style.backgroundColor='green';
     exp_3_5.style.backgroundColor='green';
     exp_5.style.backgroundColor='green';
-    button.style.backgroundColor='yellow';
+    button.style.backgroundColor='#20805E';
 }
 
 // Вызываем функцию после загрузки страницы
 window.onload = windowsLoad;
 
+function submit() {
+   const name = document.getElementById("name").value;
+   const industryId = document.getElementById("industry-select").value;
+   const city = document.getElementById("city-select").value;
+   const textarea = document.getElementById("textarea").value;
+   const address = document.getElementById("address").value;
+   let exp;
+   const no_exp = document.getElementById('no-experience');
+   const exp_1_3 = document.getElementById('1-3');
+   const exp_3_5 = document.getElementById('3-5');
+   const exp_5 = document.getElementById('5+');
+   if (no_exp.style.backgroundColor!='green') {
+   exp=no_exp.textContent;
+   } else if (exp_1_3.style.backgroundColor!='green') {
+   exp=exp_1_3.textContent;}
+   else if (exp_3_5.style.backgroundColor!='green') {
+   exp=exp_3_5.textContent;}
+   else if (exp_5.style.backgroundColor!='green') {
+   exp=exp_5.textContent;}
+   const salaryfrom = document.getElementById("salaryfrom").value;
+   const salaryfrom = document.getElementById("salaryto").value;
+    const data = {
+       position: name,
+       industry_id: industryId,
+       city: city,
+       text: textarea,
+       address: address,
+       experience: exp,
+       salaryFrom: salaryfrom,
+       salaryTo: salaryto
+     };
+     console.log(data);
+
+
+   fetch('/vacancy', {
+                       method: 'POST',
+                       headers: {
+                         'Content-Type': 'application/json'
+                       },
+                       body: JSON.stringify(data)
+                     })
+      .then(response => {
+      if (!response.ok) {
+           throw new Error(`Ошибка HTTP: ${response.status}`);
+      }
+      return response.json();
+      })
+      .then(russianCities => {
+          console.log(russianCities);
+
+      })
+}

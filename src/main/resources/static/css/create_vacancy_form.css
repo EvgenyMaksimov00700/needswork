@@ -6,7 +6,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 130vh;
+    overflow-y: scroll; /* Добавление вертикального скроллинга */
 }
 
 .container {
@@ -17,8 +18,20 @@ body {
     background-color: #1a1a1a;
     border-radius: 10px;
     border: 2px solid white;
-    margin-top 20px;
+    margin-top 250px;
     margin-bottom 20px;
+}
+.container input[type="text"],
+.container textarea,
+.container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 2px solid white;
+    background-color: white;
+    color: black;
+    font-size: 16px;
 }
 
 h2, h3 {
@@ -99,3 +112,7 @@ h2, h3 {
           cursor: pointer;
           margin-bottom: 10px;
         }
+.checkbox-container input {
+    margin-right: 10px;
+    margin-bottom: 15px;
+}

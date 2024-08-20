@@ -4,28 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Создание вакансии</title>
-    <link rel="stylesheet" href="/css/create_vacancy_form.css">
+    <link rel="stylesheet" href="../static/css/create_vacancy_form.css">
 </head>
 <body>
 <div class="container">
     <h2>Создание вакансии</h2>
     <h3>Основная информация</h3>
 
-    <input type="text" placeholder="Название Вакансии" class="input-field">
+    <input type="text" placeholder="Название Вакансии" class="input-field" id="name">
 
 
         <select id='industry-select' class="input-field">
         <option disabled selected>Укажите отрасль</option>
 
     </select>
+    <select >
+        <option value="" disabled selected>Тип занятости</option>
+        <option value="fulltime">Полная занятость</option>
+        <option value="parttime">Частичная занятость</option>
+        <option value="freelance">Фриланс</option>
+    </select>
 
+    <div class="checkbox-container">
+        <input type="checkbox" id="remoteWork">
+        <label for="remoteWork">Возможность удаленной работы</label>
     <select id='city-select' class="input-field">
         <option disabled selected>Укажите город</option>
     </select>
 
-    <textarea placeholder="Обязанности:&#10;Требования:&#10;Условия:&#10;Ключевые навыки:" class="textarea-field"></textarea>
+    <textarea placeholder="Обязанности:&#10;Требования:&#10;Условия:&#10;Ключевые навыки:" class="textarea-field" id="textarea"></textarea>
 
-    <input type="text" placeholder="Укажите адрес места работы" class="input-field">
+    <input type="text" placeholder="Укажите адрес места работы" class="input-field" id="address">
 
     <h3>Укажите требуемый опыт работы</h3>
 
@@ -36,10 +45,10 @@
         <button id='5+' class="experience-button" onclick="chooseWorkExperience(this)">Более 5 лет</button>
     </div>
 
-    <h3>Желаемый доход в месяц (руб)</h3>
+    <h3> уровень дохода месяц/обьем работы (руб)</h3>
     <div class="salary-group">
-        <input type="number" placeholder="от" class="input-salary">
-        <input type="number" placeholder="до" class="input-salary">
+        <input type="number" placeholder="от" class="input-salary" id="salaryfrom">
+        <input type="number" placeholder="до" class="input-salary" id="salaryto">
     </div>
 
     <button class="submit-button">Опубликовать </button>
