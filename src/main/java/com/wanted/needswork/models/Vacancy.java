@@ -46,7 +46,11 @@ public class Vacancy {
 
     @Getter
     @Setter
-    private Integer salary;
+    private Integer fromSalary;
+
+    @Getter
+    @Setter
+    private Integer toSalary;
 
     @Getter
     @Setter
@@ -60,6 +64,14 @@ public class Vacancy {
     @Setter
     private String address;
 
+    @Getter
+    @Setter
+    private String exp;
+
+    @Getter
+    @Setter
+    private String responsibility;
+
     @CreationTimestamp
     @Getter
     private LocalDateTime createdDateTime;
@@ -68,12 +80,15 @@ public class Vacancy {
     @Getter
     private LocalDateTime lastModifiedDateTime;
 
-    public Vacancy(Employer employer, Industry industry, String position, String city, Integer salary, String workSchedule, Boolean distantWork, String address) {
+    public Vacancy(Employer employer, Industry industry, String position, String city, Integer toSalary, Integer fromSalary, String exp, String responsibility, String workSchedule, Boolean distantWork, String address) {
         this.employer = employer;
         this.industry = industry;
         this.position = position;
         this.city = city;
-        this.salary = salary;
+        this.toSalary = toSalary;
+        this.fromSalary = fromSalary;
+        this.exp = exp;
+        this.responsibility = responsibility;
         this.workSchedule = workSchedule;
         this.distantWork = distantWork;
         this.address = address;
@@ -83,6 +98,6 @@ public class Vacancy {
     }
 
     public VacancyResponseDTO toResponseDTO() {
-        return new VacancyResponseDTO(id, employer.toResponseDTO(), industry.toResponseDTO(), position, city, salary, workSchedule, distantWork, address, createdDateTime, lastModifiedDateTime);
+        return new VacancyResponseDTO(id, employer.toResponseDTO(), industry.toResponseDTO(), position, city, fromSalary, toSalary,  workSchedule, distantWork, address, exp, responsibility, createdDateTime, lastModifiedDateTime);
     }
 }

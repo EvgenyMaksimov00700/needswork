@@ -1,24 +1,18 @@
 package com.wanted.needswork.controllers;
 
-import com.wanted.needswork.DTO.request.UserDTO;
 import com.wanted.needswork.DTO.request.VacancyDTO;
-import com.wanted.needswork.DTO.response.EmployerResponseDTO;
 import com.wanted.needswork.DTO.response.VacancyResponseDTO;
 import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.Industry;
-import com.wanted.needswork.models.User;
 import com.wanted.needswork.models.Vacancy;
 import com.wanted.needswork.services.EmployerService;
 import com.wanted.needswork.services.IndustryService;
-import com.wanted.needswork.services.UserService;
 import com.wanted.needswork.services.VacancyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
 import java.util.List;
 
 @RestController
@@ -52,7 +46,7 @@ public class VacancyController {
         if (industry == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(vacancyService.addVacancy(employer,industry, vacancyDTO.getPosition(),
-                vacancyDTO.getCity(), vacancyDTO.getSalary(), vacancyDTO.getWorkShedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress()),HttpStatus.OK);
+                vacancyDTO.getCity(), vacancyDTO.getFromSalary(), vacancyDTO.getToSalary(), vacancyDTO.getWorkSchedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress(), vacancyDTO.getExp(), vacancyDTO.getResponsibility()),HttpStatus.OK);
     }
 
 
@@ -67,7 +61,7 @@ public class VacancyController {
         }
         Industry industry = industryService.getIndustry(vacancyDTO.getIndustry_id());
         return new ResponseEntity<>(vacancyService.updateVacancy(vacancy,employer, industry, vacancyDTO.getPosition(),
-                vacancyDTO.getCity(), vacancyDTO.getSalary(), vacancyDTO.getWorkShedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress()),
+                vacancyDTO.getCity(), vacancyDTO.getFromSalary(), vacancyDTO.getToSalary(), vacancyDTO.getWorkSchedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress(), vacancyDTO.getExp(), vacancyDTO.getResponsibility()),
                 HttpStatus.OK);
     }
 

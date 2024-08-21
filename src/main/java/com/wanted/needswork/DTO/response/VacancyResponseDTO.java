@@ -20,13 +20,19 @@ public class VacancyResponseDTO {
     @Getter
     private String city;
     @Getter
-    private Integer salary;
+    private Integer fromSalary;
+    @Getter
+    private Integer toSalary;
     @Getter
     private String workSchedule;
     @Getter
     private Boolean distantWork;
     @Getter
     private String address;
+    @Getter
+    private String exp;
+    @Getter
+    private String responsibility;
     @Getter
     private LocalDateTime createdDateTime;
     @Getter

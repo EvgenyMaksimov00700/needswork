@@ -28,14 +28,14 @@ public class VacancyService {
         return vacancyRepository.findById(vacancyId).orElse(null);
     }
 
-    public Vacancy addVacancy(Employer employer_id, Industry industry_id, String position, String city, Integer salary,
-                              String workShedule, Boolean distantWork, String address) {
-        Vacancy vacancy = new Vacancy(employer_id, industry_id, position, city, salary, workShedule, distantWork, address);
+    public Vacancy addVacancy(Employer employer_id, Industry industry_id, String position, String city, Integer fromSalary, Integer toSalary,
+                              String workShedule, Boolean distantWork, String address, String exp, String responsibility) {
+        Vacancy vacancy = new Vacancy(employer_id, industry_id, position, city, toSalary, fromSalary, exp, responsibility, workShedule, distantWork, address);
         return vacancyRepository.save(vacancy);
     }
 
     public Vacancy updateVacancy(Vacancy vacancy, Employer employer_id, Industry industry_id, String position, String city,
-                                 Integer salary, String workSchedule, Boolean distantWork, String address) {
+                                 Integer fromSalary, Integer toSalary, String workSchedule, Boolean distantWork, String address, String exp, String responsibility) {
         if (employer_id != null) {
             vacancy.setEmployer(employer_id);
         }
@@ -48,8 +48,17 @@ public class VacancyService {
         if (city != null) {
             vacancy.setCity(city);
         }
-        if (salary != null) {
-            vacancy.setSalary(salary);
+        if (toSalary != null) {
+            vacancy.setToSalary(toSalary);
+        }
+        if (fromSalary != null) {
+            vacancy.setFromSalary(fromSalary);
+        }
+        if (exp != null) {
+            vacancy.setExp(exp);
+        }
+        if (responsibility != null) {
+            vacancy.setResponsibility(responsibility);
         }
         if (workSchedule != null) {
             vacancy.setWorkSchedule(workSchedule);

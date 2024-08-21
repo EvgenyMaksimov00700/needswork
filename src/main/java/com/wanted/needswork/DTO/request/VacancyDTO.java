@@ -3,8 +3,6 @@ package com.wanted.needswork.DTO.request;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.math.BigInteger;
-
 @AllArgsConstructor
 public class VacancyDTO {
 
@@ -17,12 +15,18 @@ public class VacancyDTO {
     @Getter
     private String city;
     @Getter
-    private Integer salary;
+    private Integer fromSalary;
     @Getter
-    private String workShedule;
+    private Integer toSalary;
+    @Getter
+    private String workSchedule;
     @Getter
     private Boolean distantWork;
     @Getter
     private String address;
+    @Getter
+    private String exp;
+    @Getter
+    private String responsibility;
 
 }
