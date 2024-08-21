@@ -1,3 +1,4 @@
+let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
 
 
 // Функция для заполнения выпадающего списка
@@ -61,6 +62,9 @@ function chooseWorkExperience(button){
 // Вызываем функцию после загрузки страницы
 window.onload = windowsLoad;
 
+
+
+
 function submit() {
    const name = document.getElementById("name").value;
    const industryId = document.getElementById("industry-select").value;
@@ -82,34 +86,48 @@ function submit() {
    exp=exp_5.textContent;}
    const salaryfrom = document.getElementById("salaryfrom").value;
    const salaryfrom = document.getElementById("salaryto").value;
-    const data = {
-       position: name,
-       industry_id: industryId,
-       city: city,
-       text: textarea,
-       address: address,
-       experience: exp,
-       salaryFrom: salaryfrom,
-       salaryTo: salaryto
-     };
-     console.log(data);
+   fetch( `/employer/user/${clientID}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`Ошибка HTTP: ${response.status}`); // Бросаем ошибку, если ответ не в порядке
+            }
+            return response.json();
+        }).then(employer=>{
+             const data = {
+                   position: name,
+                   industry_id: industryId,
+                   city: city,
+                   responsibility: textarea,
+                   address: address,
+                   exp: exp,
+                   fromSalary: salaryfrom,
+                   toSalary: salaryto,
+                   distantWork:document.getElementById("remoteWork").checked,
+                   workSchedule: document.getElementById("workSchedule").text,
+                   employer_id: employer.id,
+                 };
+             console.log(data);
+             fetch('/vacancy', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                      })
+                   .then(response => {
+                       if (!response.ok) {
+                            throw new Error(`Ошибка HTTP: ${response.status}`);
+                       }
+                       return response.json();
+                   })
+                   .then(data => {
+                       console.log(data);
 
-
-   fetch('/vacancy', {
-                       method: 'POST',
-                       headers: {
-                         'Content-Type': 'application/json'
-                       },
-                       body: JSON.stringify(data)
-                     })
-      .then(response => {
-      if (!response.ok) {
-           throw new Error(`Ошибка HTTP: ${response.status}`);
-      }
-      return response.json();
-      })
-      .then(russianCities => {
-          console.log(russianCities);
-
-      })
+                   })
+              })
+        }
 }
