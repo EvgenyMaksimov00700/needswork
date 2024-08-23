@@ -52,7 +52,7 @@ public class EmployerController {
 
     }
 
-    @PostMapping("/employer")
+    @PostMapping("/employer/create")
     public ResponseEntity<Employer> addEmployer(@RequestBody EmployerDTO employerDTO) {
         User user = userService.getUser(employerDTO.getUser_id());
         if (user == null) {

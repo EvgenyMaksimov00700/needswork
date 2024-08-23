@@ -20,7 +20,7 @@ document.getElementById("next" ).addEventListener("click", async function( event
   const name = document.getElementById("nameCompany").value;
   const logo = document.getElementById("logo").value;
   const description = document.getElementById("description").value;
-  const url = "/employer"; // Replace with your API URL
+  const url = "/employer/create"; // Replace with your API URL
   data = {"inn": inn, "name": name, "logo": logo, "description": description, "ogrn": ogrn, "user_id": clientID}
   try {
           const response = await fetch(url, {
