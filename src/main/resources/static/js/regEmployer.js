@@ -1,6 +1,18 @@
 
 let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
 window.Telegram.WebApp.expand();
+
+document.addEventListener('touchstart', function(event) {
+            const activeElement = document.activeElement;
+
+            if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
+                // Проверяем, что нажали вне поля ввода
+                if (!activeElement.contains(event.target)) {
+                    activeElement.blur();
+                }
+            }
+        });
+
 document.getElementById("next" ).addEventListener("click", async function( event ) {
   event.preventDefault();
   const inn = document.getElementById("inn").value;
