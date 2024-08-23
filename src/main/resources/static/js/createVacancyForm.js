@@ -1,5 +1,15 @@
 let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
 
+document.addEventListener('touchstart', function(event) {
+            const activeElement = document.activeElement;
+
+            if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
+                // Проверяем, что нажали вне поля ввода
+                if (!activeElement.contains(event.target)) {
+                    activeElement.blur();
+                }
+            }
+        });
 
 // Функция для заполнения выпадающего списка
 function populateCitySelect() {
@@ -85,7 +95,7 @@ function submit() {
    else if (exp_5.style.backgroundColor!='green') {
    exp=exp_5.textContent;}
    const salaryfrom = document.getElementById("salaryfrom").value;
-   const salaryfrom = document.getElementById("salaryto").value;
+   const salaryto = document.getElementById("salaryto").value;
    fetch( `/employer/user/${clientID}`, {
             method: 'GET',
             headers: {
@@ -109,25 +119,22 @@ function submit() {
                    distantWork:document.getElementById("remoteWork").checked,
                    workSchedule: document.getElementById("workSchedule").text,
                    employer_id: employer.id,
-                 };
+             };
              console.log(data);
              fetch('/vacancy', {
-                        method: 'POST',
-                        headers: {
-                          'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                      })
-                   .then(response => {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }) .then(response => {
                        if (!response.ok) {
                             throw new Error(`Ошибка HTTP: ${response.status}`);
                        }
                        return response.json();
-                   })
-                   .then(data => {
+                }).then(data => {
                        console.log(data);
 
-                   })
-              })
-        }
-}
+                })
+        })
+   }

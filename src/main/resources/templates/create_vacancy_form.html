@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Создание вакансии</title>
-    <link rel="stylesheet" href="../static/css/create_vacancy_form.css">
+    <link rel="stylesheet" href="/css/create_vacancy_form.css">
 </head>
 <body>
 <div class="container">
@@ -14,11 +14,11 @@
     <input type="text" placeholder="Название Вакансии" class="input-field" id="name">
 
 
-        <select id='industry-select' class="input-field">
+    <select id='industry-select' class="input-field">
         <option disabled selected>Укажите отрасль</option>
 
     </select>
-    <select id="workSchedule" >
+    <select id="workSchedule">
         <option value="" disabled selected>Тип занятости</option>
         <option value="fulltime">Полная занятость</option>
         <option value="parttime">Частичная занятость</option>
@@ -28,31 +28,33 @@
     <div class="checkbox-container">
         <input type="checkbox" id="remoteWork">
         <label for="remoteWork">Возможность удаленной работы</label>
-    <select id='city-select' class="input-field">
-        <option disabled selected>Укажите город</option>
-    </select>
+        <select id='city-select' class="input-field">
+            <option disabled selected>Укажите город</option>
+        </select>
 
-    <textarea placeholder="Обязанности:&#10;Требования:&#10;Условия:&#10;Ключевые навыки:" class="textarea-field" id="textarea"></textarea>
+        <textarea placeholder="Обязанности:&#10;Требования:&#10;Условия:&#10;Ключевые навыки:" class="textarea-field"
+                  id="textarea"></textarea>
 
-    <input type="text" placeholder="Укажите адрес места работы" class="input-field" id="address">
+        <input type="text" placeholder="Укажите адрес места работы" class="input-field" id="address">
 
-    <h3>Укажите требуемый опыт работы</h3>
+        <h3>Укажите требуемый опыт работы</h3>
 
-    <div class="experience-group">
-        <button id = 'no-experience' class="experience-button" onclick="chooseWorkExperience(this)">Нет опыта</button>
-        <button id='1-3' class="experience-button" onclick="chooseWorkExperience(this)">от 1 года до 3 лет</button>
-        <button id = '3-5' class="experience-button" onclick="chooseWorkExperience(this)">от 3 до 5 лет</button>
-        <button id='5+' class="experience-button" onclick="chooseWorkExperience(this)">Более 5 лет</button>
-    </div>
+        <div class="experience-group">
+            <button id='no-experience' class="experience-button" onclick="chooseWorkExperience(this)">Нет опыта</button>
+            <button id='1-3' class="experience-button" onclick="chooseWorkExperience(this)">от 1 года до 3 лет</button>
+            <button id='3-5' class="experience-button" onclick="chooseWorkExperience(this)">от 3 до 5 лет</button>
+            <button id='5+' class="experience-button" onclick="chooseWorkExperience(this)">Более 5 лет</button>
+        </div>
 
-    <h3> уровень дохода месяц/обьем работы (руб)</h3>
-    <div class="salary-group">
-        <input type="number" placeholder="от" class="input-salary" id="salaryfrom">
-        <input type="number" placeholder="до" class="input-salary" id="salaryto">
-    </div>
+        <h3> уровень дохода месяц/обьем работы (руб)</h3>
+        <div class="salary-group">
+            <input type="number" placeholder="от" class="input-salary" id="salaryfrom">
+            <input type="number" placeholder="до" class="input-salary" id="salaryto">
+        </div>
 
-    <button class="submit-button">Опубликовать </button>
+        <button class="submit-button">Опубликовать</button>
         <button type="button" class="submit-button" onclick="window.location.href='/employer/lk/'">Назад</button>
+    </div>
 </div>
 </body>
 </html>

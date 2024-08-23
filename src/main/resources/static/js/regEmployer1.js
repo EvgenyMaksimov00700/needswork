@@ -2,6 +2,17 @@
 window.Telegram.WebApp.expand();
 let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
 let employer ;
+
+document.addEventListener('touchstart', function(event) {
+            const activeElement = document.activeElement;
+
+            if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
+                // Проверяем, что нажали вне поля ввода
+                if (!activeElement.contains(event.target)) {
+                    activeElement.blur();
+                }
+            }
+        });
 // Функция для получения данных из API и отображения их на странице
 async function fetchAndDisplayData() {
     const url = `/employer/user/${clientID}`; // Замените на свой URL API
