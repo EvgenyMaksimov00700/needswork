@@ -38,7 +38,7 @@ document.getElementById("next" ).addEventListener("click", async function( event
           const jsonData = await response.json(); // Парсим и возвращаем ответ как JSON
           //console.log(jsonData); // Обрабатываем данные ответа
           window.location.href = "/employer/lk/"; // Redirect to dashboard page after successful registration
-          window.Telegram.WebApp.close();
+
       } catch (error) {
           console.error('Ошибка:', error); // Обрабатываем ошибку
       }})
