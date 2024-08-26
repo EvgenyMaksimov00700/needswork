@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded' function(){
                 }
             }).then(response => {
                 if (!response.ok) {
+                console.log ("fuck off")
                     window.location.href = '/employer/reg/'
                     throw new Error(`Ошибка HTTP: ${response.status}`); // Бросаем ошибку, если ответ не в порядке
                 }
