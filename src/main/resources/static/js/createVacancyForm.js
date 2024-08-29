@@ -1,5 +1,5 @@
 let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
-
+//let clientID = 159619887
 document.addEventListener('touchstart', function(event) {
             const activeElement = document.activeElement;
 
@@ -66,7 +66,7 @@ function chooseWorkExperience(button){
     exp_1_3.style.backgroundColor='green';
     exp_3_5.style.backgroundColor='green';
     exp_5.style.backgroundColor='green';
-    button.style.backgroundColor='#20805E';
+    button.style.backgroundColor='#333333';
 }
 
 // Вызываем функцию после загрузки страницы
@@ -81,7 +81,7 @@ function submit() {
    const city = document.getElementById("city-select").value;
    const textarea = document.getElementById("textarea").value;
    const address = document.getElementById("address").value;
-   let exp;
+   let exp = "";
    const no_exp = document.getElementById('no-experience');
    const exp_1_3 = document.getElementById('1-3');
    const exp_3_5 = document.getElementById('3-5');
@@ -107,6 +107,36 @@ function submit() {
             }
             return response.json();
         }).then(employer=>{
+        console.log(employer)
+        const selectElement = document.getElementById("workSchedule");
+        let unfield = [];
+        if(name=="") {
+            unfield.push ("название вакансии")
+        }
+        if(industryId=="Укажите отрасль") {
+            unfield.push ("сфера деятельности")
+        }
+        if(city=="Укажите город") {
+            unfield.push ("город")
+        }
+        if(textarea=="") {
+            unfield.push ("описание вакансии")
+        }
+        if(address=="") {
+            unfield.push ("адрес")
+        }
+        if(salaryfrom=="" || salaryto=="") {
+            unfield.push ("зарплата")
+        }
+        if(selectElement.options[selectElement.selectedIndex].text=="Тип занятости") {
+            unfield.push ("график работы")
+        }
+        if(exp == ""){
+            unfield.push ("опыт работы")}
+
+
+
+
              const data = {
                    position: name,
                    industry_id: industryId,
@@ -117,10 +147,15 @@ function submit() {
                    fromSalary: salaryfrom,
                    toSalary: salaryto,
                    distantWork:document.getElementById("remoteWork").checked,
-                   workSchedule: document.getElementById("workSchedule").text,
-                   employer_id: employer.id,
+                   workSchedule: selectElement.options[selectElement.selectedIndex].text,
+                   employer_id: employer.employer_id,
              };
-             console.log(data);
+              console.log(data);
+              if(unfield.length>0) {
+                         alert("Пожалуйста, заполните поля: " + unfield.join(", "));
+                         return;
+                     }
+
              fetch('/vacancy', {
                     method: 'POST',
                     headers: {
@@ -133,7 +168,10 @@ function submit() {
                        }
                        return response.json();
                 }).then(data => {
-                       console.log(data);
+                     alert ("Вакансия успешно создана")
+                     console.log(data);
+                window.location.href="/employer/lk/";
+
 
                 })
         })
