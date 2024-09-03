@@ -69,6 +69,12 @@ public class VacancyController {
     public ResponseEntity <List<String>> getCities () {
         List<String> cities = vacancyService.getCities();
         return new ResponseEntity<>(cities, HttpStatus.OK);
+
+    }
+    @GetMapping("/vacancy/user/{userId}")
+    public ResponseEntity <List<VacancyResponseDTO>> getVacancyByUser (@PathVariable Integer userId)  {
+        List<Vacancy> vacancyUser = vacancyService.getVacancyUser(userId);
+        return new ResponseEntity<>(vacancyUser.stream().map(Vacancy::toResponseDTO).toList(), HttpStatus.OK);
     }
 }
 

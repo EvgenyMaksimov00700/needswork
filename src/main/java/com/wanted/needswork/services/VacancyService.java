@@ -94,5 +94,9 @@ public class VacancyService {
         }
         return cityList;
     }
+
+    public List<Vacancy> getVacancyUser(Integer userId) {
+        return vacancyRepository.findAllByEmployer_UserId(userId);
+    }
 }
 

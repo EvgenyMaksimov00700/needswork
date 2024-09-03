@@ -29,9 +29,11 @@
     <div class="checkbox-container">
         <input type="checkbox" id="remoteWork">
         <label for="remoteWork">Возможность удаленной работы</label>
-        <select id='city-select' class="input-field">
-            <option disabled selected>Укажите город</option>
-        </select>
+        <input list="city-select" id="city-name" type = 'text' placeholder="Укажите город">
+
+        <datalist id='city-select'>
+
+        </datalist>
 
         <textarea placeholder="Обязанности:&#10;Требования:&#10;Условия:&#10;Ключевые навыки:" class="textarea-field"
                   id="textarea"></textarea>

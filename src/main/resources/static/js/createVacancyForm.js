@@ -78,7 +78,7 @@ window.onload = windowsLoad;
 function submit() {
    const name = document.getElementById("name").value;
    const industryId = document.getElementById("industry-select").value;
-   const city = document.getElementById("city-select").value;
+   const city = document.getElementById("city-name").value;
    const textarea = document.getElementById("textarea").value;
    const address = document.getElementById("address").value;
    let exp = "";
@@ -86,14 +86,20 @@ function submit() {
    const exp_1_3 = document.getElementById('1-3');
    const exp_3_5 = document.getElementById('3-5');
    const exp_5 = document.getElementById('5+');
-   if (no_exp.style.backgroundColor!='green') {
+   if  (no_exp.style.backgroundColor=="" && exp_1_3.style.backgroundColor==""
+   && exp_3_5.style.backgroundColor=="" && exp_5.style.backgroundColor==""  ){exp = ""}
+
+   else if (no_exp.style.backgroundColor!='green') {
+   console.log(no_exp.style.backgroundColor)
    exp=no_exp.textContent;
    } else if (exp_1_3.style.backgroundColor!='green') {
    exp=exp_1_3.textContent;}
+
    else if (exp_3_5.style.backgroundColor!='green') {
    exp=exp_3_5.textContent;}
    else if (exp_5.style.backgroundColor!='green') {
    exp=exp_5.textContent;}
+
    const salaryfrom = document.getElementById("salaryfrom").value;
    const salaryto = document.getElementById("salaryto").value;
    fetch( `/employer/user/${clientID}`, {
