@@ -24,6 +24,8 @@ h2 {
 }
 
 .vacancy {
+    color: white;
+    cursor: pointer;
     background-color: #4CAF50;
     padding: 15px;
     border-radius: 10px;
