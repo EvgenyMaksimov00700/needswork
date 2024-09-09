@@ -32,7 +32,7 @@ public class VacancyController {
         }
         return new ResponseEntity<>(vacancyResponseDTOs, HttpStatus.OK);
     }
-    @GetMapping ("/vacancy/{vacancyid}")
+    @GetMapping ("/vacancy/{vacancyId}")
     public ResponseEntity <VacancyResponseDTO> getVacancyByID (@PathVariable Integer vacancyId) {
         return new ResponseEntity<>(vacancyService.getVacancy(vacancyId).toResponseDTO(), HttpStatus.OK);
 

@@ -6,6 +6,11 @@ body {
     color: white;
 }
 
+.header
+{
+ font-weight: bold;
+}
+
 .container {
     width: 100%;
     max-width: 390px;
