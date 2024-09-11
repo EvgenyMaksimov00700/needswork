@@ -19,5 +19,27 @@ document.addEventListener('DOMContentLoaded', function(){
             }).then(data => {
                 console.log (data);
                 document.getElementById("employer_name").innerHTML = "Компания: " + data.employer.name;
-     });
+            });
+            }).then(data => {
+                console.log (data);
+                document.getElementById("employer_inn").innerHTML = "ИНН: " + data.employer.inn;
+            });
+            }).then(data => {
+                console.log (data);
+                document.getElementById("employer_ogrn").innerHTML = "ОГРН: " + data.employer.ogrn
+                 });
+            }).then(data => {
+                console.log (data);
+                document.getElementById("employer_logo").innerHTML = "Логотип компании: " + data.employer.logo;
+            });
+            }).then(data => {
+                console.log (data);
+                document.getElementById("employer_name").innerHTML = "Компания: " + data.employer.name;
+            });
+            }).then(data => {
+                console.log (data);
+                document.getElementById("employer_description").innerHTML = "Описание: " + data.employer.description;
+            });
+
+
 });
