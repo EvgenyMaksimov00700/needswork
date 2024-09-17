@@ -2,7 +2,8 @@ const currentUrl = window.location.href;
 const url = new URL(currentUrl);
 const params = new URLSearchParams(url.search);
 const vacancyId = params.get('id');
-
+function edit_vacancy () {
+window.location.href=`/employer/vacancy/edit?id=${vacancyId}`}
 document.addEventListener('DOMContentLoaded', function(){
      fetch( `/vacancy/${vacancyId}`, {
                 method: 'GET',
@@ -18,28 +19,27 @@ document.addEventListener('DOMContentLoaded', function(){
 
             }).then(data => {
                 console.log (data);
-                document.getElementById("employer_name").innerHTML = "Компания: " + data.employer.name;
+                document.getElementById("position").innerHTML = data.position;
+                document.getElementById("employer_name").innerHTML = "<b>Компания: </b>" + data.employer.name;
+                document.getElementById("city").innerHTML = "<b>Город: </b>" + data.city;
+                document.getElementById("address").innerHTML = "<b>Адрес: </b>" + data.address;
+                document.getElementById("salary").innerHTML += "<b>Зарплата: </b>";
+                if (data.fromSalary!=null) {
+                document.getElementById("salary").innerHTML += "от " + data.fromSalary + " ";
+                }
+                if (data.toSalary!=null) {
+                document.getElementById("salary").innerHTML += "до " + data.toSalary + " ";
+                }
+                if (data.fromSalary==null && data.toSalary==null) {
+                document.getElementById("salary").innerHTML += "не указана";
+                }
+                else {
+                document.getElementById("salary").innerHTML += "руб";}
+                document.getElementById("exp").innerHTML = "<b>Требуемый опыт работы: </b>" + data.exp;
+                document.getElementById("workSchedule").innerHTML = "<b>График работы: </b>" + data.workSchedule;
+                if (data.distantWork==true) {
+                document.getElementById("workSchedule").innerHTML += ", возможно удаленно";}
+                document.getElementById("responsibility").innerHTML = data.responsibility;
+                document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + data.createdDateTime;
             });
-            }).then(data => {
-                console.log (data);
-                document.getElementById("employer_inn").innerHTML = "ИНН: " + data.employer.inn;
-            });
-            }).then(data => {
-                console.log (data);
-                document.getElementById("employer_ogrn").innerHTML = "ОГРН: " + data.employer.ogrn
-                 });
-            }).then(data => {
-                console.log (data);
-                document.getElementById("employer_logo").innerHTML = "Логотип компании: " + data.employer.logo;
-            });
-            }).then(data => {
-                console.log (data);
-                document.getElementById("employer_name").innerHTML = "Компания: " + data.employer.name;
-            });
-            }).then(data => {
-                console.log (data);
-                document.getElementById("employer_description").innerHTML = "Описание: " + data.employer.description;
-            });
-
-
 });

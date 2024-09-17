@@ -39,4 +39,9 @@ public class WebUpController {
     public String getDescription() {
         return "description_vacancy";
     }
+
+    @GetMapping("/employer/vacancy/edit")
+    public String editVacancy() {
+        return "create_vacancy_edit";
+    }
 }
