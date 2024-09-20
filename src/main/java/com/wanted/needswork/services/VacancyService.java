@@ -13,6 +13,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -97,6 +98,16 @@ public class VacancyService {
 
     public List<Vacancy> getVacancyUser(Integer userId) {
         return vacancyRepository.findAllByEmployer_UserId(userId);
+    }
+
+    public void deleteVacancy(Integer vacancyId) {
+    Optional<Vacancy> vacancy = vacancyRepository.findById(vacancyId);
+    if (vacancy.isPresent()) {
+            vacancyRepository.delete(vacancy.get());
+        } else {
+            System.out.println("Vacancy not found with id: " + vacancyId);
+        }
+
     }
 }
 

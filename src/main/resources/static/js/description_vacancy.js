@@ -4,6 +4,22 @@ const params = new URLSearchParams(url.search);
 const vacancyId = params.get('id');
 function edit_vacancy () {
 window.location.href=`/employer/vacancy/edit?id=${vacancyId}`}
+function delete_vacancy() {
+fetch( `/vacancy/${vacancyId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (!response.ok) {
+
+                    throw new Error(`Ошибка HTTP: ${response.status}`);
+                }
+                return response.json();
+
+            }).then(data => {})
+            window.location.href="/employer/my_vacancy7/show"
+}
 document.addEventListener('DOMContentLoaded', function(){
      fetch( `/vacancy/${vacancyId}`, {
                 method: 'GET',
@@ -42,4 +58,6 @@ document.addEventListener('DOMContentLoaded', function(){
                 document.getElementById("responsibility").innerHTML = data.responsibility;
                 document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + data.createdDateTime;
             });
+
 });
+

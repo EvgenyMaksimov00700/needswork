@@ -27,13 +27,13 @@ public class Vacancy {
     @Getter
     @Setter
     @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Employer employer;
 
     @Getter
     @Setter
     @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Industry industry;
 
     @Getter

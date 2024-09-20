@@ -23,8 +23,9 @@ public class VacancyController {
     IndustryService industryService;
     @Autowired
     EmployerService employerService;
-    @GetMapping ("/vacancy/showall")
-    public ResponseEntity <List<VacancyResponseDTO>> showall () {
+
+    @GetMapping("/vacancy/showall")
+    public ResponseEntity<List<VacancyResponseDTO>> showall() {
         List<Vacancy> vacancies = vacancyService.getVacancy();
         List<VacancyResponseDTO> vacancyResponseDTOs = new java.util.ArrayList<>();
         for (Vacancy vacancy : vacancies) {
@@ -32,49 +33,64 @@ public class VacancyController {
         }
         return new ResponseEntity<>(vacancyResponseDTOs, HttpStatus.OK);
     }
-    @GetMapping ("/vacancy/{vacancyId}")
-    public ResponseEntity <VacancyResponseDTO> getVacancyByID (@PathVariable Integer vacancyId) {
+
+    @GetMapping("/vacancy/{vacancyId}")
+    public ResponseEntity<VacancyResponseDTO> getVacancyByID(@PathVariable Integer vacancyId) {
         return new ResponseEntity<>(vacancyService.getVacancy(vacancyId).toResponseDTO(), HttpStatus.OK);
 
     }
+
     @PostMapping("/vacancy")
-    public ResponseEntity <Vacancy> addVacancy (@RequestBody VacancyDTO vacancyDTO) {
+    public ResponseEntity<Vacancy> addVacancy(@RequestBody VacancyDTO vacancyDTO) {
         Employer employer = employerService.getEmployer(vacancyDTO.getEmployer_id());
-        if (employer == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (employer == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         Industry industry = industryService.getIndustry(vacancyDTO.getIndustry_id());
-        if (industry == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (industry == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(vacancyService.addVacancy(employer,industry, vacancyDTO.getPosition(),
-                vacancyDTO.getCity(), vacancyDTO.getFromSalary(), vacancyDTO.getToSalary(), vacancyDTO.getWorkSchedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress(), vacancyDTO.getExp(), vacancyDTO.getResponsibility()),HttpStatus.OK);
+        return new ResponseEntity<>(vacancyService.addVacancy(employer, industry, vacancyDTO.getPosition(),
+                vacancyDTO.getCity(), vacancyDTO.getFromSalary(), vacancyDTO.getToSalary(), vacancyDTO.getWorkSchedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress(), vacancyDTO.getExp(), vacancyDTO.getResponsibility()), HttpStatus.OK);
     }
 
 
-
     @PutMapping("/vacancy/{vacancyId}")
-    public ResponseEntity <Vacancy> updateVacancy (@RequestBody VacancyDTO vacancyDTO, @PathVariable Integer vacancyId) {
-        Vacancy vacancy = vacancyService. getVacancy(vacancyId);
-        if (vacancy == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Vacancy> updateVacancy(@RequestBody VacancyDTO vacancyDTO, @PathVariable Integer vacancyId) {
+        Vacancy vacancy = vacancyService.getVacancy(vacancyId);
+        if (vacancy == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         Employer employer = employerService.getEmployer(vacancyDTO.getEmployer_id());
-        if (employer == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (employer == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         Industry industry = industryService.getIndustry(vacancyDTO.getIndustry_id());
-        return new ResponseEntity<>(vacancyService.updateVacancy(vacancy,employer, industry, vacancyDTO.getPosition(),
+        return new ResponseEntity<>(vacancyService.updateVacancy(vacancy, employer, industry, vacancyDTO.getPosition(),
                 vacancyDTO.getCity(), vacancyDTO.getFromSalary(), vacancyDTO.getToSalary(), vacancyDTO.getWorkSchedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress(), vacancyDTO.getExp(), vacancyDTO.getResponsibility()),
                 HttpStatus.OK);
     }
 
     @GetMapping("/vacancy/city")
-    public ResponseEntity <List<String>> getCities () {
+    public ResponseEntity<List<String>> getCities() {
         List<String> cities = vacancyService.getCities();
         return new ResponseEntity<>(cities, HttpStatus.OK);
 
     }
+
     @GetMapping("/vacancy/user/{userId}")
-    public ResponseEntity <List<VacancyResponseDTO>> getVacancyByUser (@PathVariable Integer userId)  {
+    public ResponseEntity<List<VacancyResponseDTO>> getVacancyByUser(@PathVariable Integer userId) {
         List<Vacancy> vacancyUser = vacancyService.getVacancyUser(userId);
         return new ResponseEntity<>(vacancyUser.stream().map(Vacancy::toResponseDTO).toList(), HttpStatus.OK);
     }
+
+    @DeleteMapping("/vacancy/{vacancyId}")
+    public ResponseEntity<VacancyResponseDTO> deleteVacancyByID(@PathVariable Integer vacancyId) {
+        vacancyService.deleteVacancy(vacancyId);
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
+
 }
 
