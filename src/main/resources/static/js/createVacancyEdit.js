@@ -1,5 +1,5 @@
-//let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
-let clientID = 159619887
+let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
+//let clientID = 159619887
 document.addEventListener('touchstart', function(event) {
             const activeElement = document.activeElement;
 
