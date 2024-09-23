@@ -5,6 +5,7 @@ const vacancyId = params.get('id');
 function edit_vacancy () {
 window.location.href=`/employer/vacancy/edit?id=${vacancyId}`}
 function delete_vacancy() {
+if (confirm("Вы действительно хотите удалить вакансию?")){
 fetch( `/vacancy/${vacancyId}`, {
                 method: 'DELETE',
                 headers: {
@@ -19,6 +20,7 @@ fetch( `/vacancy/${vacancyId}`, {
 
             }).then(data => {})
             window.location.href="/employer/my_vacancy7/show"
+}
 }
 document.addEventListener('DOMContentLoaded', function(){
      fetch( `/vacancy/${vacancyId}`, {
