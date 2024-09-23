@@ -1,10 +1,7 @@
 package com.wanted.needswork.services;
 
-import com.wanted.needswork.models.JobSeeker;
+import com.wanted.needswork.models.*;
 //import com.wanted.needswork.repository.JobSeeker;
-import com.wanted.needswork.models.Response;
-import com.wanted.needswork.models.User;
-import com.wanted.needswork.models.Vacancy;
 import com.wanted.needswork.repository.JobSeekerRepository;
 import com.wanted.needswork.repository.ResponseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +39,9 @@ public class ResponseService {
         response.setComment(comment);
         }
         return responseRepository.save(response);
+    }
+
+    public List<Response> getResponsesByVacancyId(Integer vacancyId) {
+        return responseRepository.findAllByVacancy_Id(vacancyId);
     }
 }

@@ -61,4 +61,8 @@ public class ResponseController {
         return new ResponseEntity<>(responseService.updateResponse(response,vacancy,jobSeeker, responseDTO.getComment()),
                 HttpStatus.OK);
     }
+    @GetMapping ("/response/vacancy/{vacancyId}")
+    public ResponseEntity <List<ResponseResponseDTO>> getResponseByVacancyID (@PathVariable Integer vacancyId) {
+        return new ResponseEntity<>(responseService.getResponsesByVacancyId(vacancyId).stream().map(Response::toResponseDTO).toList(), HttpStatus.OK);
+    }
 }

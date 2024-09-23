@@ -2,7 +2,7 @@
 let clientID = 159619887
 console.log(clientID)
 document.addEventListener('DOMContentLoaded', function(){
-     fetch( `/vacancy/user/${clientID}`, {
+     fetch( `/response/vacancy/${clientID}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 return response.json();
 
             }).then(data => {
-            const vacancies=document.getElementById("vacancies")
+            const vacancies=document.getElementById("responses")
             data.forEach (vacancy => {
             let salary="";
             if (vacancy.fromSalary!=null) {
