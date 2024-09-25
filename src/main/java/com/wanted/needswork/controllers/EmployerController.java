@@ -73,6 +73,15 @@ public class EmployerController {
                 employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription()),
                 HttpStatus.OK);
     }
+    @DeleteMapping("/employer/{employerId}")
+    public ResponseEntity<Employer> deleteEmployer(@PathVariable Integer employerId) {
+        Employer employer = employerService.getEmployer(employerId);
+        if (employer == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(employerService.deleteEmployer(employer),
+                HttpStatus.OK);
+    }
 }
 
 

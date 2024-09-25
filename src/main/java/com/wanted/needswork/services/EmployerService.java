@@ -64,5 +64,9 @@ public class EmployerService {
         return employerRepository.save(employer);
     }
 
+    public Employer deleteEmployer(Employer employer) {
+        employerRepository.delete(employer);
+        return employer;
+    }
 }
 
