@@ -32,7 +32,7 @@ fetch( `/employer/${employerId}`, {
                 }
                 return response.json();
 
-            }).then(data => {window.Telegram.WebApp.openTelegramLink(`https://t.me/tworker_ru_bot`);
+            }).then(data => {window.Telegram.WebApp.openTelegramLink(`https://t.me/tworker_ru_bot?start=start`);
                              window.Telegram.WebApp.close();})
 
 }

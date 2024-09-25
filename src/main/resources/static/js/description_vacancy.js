@@ -4,7 +4,7 @@ const params = new URLSearchParams(url.search);
 const vacancyId = params.get('id');
 function edit_vacancy () {
 window.location.href=`/employer/vacancy/edit?id=${vacancyId}`}
-function edit_vacancy () {
+function vacancy_responses() {
 window.location.href=`/employer/responses7/show?id=${vacancyId}`}
 
 function delete_vacancy() {
