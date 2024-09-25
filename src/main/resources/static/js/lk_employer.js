@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 }
                 return response.json();
             })
-            .then(data => {employerId = data.id;})
+            .then(data => {employerId = data.employer_id;})
 });
 function delete_employer() {
 if (confirm("Вы действительно хотите удалить Ваш аккаунт?")){
