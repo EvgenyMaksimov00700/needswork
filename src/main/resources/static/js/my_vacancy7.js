@@ -1,5 +1,6 @@
-let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
-//let clientID = 159619887
+let clientID;
+try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;}
+catch(error) {clientID = 159619887}
 console.log(clientID)
 document.addEventListener('DOMContentLoaded', function(){
      fetch( `/vacancy/user/${clientID}`, {

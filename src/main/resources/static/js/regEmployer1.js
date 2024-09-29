@@ -1,6 +1,9 @@
 // Инициализация Telegram Web App
 window.Telegram.WebApp.expand();
-let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
+let clientID;
+try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;}
+catch(error) {clientID = 159619887}
+console.log(clientID)
 let employer ;
 
 document.addEventListener('touchstart', function(event) {

@@ -1,5 +1,11 @@
-let clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
+let clientID;
+try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
 window.Telegram.WebApp.expand();
+}
+
+catch(error) {clientID = 159619887}
+console.log(clientID)
+
 let employerId;
 
 document.addEventListener('DOMContentLoaded', function(){

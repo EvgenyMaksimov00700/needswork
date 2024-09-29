@@ -2,8 +2,14 @@ const currentUrl = window.location.href;
 const url = new URL(currentUrl);
 const params = new URLSearchParams(url.search);
 const vacancyId = params.get('id');
-let clientID = 159619887; // Предполагаем, что это ID пользователя
-console.log(clientID);
+let clientID;
+try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;}
+catch(error) {clientID = 159619887}
+console.log(clientID)
+function back () {
+console.log(vacancyId);
+window.location.href=`/employer/vacancy/description?id=${vacancyId}`
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     fetch(`/response/vacancy/${vacancyId}`, {
@@ -18,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return response.json();
     }).then(data => {
         const responsesContainer = document.getElementById('responses');
-
+    console.log(data);
         // Очищаем контейнер, если он уже содержит элементы
         responsesContainer.innerHTML = '';
 
@@ -53,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
             openChatButton.classList.add('open-chat');
             openChatButton.textContent = 'открыть чат';
             openChatButton.onclick = () => {
-                window.location.href = `/employer/lk/chat/${response.chatId}`; // URL с ID чата
+                window.location.href = `tg://user?id=159619887`; // URL с ID чата
             };
             buttonGroup.appendChild(openChatButton);
 
