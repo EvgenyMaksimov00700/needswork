@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
             openChatButton.classList.add('open-chat');
             openChatButton.textContent = 'открыть чат';
             openChatButton.onclick = () => {
-                window.Telegram.WebApp.openTelegramLink(`tg://user?id=159619887`); // URL с ID чата
+                window.Telegram.WebApp.openTelegramLink(`https://t.me/${response.job_seeker.user.username}`); // URL с ID чата
                 window.Telegram.WebApp.close();
             };
 
