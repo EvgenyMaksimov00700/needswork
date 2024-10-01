@@ -44,4 +44,9 @@ public class WebUpController {
     public String editVacancy() {
         return "create_vacancy_edit";
     }
+
+    @GetMapping("/vacancy/menu")
+    public String menuVacancy() {
+        return "menuClient";
+    }
 }
