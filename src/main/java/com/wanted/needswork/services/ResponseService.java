@@ -44,4 +44,15 @@ public class ResponseService {
     public List<Response> getResponsesByVacancyId(Integer vacancyId) {
         return responseRepository.findAllByVacancy_Id(vacancyId);
     }
+
+    public Response deleteResponse(Integer responseId) {
+
+        Response response = responseRepository.findById(responseId).orElse(null);
+        if (response != null) {
+            responseRepository.delete(response);
+            return response;
+        }
+        return null;
+
+    }
 }

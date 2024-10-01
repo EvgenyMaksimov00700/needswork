@@ -23,13 +23,13 @@ public class Response {
     @Getter
     @Setter
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Vacancy vacancy;
 
     @Getter
     @Setter
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private JobSeeker job_seeker;
 
     @Getter

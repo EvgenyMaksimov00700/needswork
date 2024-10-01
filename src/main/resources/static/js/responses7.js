@@ -63,11 +63,31 @@ document.addEventListener('DOMContentLoaded', function () {
                 window.Telegram.WebApp.close();
             };
 
+            const cancelButton = document.createElement('button');
+            cancelButton.type = 'button';
+            cancelButton.classList.add('cancel');
+            cancelButton.textContent = 'отклонить соискателя';
+            cancelButton.onclick = () => {
+            fetch(`/response/${response.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Ошибка HTTP: ${response.status}`); // Бросаем ошибку, если ответ не в порядке
+                    }
+                    return response.json();
+
+                })
+                .then(response => {location.reload();})
+
+            };
             buttonGroup.appendChild(openChatButton);
 
             // Добавляем группу кнопок в основной div
             responseDiv.appendChild(buttonGroup);
-
+            responseDiv.appendChild(cancelButton);
             // Добавляем весь отклик в контейнер для откликов
             responsesContainer.appendChild(responseDiv);
         });

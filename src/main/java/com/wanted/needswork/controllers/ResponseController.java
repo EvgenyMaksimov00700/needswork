@@ -65,4 +65,9 @@ public class ResponseController {
     public ResponseEntity <List<ResponseResponseDTO>> getResponseByVacancyID (@PathVariable Integer vacancyId) {
         return new ResponseEntity<>(responseService.getResponsesByVacancyId(vacancyId).stream().map(Response::toResponseDTO).toList(), HttpStatus.OK);
     }
+
+    @DeleteMapping ("/response/{responseId}")
+    public ResponseEntity <ResponseResponseDTO> deleteResponseByID (@PathVariable Integer responseId) {
+        return new ResponseEntity<>(responseService.deleteResponse(responseId).toResponseDTO(), HttpStatus.OK);
+    }
 }
