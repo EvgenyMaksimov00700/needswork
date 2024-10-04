@@ -49,4 +49,9 @@ public class WebUpController {
     public String menuVacancy() {
         return "menuClient";
     }
+
+    @GetMapping("/vacancy/description")
+    public String descriptionVacancy() {
+        return "description_vacancy_job_seeker";
+    }
 }

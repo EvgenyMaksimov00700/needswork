@@ -7,24 +7,7 @@ window.location.href=`/employer/vacancy/edit?id=${vacancyId}`}
 function vacancy_responses() {
 window.location.href=`/employer/responses7/show?id=${vacancyId}`}
 
-function delete_vacancy() {
-if (confirm("Вы действительно хотите удалить вакансию?")){
-fetch( `/vacancy/${vacancyId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => {
-                if (!response.ok) {
 
-                    throw new Error(`Ошибка HTTP: ${response.status}`);
-                }
-                return response.json();
-
-            }).then(data => {window.location.href="/employer/my_vacancy7/show"})
-
-}
-}
 document.addEventListener('DOMContentLoaded', function(){
      fetch( `/vacancy/${vacancyId}`, {
                 method: 'GET',

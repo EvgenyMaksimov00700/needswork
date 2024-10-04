@@ -1,9 +1,16 @@
 let clientID;
-try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;}
+try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
+window.Telegram.WebApp.expand();
 catch(error) {clientID = 159619887}
 console.log(clientID)
+
+const currentUrl = window.location.href;
+const url = new URL(currentUrl);
+const params = new URLSearchParams(url.search);
+const city = params.get('city');
+const industry = params.get('industry');
 document.addEventListener('DOMContentLoaded', function(){
-     fetch( `/vacancy/showall`, {
+     fetch( `/vacancy/filter?city=${city}&industry=${industry}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -28,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if (salary=="") {
                 salary="Не указано";
             }
-            const vacancy_url = "window.location.href='/employer/vacancy/description?id=" + vacancy.id + "'";
+            const vacancy_url = "window.location.href='/vacancy/description?id=" + vacancy.id + "'";
             const element= `<button class="vacancy" onclick=${vacancy_url}>
                                     ${vacancy.position}<br>${salary}<br>${vacancy.city}<br>${vacancy.employer.name}
                                 </button>`

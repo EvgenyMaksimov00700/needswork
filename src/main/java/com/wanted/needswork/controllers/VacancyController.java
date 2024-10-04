@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 public class VacancyController {
@@ -90,7 +91,17 @@ public class VacancyController {
         return new ResponseEntity<>(HttpStatus.OK);
 
     }
-
+    @GetMapping("/vacancy/filter")
+    public ResponseEntity<List<VacancyResponseDTO>> filter(@RequestParam String city, @RequestParam String industry) {
+        List<Vacancy> vacancies = vacancyService.getVacancy();
+        List<VacancyResponseDTO> vacancyResponseDTOs = new java.util.ArrayList<>();
+        for (Vacancy vacancy : vacancies) {
+            if (Objects.equals(vacancy.getCity(), city) && Objects.equals(vacancy.getIndustry().getUsername(), industry)) {
+                vacancyResponseDTOs.add(vacancy.toResponseDTO());
+            }
+        }
+        return new ResponseEntity<>(vacancyResponseDTOs, HttpStatus.OK);
+    }
 
 }
 
