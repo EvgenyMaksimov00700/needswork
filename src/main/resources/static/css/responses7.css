@@ -18,7 +18,7 @@ body {
     box-sizing: border-box;
     background-color: #1a1a1a;
     border-radius: 10px;
-    border: 2px solid white;
+
     overflow-y: auto;
     height: 95vh; /* Высота контейнера для скрытого скроллинга */
 }
