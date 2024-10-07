@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if (salary=="") {
                 salary="Не указано";
             }
-            const vacancy_url = "window.location.href='/vacancy/description?id=" + vacancy.id + "'";
+            const vacancy_url = "window.location.href='/vacancy/description?id=" + vacancy.id + `city=${city}&industry=${industry}'`;
             const element= `<button class="vacancy" onclick=${vacancy_url}>
                                     ${vacancy.position}<br>${salary}<br>${vacancy.city}<br>${vacancy.employer.name}
                                 </button>`

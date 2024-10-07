@@ -2,10 +2,12 @@ const currentUrl = window.location.href;
 const url = new URL(currentUrl);
 const params = new URLSearchParams(url.search);
 const vacancyId = params.get('id');
+const city = params.get('city');
+const industry = params.get('industry');
 function edit_vacancy () {
 window.location.href=`/employer/vacancy/edit?id=${vacancyId}`}
-function vacancy_responses() {
-window.location.href=`/employer/responses7/show?id=${vacancyId}`}
+function vacancy_back() {
+window.location.href=`/vacancy/menu?city=${city}&industry=${industry}`}
 
 
 document.addEventListener('DOMContentLoaded', function(){
