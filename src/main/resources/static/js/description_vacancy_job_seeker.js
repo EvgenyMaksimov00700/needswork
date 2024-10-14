@@ -7,7 +7,7 @@ const industry = params.get('industry');
 function edit_vacancy () {
 window.location.href=`/employer/vacancy/edit?id=${vacancyId}`}
 function vacancy_back() {
-window.location.href=`/vacancy/menu?city=${city}&industry=${industry}`}
+window.location.href=`/vacancy/menu?city=${encodeURIComponent(city)}&industry=${encodeURIComponent(industry)}`}
 
 
 document.addEventListener('DOMContentLoaded', function(){

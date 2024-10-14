@@ -25,20 +25,21 @@ document.addEventListener('DOMContentLoaded', function(){
             }).then(data => {
             const vacancies=document.getElementById("vacancies")
             data.forEach (vacancy => {
-            let salary="";
-            if (vacancy.fromSalary!=null) {
-                salary+=`от ${vacancy.fromSalary}`;
-            }
-            if (vacancy.toSalary!=null) {
-                salary+=` до ${vacancy.toSalary}`;
-            }
-            if (salary=="") {
-                salary="Не указано";
-            }
-            const vacancy_url = "window.location.href='/vacancy/description?id=" + vacancy.id + `&city=${city}&industry=${industry}'`;
-            const element= `<button class="vacancy" onclick=${vacancy_url}>
-                                    ${vacancy.position}<br>${salary}<br>${vacancy.city}<br>${vacancy.employer.name}
-                                </button>`
-                                 vacancies.innerHTML+=element})
+                let salary="";
+                if (vacancy.fromSalary!=null) {
+                    salary+=`от ${vacancy.fromSalary}`;
+                }
+                if (vacancy.toSalary!=null) {
+                    salary+=` до ${vacancy.toSalary}`;
+                }
+                if (salary=="") {
+                    salary="Не указано";
+                }
+               const vacancy_url = `/vacancy/description?id=${vacancy.id}&city=${encodeURIComponent(city)}&industry=${encodeURIComponent(industry)}`;
+               const element = `<button class="vacancy" onclick="window.location.href='${vacancy_url}'">
+                                   ${vacancy.position}<br>${salary}<br>${vacancy.city}<br>${vacancy.employer.name}
+                               </button>`;
+               vacancies.innerHTML += element;
             })
+            });
 });
