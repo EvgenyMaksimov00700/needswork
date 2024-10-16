@@ -1,19 +1,17 @@
 package com.wanted.needswork.services;
 
-
 import com.wanted.needswork.models.JobSeeker;
 import com.wanted.needswork.models.User;
 import com.wanted.needswork.repository.JobSeekerRepository;
+import com.wanted.needswork.repository.VideoCvRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
-
-public class JobSeekerService {
+public class VideoCvService {
     @Autowired
-    JobSeekerRepository jobSeekerRepository;
+    VideoCvRepository videoCvRepository;
 
     public JobSeeker getJobSeeker(Integer id) {
         return jobSeekerRepository.findById(id).orElse(null);

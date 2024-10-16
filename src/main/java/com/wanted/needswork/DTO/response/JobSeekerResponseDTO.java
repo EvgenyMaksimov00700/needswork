@@ -11,8 +11,6 @@ public class JobSeekerResponseDTO {
     @Getter
     private UserResponseDTO user;
     @Getter
-    private String video_cv;
-    @Getter
     private Double latitude;
     @Getter
     private Double longitude;

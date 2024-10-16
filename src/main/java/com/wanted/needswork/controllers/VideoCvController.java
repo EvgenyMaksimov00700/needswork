@@ -1,13 +1,13 @@
 package com.wanted.needswork.controllers;
 
 import com.wanted.needswork.DTO.request.JobSeekerDTO;
-import com.wanted.needswork.DTO.response.EmployerResponseDTO;
 import com.wanted.needswork.DTO.response.JobSeekerResponseDTO;
-import com.wanted.needswork.models.Employer;
+import com.wanted.needswork.DTO.response.VideoCvResponseDTO;
 import com.wanted.needswork.models.JobSeeker;
 import com.wanted.needswork.models.User;
 import com.wanted.needswork.services.JobSeekerService;
 import com.wanted.needswork.services.UserService;
+import com.wanted.needswork.services.VideoCvService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +15,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-public class JobSeekerController {
+public class VideoCvController {
     @Autowired
     JobSeekerService jobSeekerService;
     @Autowired
-    UserService userService;
-    @GetMapping ("/jobSeeker/showall")
-    public ResponseEntity <List<JobSeekerResponseDTO>> showall () {
+    VideoCvService videoCvService;
+    @GetMapping("/videoCv/showall")
+    public ResponseEntity<List<VideoCvResponseDTO>> showall () {
         List<JobSeeker> jobSeekers = jobSeekerService.getJobSeekers();
         List<JobSeekerResponseDTO> jobSeekerResponseDTOs = new java.util.ArrayList<>();
         for (JobSeeker jobSeeker : jobSeekers) {
@@ -58,3 +57,4 @@ public class JobSeekerController {
     }
 
 }
+

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigInteger;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -29,25 +30,20 @@ public class JobSeeker {
 
     @Getter
     @Setter
-    private String video_cv;
-
-    @Getter
-    @Setter
     private Double latitude;
 
     @Getter
     @Setter
     private Double longitude;
 
-    public JobSeeker(User user, String video_cv, Double latitude, Double longitude) {
+    public JobSeeker(User user, Double latitude, Double longitude) {
 
         this.user = user;
-        this.video_cv = video_cv;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
     public JobSeekerResponseDTO toResponseDTO() {
-        return new JobSeekerResponseDTO(id, user.toResponseDTO(), video_cv, latitude, longitude);
+        return new JobSeekerResponseDTO(id, user.toResponseDTO(), latitude, longitude);
     }
 }

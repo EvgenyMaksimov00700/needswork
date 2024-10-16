@@ -10,8 +10,6 @@ public class JobSeekerDTO {
     @Getter
     private BigInteger user_id;
     @Getter
-    private String video_cv;
-    @Getter
     private Double latitude;
     @Getter
     private Double longitude;
