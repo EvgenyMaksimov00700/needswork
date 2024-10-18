@@ -2,6 +2,7 @@ package com.wanted.needswork.services;
 
 import com.wanted.needswork.models.JobSeeker;
 import com.wanted.needswork.models.User;
+import com.wanted.needswork.models.VideoCv;
 import com.wanted.needswork.repository.JobSeekerRepository;
 import com.wanted.needswork.repository.VideoCvRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,30 +14,30 @@ public class VideoCvService {
     @Autowired
     VideoCvRepository videoCvRepository;
 
-    public JobSeeker getJobSeeker(Integer id) {
-        return jobSeekerRepository.findById(id).orElse(null);
+    public VideoCv getVideoCv(Integer id) {
+        return videoCvRepository.findById(id).orElse(null);
     }
-    public List<JobSeeker> getJobSeekers() {
-        return jobSeekerRepository.findAll();
+    public List<VideoCv> getVideoCv() {
+        return videoCvRepository.findAll();
 
     }
-    public JobSeeker addJobSeeker(User user, Double latitude, Double longitude){
-        JobSeeker jobSeeker = new JobSeeker (user, latitude, longitude);
-        return jobSeekerRepository.save(jobSeeker);
+    public VideoCv addVideoCv(JobSeeker jobSeeker, String video_message, String name){
+        VideoCv videoCv = new VideoCv (jobSeeker, video_message, name);
+        return videoCvRepository.save(videoCv);
     }
 
-    public JobSeeker updateJobSeeker(JobSeeker jobSeeker,User user, Double latitude, Double longitude) {
-        if (latitude != null) {
-            jobSeeker.setLatitude(latitude);
+    public VideoCv updateVideoCv(VideoCv videoCv,JobSeeker jobSeeker, String video_message, String name) {
+        if (jobSeeker != null) {
+            videoCv.setJobSeeker(jobSeeker);
         }
-        if (longitude != null){
-            jobSeeker.setLongitude(longitude);
+        if (video_message != null){
+            videoCv.setVideo_message(video_message);
         }
-        if (user != null){
-            jobSeeker.setUser(user);
+        if (name != null){
+            videoCv.setName(name);
         }
 
-        return jobSeekerRepository.save(jobSeeker);
+        return videoCvRepository.save(videoCv);
     }
 
 }
