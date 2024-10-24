@@ -56,5 +56,8 @@ public class JobSeekerController {
                 jobSeekerDTO.getLatitude(),jobSeekerDTO.getLongitude()),
                 HttpStatus.OK);
     }
-
+    @GetMapping ("/jobSeeker/user/{userId}")
+    public ResponseEntity <JobSeekerResponseDTO> getJobSeekerByUserId (@PathVariable Integer userId) {
+        return new ResponseEntity<>(jobSeekerService.getJobSeekerByUserId(userId).toResponseDTO(), HttpStatus.OK);
+    }
 }

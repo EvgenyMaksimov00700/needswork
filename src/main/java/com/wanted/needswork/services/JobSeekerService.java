@@ -1,6 +1,7 @@
 package com.wanted.needswork.services;
 
 
+import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.JobSeeker;
 import com.wanted.needswork.models.User;
 import com.wanted.needswork.repository.JobSeekerRepository;
@@ -41,4 +42,7 @@ public class JobSeekerService {
         return jobSeekerRepository.save(jobSeeker);
     }
 
+    public JobSeeker getJobSeekerByUserId(Integer userId) {
+        return jobSeekerRepository.getJobSeekerByUserId(userId);
+    }
 }
