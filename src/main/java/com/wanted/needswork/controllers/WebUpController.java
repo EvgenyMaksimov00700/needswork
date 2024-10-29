@@ -54,4 +54,14 @@ public class WebUpController {
     public String descriptionVacancy() {
         return "description_vacancy_job_seeker";
     }
+
+    @GetMapping("/jobSeeker/account/favorites")
+    public String favoritesVacancy() {
+        return "favorites_vacancy";
+    }
+
+    @GetMapping("/jobSeeker/account/menu")
+    public String jobSeekersMenu() {
+        return "job_seekers_menu";
+    }
 }

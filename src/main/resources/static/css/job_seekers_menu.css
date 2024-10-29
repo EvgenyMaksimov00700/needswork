@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.container {
+    width: 90%;
+    max-width: 390px;
+    height: 80vh;
+    padding: 20px;
+    background-color: #1a1a1a;
+    border: 2px solid white; /* Вернул обводку для контейнера */
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.resume-buttons {
+    max-height: 75vh;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.resume-button {
+    background-color: #4CAF50; /* Зеленый цвет для кнопок резюме */
+    color: white;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.resume-button:hover {
+    background-color: #45a049;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto; /* Кнопки останутся внизу контейнера */
+}
+
+.action-button {
+    padding: 10px;
+    width: 100%;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: green;
+    color: white;
+}
+
+.action-button:hover {
+    background-color: #45a049;
+}
+
+/* Скрытие полосы прокрутки для всех браузеров */
+.resume-buttons::-webkit-scrollbar,
+.container::-webkit-scrollbar {
+    display: none;
+}
