@@ -11,7 +11,7 @@ function support(){
 window.Telegram.WebApp.openTelegramLink(`https://t.me/Cherchent`); // URL с ID чата
                 window.Telegram.WebApp.close();
                 }
-}
+
 
 document.addEventListener('DOMContentLoaded', function(){
      fetch( `/videoCv/user/${clientID}`, {
@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function(){
             const vacancies=document.getElementById("resume-buttons")
             data.forEach (videoCv => {
 
-            const vacancy_url = "window.location.href='/employer/vacancy/description?id=" + vacancy.id + "'";
-            const element= `<div> class="resume-button" onclick=${vacancy_url}>
+            const vacancy_url = "window.location.href='/employer/vacancy/description?id=" + videoCv.video_message + "'";
+            const element= `<div class="resume-button" onclick=${vacancy_url}>
                                     ${videoCv.name}
                                 </div>`
                                  vacancies.innerHTML+=element})
