@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @RestController
@@ -57,7 +58,7 @@ public class JobSeekerController {
                 HttpStatus.OK);
     }
     @GetMapping ("/jobSeeker/user/{userId}")
-    public ResponseEntity <JobSeekerResponseDTO> getJobSeekerByUserId (@PathVariable Integer userId) {
+    public ResponseEntity <JobSeekerResponseDTO> getJobSeekerByUserId (@PathVariable BigInteger userId) {
         return new ResponseEntity<>(jobSeekerService.getJobSeekerByUserId(userId).toResponseDTO(), HttpStatus.OK);
     }
 }

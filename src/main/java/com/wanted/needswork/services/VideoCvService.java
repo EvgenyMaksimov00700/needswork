@@ -40,4 +40,8 @@ public class VideoCvService {
         return videoCvRepository.save(videoCv);
     }
 
+    public List<VideoCv> getVideoCvByUser(JobSeeker jobSeeker) {
+
+        return videoCvRepository.findAllByJobSeeker(jobSeeker);
+    }
 }

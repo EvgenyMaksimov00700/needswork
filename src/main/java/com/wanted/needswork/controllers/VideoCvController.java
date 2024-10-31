@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.List;
 @RestController()
 public class VideoCvController {
@@ -23,10 +24,15 @@ public class VideoCvController {
     JobSeekerService jobSeekerService;
     @Autowired
     VideoCvService videoCvService;
+
+    @Autowired
+    UserService userService;
+
+
     @GetMapping("/videoCv/showall")
-    public ResponseEntity<List<VideoCvResponseDTO>> showall () {
+    public ResponseEntity<List<VideoCvResponseDTO>> showall() {
         List<VideoCv> videoCvs = videoCvService.getVideoCv();
-        List <VideoCvResponseDTO> videoCvResponseDTOs = new java.util.ArrayList<>();
+        List<VideoCvResponseDTO> videoCvResponseDTOs = new java.util.ArrayList<>();
         for (VideoCv videoCv : videoCvs) {
             videoCvResponseDTOs.add(videoCv.toResponseDTO());
         }
@@ -34,12 +40,14 @@ public class VideoCvController {
 
         return new ResponseEntity<>(videoCvResponseDTOs, HttpStatus.OK);
     }
-    @GetMapping ("/videoCv/{videoCvrId}")
-    public ResponseEntity <VideoCvResponseDTO> getVideoCvById (@PathVariable Integer videoCvId) {
+
+    @GetMapping("/videoCv/{videoCvId}")
+    public ResponseEntity<VideoCvResponseDTO> getVideoCvById(@PathVariable Integer videoCvId) {
         return new ResponseEntity<>(videoCvService.getVideoCv(videoCvId).toResponseDTO(), HttpStatus.OK);
     }
+
     @PostMapping("/videoCv")
-    public ResponseEntity <VideoCv> addVideoCv (@RequestBody VideoCvDTO videoCvDTO) {
+    public ResponseEntity<VideoCv> addVideoCv(@RequestBody VideoCvDTO videoCvDTO) {
         JobSeeker jobSeeker = jobSeekerService.getJobSeeker(videoCvDTO.getJob_seeker_id());
         if (jobSeeker == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -48,16 +56,24 @@ public class VideoCvController {
                 videoCvDTO.getVideo_message(), videoCvDTO.getName()),
                 HttpStatus.OK);
     }
+
     @PutMapping("/videoCv/{videoCvId}")
-    public ResponseEntity <VideoCv> updateVideoCv (@RequestBody VideoCvDTO videoCvDTO, @PathVariable Integer VideoCvId) {
-        VideoCv videoCv = videoCvService. getVideoCv(VideoCvId);
+    public ResponseEntity<VideoCv> updateVideoCv(@RequestBody VideoCvDTO videoCvDTO, @PathVariable Integer VideoCvId) {
+        VideoCv videoCv = videoCvService.getVideoCv(VideoCvId);
         JobSeeker jobSeeker = jobSeekerService.getJobSeeker(videoCvDTO.getJob_seeker_id());
-        if (jobSeeker == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (jobSeeker == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(videoCvService.updateVideoCv(videoCv,jobSeeker,
-                videoCvDTO.getVideo_message(),videoCvDTO.getName()),
+        return new ResponseEntity<>(videoCvService.updateVideoCv(videoCv, jobSeeker,
+                videoCvDTO.getVideo_message(), videoCvDTO.getName()),
                 HttpStatus.OK);
     }
 
+    @GetMapping("/videoCv/user/{userId}")
+    public ResponseEntity <List<VideoCvResponseDTO>> getVideoCvByUserId(@PathVariable BigInteger userId) {
+        User user = userService.getUser(userId);
+        JobSeeker jobSeeker = jobSeekerService.getJobSeekerByUserId(user.getId());
+        List<VideoCv> cvs = videoCvService.getVideoCvByUser(jobSeeker);
+        return new ResponseEntity<>(cvs.stream().map(VideoCv::toResponseDTO).toList(), HttpStatus.OK);
+    }
 }
-

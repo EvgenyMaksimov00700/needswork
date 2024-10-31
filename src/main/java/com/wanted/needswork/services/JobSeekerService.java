@@ -8,6 +8,7 @@ import com.wanted.needswork.repository.JobSeekerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -42,7 +43,7 @@ public class JobSeekerService {
         return jobSeekerRepository.save(jobSeeker);
     }
 
-    public JobSeeker getJobSeekerByUserId(Integer userId) {
+    public JobSeeker getJobSeekerByUserId(BigInteger userId) {
         return jobSeekerRepository.getJobSeekerByUserId(userId);
     }
 }
