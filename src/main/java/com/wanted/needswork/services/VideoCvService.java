@@ -9,6 +9,11 @@ import com.wanted.needswork.repository.VideoCvRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +62,24 @@ public class VideoCvService {
             videoCvRepository.delete(videoCv.get());
         } else {
             System.out.println("VideoCv not found with id: " + videoCvId);
+        }
+    }
+
+    public static void sendVideoNote(Long chatId, String fileIdOrUrl) {
+        HttpClient client = HttpClient.newHttpClient();
+        String requestBody = String.format("{\"chat_id\":\"%d\", \"video_note\":\"%s\"}", chatId, fileIdOrUrl);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://api.telegram.org/bot7316703370:AAFWH2JeXdsJ0Tt1ylTYgSHQISLdsuMqvZk/sendVideoNote"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .build();
+
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Ответ от Telegram: " + response.body());
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
