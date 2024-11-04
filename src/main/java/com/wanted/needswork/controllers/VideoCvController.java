@@ -3,6 +3,7 @@ package com.wanted.needswork.controllers;
 import com.wanted.needswork.DTO.request.JobSeekerDTO;
 import com.wanted.needswork.DTO.request.VideoCvDTO;
 import com.wanted.needswork.DTO.response.JobSeekerResponseDTO;
+import com.wanted.needswork.DTO.response.VacancyResponseDTO;
 import com.wanted.needswork.DTO.response.VideoCvResponseDTO;
 import com.wanted.needswork.models.JobSeeker;
 import com.wanted.needswork.models.User;
@@ -70,10 +71,16 @@ public class VideoCvController {
     }
 
     @GetMapping("/videoCv/user/{userId}")
-    public ResponseEntity <List<VideoCvResponseDTO>> getVideoCvByUserId(@PathVariable BigInteger userId) {
+    public ResponseEntity<List<VideoCvResponseDTO>> getVideoCvByUserId(@PathVariable BigInteger userId) {
         User user = userService.getUser(userId);
         JobSeeker jobSeeker = jobSeekerService.getJobSeekerByUserId(user.getId());
         List<VideoCv> cvs = videoCvService.getVideoCvByUser(jobSeeker);
         return new ResponseEntity<>(cvs.stream().map(VideoCv::toResponseDTO).toList(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/videoCv/{videoCvId}")
+    public ResponseEntity<VideoCvResponseDTO> deleteVideoCvByID(@PathVariable Integer videoCvId) {
+        videoCvService.deleteVideoCv(videoCvId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

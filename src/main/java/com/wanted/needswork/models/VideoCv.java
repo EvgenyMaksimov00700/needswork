@@ -20,7 +20,7 @@ public class VideoCv {
     @Getter
     @Setter
     @JsonBackReference
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private  JobSeeker jobSeeker;
 
     @Getter

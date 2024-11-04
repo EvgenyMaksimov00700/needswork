@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function delete_videoCv(videoCvId) {
 if (confirm("Вы действительно хотите удалить Ваше резюме?")){
-fetch( `/employer/${videoCvId}`, {
+fetch( `/videoCv/${videoCvId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ fetch( `/employer/${videoCvId}`, {
 
                     throw new Error(`Ошибка HTTP: ${response.status}`);
                 }
-                return response.json();
+                return response;
 
             }).then(data => {const element = document.querySelector(`.resume-button[data-id='${videoCvId}']`);
                                      if (element) {
