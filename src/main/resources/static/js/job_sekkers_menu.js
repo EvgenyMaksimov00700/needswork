@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }).then(data => {
         const vacancies = document.getElementById("resume-buttons");
         data.forEach(videoCv => {
-            const vacancy_url = `window.location.href='/employer/vacancy/description?id=${videoCv.video_message}'`;
+            const vacancy_url = `window.location.href='/send/videoCv/${videoCv.video_message}'`;
             const element = `
                 <div class="resume-button" onclick="${vacancy_url}" style="position: relative;" data-id="${videoCv.id}">
                     <span
