@@ -2,6 +2,7 @@ package com.wanted.needswork.controllers;
 
 import com.wanted.needswork.DTO.request.JobSeekerDTO;
 import com.wanted.needswork.DTO.request.VideoCvDTO;
+import com.wanted.needswork.DTO.request.VideoCvSendDTO;
 import com.wanted.needswork.DTO.response.JobSeekerResponseDTO;
 import com.wanted.needswork.DTO.response.VacancyResponseDTO;
 import com.wanted.needswork.DTO.response.VideoCvResponseDTO;
@@ -81,6 +82,13 @@ public class VideoCvController {
     @DeleteMapping("/videoCv/{videoCvId}")
     public ResponseEntity<VideoCvResponseDTO> deleteVideoCvByID(@PathVariable Integer videoCvId) {
         videoCvService.deleteVideoCv(videoCvId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/videoCv/send")
+    public ResponseEntity<VideoCv> VideoCvSend (@RequestBody VideoCvSendDTO videoCvSendDTO) {
+        VideoCv videoCv = videoCvService.getVideoCv(videoCvSendDTO.getVideoCvId());
+        videoCvService.sendVideoNote(videoCvSendDTO.getUserId(), videoCv.getVideo_message());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

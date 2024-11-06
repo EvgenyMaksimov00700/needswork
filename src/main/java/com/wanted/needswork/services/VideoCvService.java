@@ -6,10 +6,12 @@ import com.wanted.needswork.models.Vacancy;
 import com.wanted.needswork.models.VideoCv;
 import com.wanted.needswork.repository.JobSeekerRepository;
 import com.wanted.needswork.repository.VideoCvRepository;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -65,12 +67,12 @@ public class VideoCvService {
         }
     }
 
-    public static void sendVideoNote(Long chatId, String fileIdOrUrl) {
+    public void sendVideoNote(BigInteger chatId, String fileIdOrUrl) {
         HttpClient client = HttpClient.newHttpClient();
         String requestBody = String.format("{\"chat_id\":\"%d\", \"video_note\":\"%s\"}", chatId, fileIdOrUrl);
-
+        Dotenv dotenv=Dotenv.load();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.telegram.org/bot7316703370:AAFWH2JeXdsJ0Tt1ylTYgSHQISLdsuMqvZk/sendVideoNote"))
+                .uri(URI.create("https://api.telegram.org/bot"+dotenv.get("TOKEN")+"/sendVideoNote"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
