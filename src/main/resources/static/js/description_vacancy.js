@@ -16,38 +16,6 @@ let employerUserId;
 
 function vacancy_responses() {
 
-    const resumeModal = document.getElementById('resumeModal');
-    const resumeButtons = document.getElementById('resume-buttons');
-
-    // Открыть модальное окно
-    resumeModal.style.display = 'block';
-    resumeButtons.innerHTML = ''; // Очищаем перед загрузкой новых данных
-
-    fetch(`/videoCv/user/${clientID}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Ошибка HTTP: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        data.forEach(videoCv => {
-            const element = document.createElement('div');
-            element.className = 'resume-button';
-            element.innerHTML = `
-
-                ${videoCv.name}
-            `;
-            element.onclick = () => sendVideo(videoCv.id);
-            resumeButtons.appendChild(element);
-        });
-    })
-    .catch(error => console.error(error));
 }
 
 function closeModal() {
@@ -60,18 +28,6 @@ window.onclick = function(event) {
         closeModal();
     }
 }
-
-function sendVideo(videoCvId){
-url = "/videoCv/send"
-data = {videoCvId:  videoCvId, userId: employerUserId}
-     const response = fetch(url, {
-                  method: 'POST', // Метод запроса
-                  headers: {
-                      'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
-                  },
-                  body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
-              });
-
 
 
 function delete_vacancy() {
@@ -107,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
             }).then(data => {
                 console.log (data);
-                employerUserId=data.employer.user_id.id;
                 document.getElementById("position").innerHTML = data.position;
                 document.getElementById("employer_name").innerHTML = "<b>Компания: </b>" + data.employer.name;
                 document.getElementById("city").innerHTML = "<b>Город: </b>" + data.city;
