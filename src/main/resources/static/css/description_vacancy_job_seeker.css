@@ -85,7 +85,7 @@ h1 {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: black;
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -116,10 +116,11 @@ h1 {
 }
 
 .resume-button {
+    color: black;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid white;
     border-radius: 5px;
     cursor: pointer;
-    background-color: #f9f9f9;
+    background-color: #4CAF50;
     position: relative;
 }

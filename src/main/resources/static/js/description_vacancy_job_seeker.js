@@ -56,9 +56,9 @@ function vacancy_responses() {
 }
 
 function sendVideo(videoCvId){
-url = "/videoCv/send"
+const url1 = "/videoCv/send"
 data = {videoCvId:  videoCvId, userId: employerUserId}
-     const response = fetch(url, {
+     const response = fetch(url1, {
           method: 'POST', // Метод запроса
           headers: {
               'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
