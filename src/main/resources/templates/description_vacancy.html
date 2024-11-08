@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мои Вакансии</title>
     <link rel="stylesheet" href="/css/description_vacancy.css">
@@ -11,24 +12,34 @@
     <h1>Мои Вакансии</h1>
     <div class="vacancy-details">
         <h3 id="position" class="header"></h3>
-        <p id="employer_name" ></p>
-        <p id="city" ></p>
+        <p id="employer_name"></p>
+        <p id="city"></p>
         <p id="address"></p>
-        <p id="salary" ></p>
-        <p id="exp" ></p>
-        <p id="workSchedule" ></p>
+        <p id="salary"></p>
+        <p id="exp"></p>
+        <p id="workSchedule"></p>
         <p class="header">Описание</p>
         <p id="responsibility"></p>
-        <p id="create_date" ></p>
+        <p id="create_date"></p>
         <p>👁 83</p>
     </div>
     <div class="button-group">
-        <button class="button green"onclick="vacancy_responses()">Отклики</button>
+        <button class="button green" onclick="vacancy_responses()">Отклики</button>
         <button class="button red" onclick="delete_vacancy()">Удалить</button>
         <button class="button green" onclick="edit_vacancy()">Редактировать</button>
         <button class="button green" onclick="window.location.href='/employer/my_vacancy7/show'">Назад</button>
     </div>
 </div>
+
+<!-- Popup Modal -->
+<div id="resumeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Список резюме</h2>
+        <div id="resume-buttons" class="resume-buttons"></div>
+    </div>
+</div>
+
 <script src="/js/description_vacancy.js"></script>
 </body>
 </html>
