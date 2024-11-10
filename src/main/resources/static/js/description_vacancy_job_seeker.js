@@ -19,7 +19,7 @@ window.location.href=`/vacancy/menu?city=${encodeURIComponent(city)}&industry=${
 
 let employerUserId;
 
-function vacancy_responses(vacancyName) {
+function vacancy_responses(vacancyName, vacancyId) {
 
     const resumeModal = document.getElementById('resumeModal');
     const resumeButtons = document.getElementById('resume-buttons');
@@ -48,14 +48,14 @@ function vacancy_responses(vacancyName) {
 
                 ${videoCv.name}
             `;
-            element.onclick = () => sendVideo(videoCv.id, vacancyName);
+            element.onclick = () => sendVideo(videoCv.name, vacancyName, vacancyId);
             resumeButtons.appendChild(element);
         });
     })
     .catch(error => console.error(error));
 }
 
-function sendVideo(videoCvId, videoName){
+function sendVideo(videoCvName, videoName){
 const message = "На Вашу вакансию "+ videoName + " поступил новый отклик";
 const url1 = "/message/send"
 data = {message:  message, userId: employerUserId}
@@ -66,6 +66,17 @@ data = {message:  message, userId: employerUserId}
           },
           body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
       });
+
+      const url2 = "/response"
+      data = {vacancy_id: vacancyId, job_seeker_id: clientID, comment: videoCvName}
+           const response = fetch(url1, {
+                method: 'POST', // Метод запроса
+                headers: {
+                    'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                },
+                body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+            });
+
       alert("Ваше резюме было успешно отправлено");
       const resumeButtons = document.getElementById('resume-buttons');
 
@@ -112,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 document.getElementById("workSchedule").innerHTML += ", возможно удаленно";}
                 document.getElementById("responsibility").innerHTML = data.responsibility;
                 document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + data.createdDateTime;
-                document.getElementById("response").onclick = () => {vacancy_responses(data.position)};
+                document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id)};
             });
 
 });
