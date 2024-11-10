@@ -69,7 +69,7 @@ data = {message:  message, userId: employerUserId}
 
       const url2 = "/response"
       data = {vacancy_id: vacancyId, job_seeker_id: clientID, comment: videoCvName}
-           const response = fetch(url1, {
+           const response = fetch(url2, {
                 method: 'POST', // Метод запроса
                 headers: {
                     'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
