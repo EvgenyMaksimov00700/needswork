@@ -19,7 +19,7 @@ window.location.href=`/vacancy/menu?city=${encodeURIComponent(city)}&industry=${
 
 let employerUserId;
 
-function vacancy_responses() {
+function vacancy_responses(vacancyName) {
 
     const resumeModal = document.getElementById('resumeModal');
     const resumeButtons = document.getElementById('resume-buttons');
@@ -48,16 +48,17 @@ function vacancy_responses() {
 
                 ${videoCv.name}
             `;
-            element.onclick = () => sendVideo(videoCv.id);
+            element.onclick = () => sendVideo(videoCv.id, vacancyName);
             resumeButtons.appendChild(element);
         });
     })
     .catch(error => console.error(error));
 }
 
-function sendVideo(videoCvId){
-const url1 = "/videoCv/send"
-data = {videoCvId:  videoCvId, userId: employerUserId}
+function sendVideo(videoCvId, videoName){
+const message = "На Вашу вакансию "+ videoName + " поступил новый отклик";
+const url1 = "/message/send"
+data = {message:  message, userId: employerUserId}
      const response = fetch(url1, {
           method: 'POST', // Метод запроса
           headers: {
@@ -111,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 document.getElementById("workSchedule").innerHTML += ", возможно удаленно";}
                 document.getElementById("responsibility").innerHTML = data.responsibility;
                 document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + data.createdDateTime;
+                document.getElementById("response").onclick = () => {vacancy_responses(data.position)};
             });
 
 });
