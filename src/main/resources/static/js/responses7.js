@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
             openChatButton.textContent = 'открыть чат';
             openChatButton.onclick = () => {
                 window.Telegram.WebApp.openTelegramLink(`https://t.me/${response.job_seeker.user.username}`); // URL с ID чата
-                window.Telegram.WebApp.close();
+
             };
 
             const cancelButton = document.createElement('button');
