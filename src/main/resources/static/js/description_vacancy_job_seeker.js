@@ -48,7 +48,7 @@ function vacancy_responses(vacancyName, vacancyId) {
 
                 ${videoCv.name}
             `;
-            element.onclick = () => sendVideo(videoCv.name, vacancyName, vacancyId);
+            element.onclick = () => sendVideo(videoCv.video_message, vacancyName, vacancyId);
             resumeButtons.appendChild(element);
         });
     })
@@ -66,28 +66,35 @@ data = {message:  message, userId: employerUserId}
           },
           body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
       });
-        const responseJs = fetch("/jobSeeker/user/"+clientID, {
+      fetch("/jobSeeker/user/"+clientID, {
           method: 'GET', // Метод запроса
           headers: {
               'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
           },
 
-      });
+      }).then(responseJs => {
+      if (!responseJs.ok) {
+              throw new Error(`Ошибка HTTP: ${responseJs.status}`); // Бросаем ошибку, если ответ не в порядке
+      }
+            return responseJs.json();
+      }).then(jobSeeker => {
+        const url2 = "/response"
+              data = {vacancy_id: parseInt (vacancyId), job_seeker_id: jobSeeker.id, comment: videoCvName}
+              console.log (data);
+                   const response1 = fetch(url2, {
+                        method: 'POST', // Метод запроса
+                        headers: {
+                            'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                        },
+                        body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+                    });
+
+              alert("Ваше резюме было успешно отправлено");
+              const resumeButtons = document.getElementById('resume-buttons');
+      })
 
 
-      const url2 = "/response"
-      data = {vacancy_id: parseInt (vacancyId), job_seeker_id: responseJs.id, comment: videoCvName}
-      console.log (data);
-           const response1 = fetch(url2, {
-                method: 'POST', // Метод запроса
-                headers: {
-                    'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
-                },
-                body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
-            });
 
-      alert("Ваше резюме было успешно отправлено");
-      const resumeButtons = document.getElementById('resume-buttons');
 
           // Открыть модальное окно
       resumeModal.style.display = 'none';
