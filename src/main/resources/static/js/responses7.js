@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Создаем элемент <p> с информацией о соискателе
             const infoParagraph = document.createElement('p');
-            infoParagraph.innerHTML = `Соискатель ${response.job_seeker.user.fullName}. Комментарий: ${response.comment}`;
+            infoParagraph.innerHTML = `Соискатель ${response.job_seeker.user.fullName}`;
             responseDiv.appendChild(infoParagraph);
 
             // Создаем группу кнопок

@@ -55,7 +55,7 @@ function vacancy_responses(vacancyName, vacancyId) {
     .catch(error => console.error(error));
 }
 
-function sendVideo(videoCvName, videoName){
+function sendVideo(videoCvName, videoName, vacancyId){
 const message = "На Вашу вакансию "+ videoName + " поступил новый отклик";
 const url1 = "/message/send"
 data = {message:  message, userId: employerUserId}
@@ -66,9 +66,17 @@ data = {message:  message, userId: employerUserId}
           },
           body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
       });
+        const responseJs = fetch("/jobSeeker/user/"+clientID, {
+          method: 'GET', // Метод запроса
+          headers: {
+              'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+          },
+
+      });
+
 
       const url2 = "/response"
-      data = {vacancy_id: vacancyId, job_seeker_id: clientID, comment: videoCvName}
+      data = {vacancy_id: parseInt (vacancyId), job_seeker_id: responseJs.id, comment: videoCvName}
       console.log (data);
            const response1 = fetch(url2, {
                 method: 'POST', // Метод запроса

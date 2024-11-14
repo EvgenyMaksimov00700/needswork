@@ -15,7 +15,7 @@ window.location.href=`/employer/vacancy/edit?id=${vacancyId}`}
 let employerUserId;
 
 function vacancy_responses() {
-
+window.location.href=`/employer/responses7/show?id=${vacancyId}`
 }
 
 function closeModal() {
