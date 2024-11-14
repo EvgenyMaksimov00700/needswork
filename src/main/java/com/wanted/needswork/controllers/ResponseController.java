@@ -43,10 +43,10 @@ public class ResponseController {
     @PostMapping("/response")
     public ResponseEntity <Response> addUser (@RequestBody ResponseDTO responseDTO) {
         Vacancy vacancy = vacancyService.getVacancy(responseDTO.getVacancy_id());
-        if (vacancy == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (vacancy == null) { return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         JobSeeker jobSeeker = jobSeekerService.getJobSeeker(responseDTO.getJob_seeker_id());
-        if (jobSeeker == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (jobSeeker == null) { return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(responseService.addResponse(vacancy, jobSeeker, responseDTO.getComment()),
                 HttpStatus.OK);

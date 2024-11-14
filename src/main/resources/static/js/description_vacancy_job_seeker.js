@@ -69,6 +69,7 @@ data = {message:  message, userId: employerUserId}
 
       const url2 = "/response"
       data = {vacancy_id: vacancyId, job_seeker_id: clientID, comment: videoCvName}
+      console.log (data);
            const response1 = fetch(url2, {
                 method: 'POST', // Метод запроса
                 headers: {
