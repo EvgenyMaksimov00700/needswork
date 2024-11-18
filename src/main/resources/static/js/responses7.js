@@ -10,6 +10,18 @@ function back () {
 console.log(vacancyId);
 window.location.href=`/employer/vacancy/description?id=${vacancyId}`
 }
+function sendVideo(videoCvId){
+    const url = "/videoCv/send"
+    data = {videoCvId:  videoCvId, userId: clientID}
+    console.log(data)
+    const response = fetch(url, {
+       method: 'POST', // Метод запроса
+       headers: {
+       'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                 },
+                  body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+              });
+               }
 
 document.addEventListener('DOMContentLoaded', function () {
     fetch(`/response/vacancy/${vacancyId}`, {
@@ -49,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             viewResumeButton.classList.add('view-resume');
             viewResumeButton.textContent = 'посмотреть резюме';
             viewResumeButton.onclick = () => {
-                window.location.href = `/employer/lk/${response.resumeId}`; // URL с ID резюме
+            sendVideo(response.comment)
             };
             buttonGroup.appendChild(viewResumeButton);
 
