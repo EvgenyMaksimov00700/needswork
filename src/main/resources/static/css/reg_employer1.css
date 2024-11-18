@@ -1,46 +1,64 @@
+body {
+    background-color: #2a2f33; /* Ночной фон Telegram */
+    color: #d1d1d1; /* Светлый текст */
+    font-family: Arial, sans-serif; /* Обновлённый шрифт */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
 
-        body {
-          background-color: #111;
-          color: #fff;
-          font-family: sans-serif;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          min-height: 100vh;
-        }
+.container {
+    background-color: #23272a; /* Контрастный фон контейнера */
+    padding: 20px;
+    border-radius: 10px; /* Более округлые углы */
+    width: 90%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
 
-        .container {
-          background-color: #222;
-          padding: 20px;
-          border-radius: 5px;
-        }
+.input-group {
+    margin-bottom: 15px;
+}
 
-        .input-group {
-          margin-bottom: 15px;
-        }
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffffff; /* Белый текст для меток */
+}
 
-        .input-group label {
-          display: block;
-          margin-bottom: 5px;
-        }
+.input-group input {
+    width: 100%; /* Полная ширина без зазоров */
+    padding: 10px;
+    border: 1px solid #3c4043; /* Лёгкая обводка */
+    border-radius: 5px; /* Углы как в Telegram */
+    background-color: #2f3438; /* Фон поля ввода */
+    color: #d1d1d1; /* Цвет текста */
+    font-size: 14px;
+    box-sizing: border-box;
+}
 
-        .input-group input {
-          width: 95%;
-          padding: 10px;
-          border: 1px solid #333;
-          border-radius: 3px;
-          background-color: #333;
-          color: #fff;
-        }
+.input-group input:focus {
+    border-color: #0088cc; /* Синий акцент при фокусе */
+    outline: none;
+}
 
-        button {
-          background-color: #4CAF50;
-          width:101%;
-          color: white;
-          padding: 12px 20px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          margin-bottom: 10px;
-        }
+button {
+    background-color: #0088cc; /* Telegram-синий */
+    width: 100%; /* Растягиваем кнопку на всю ширину */
+    color: white;
+    padding: 12px 20px;
+    border: 1px solid #3c4043; /* Лёгкая обводка */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: #007ab8; /* Светлее при наведении */
+    transform: scale(1.02); /* Лёгкое увеличение */
+}

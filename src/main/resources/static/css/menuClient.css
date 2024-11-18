@@ -1,8 +1,8 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #2a2f33; /* Ночной фон Telegram */
+    color: #d1d1d1; /* Светлый текст */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,34 +14,49 @@ body {
     max-width: 400px;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #1a1a1a;
-    border-radius: 10px;
-    border: 2px solid white;
+    background-color: #23272a; /* Контрастный фон контейнера */
+    border-radius: 10px; /* Округлённые углы */
+    border: 1px solid #3c4043; /* Лёгкая обводка */
 }
+
 h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: #ffffff; /* Белый текст заголовка */
 }
 
 .vacancy {
-    color: white;
+    color: #ffffff;
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: #0088cc; /* Telegram-синий */
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 15px;
     text-align: center;
     width: 100%;
+    border: 1px solid #3c4043; /* Лёгкая обводка */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.vacancy:hover {
+    background-color: #007ab8; /* Светлее при наведении */
+    transform: scale(1.02); /* Лёгкое увеличение */
 }
 
 button.back {
     width: 100%;
     padding: 15px;
-    border: none;
+    border: 1px solid #3c4043; /* Лёгкая обводка */
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: #0088cc; /* Telegram-синий */
     color: white;
     margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.back:hover {
+    background-color: #007ab8; /* Светлее при наведении */
+    transform: scale(1.02); /* Лёгкое увеличение */
 }
