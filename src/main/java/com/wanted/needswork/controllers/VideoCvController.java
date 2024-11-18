@@ -87,8 +87,8 @@ public class VideoCvController {
 
     @PostMapping("/videoCv/send")
     public ResponseEntity<VideoCv> VideoCvSend (@RequestBody VideoCvSendDTO videoCvSendDTO) {
-        VideoCv videoCv = videoCvService.getVideoCv(videoCvSendDTO.getVideoCvId());
-        videoCvService.sendVideoNote(videoCvSendDTO.getUserId(), videoCv.getVideo_message());
+
+        videoCvService.sendVideoNote(videoCvSendDTO.getUserId(), videoCvSendDTO.getVideoCvMessage());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

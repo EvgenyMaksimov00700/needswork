@@ -7,12 +7,12 @@ import java.math.BigInteger;
 @Getter
 public class VideoCvSendDTO {
     private BigInteger userId;
-    private Integer videoCvId;
+    private String videoCvMessage;
 
 
-    public VideoCvSendDTO(BigInteger userId, Integer videoCvId) {
+    public VideoCvSendDTO(BigInteger userId, String videoCvMessage) {
         this.userId = userId;
-        this.videoCvId = videoCvId;
+        this.videoCvMessage = videoCvMessage;
     }
 
 }

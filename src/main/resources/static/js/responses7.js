@@ -10,9 +10,9 @@ function back () {
 console.log(vacancyId);
 window.location.href=`/employer/vacancy/description?id=${vacancyId}`
 }
-function sendVideo(videoCvId){
+function sendVideo(videoCvMessage){
     const url = "/videoCv/send"
-    data = {videoCvId:  videoCvId, userId: clientID}
+    data = {videoCvMessage:  videoCvMessage, userId: clientID}
     console.log(data)
     const response = fetch(url, {
        method: 'POST', // Метод запроса
