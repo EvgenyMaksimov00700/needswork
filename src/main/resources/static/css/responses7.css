@@ -1,9 +1,8 @@
 body {
-
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #2a2f33; /* Ночной фон Telegram */
+    color: #d1d1d1; /* Светлый текст */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,36 +13,42 @@ body {
 .container {
     width: 90%;
     max-width: 390px;
-
     box-sizing: border-box;
-    background-color: #1a1a1a;
+    background-color: #23272a; /* Контрастный фон контейнера */
     border-radius: 10px;
-
+    overflow: hidden; /* Скрываем элементы, выходящие за пределы */
 }
 
 .container::-webkit-scrollbar {
     display: none; /* Скрытие полосы прокрутки в Webkit-браузерах */
 }
+
 h2 {
     text-align: center;
     margin-bottom: 20px;
-
+    color: #ffffff; /* Белый текст заголовка */
 }
 
 .response-list {
-    max-height: 75vh; /* Ограничиваем высоту для скроллинга внутри контейнера */
+    max-height: 75vh; /* Ограничиваем высоту для скроллинга */
     overflow-y: auto;
     margin-bottom: 15px;
-
+    padding-right: 10px; /* Чтобы текст не прилипал к краю */
 }
 
 .response {
-    background-color: #1a1a1a;
+    background-color: #2f3438; /* Фон сообщения, схожий с Telegram */
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 15px;
     text-align: center;
-    border: 2px solid white;
+    border: 1px solid #3c4043; /* Лёгкая обводка */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.response:hover {
+    background-color: #3c4043; /* Подсветка сообщения при наведении */
+    transform: scale(1.02); /* Лёгкое увеличение */
 }
 
 .button-group {
@@ -52,36 +57,53 @@ h2 {
     margin-top: 10px;
 }
 
-button.view-resume, button.open-chat {
-    width: 48%;
+button.view-resume,
+button.open-chat {
+    width: 48%; /* Равное деление кнопок */
     padding: 10px;
-    border: 2px solid white;
+    border: 1px solid #3c4043; /* Лёгкая обводка */
     border-radius: 5px;
     font-size: 14px;
     cursor: pointer;
-    background-color: green;
-    color: white;
+    background-color: #0088cc; /* Telegram-синий */
+    color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+button.view-resume:hover,
+button.open-chat:hover {
+    background-color: #007ab8; /* Светлее при наведении */
 }
 
 button.cancel {
     width: 100%;
     margin-top: 5px;
     padding: 10px;
-    border: 2px solid white;
+    border: 1px solid #3c4043;
     border-radius: 5px;
     font-size: 14px;
     cursor: pointer;
-    background-color: green;
+    background-color: #e04343; /* Красный для отмены */
     color: white;
+    transition: background-color 0.3s ease;
+}
+
+button.cancel:hover {
+    background-color: #c03939; /* Темнее при наведении */
 }
 
 button.back {
     width: 100%;
     padding: 15px;
-    border: 2px solid white;
+    border: 1px solid #3c4043;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    background-color: green;
+    background-color: #0088cc; /* Telegram-синий */
     color: white;
+    transition: background-color 0.3s ease;
+}
+
+button.back:hover {
+    background-color: #007ab8; /* Светлее при наведении */
 }
