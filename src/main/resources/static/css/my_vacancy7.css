@@ -1,8 +1,8 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #2a2f33; /* Фон, похожий на ночной Telegram */
+    color: #d1d1d1; /* Светлый текст на темном фоне */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,24 +14,31 @@ body {
     max-width: 400px;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #1a1a1a;
+    background-color: #23272a; /* Темный фон контейнера */
     border-radius: 10px;
-    border: 2px solid white;
+    border: 1px solid #3c4043; /* Легкий акцент */
 }
+
 h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: #ffffff; /* Яркий заголовок */
 }
 
 .vacancy {
-    color: white;
+    color: #ffffff; /* Белый текст */
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: #0088cc; /* Telegram синий */
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 15px;
     text-align: center;
     width: 100%;
+    transition: background-color 0.3s;
+}
+
+.vacancy:hover {
+    background-color: #007ab8; /* Легкий акцент при наведении */
 }
 
 button.back {
@@ -41,7 +48,12 @@ button.back {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: #0088cc; /* Telegram синий */
     color: white;
     margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+button.back:hover {
+    background-color: #007ab8; /* Легкий акцент при наведении */
 }
