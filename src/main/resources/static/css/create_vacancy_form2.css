@@ -1,8 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #222;
-    color: black;
+    background-color: #121212; /* Темный фон */
+    color: #E1E1E1; /* Светлый текст */
     font-family: Arial, sans-serif;
 }
 
@@ -11,9 +11,10 @@ body {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    border: 2px solid white;
+    border: 1px solid #2A2A2A; /* Тонкая темная граница */
     box-sizing: border-box;
-    background-color: black;
+    background-color: #1E1E1E; /* Фон контейнера */
+    border-radius: 10px; /* Округлые края */
 }
 
 .container input[type="text"],
@@ -23,26 +24,35 @@ body {
     padding: 10px;
     margin-bottom: 15px;
     box-sizing: border-box;
-    border: 2px solid white;
-    background-color: white;
-    color: black;
+    border: 1px solid #2A2A2A; /* Граница элементов формы */
+    background-color: #2C2F34; /* Темный фон полей ввода */
+    color: #E1E1E1; /* Светлый текст */
     font-size: 16px;
+    border-radius: 5px; /* Округлые края */
+}
+
+.container input[type="text"]::placeholder,
+.container textarea::placeholder {
+    color: #B0B0B0; /* Цвет текста-заполнителя */
 }
 
 .container label {
-    color: white;
+    color: #FFFFFF; /* Белый текст */
     font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .checkbox-container {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-    color: white;
+    color: #E1E1E1; /* Цвет текста чекбокса */
 }
 
 .checkbox-container input {
     margin-right: 10px;
+    accent-color: #3A8DFF; /* Синий цвет галочки в чекбоксе */
 }
 
 textarea {

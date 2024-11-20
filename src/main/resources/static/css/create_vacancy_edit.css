@@ -1,15 +1,14 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #121212; /* Темный фон Telegram Ночь */
+    color: #D1D1D1; /* Светлый текст */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top:25px;
-    margin-bottom:25px;
-
-    overflow-y: scroll; /* Добавление вертикального скроллинга */
+    margin-top: 25px;
+    margin-bottom: 25px;
+    overflow-y: scroll; /* Вертикальный скроллинг */
 }
 
 .container {
@@ -17,12 +16,13 @@ body {
     max-width: 390px;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #1a1a1a;
+    background-color: #1E1E1E; /* Фон контейнера */
     border-radius: 10px;
-    border: 2px solid white;
-    margin-top 250px;
-    margin-bottom 20px;
+    border: 2px solid #2C2C2C; /* Граница контейнера */
+    margin-top: 250px;
+    margin-bottom: 20px;
 }
+
 .container input[type="text"],
 .container textarea,
 .container select {
@@ -30,25 +30,26 @@ body {
     padding: 10px;
     margin-bottom: 15px;
     box-sizing: border-box;
-    border: 2px solid white;
-    background-color: white;
-    color: black;
+    border: 2px solid #2C2C2C; /* Граница полей ввода */
+    background-color: #2C2C2C; /* Фон полей ввода */
+    color: #D1D1D1; /* Цвет текста */
     font-size: 16px;
 }
 
 h2, h3 {
     text-align: center;
     margin-bottom: 20px;
+    color: #D1D1D1;
 }
 
 .input-field, .textarea-field, .input-salary {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 2px solid white;
+    border: 2px solid #2C2C2C;
     border-radius: 5px;
-    background-color: #333;
-    color: white;
+    background-color: #2C2C2C;
+    color: #D1D1D1;
     font-size: 16px;
     box-sizing: border-box;
 }
@@ -68,10 +69,10 @@ h2, h3 {
 .experience-button {
     width: 48%;
     padding: 10px;
-    border: 2px solid white;
+    border: 2px solid #007BFF; /* Граница кнопки */
     border-radius: 5px;
-    background-color: green;
-    color: white;
+    background-color: #007BFF; /* Синий цвет кнопки */
+    color: #FFFFFF; /* Цвет текста */
     font-size: 14px;
     margin-bottom: 10px;
     cursor: pointer;
@@ -86,10 +87,10 @@ h2, h3 {
 .input-salary {
     width: 48%;
     padding: 10px;
-    border: 2px solid white;
+    border: 2px solid #2C2C2C;
     border-radius: 5px;
-    background-color: #333;
-    color: white;
+    background-color: #2C2C2C;
+    color: #D1D1D1;
     font-size: 16px;
     box-sizing: border-box;
 }
@@ -97,23 +98,25 @@ h2, h3 {
 .submit-button {
     width: 100%;
     padding: 15px;
-    border: 2px solid white;
+    border: 2px solid #007BFF;
     border-radius: 5px;
-    background-color: green;
-    color: white;
+    background-color: #007BFF;
+    color: #FFFFFF;
     font-size: 16px;
     cursor: pointer;
 }
-  button {
-          background-color: #4CAF50;
-          width:101%;
-          color: white;
-          padding: 12px 20px;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          margin-bottom: 10px;
-        }
+
+button {
+    background-color: #007BFF;
+    width: 101%;
+    color: #FFFFFF;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
 .checkbox-container input {
     margin-right: 10px;
     margin-bottom: 15px;

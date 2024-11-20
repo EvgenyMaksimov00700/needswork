@@ -2,14 +2,14 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #1c1c1c;
-    color: white;
+    background-color: #2a2f33; /* Фон ночной темы Telegram */
+    color: #d1d1d1; /* Светлый текст */
 }
 
-.header
-{
- font-weight: bold;
- margin-top:20px;
+.header {
+    font-weight: bold;
+    margin-top: 20px;
+    color: #ffffff; /* Белый текст для заголовков */
 }
 
 .container {
@@ -18,24 +18,30 @@ body {
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
+    background-color: #23272a; /* Контрастный фон контейнера */
+    border-radius: 10px; /* Округлённые углы */
+    border: 1px solid #3c4043; /* Тонкая обводка */
 }
 
 h1 {
     text-align: center;
     font-size: 18px;
     margin-bottom: 20px;
+    color: #ffffff; /* Белый текст заголовков */
 }
 
 .vacancy-details {
-    background-color: #333;
+    background-color: #2f343a; /* Тёмный фон блока деталей */
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 20px;
+    color: #d1d1d1; /* Светлый текст */
 }
 
 .vacancy-details ul {
     padding-left: 20px;
     margin: 10px 0;
+    color: #d1d1d1; /* Светлый текст списка */
 }
 
 .vacancy-details ul li {
@@ -57,21 +63,32 @@ h1 {
     padding: 15px;
     text-align: center;
     border-radius: 10px;
-    border: 2px solid white;
+    border: 1px solid #3c4043; /* Тонкая обводка */
     font-size: 16px;
     cursor: pointer;
-    color: black;
+    color: white; /* Светлый текст */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .button.green {
-    background-color: #4CAF50;
+    background-color: #0088cc; /* Telegram-синий */
+}
+
+.button.green:hover {
+    background-color: #007ab8; /* Светлее при наведении */
+    transform: scale(1.02); /* Лёгкое увеличение */
 }
 
 .button.red {
-    background-color: #f44336;
+    background-color: #f44336; /* Красный для кнопок отмены */
 }
 
-/* Modal styles */
+.button.red:hover {
+    background-color: #d7372f; /* Темнее при наведении */
+    transform: scale(1.02); /* Лёгкое увеличение */
+}
+
+/* Стили модального окна */
 .modal {
     display: none; /* Скрыто по умолчанию */
     position: fixed;
@@ -81,22 +98,23 @@ h1 {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.4); /* Полупрозрачный фон */
 }
 
 .modal-content {
-    background-color: black;
+    background-color: #23272a; /* Фон модального окна */
     margin: 10% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid #3c4043; /* Тонкая обводка */
     width: 80%;
     max-width: 500px;
     position: relative;
-    border-radius: 8px;
+    border-radius: 8px; /* Округлённые углы */
+    color: #d1d1d1; /* Светлый текст */
 }
 
 .close {
-    color: #aaa;
+    color: #d1d1d1; /* Светлый крестик */
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -105,7 +123,7 @@ h1 {
 
 .close:hover,
 .close:focus {
-    color: #000;
+    color: #ffffff; /* Белый при наведении */
     text-decoration: none;
 }
 
@@ -116,11 +134,16 @@ h1 {
 }
 
 .resume-button {
-    color: black;
+    color: white; /* Светлый текст кнопок */
     padding: 10px;
-    border: 1px solid white;
+    border: 1px solid #3c4043; /* Тонкая обводка */
     border-radius: 5px;
     cursor: pointer;
-    background-color: #4CAF50;
-    position: relative;
+    background-color: #0088cc; /* Telegram-синий */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.resume-button:hover {
+    background-color: #007ab8; /* Светлее при наведении */
+    transform: scale(1.02); /* Лёгкое увеличение */
 }

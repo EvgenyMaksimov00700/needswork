@@ -10,9 +10,9 @@ body {
     align-items: center;
     height: 95vh;
     overflow: hidden;
-    background-color: #1a1a1a;
+    background-color: #2a2f33; /* Ночной фон Telegram */
     font-family: Arial, sans-serif;
-    color: white;
+    color: #d1d1d1; /* Светлый текст */
 }
 
 .container {
@@ -20,10 +20,9 @@ body {
     max-width: 390px;
     height: 80vh;
     padding: 20px;
-    background-color: #1a1a1a;
-    border: 2px solid white; /* Вернул обводку для контейнера */
-    border-radius: 10px;
-    color: white;
+    background-color: #23272a; /* Контрастный фон контейнера */
+    border: 1px solid #3c4043; /* Лёгкая обводка */
+    border-radius: 10px; /* Округлённые углы */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -33,6 +32,7 @@ h2 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 18px;
+    color: #ffffff; /* Белый текст заголовка */
 }
 
 .resume-buttons {
@@ -43,41 +43,45 @@ h2 {
 }
 
 .resume-button {
-    background-color: #4CAF50; /* Зеленый цвет для кнопок резюме */
+    background-color: #0088cc; /* Telegram-синий для кнопок */
     color: white;
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 5px;
     text-align: center;
-    border: none;
+    border: 1px solid #3c4043; /* Лёгкая обводка */
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .resume-button:hover {
-    background-color: #45a049;
+    background-color: #007ab8; /* Светлее при наведении */
+    transform: scale(1.02); /* Лёгкое увеличение */
 }
 
 .action-buttons {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: auto; /* Кнопки останутся внизу контейнера */
+    margin-top: auto; /* Кнопки остаются внизу контейнера */
 }
 
 .action-button {
     padding: 10px;
     width: 100%;
-    border: 2px solid white;
+    border: 1px solid #3c4043; /* Лёгкая обводка */
     border-radius: 5px;
     font-size: 14px;
     cursor: pointer;
-    background-color: green;
+    background-color: #0088cc; /* Telegram-синий */
     color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .action-button:hover {
-    background-color: #45a049;
+    background-color: #007ab8; /* Светлее при наведении */
+    transform: scale(1.02); /* Лёгкое увеличение */
 }
 
 /* Скрытие полосы прокрутки для всех браузеров */

@@ -2,14 +2,14 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #1c1c1c;
-    color: white;
+    background-color: #121212; /* Темный фон */
+    color: #E1E1E1; /* Светлый текст */
 }
 
-.header
-{
- font-weight: bold;
- margin-top:20px;
+.header {
+    font-weight: bold;
+    margin-top: 20px;
+    color: #FFFFFF; /* Белый текст для заголовка */
 }
 
 .container {
@@ -18,16 +18,20 @@ body {
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
+    background-color: #1E1E1E; /* Фон контейнера */
+    border: 1px solid #2A2A2A; /* Тонкая граница */
+    border-radius: 10px;
 }
 
 h1 {
     text-align: center;
     font-size: 18px;
     margin-bottom: 20px;
+    color: #FFFFFF; /* Белый текст заголовка */
 }
 
 .vacancy-details {
-    background-color: #333;
+    background-color: #22252A; /* Темный фон для деталей вакансии */
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -41,10 +45,12 @@ h1 {
 .vacancy-details ul li {
     list-style-type: disc;
     margin-bottom: 10px;
+    color: #B0B0B0; /* Светло-серый текст списка */
 }
 
 .vacancy-details p {
     margin: 10px 0;
+    color: #B0B0B0; /* Светло-серый текст */
 }
 
 .button-group {
@@ -57,16 +63,32 @@ h1 {
     padding: 15px;
     text-align: center;
     border-radius: 10px;
-    border: 2px solid white;
+    border: 1px solid #2A2A2A; /* Тонкая граница кнопки */
     font-size: 16px;
     cursor: pointer;
-    color: black;
+    color: #E1E1E1; /* Цвет текста кнопки */
+    background-color: #1974d2; /* Темный фон кнопки */
+    transition: background-color 0.3s;
 }
 
-.button.green {
-    background-color: #4CAF50;
+.button:hover {
+    background-color: #083259; /* Светлый фон кнопки при наведении */
+}
+
+.button.blue {
+    background-color: #1974d2; /* Синий цвет кнопки */
+    color: #FFFFFF; /* Белый текст */
+}
+
+.button.blue:hover {
+    background-color: #2D76CC; /* Темно-синий цвет при наведении */
 }
 
 .button.red {
-    background-color: #f44336;
+    background-color: #E53935; /* Красная кнопка */
+    color: #FFFFFF; /* Белый текст */
+}
+
+.button.red:hover {
+    background-color: #D32F2F; /* Темно-красная кнопка при наведении */
 }
