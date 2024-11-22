@@ -1,6 +1,7 @@
 package com.wanted.needswork.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.wanted.needswork.DTO.response.EmployerResponseDTO;
 import com.wanted.needswork.DTO.response.UserResponseDTO;
 import com.wanted.needswork.DTO.response.VacancyResponseDTO;
@@ -14,6 +15,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -80,6 +83,10 @@ public class Vacancy {
     @Getter
     private LocalDateTime lastModifiedDateTime;
 
+    @OneToMany(mappedBy = "vacancy", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Response> responses = new ArrayList<>();
+
     public Vacancy(Employer employer, Industry industry, String position, String city, Integer toSalary, Integer fromSalary, String exp, String responsibility, String workSchedule, Boolean distantWork, String address) {
         this.employer = employer;
         this.industry = industry;
@@ -101,3 +108,4 @@ public class Vacancy {
         return new VacancyResponseDTO(id, employer.toResponseDTO(), industry.toResponseDTO(), position, city, fromSalary, toSalary,  workSchedule, distantWork, address, exp, responsibility, createdDateTime, lastModifiedDateTime);
     }
 }
+
