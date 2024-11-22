@@ -1,6 +1,7 @@
 let clientID;
 try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
 window.Telegram.WebApp.expand();
+window.Telegram.WebApp.requestFullscreen();
 }
 
 catch(error) {clientID = 159619887}
