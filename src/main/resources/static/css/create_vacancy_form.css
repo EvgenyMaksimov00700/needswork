@@ -19,6 +19,7 @@ body {
     background-color: #1c1c1c; /* Темный фон контейнера */
     border-radius: 10px;
     border: 1px solid #2a2a2a; /* Темно-серая рамка */
+    margin-bottom:50px;
     margin-bottom: 20px;
 }
 
