@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const element = `
                 <div class="resume-button" onclick="${vacancy_url}" style="position: relative;" data-id="${videoCv.id}">
                     <span
-                        style="position: absolute; top: 5px; right: 5px; color: red; cursor: pointer; font-weight: bold;"
+                        style="position: absolute; top: 5px; right: 5px; color: white; cursor: pointer; font-weight: bold;"
                         onclick="event.stopPropagation(); delete_videoCv(${videoCv.id})">
                         &times;
                     </span>
