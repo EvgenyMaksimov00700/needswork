@@ -80,6 +80,11 @@ public class WebUpController {
         return "job_seekers_menu";
     }
 
+    @GetMapping("/vacancy/filter/page")
+    public String vacancyFilterPage() {
+        return "filtres";
+    }
+
     @PostMapping("/message/send")
     public ResponseEntity<Object> messageSend (@RequestBody TgMessageDTO tgMessageDTO) {
 

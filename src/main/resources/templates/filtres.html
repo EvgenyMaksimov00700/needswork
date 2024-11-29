@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,60 +8,109 @@
     <link rel="stylesheet" href="/css/filtress.css">
 </head>
 <body>
+
+
 <div class="container">
     <h2>Фильтры</h2>
     <form>
+        <!-- Выбор отрасли -->
         <div class="form-group">
-            <input type="text" placeholder="Поиск компании">
+            <label for="industry">Отрасль</label>
+            <select id="industry">
+                <option value="" disabled selected>Выберите отрасль</option>
+
+            </select>
         </div>
+
+        <!-- Верхнее поле с выбором должности -->
         <div class="form-group">
-            <input type="text" placeholder="Уровень дохода, от (руб)">
+            <label for="position">Должность</label>
+            <input list="position-list" id="position" placeholder="Желаемая должность" type="text">
+            <datalist id="position-list">
+                <option value="Разработчик">Разработчик</option>
+                <option value="Менеджер">Менеджер</option>
+                <option value="Дизайнер">Дизайнер</option>
+                <option value="Аналитик">Аналитик</option>
+                <option value="Бухгалтер">Бухгалтер</option>
+            </datalist>
         </div>
+
+        <!-- Список компаний -->
+        <div class="form-group">
+            <label for="company">Компания</label>
+            <select id="company">
+                <option value="" disabled selected>Выберите компанию</option>
+
+            </select>
+        </div>
+
+        <!-- Уровень дохода -->
+        <div class="form-group">
+            <label for="income">Уровень дохода, от (руб)</label>
+            <input type="number" id="income" placeholder="Укажите сумму">
+        </div>
+
+        <!-- Страна
         <div class="form-group">
             <label for="country">Страна</label>
-            <input type="text" id="country">
+            <input list="country-list" id="country" placeholder="Выберите страну" type="text">
+            <datalist id="country-list">
+                <option value="Россия"></option>
+                <option value="США"></option>
+                <option value="Канада"></option>
+                <option value="Германия"></option>
+            </datalist>
         </div>
+-->
+        <!-- Город -->
         <div class="form-group">
             <label for="city">Город</label>
-            <input type="text" id="city">
+            <input list="city-list" id="city" placeholder="Выберите город" type="text">
+            <datalist id="city-list">
+
+            </datalist>
         </div>
-        <div class="form-group">
-            <label for="region">Район</label>
-            <input type="text" id="region">
-        </div>
+
+
+
+        <!-- Требуемый опыт -->
         <div class="form-group">
             <label>Требуемый опыт</label>
             <div class="button-group">
-                <button type="button">Нет опыта</button>
-                <button type="button">от 1 года до 3 лет</button>
-                <button type="button">от 3 до 5 лет</button>
-                <button type="button">Более 5 лет</button>
+                <button type="button" onclick="chooseWorkExperience(this)">Нет опыта</button>
+                <button type="button" onclick="chooseWorkExperience(this)">от 1 года до 3 лет</button>
+                <button type="button" onclick="chooseWorkExperience(this)">от 3 до 5 лет</button>
+                <button type="button" onclick="chooseWorkExperience(this)">Более 5 лет</button>
             </div>
         </div>
+
+        <!-- Тип занятости -->
         <div class="form-group">
             <label>Тип занятости</label>
             <div class="button-group">
-                <button type="button">Полная занятость</button>
-                <button type="button">Удаленка</button>
-                <button type="button">Подработка</button>
-                <button type="button">Стажировка</button>
+                <button type="button" onclick="chooseWorkExperience(this)">Полная занятость</button>
+                <button type="button" onclick="chooseWorkExperience(this)">Удаленка</button>
+                <button type="button" onclick="chooseWorkExperience(this)">Подработка</button>
+                <button type="button" onclick="chooseWorkExperience(this)">Стажировка</button>
             </div>
         </div>
-        <div class="form-group">
-            <label for="disability">для людей с инвалидностью</label>
-            <input type="text" id="disability">
-        </div>
+
+
+        <!-- Время публикации -->
         <div class="form-group">
             <label>Время публикации</label>
             <div class="button-group">
-                <button type="button">За месяц</button>
-                <button type="button">За неделю</button>
-                <button type="button">За 3 дня</button>
-                <button type="button">Сутки</button>
+                <button type="button" onclick="chooseWorkExperience(this)">За месяц</button>
+                <button type="button" onclick="chooseWorkExperience(this)">За неделю</button>
+                <button type="button" onclick="chooseWorkExperience(this)">За 3 дня</button>
+                <button type="button" onclick="chooseWorkExperience(this)">Сутки</button>
             </div>
         </div>
+
+        <!-- Кнопка отправки -->
         <button type="submit" class="apply">Применить</button>
     </form>
 </div>
+<script src="/js/filtres.js"></script>
 </body>
 </html>

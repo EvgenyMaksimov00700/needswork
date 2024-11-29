@@ -24,6 +24,19 @@ h2 {
     margin-bottom: 20px;
     color: #ffffff; /* Белый текст заголовка */
 }
+.container input[type="text"],
+.container input[type="number"],
+.container textarea,
+.container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 2px solid #2C2C2C; /* Граница полей ввода */
+    background-color: #2C2C2C; /* Фон полей ввода */
+    color: #D1D1D1; /* Цвет текста */
+    font-size: 16px;
+}
 
 .form-group {
     margin-bottom: 15px;
