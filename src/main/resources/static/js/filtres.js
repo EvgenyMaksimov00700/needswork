@@ -2,6 +2,8 @@ let clientID;
 try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;}
 catch(error) {clientID = 159619887}
 console.log(clientID)
+function vacancy_back() {
+window.location.href=`/vacancy/menu?city=${encodeURIComponent(city)}&industry=${encodeURIComponent(industry)}`}
 document.addEventListener('touchstart', function(event) {
             const activeElement = document.activeElement;
 
@@ -83,11 +85,13 @@ function companySelect() {
 
 }
 function chooseWorkExperience(button){
-if (button.style.backgroundColor=="rgb(0, 136, 204)") {
+console.log(button.style.backgroundColor);
+if (button.style.backgroundColor=="rgb(0, 136, 204)" || button.style.backgroundColor=="") {
     button.style.backgroundColor='#333333';
 }
 else {
     button.style.backgroundColor='#0088cc';}
+
 
 
 
