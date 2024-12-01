@@ -2,6 +2,8 @@ let clientID;
 try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;}
 catch(error) {clientID = 159619887}
 console.log(clientID)
+function vacancy_back() {
+window.location.href=`/vacancy/menu?city=${encodeURIComponent(city)}&industry=${encodeURIComponent(industry)}`}
 document.addEventListener('touchstart', function(event) {
             const activeElement = document.activeElement;
 
@@ -88,6 +90,7 @@ if (button.style.backgroundColor=="rgb(0, 136, 204)") {
 }
 else {
     button.style.backgroundColor='#0088cc';}
+
 
 
 

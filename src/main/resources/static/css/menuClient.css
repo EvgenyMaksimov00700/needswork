@@ -1,12 +1,13 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #2a2f33; /* Ночной фон Telegram */
-    color: #d1d1d1; /* Светлый текст */
+    background-color: #2a2f33;
+    color: #d1d1d1;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    position: relative;
+    margin-top: 100px;
 }
 
 .container {
@@ -14,49 +15,63 @@ body {
     max-width: 400px;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #23272a; /* Контрастный фон контейнера */
-    border-radius: 10px; /* Округлённые углы */
-    border: 1px solid #3c4043; /* Лёгкая обводка */
+    background-color: #23272a;
+    border-radius: 10px;
+    border: 1px solid #3c4043;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #ffffff; /* Белый текст заголовка */
+    color: #ffffff;
+    font-size: 20px;
+    margin: 0;
 }
 
 .vacancy {
     color: #ffffff;
     cursor: pointer;
-    background-color: #0088cc; /* Telegram-синий */
+    background-color: #0088cc;
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 15px;
     text-align: center;
     width: 100%;
-    border: 1px solid #3c4043; /* Лёгкая обводка */
+    border: 1px solid #3c4043;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .vacancy:hover {
-    background-color: #007ab8; /* Светлее при наведении */
-    transform: scale(1.02); /* Лёгкое увеличение */
+    background-color: #007ab8;
+    transform: scale(1.02);
 }
 
 button.back {
     width: 100%;
     padding: 15px;
-    border: 1px solid #3c4043; /* Лёгкая обводка */
+    border: 1px solid #3c4043;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #0088cc; /* Telegram-синий */
+    background-color: #0088cc;
     color: white;
     margin-top: 20px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button.back:hover {
-    background-color: #007ab8; /* Светлее при наведении */
-    transform: scale(1.02); /* Лёгкое увеличение */
+    background-color: #007ab8;
+    transform: scale(1.02);
+}
+
+.filterImg {
+    width: 30px;
+    height: auto;
+    cursor: pointer;
 }
