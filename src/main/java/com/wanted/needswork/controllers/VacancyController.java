@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
+import static java.lang.Integer.parseInt;
+
 @RestController
 public class VacancyController {
     @Autowired
@@ -93,18 +95,22 @@ public class VacancyController {
     }
 
     @GetMapping("/vacancy/filter")
-    public ResponseEntity<List<VacancyResponseDTO>> filter(@RequestParam String city, @RequestParam Integer industry, @RequestParam String company) {
+    public ResponseEntity<List<VacancyResponseDTO>> filter(
+            @RequestParam(value = "city", required = false, defaultValue = "") String city,
+            @RequestParam(value = "industry", required = false, defaultValue = "") String industry,
+            @RequestParam(value = "company", required = false, defaultValue = "") String company
+    ) {
         List<Vacancy> vacancies = vacancyService.getVacancy();
         List<VacancyResponseDTO> vacancyResponseDTOs = new java.util.ArrayList<>();
         for (Vacancy vacancy : vacancies) {
             boolean is_fits = true;
-            if (city != null && !Objects.equals(vacancy.getCity(), city)) {
+            if (!Objects.equals(city, "") && !Objects.equals(vacancy.getCity(), city)) {
                 is_fits = false;
             }
-            if (industry != null && !Objects.equals(vacancy.getIndustry().getId(), industry)){
+            if (!Objects.equals(industry, "") && !Objects.equals(vacancy.getIndustry().getId(), parseInt(industry))) {
                 is_fits = false;
             }
-            if (company != null && !Objects.equals(vacancy.getEmployer().getName(), company)){
+            if (!Objects.equals(company, "") && !Objects.equals(vacancy.getEmployer().getName(), company)) {
                 is_fits = false;
 
             }

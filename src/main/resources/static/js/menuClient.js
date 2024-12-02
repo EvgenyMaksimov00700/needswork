@@ -11,8 +11,27 @@ const params = new URLSearchParams(url.search);
 const city = params.get('city');
 const industry = params.get('industry');
 const company = params.get('company');
+const existParams = new URLSearchParams();
+const encodeExistParams = new URLSearchParams();
+
+if (city) {
+    existParams.append('city', city);
+    encodeExistParams.append('city', encodeURIComponent(city));
+}
+if (industry) {
+    existParams.append('industry', industry);
+    encodeExistParams.append('industry', encodeURIComponent(industry));
+}
+if (company) {
+    existParams.append('company', company);
+    encodeExistParams.append('company', encodeURIComponent(company));
+}
 document.addEventListener('DOMContentLoaded', function(){
-     fetch( `/vacancy/filter?city=${city}&industry=${industry}&company=${company}`, {
+    const filter_button=document.getElementById('filter_button');
+    filter_button.href=`/vacancy/filter/page?${encodeExistParams.toString()}`;
+    const url = `/vacancy/filter?${existParams.toString()}`;
+
+     fetch( url, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -37,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 if (salary=="") {
                     salary="Не указано";
                 }
-               const vacancy_url = `/vacancy/description?id=${vacancy.id}&city=${encodeURIComponent(city)}&industry=${encodeURIComponent(industry)}`;
+               const vacancy_url = `/vacancy/description?id=${vacancy.id}&${encodeExistParams.toString()}`;
                const element = `<button class="vacancy" onclick="window.location.href='${vacancy_url}'">
                                    ${vacancy.position}<br>${salary}<br>${vacancy.city}<br>${vacancy.employer.name}
                                </button>`;
