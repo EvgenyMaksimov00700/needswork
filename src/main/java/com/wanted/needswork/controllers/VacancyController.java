@@ -91,14 +91,28 @@ public class VacancyController {
         return new ResponseEntity<>(HttpStatus.OK);
 
     }
+
     @GetMapping("/vacancy/filter")
-    public ResponseEntity<List<VacancyResponseDTO>> filter(@RequestParam String city, @RequestParam Integer industry) {
+    public ResponseEntity<List<VacancyResponseDTO>> filter(@RequestParam String city, @RequestParam Integer industry, @RequestParam String company) {
         List<Vacancy> vacancies = vacancyService.getVacancy();
         List<VacancyResponseDTO> vacancyResponseDTOs = new java.util.ArrayList<>();
         for (Vacancy vacancy : vacancies) {
-            if (Objects.equals(vacancy.getCity(), city) && Objects.equals(vacancy.getIndustry().getId(), industry)) {
+            boolean is_fits = true;
+            if (city != null && !Objects.equals(vacancy.getCity(), city)) {
+                is_fits = false;
+            }
+            if (industry != null && !Objects.equals(vacancy.getIndustry().getId(), industry)){
+                is_fits = false;
+            }
+            if (company != null && !Objects.equals(vacancy.getEmployer().getName(), company)){
+                is_fits = false;
+
+            }
+            if (is_fits) {
+
                 vacancyResponseDTOs.add(vacancy.toResponseDTO());
             }
+
         }
         return new ResponseEntity<>(vacancyResponseDTOs, HttpStatus.OK);
     }

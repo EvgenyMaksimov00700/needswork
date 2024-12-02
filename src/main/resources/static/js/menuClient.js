@@ -10,8 +10,9 @@ const url = new URL(currentUrl);
 const params = new URLSearchParams(url.search);
 const city = params.get('city');
 const industry = params.get('industry');
+const company = params.get('company');
 document.addEventListener('DOMContentLoaded', function(){
-     fetch( `/vacancy/filter?city=${city}&industry=${industry}`, {
+     fetch( `/vacancy/filter?city=${city}&industry=${industry}&company=${company}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
