@@ -144,10 +144,10 @@ function chooseWorkExperience(button){
     const exp_1_3 = document.getElementById('1-3');
     const exp_3_5 = document.getElementById('3-5');
     const exp_5 = document.getElementById('5+');
-    no_exp.style.backgroundColor='green';
-    exp_1_3.style.backgroundColor='green';
-    exp_3_5.style.backgroundColor='green';
-    exp_5.style.backgroundColor='green';
+    no_exp.style.backgroundColor='#006699';
+    exp_1_3.style.backgroundColor='#006699';
+    exp_3_5.style.backgroundColor='#006699';
+    exp_5.style.backgroundColor='#006699';
     button.style.backgroundColor='#333333';
 }
 
@@ -169,15 +169,15 @@ function submit() {
    if  (no_exp.style.backgroundColor=="" && exp_1_3.style.backgroundColor==""
    && exp_3_5.style.backgroundColor=="" && exp_5.style.backgroundColor==""  ){exp = ""}
 
-   else if (no_exp.style.backgroundColor!='green') {
+   else if (no_exp.style.backgroundColor!='#006699') {
    console.log(no_exp.style.backgroundColor)
    exp=no_exp.textContent;
-   } else if (exp_1_3.style.backgroundColor!='green') {
+   } else if (exp_1_3.style.backgroundColor!='#006699') {
    exp=exp_1_3.textContent;}
 
-   else if (exp_3_5.style.backgroundColor!='green') {
+   else if (exp_3_5.style.backgroundColor!='#006699') {
    exp=exp_3_5.textContent;}
-   else if (exp_5.style.backgroundColor!='green') {
+   else if (exp_5.style.backgroundColor!='#006699') {
    exp=exp_5.textContent;}
 
    const salaryfrom = document.getElementById("salaryfrom").value;

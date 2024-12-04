@@ -28,7 +28,7 @@ if (company) {
 }
 document.addEventListener('DOMContentLoaded', function(){
     const filter_button=document.getElementById('filter_button');
-    filter_button.href=`/vacancy/filter/page?${encodeExistParams.toString()}`;
+    filter_button.href=`/vacancy/filter/page?${existParams.toString()}`;
     const url = `/vacancy/filter?${existParams.toString()}`;
 
      fetch( url, {
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 if (salary=="") {
                     salary="Не указано";
                 }
-               const vacancy_url = `/vacancy/description?id=${vacancy.id}&${encodeExistParams.toString()}`;
+               const vacancy_url = `/vacancy/description?id=${vacancy.id}&${existParams.toString()}`;
                const element = `<button class="vacancy" onclick="window.location.href='${vacancy_url}'">
                                    ${vacancy.position}<br>${salary}<br>${vacancy.city}<br>${vacancy.employer.name}
                                </button>`;

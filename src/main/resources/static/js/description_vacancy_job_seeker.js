@@ -13,10 +13,31 @@ const params = new URLSearchParams(url.search);
 const vacancyId = params.get('id');
 const city = params.get('city');
 const industry = params.get('industry');
+const company = params.get('company');
+console.log(city);
+const existParams = new URLSearchParams();
+const encodeExistParams = new URLSearchParams();
+
+if (city) {
+    existParams.append('city', city);
+    encodeExistParams.append('city', encodeURIComponent(city));
+}
+if (industry) {
+    existParams.append('industry', industry);
+    encodeExistParams.append('industry', encodeURIComponent(industry));
+}
+if (company) {
+    existParams.append('company', company);
+    encodeExistParams.append('company', encodeURIComponent(company));
+}
+
 function edit_vacancy () {
 window.location.href=`/employer/vacancy/edit?id=${vacancyId}`}
 function vacancy_back() {
-window.location.href=`/vacancy/menu?city=${encodeURIComponent(city)}&industry=${encodeURIComponent(industry)}`}
+window.location.href=`/vacancy/menu?${existParams.toString()}`}
+
+
+
 
 let employerUserId;
 
