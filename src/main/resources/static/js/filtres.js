@@ -42,6 +42,26 @@ function vacancy_back() {
     window.location.href = `/vacancy/menu?${existParams.toString()}`;
 }
 
+function apply() {
+const currentParams = new URLSearchParams();
+const currentCity = document.getElementById("city").value;
+const currentCompany = document.getElementById("company").value;
+const currentIndustry = document.getElementById("industry").value;
+
+if (currentCity) {
+    currentParams.append('city', currentCity);
+}
+if (currentIndustry) {
+    currentParams.append('industry', currentIndustry);
+
+}
+if (currentCompany) {
+    currentParams.append('company', currentCompany);
+
+   }
+    window.location.href = `/vacancy/menu?${currentParams.toString()}`;
+}
+
 document.addEventListener('touchstart', function (event) {
     const activeElement = document.activeElement;
 
