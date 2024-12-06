@@ -57,7 +57,6 @@ public class VacancyController {
                 vacancyDTO.getCity(), vacancyDTO.getFromSalary(), vacancyDTO.getToSalary(), vacancyDTO.getWorkSchedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress(), vacancyDTO.getExp(), vacancyDTO.getResponsibility()), HttpStatus.OK);
     }
 
-
     @PutMapping("/vacancy/{vacancyId}")
     public ResponseEntity<Vacancy> updateVacancy(@RequestBody VacancyDTO vacancyDTO, @PathVariable Integer vacancyId) {
         Vacancy vacancy = vacancyService.getVacancy(vacancyId);
@@ -78,7 +77,6 @@ public class VacancyController {
     public ResponseEntity<List<String>> getCities() {
         List<String> cities = vacancyService.getCities();
         return new ResponseEntity<>(cities, HttpStatus.OK);
-
     }
 
     @GetMapping("/vacancy/user/{userId}")
@@ -91,14 +89,14 @@ public class VacancyController {
     public ResponseEntity<VacancyResponseDTO> deleteVacancyByID(@PathVariable Integer vacancyId) {
         vacancyService.deleteVacancy(vacancyId);
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 
     @GetMapping("/vacancy/filter")
     public ResponseEntity<List<VacancyResponseDTO>> filter(
             @RequestParam(value = "city", required = false, defaultValue = "") String city,
             @RequestParam(value = "industry", required = false, defaultValue = "") String industry,
-            @RequestParam(value = "company", required = false, defaultValue = "") String company
+            @RequestParam(value = "company", required = false, defaultValue = "") String company,
+            @RequestParam(value = "position", required = false, defaultValue = "") String position
     ) {
         List<Vacancy> vacancies = vacancyService.getVacancy();
         List<VacancyResponseDTO> vacancyResponseDTOs = new java.util.ArrayList<>();
@@ -112,16 +110,12 @@ public class VacancyController {
             }
             if (!Objects.equals(company, "") && !Objects.equals(vacancy.getEmployer().getName(), company)) {
                 is_fits = false;
-
             }
             if (is_fits) {
-
                 vacancyResponseDTOs.add(vacancy.toResponseDTO());
             }
-
         }
         return new ResponseEntity<>(vacancyResponseDTOs, HttpStatus.OK);
     }
-
 }
 
