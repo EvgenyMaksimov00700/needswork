@@ -5,14 +5,20 @@ import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.Industry;
 import com.wanted.needswork.models.Vacancy;
 import com.wanted.needswork.repository.VacancyRepository;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import java.io.*;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -108,6 +114,27 @@ public class VacancyService {
             System.out.println("Vacancy not found with id: " + vacancyId);
         }
 
+    }
+
+    public Object filterVacancyByKeyword (String keyword, List <Vacancy> vacancies){
+        HttpClient client = HttpClient.newHttpClient();
+        String requestBody = String.format("{\"keyword\":\"%d\", [");
+        // TODO
+        HttpResponse<String> response = null;
+        Dotenv dotenv=Dotenv.load();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://api.telegram.org/bot"+dotenv.get("TOKEN")+"/sendVideoNote"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .build();
+
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Ответ от Telegram: " + response.body());
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return response;
     }
     /**
      * Вычисляет расстояние Левенштейна между двумя строками.

@@ -91,4 +91,5 @@ public class VideoCvController {
         videoCvService.sendVideoNote(videoCvSendDTO.getUserId(), videoCvSendDTO.getVideoCvMessage());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }
