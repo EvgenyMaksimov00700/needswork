@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -99,9 +101,17 @@ public class VacancyController {
             @RequestParam(value = "industry", required = false, defaultValue = "") String industry,
             @RequestParam(value = "company", required = false, defaultValue = "") String company,
             @RequestParam(value = "position", required = false, defaultValue = "") String position,
-            @RequestParam(value = "salary", required = false, defaultValue = "") String salary
+            @RequestParam(value = "salary", required = false, defaultValue = "") String salary,
+            @RequestParam(value = "exp", required = false, defaultValue = "") String exp,
+            @RequestParam(value = "workSchedule", required = false, defaultValue = "") String workSchedule,
+            @RequestParam(value = "date", required = false, defaultValue = "") String date
     ) {
+
+
         List<Vacancy> vacancies = vacancyService.getVacancy();
+        List<String> exps = List.of(exp.split(","));
+        List<String> workSchedules = List.of(workSchedule.split(","));
+        List<String> dates = List.of(date.split(","));
         JSONArray jsonArray = null;
         if (!Objects.equals(position, "")) {
             jsonArray = vacancyService.filterVacancyByKeyword(position, vacancies);
@@ -119,12 +129,36 @@ public class VacancyController {
             if (!Objects.equals(company, "") && !Objects.equals(vacancy.getEmployer().getName(), company)) {
                 is_fits = false;
             }
-            if (!Objects.equals(position, "") && jsonArray!=null&& jsonArray.getJSONObject(i).getDouble("final_score")<=0.5) {
+            if (!Objects.equals(position, "") && jsonArray != null && jsonArray.getJSONObject(i).getDouble("final_score") <= 0.5) {
                 is_fits = false;
             }
-            if (!Objects.equals(salary, "") && vacancy.getFromSalary()<parseInt(salary)) {
+            if (!Objects.equals(salary, "") && vacancy.getFromSalary() < parseInt(salary)) {
                 is_fits = false;
             }
+            if (!Objects.equals(exp, "") && !exps.contains(vacancy.getExp())) {
+                is_fits = false;
+            }
+            if (!Objects.equals(workSchedule, "") && !workSchedules.contains(vacancy.getWorkSchedule())) {
+                is_fits = false;
+            }
+            if (!Objects.equals(date, "")) {
+                LocalDateTime creationDate = vacancy.getCreatedDateTime();
+                if (date == "Сутки" && ChronoUnit.DAYS.between(creationDate, LocalDateTime.now()) > 1) {
+                    is_fits = false;
+
+                }
+                if (date == "За 3 дня" && ChronoUnit.DAYS.between(creationDate, LocalDateTime.now()) > 3) {
+                    is_fits = false;
+
+                }
+                if (date == "За неделю" && ChronoUnit.DAYS.between(creationDate, LocalDateTime.now()) > 7) {
+                    is_fits = false;
+                }
+                if (date == "За месяц" && ChronoUnit.DAYS.between(creationDate, LocalDateTime.now()) > 30) {
+                    is_fits = false;
+                }
+            }
+
             if (is_fits) {
                 vacancyResponseDTOs.add(vacancy.toResponseDTO());
             }

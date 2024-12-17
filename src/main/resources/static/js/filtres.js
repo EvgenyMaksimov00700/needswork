@@ -13,6 +13,7 @@ const city = params.get('city');
 const industry = params.get('industry');
 const company = params.get('company');
 const position = params.get('position');
+const salary = params.get('salary');
 console.log(city);
 
 const existParams = new URLSearchParams();
@@ -34,6 +35,10 @@ if (position) {
     existParams.append('position', position);
     encodeExistParams.append('position', encodeURIComponent(position));
 }
+if (salary) {
+    existParams.append('salary', salary);
+    encodeExistParams.append('salary', encodeURIComponent(salary));
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     windowsLoad();
@@ -43,6 +48,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     if (position != null) {
     document.getElementById('position').value = position;
+    }
+    if (salary!= null) {
+    document.getElementById('income').value = salary;
     }
 });
 
@@ -56,6 +64,7 @@ const currentCity = document.getElementById("city").value;
 const currentCompany = document.getElementById("company").value;
 const currentIndustry = document.getElementById("industry").value;
 const currentPosition = document.getElementById("position").value;
+const currentSalary = document.getElementById("income").value;
 if (currentCity) {
     currentParams.append('city', currentCity);
 }
@@ -70,6 +79,9 @@ if (currentCompany) {
     currentParams.append('company', currentCompany);
 
    }
+if (currentSalary) {
+    currentParams.append('salary', currentSalary);
+    }
     window.location.href = `/vacancy/menu?${currentParams.toString()}`;
 }
 

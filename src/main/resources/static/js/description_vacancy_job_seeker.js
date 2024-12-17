@@ -15,9 +15,11 @@ const city = params.get('city');
 const industry = params.get('industry');
 const company = params.get('company');
 const position = params.get('position');
+const salary = params.get('salary');
 console.log(city);
 const existParams = new URLSearchParams();
 const encodeExistParams = new URLSearchParams();
+
 
 if (city) {
     existParams.append('city', city);
@@ -34,6 +36,10 @@ if (company) {
 if (position) {
     existParams.append('position', position);
     encodeExistParams.append('position', encodeURIComponent(position));
+}
+if (salary) {
+    existParams.append('salary', salary);
+    encodeExistParams.append('salary', encodeURIComponent(salary));
 }
 
 function edit_vacancy () {

@@ -12,6 +12,7 @@ const city = params.get('city');
 const industry = params.get('industry');
 const company = params.get('company');
 const position = params.get('position');
+const salary = params.get('salary');
 const existParams = new URLSearchParams();
 const encodeExistParams = new URLSearchParams();
 
@@ -31,6 +32,10 @@ if (company) {
 if (position) {
     existParams.append('position', position);
     encodeExistParams.append('position', encodeURIComponent(position));
+}
+if (salary) {
+    existParams.append('salary', salary);
+    encodeExistParams.append('salary', encodeURIComponent(salary));
 }
 document.addEventListener('DOMContentLoaded', function(){
     const filter_button=document.getElementById('filter_button');
