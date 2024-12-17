@@ -164,7 +164,16 @@ document.addEventListener('DOMContentLoaded', function(){
                 document.getElementById("workSchedule").innerHTML = "<b>График работы: </b>" + data.workSchedule;
                 if (data.distantWork==true) {
                 document.getElementById("workSchedule").innerHTML += ", возможно удаленно";}
-                document.getElementById("responsibility").innerHTML = data.responsibility;
+               const paragraphs = data.responsibility.split(/\n\s*\n/);
+                               const outputDiv = document.getElementById("responsibility");
+                               paragraphs.forEach(paragraph => {
+                                   if (paragraph.trim() !== "") {
+                                       const p = document.createElement('p');
+                                       p.classList.add('paragraph');
+                                       p.textContent = paragraph.trim();
+                                       outputDiv.appendChild(p);
+                                   }
+                               });
                 document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + data.createdDateTime;
                 document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id)};
             });

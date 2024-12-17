@@ -73,6 +73,7 @@ public class Vacancy {
 
     @Getter
     @Setter
+    @Column (length =10000)
     private String responsibility;
 
     @CreationTimestamp
