@@ -12,6 +12,7 @@ const params = new URLSearchParams(url.search);
 const city = params.get('city');
 const industry = params.get('industry');
 const company = params.get('company');
+const position = params.get('position');
 console.log(city);
 
 const existParams = new URLSearchParams();
@@ -29,12 +30,19 @@ if (company) {
     existParams.append('company', company);
     encodeExistParams.append('company', encodeURIComponent(company));
 }
+if (position) {
+    existParams.append('position', position);
+    encodeExistParams.append('position', encodeURIComponent(position));
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     windowsLoad();
 
     if (city != null) {
         document.getElementById('city').value = city;
+    }
+    if (position != null) {
+    document.getElementById('position').value = position;
     }
 });
 
@@ -47,9 +55,12 @@ const currentParams = new URLSearchParams();
 const currentCity = document.getElementById("city").value;
 const currentCompany = document.getElementById("company").value;
 const currentIndustry = document.getElementById("industry").value;
-
+const currentPosition = document.getElementById("position").value;
 if (currentCity) {
     currentParams.append('city', currentCity);
+}
+if (currentPosition) {
+    currentParams.append('position', currentCity);
 }
 if (currentIndustry) {
     currentParams.append('industry', currentIndustry);

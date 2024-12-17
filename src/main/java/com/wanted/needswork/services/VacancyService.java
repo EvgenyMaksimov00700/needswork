@@ -1,4 +1,14 @@
 package com.wanted.needswork.services;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import io.github.cdimascio.dotenv.Dotenv;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.List;
+
 
 
 import com.wanted.needswork.models.Employer;
@@ -107,8 +117,8 @@ public class VacancyService {
     }
 
     public void deleteVacancy(Integer vacancyId) {
-    Optional<Vacancy> vacancy = vacancyRepository.findById(vacancyId);
-    if (vacancy.isPresent()) {
+        Optional<Vacancy> vacancy = vacancyRepository.findById(vacancyId);
+        if (vacancy.isPresent()) {
             vacancyRepository.delete(vacancy.get());
         } else {
             System.out.println("Vacancy not found with id: " + vacancyId);
@@ -116,78 +126,50 @@ public class VacancyService {
 
     }
 
-    public Object filterVacancyByKeyword (String keyword, List <Vacancy> vacancies){
+
+    public JSONArray filterVacancyByKeyword(String keyword, List<Vacancy> vacancies) {
         HttpClient client = HttpClient.newHttpClient();
-        String requestBody = String.format("{\"keyword\":\"%d\", [");
-        // TODO
-        HttpResponse<String> response = null;
-        Dotenv dotenv=Dotenv.load();
+        StringBuilder requestBody = new StringBuilder();
+        requestBody.append(String.format("{\"keyword\":\"%s\",\"vacancies\":[", keyword));
+
+        for (int i = 0; i < vacancies.size(); i++) {
+            Vacancy vacancy = vacancies.get(i);
+            requestBody.append(String.format("{\"id\":%d,\"vacancy_title\":\"%s\",\"vacancy_description\":\"%s\"}",
+                    vacancy.getId(),
+                    vacancy.getPosition(),
+                    vacancy.getResponsibility()));
+            if (i < vacancies.size() - 1) {
+                requestBody.append(",");
+            }
+        }
+        requestBody.append("]}");
+
+        System.out.println("Отправляем запрос на Telegram: " + requestBody);
+        
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.telegram.org/bot"+dotenv.get("TOKEN")+"/sendVideoNote"))
+                .uri(URI.create("http://tworker.ru:5000/similarity"))
                 .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody.toString()))
                 .build();
 
+        HttpResponse<String> response;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
             System.out.println("Ответ от Telegram: " + response.body());
+
+            // Парсинг ответа
+            JSONObject jsonResponse = new JSONObject(response.body());
+            if (jsonResponse.has("results")) {
+                JSONArray resultArray = jsonResponse.getJSONArray("results");
+                return resultArray;
+            } else {
+                System.out.println("Ответ не содержит ожидаемого массива 'result'.");
+                return null;
+            }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
+            return null;
         }
-        return response;
-    }
-    /**
-     * Вычисляет расстояние Левенштейна между двумя строками.
-     *
-     * @param str1 первая строка
-     * @param str2 вторая строка
-     * @return расстояние Левенштейна
-     */
-    public static int levenshteinDistance(String str1, String str2) {
-        int len1 = str1.length();
-        int len2 = str2.length();
-        int[][] dp = new int[len1 + 1][len2 + 1];
-
-        for (int i = 0; i <= len1; i++) {
-            for (int j = 0; j <= len2; j++) {
-                if (i == 0) {
-                    dp[i][j] = j;
-                } else if (j == 0) {
-                    dp[i][j] = i;
-                } else {
-                    dp[i][j] = Math.min(
-                            Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1),
-                            dp[i - 1][j - 1] + (str1.charAt(i - 1) == str2.charAt(j - 1) ? 0 : 1)
-                    );
-                }
-            }
-        }
-        return dp[len1][len2];
-    }
-
-    /**
-     * Вычисляет коэффициент схожести между двумя строками.
-     *
-     * @param str1 первая строка
-     * @param str2 вторая строка
-     * @return коэффициент схожести (от 0.0 до 1.0)
-     */
-    public static double similarity(String str1, String str2) {
-         str1 = str1.toLowerCase().trim();
-         str2 = str1.toLowerCase().trim();
-        if (str1.isEmpty() && str2.isEmpty()) {
-            return 1.0;
-        }
-        if (str2.contains(str1)) {
-            return 1.0;
-        }
-        int maxLength = Math.max(str1.length(), str2.length());
-        if (maxLength == 0) {
-            return 1.0;
-        }
-        int distance = levenshteinDistance(str1, str2);
-        return 1.0 - (double) distance / maxLength;
     }
 }
-
 

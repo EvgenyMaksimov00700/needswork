@@ -8,11 +8,13 @@ import com.wanted.needswork.models.Vacancy;
 import com.wanted.needswork.services.EmployerService;
 import com.wanted.needswork.services.IndustryService;
 import com.wanted.needswork.services.VacancyService;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,7 +32,7 @@ public class VacancyController {
     @GetMapping("/vacancy/showall")
     public ResponseEntity<List<VacancyResponseDTO>> showall() {
         List<Vacancy> vacancies = vacancyService.getVacancy();
-        List<VacancyResponseDTO> vacancyResponseDTOs = new java.util.ArrayList<>();
+        List<VacancyResponseDTO> vacancyResponseDTOs = new ArrayList<>();
         for (Vacancy vacancy : vacancies) {
             vacancyResponseDTOs.add(vacancy.toResponseDTO());
         }
@@ -96,11 +98,17 @@ public class VacancyController {
             @RequestParam(value = "city", required = false, defaultValue = "") String city,
             @RequestParam(value = "industry", required = false, defaultValue = "") String industry,
             @RequestParam(value = "company", required = false, defaultValue = "") String company,
-            @RequestParam(value = "position", required = false, defaultValue = "") String position
+            @RequestParam(value = "position", required = false, defaultValue = "") String position,
+            @RequestParam(value = "salary", required = false, defaultValue = "") String salary
     ) {
         List<Vacancy> vacancies = vacancyService.getVacancy();
-        List<VacancyResponseDTO> vacancyResponseDTOs = new java.util.ArrayList<>();
-        for (Vacancy vacancy : vacancies) {
+        JSONArray jsonArray = null;
+        if (!Objects.equals(position, "")) {
+            jsonArray = vacancyService.filterVacancyByKeyword(position, vacancies);
+        }
+        List<VacancyResponseDTO> vacancyResponseDTOs = new ArrayList<>();
+        for (int i = 0; i < vacancies.size(); i++) {
+            Vacancy vacancy = vacancies.get(i);
             boolean is_fits = true;
             if (!Objects.equals(city, "") && !Objects.equals(vacancy.getCity(), city)) {
                 is_fits = false;
@@ -109,6 +117,12 @@ public class VacancyController {
                 is_fits = false;
             }
             if (!Objects.equals(company, "") && !Objects.equals(vacancy.getEmployer().getName(), company)) {
+                is_fits = false;
+            }
+            if (!Objects.equals(position, "") && jsonArray!=null&& jsonArray.getJSONObject(i).getDouble("final_score")<=0.5) {
+                is_fits = false;
+            }
+            if (!Objects.equals(salary, "") && vacancy.getFromSalary()<parseInt(salary)) {
                 is_fits = false;
             }
             if (is_fits) {
