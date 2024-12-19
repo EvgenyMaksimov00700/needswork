@@ -129,7 +129,7 @@ public class VacancyController {
             if (!Objects.equals(company, "") && !Objects.equals(vacancy.getEmployer().getName(), company)) {
                 is_fits = false;
             }
-            if (!Objects.equals(position, "") && jsonArray != null && jsonArray.getJSONObject(i).getDouble("final_score") <= 0.5) {
+            if (!Objects.equals(position, "") && jsonArray != null && jsonArray.getJSONObject(i).getDouble("final_score") <= 0.6) {
                 is_fits = false;
             }
             if (!Objects.equals(salary, "") && vacancy.getFromSalary() < parseInt(salary)) {
