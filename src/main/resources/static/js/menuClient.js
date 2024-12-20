@@ -13,6 +13,9 @@ const industry = params.get('industry');
 const company = params.get('company');
 const position = params.get('position');
 const salary = params.get('salary');
+const exp = params.get('exp');
+const bus = params.get('bus');
+const time = params.get('time');
 const existParams = new URLSearchParams();
 const encodeExistParams = new URLSearchParams();
 
@@ -36,7 +39,21 @@ if (position) {
 if (salary) {
     existParams.append('salary', salary);
     encodeExistParams.append('salary', encodeURIComponent(salary));
+
 }
+if (exp) {
+    existParams.append('exp', exp);
+    encodeExistParams.append('exp', encodeURIComponent(exp));
+}
+if (bus) {
+    existParams.append('bus', bus);
+    encodeExistParams.append('bus', encodeURIComponent(bus));}
+if (time) {
+    existParams.append('time', time);
+    encodeExistParams.append('time', encodeURIComponent(time));
+    }
+
+
 document.addEventListener('DOMContentLoaded', function(){
     const filter_button=document.getElementById('filter_button');
     filter_button.href=`/vacancy/filter/page?${existParams.toString()}`;

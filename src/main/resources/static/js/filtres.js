@@ -14,6 +14,9 @@ const industry = params.get('industry');
 const company = params.get('company');
 const position = params.get('position');
 const salary = params.get('salary');
+const exp = params.get('exp');
+const bus = params.get('bus');
+const time = params.get('time');
 console.log(city);
 
 const existParams = new URLSearchParams();
@@ -39,6 +42,18 @@ if (salary) {
     existParams.append('salary', salary);
     encodeExistParams.append('salary', encodeURIComponent(salary));
 }
+if (exp) {
+    existParams.append('exp', exp);
+    encodeExistParams.append('exp', encodeURIComponent(exp));
+}
+if (bus) {
+    existParams.append('bus', bus);
+    encodeExistParams.append('bus', encodeURIComponent(bus));
+}
+if (time) {
+    existParams.append('time', time);
+    encodeExistParams.append('time', encodeURIComponent(time));
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     windowsLoad();
@@ -51,6 +66,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     if (salary!= null) {
     document.getElementById('income').value = salary;
+    }
+    if (exp!= null) {
+    document.getElementById('experience').value = exp;
+    }
+    if (bus!= null) {
+    document.getElementById('business').value = bus;
+    }
+    if (time!= null) {
+    document.getElementById('time').value = time;
     }
 });
 
