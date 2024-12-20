@@ -69,7 +69,7 @@ if (currentCity) {
     currentParams.append('city', currentCity);
 }
 if (currentPosition) {
-    currentParams.append('position', currentCity);
+    currentParams.append('position', currentPosition);
 }
 if (currentIndustry) {
     currentParams.append('industry', currentIndustry);
@@ -81,6 +81,16 @@ if (currentCompany) {
    }
 if (currentSalary) {
     currentParams.append('salary', currentSalary);
+    }
+    let currentExps = "";
+const exps = document.querySelectorAll("exp");
+exps.forEach(button =>{
+if (button.style.backgroundColor != "rgb(0, 136, 204)" && button.style.backgroundColor != "") {
+currentExps += button.textContent +",";
+}
+})
+if (currentExps) {
+    currentParams.append('exp', currentExps);
     }
     window.location.href = `/vacancy/menu?${currentParams.toString()}`;
 }

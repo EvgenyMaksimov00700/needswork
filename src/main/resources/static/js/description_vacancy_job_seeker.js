@@ -87,7 +87,10 @@ function vacancy_responses(vacancyName, vacancyId) {
     })
     .catch(error => console.error(error));
 }
-
+function closeModal (){
+const resumeButtons = document.getElementById('resume-buttons');
+resumeModal.style.display = 'none';
+}
 function sendVideo(videoCvName, videoName, vacancyId){
 const message = "На Вашу вакансию "+ videoName + " поступил новый отклик";
 const url1 = "/message/send"

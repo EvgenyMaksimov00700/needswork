@@ -131,13 +131,13 @@ public class VacancyService {
         HttpClient client = HttpClient.newHttpClient();
         StringBuilder requestBody = new StringBuilder();
         requestBody.append(String.format("{\"keyword\":\"%s\",\"vacancies\":[", keyword));
-
+        String regex = "\n";
         for (int i = 0; i < vacancies.size(); i++) {
             Vacancy vacancy = vacancies.get(i);
             requestBody.append(String.format("{\"id\":%d,\"vacancy_title\":\"%s\",\"vacancy_description\":\"%s\"}",
                     vacancy.getId(),
                     vacancy.getPosition(),
-                    vacancy.getResponsibility()));
+                    vacancy.getResponsibility().replaceAll(regex," ")));
             if (i < vacancies.size() - 1) {
                 requestBody.append(",");
             }
