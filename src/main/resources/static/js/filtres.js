@@ -134,7 +134,7 @@ if (currentSalary) {
     }
     })
     if (currentExps) {
-        currentParams.append('exp', currentExps);
+        currentParams.append('exp', currentExps.slice(0,-1));
         }
 
     let currentBuss = "";
@@ -144,10 +144,9 @@ if (currentSalary) {
     currentBuss += button.textContent +",";
     }
     })
-    console.log ("currentBuss: " + currentBuss);
 
     if (currentBuss) {
-        currentParams.append('bus', currentBuss);
+        currentParams.append('bus', currentBuss.slice(0,-1));
         }
 
 
@@ -159,7 +158,7 @@ if (currentSalary) {
     }
     })
     if (currentTime) {
-        currentParams.append('time', currentTime);
+        currentParams.append('time', currentTime.slice(0,-1));
         }
 
 

@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 return response.json();
 
             }).then(data => {
+            console.log(data);
             const vacancies=document.getElementById("vacancies")
             data.forEach (vacancy => {
                 let salary="";

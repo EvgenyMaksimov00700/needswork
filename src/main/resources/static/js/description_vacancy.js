@@ -49,6 +49,23 @@ fetch( `/vacancy/${vacancyId}`, {
 
 }
 }
+
+function formatDateTime(isoString) {
+    // Создаем объект Date из строки ISO
+    const date = new Date(isoString);
+
+    // Форматируем дату
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Месяцы от 0 до 11
+    const year = date.getFullYear();
+
+    // Форматируем время
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    // Собираем строку в нужном формате
+    return `${day}.${month}.${year} ${hours}:${minutes}`;
+}
 document.addEventListener('DOMContentLoaded', function(){
      fetch( `/vacancy/${vacancyId}`, {
                 method: 'GET',
@@ -95,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     }
                 });
 
-                document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + data.createdDateTime;
+                document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + formatDateTime(data.createdDateTime);
             });
 
 });
