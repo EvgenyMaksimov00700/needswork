@@ -68,13 +68,33 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('income').value = salary;
     }
     if (exp!= null) {
-    document.getElementById('experience').value = exp;
+    let expsButton = document.querySelectorAll('.exp');
+    const exps = exp.split(',');
+    expsButton.forEach(button => {
+        if (exps.includes(button.textContent)) {
+            button.style.backgroundColor = '#333333';
+        }
+    });
     }
     if (bus!= null) {
-    document.getElementById('business').value = bus;
+    let workScheduleButton = document.querySelectorAll('.bus');
+        const buss = bus.split(',');
+        workScheduleButton.forEach(button => {
+            if (buss.includes(button.textContent)) {
+                button.style.backgroundColor = '#333333';
+            }
+        });
+
     }
     if (time!= null) {
-    document.getElementById('time').value = time;
+    let timeButton = document.querySelectorAll('.time');
+        const time = time.split(',');
+        timeButton.forEach(button => {
+            if (time.includes(button.textContent)) {
+                button.style.backgroundColor = '#333333';
+            }
+        });
+
     }
 });
 
@@ -105,18 +125,52 @@ if (currentCompany) {
    }
 if (currentSalary) {
     currentParams.append('salary', currentSalary);
-    }
+        }
     let currentExps = "";
-const exps = document.querySelectorAll("exp");
-exps.forEach(button =>{
-if (button.style.backgroundColor != "rgb(0, 136, 204)" && button.style.backgroundColor != "") {
-currentExps += button.textContent +",";
-}
-})
-if (currentExps) {
-    currentParams.append('exp', currentExps);
+    const exps = document.querySelectorAll(".exp");
+    exps.forEach(button =>{
+    if (button.style.backgroundColor != "rgb(0, 136, 204)" && button.style.backgroundColor != "") {
+    currentExps += button.textContent +",";
     }
+    })
+    if (currentExps) {
+        currentParams.append('exp', currentExps);
+        }
+
+    let currentBuss = "";
+    const buss = document.querySelectorAll(".buss");
+    buss.forEach(button =>{
+    if (button.style.backgroundColor != "rgb(0, 136, 204)" && button.style.backgroundColor != "") {
+    currentBuss += button.textContent +",";
+    }
+    })
+    if (currentBuss) {
+        currentParams.append('buss', currentBuss);
+        }
+
+
+    let currentTime = "";
+    const time = document.querySelectorAll(".time");
+    time.forEach(button =>{
+    if (button.style.backgroundColor != "rgb(0, 136, 204)" && button.style.backgroundColor != "") {
+    currentTime += button.textContent +",";
+    }
+    })
+    if (currentTime) {
+        currentParams.append('time', currentTime);
+        }
+
+
+
+
     window.location.href = `/vacancy/menu?${currentParams.toString()}`;
+}
+
+function chooseTime(button){
+
+  const time = document.querySelectorAll(".time");
+  time.forEach(b =>{ b.style.backgroundColor = "#006699"});
+  button.style.backgroundColor='#333333';
 }
 
 document.addEventListener('touchstart', function (event) {

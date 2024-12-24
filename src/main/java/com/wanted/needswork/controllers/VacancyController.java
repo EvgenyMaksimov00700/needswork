@@ -103,15 +103,14 @@ public class VacancyController {
             @RequestParam(value = "position", required = false, defaultValue = "") String position,
             @RequestParam(value = "salary", required = false, defaultValue = "") String salary,
             @RequestParam(value = "exp", required = false, defaultValue = "") String exp,
-            @RequestParam(value = "workSchedule", required = false, defaultValue = "") String workSchedule,
-            @RequestParam(value = "date", required = false, defaultValue = "") String date
+            @RequestParam(value = "bus", required = false, defaultValue = "") String workSchedule,
+            @RequestParam(value = "time", required = false, defaultValue = "") String date
     ) {
 
 
         List<Vacancy> vacancies = vacancyService.getVacancy();
         List<String> exps = List.of(exp.split(","));
         List<String> workSchedules = List.of(workSchedule.split(","));
-        List<String> dates = List.of(date.split(","));
         JSONArray jsonArray = null;
         if (!Objects.equals(position, "")) {
             jsonArray = vacancyService.filterVacancyByKeyword(position, vacancies);
@@ -143,18 +142,18 @@ public class VacancyController {
             }
             if (!Objects.equals(date, "")) {
                 LocalDateTime creationDate = vacancy.getCreatedDateTime();
-                if (date == "Сутки" && ChronoUnit.DAYS.between(creationDate, LocalDateTime.now()) > 1) {
+                if (date.equals("Сутки") && ChronoUnit.DAYS.between(creationDate, LocalDateTime.now()) > 1) {
                     is_fits = false;
 
                 }
-                if (date == "За 3 дня" && ChronoUnit.DAYS.between(creationDate, LocalDateTime.now()) > 3) {
+                if (date.equals("За 3 дня") && ChronoUnit.DAYS.between(creationDate, LocalDateTime.now()) > 3) {
                     is_fits = false;
 
                 }
-                if (date == "За неделю" && ChronoUnit.DAYS.between(creationDate, LocalDateTime.now()) > 7) {
+                if (date.equals("За неделю") && ChronoUnit.DAYS.between(creationDate, LocalDateTime.now()) > 7) {
                     is_fits = false;
                 }
-                if (date == "За месяц" && ChronoUnit.DAYS.between(creationDate, LocalDateTime.now()) > 30) {
+                if (date.equals("За месяц") && ChronoUnit.DAYS.between(creationDate, LocalDateTime.now()) > 30) {
                     is_fits = false;
                 }
             }
