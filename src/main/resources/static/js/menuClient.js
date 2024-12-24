@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const filter_button=document.getElementById('filter_button');
     filter_button.href=`/vacancy/filter/page?${existParams.toString()}`;
     const url = `/vacancy/filter?${existParams.toString()}`;
-
+    console.log(url);
      fetch( url, {
                 method: 'GET',
                 headers: {

@@ -88,9 +88,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     if (time!= null) {
     let timeButton = document.querySelectorAll('.time');
-        const time = time.split(',');
+        const times = time.split(',');
         timeButton.forEach(button => {
-            if (time.includes(button.textContent)) {
+            if (times.includes(button.textContent)) {
                 button.style.backgroundColor = '#333333';
             }
         });
@@ -138,14 +138,16 @@ if (currentSalary) {
         }
 
     let currentBuss = "";
-    const buss = document.querySelectorAll(".buss");
+    const buss = document.querySelectorAll(".bus");
     buss.forEach(button =>{
     if (button.style.backgroundColor != "rgb(0, 136, 204)" && button.style.backgroundColor != "") {
     currentBuss += button.textContent +",";
     }
     })
+    console.log ("currentBuss: " + currentBuss);
+
     if (currentBuss) {
-        currentParams.append('buss', currentBuss);
+        currentParams.append('bus', currentBuss);
         }
 
 
@@ -169,8 +171,13 @@ if (currentSalary) {
 function chooseTime(button){
 
   const time = document.querySelectorAll(".time");
-  time.forEach(b =>{ b.style.backgroundColor = "#006699"});
+  if (button.style.backgroundColor == "rgb(0, 136, 204)" || button.style.backgroundColor == "")  {
+  time.forEach(b =>{ b.style.backgroundColor = "#0088cc"});
   button.style.backgroundColor='#333333';
+  }
+  else {
+  time.forEach(b =>{ b.style.backgroundColor = "#0088cc"});
+  }
 }
 
 document.addEventListener('touchstart', function (event) {

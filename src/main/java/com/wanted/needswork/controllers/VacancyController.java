@@ -137,7 +137,7 @@ public class VacancyController {
             if (!Objects.equals(exp, "") && !exps.contains(vacancy.getExp())) {
                 is_fits = false;
             }
-            if (!Objects.equals(workSchedule, "") && !workSchedules.contains(vacancy.getWorkSchedule())) {
+            if (!Objects.equals(workSchedule, "") && !workSchedule.equals("Удаленка")&&!workSchedules.contains(vacancy.getWorkSchedule())||workSchedule.equals("Удаленка")&&!vacancy.getDistantWork()) {
                 is_fits = false;
             }
             if (!Objects.equals(date, "")) {
