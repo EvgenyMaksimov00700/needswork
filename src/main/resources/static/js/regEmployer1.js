@@ -2,7 +2,14 @@
 
 let clientID;
 try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
-window.Telegram.WebApp.requestFullscreen();
+  function isDesktop() {
+        const userAgent = navigator.userAgent.toLowerCase();
+        return userAgent.includes("windows") || userAgent.includes("macintosh") || userAgent.includes("linux");
+    }
+    console.log(isDesktop());
+    if (!isDesktop()) {
+        window.Telegram.WebApp.requestFullscreen();
+    }
 window.Telegram.WebApp.expand();}
 catch(error) {clientID = 159619887}
 console.log(clientID)
