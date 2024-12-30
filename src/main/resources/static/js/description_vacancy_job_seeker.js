@@ -217,6 +217,9 @@ document.addEventListener('DOMContentLoaded', function(){
                 document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + formatDateTime(data.createdDateTime);
                 document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id)};
             });
-
+setTimeout(() => {
+                const loadingOverlay = document.getElementById("loading");
+            loadingOverlay.style.display = "none";
+            }, 1000);
 });
 

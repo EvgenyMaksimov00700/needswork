@@ -100,4 +100,9 @@ document.addEventListener('DOMContentLoaded', function(){
                vacancies.innerHTML += element;
             })
             });
+            setTimeout(() => {
+                const loadingOverlay = document.getElementById("loading");
+            loadingOverlay.style.display = "none";
+            }, 1000);
+
 });
