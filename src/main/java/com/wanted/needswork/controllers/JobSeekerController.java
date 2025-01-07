@@ -22,8 +22,9 @@ public class JobSeekerController {
     JobSeekerService jobSeekerService;
     @Autowired
     UserService userService;
-    @GetMapping ("/jobSeeker/showall")
-    public ResponseEntity <List<JobSeekerResponseDTO>> showall () {
+
+    @GetMapping("/jobSeeker/showall")
+    public ResponseEntity<List<JobSeekerResponseDTO>> showall() {
         List<JobSeeker> jobSeekers = jobSeekerService.getJobSeekers();
         List<JobSeekerResponseDTO> jobSeekerResponseDTOs = new java.util.ArrayList<>();
         for (JobSeeker jobSeeker : jobSeekers) {
@@ -33,12 +34,14 @@ public class JobSeekerController {
 
         return new ResponseEntity<>(jobSeekerResponseDTOs, HttpStatus.OK);
     }
-    @GetMapping ("/jobSeeker/{jobSeekerId}")
-    public ResponseEntity <JobSeekerResponseDTO> getJobSeekerById (@PathVariable Integer jobSeekerId) {
+
+    @GetMapping("/jobSeeker/{jobSeekerId}")
+    public ResponseEntity<JobSeekerResponseDTO> getJobSeekerById(@PathVariable Integer jobSeekerId) {
         return new ResponseEntity<>(jobSeekerService.getJobSeeker(jobSeekerId).toResponseDTO(), HttpStatus.OK);
     }
+
     @PostMapping("/jobSeeker")
-    public ResponseEntity <JobSeeker> addJobSeeker (@RequestBody JobSeekerDTO jobSeekerDTO) {
+    public ResponseEntity<JobSeeker> addJobSeeker(@RequestBody JobSeekerDTO jobSeekerDTO) {
         User user = userService.getUser(jobSeekerDTO.getUser_id());
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -47,18 +50,27 @@ public class JobSeekerController {
                 jobSeekerDTO.getLatitude(), jobSeekerDTO.getLongitude()),
                 HttpStatus.OK);
     }
+
     @PutMapping("/jobSeeker/{jobSeekerId}")
-    public ResponseEntity <JobSeeker> updateJobSeeker (@RequestBody JobSeekerDTO jobSeekerDTO, @PathVariable Integer jobSeekerId) {
-        JobSeeker jobSeeker = jobSeekerService. getJobSeeker(jobSeekerId);
+    public ResponseEntity<JobSeeker> updateJobSeeker(@RequestBody JobSeekerDTO jobSeekerDTO, @PathVariable Integer jobSeekerId) {
+        JobSeeker jobSeeker = jobSeekerService.getJobSeeker(jobSeekerId);
         User user = userService.getUser(jobSeekerDTO.getUser_id());
-        if (jobSeeker == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (jobSeeker == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(jobSeekerService.updateJobSeeker(jobSeeker,user,
-                jobSeekerDTO.getLatitude(),jobSeekerDTO.getLongitude()),
+        return new ResponseEntity<>(jobSeekerService.updateJobSeeker(jobSeeker, user,
+                jobSeekerDTO.getLatitude(), jobSeekerDTO.getLongitude()),
                 HttpStatus.OK);
     }
-    @GetMapping ("/jobSeeker/user/{userId}")
-    public ResponseEntity <JobSeekerResponseDTO> getJobSeekerByUserId (@PathVariable BigInteger userId) {
+
+    @GetMapping("/jobSeeker/user/{userId}")
+    public ResponseEntity<JobSeekerResponseDTO> getJobSeekerByUserId(@PathVariable BigInteger userId) {
         return new ResponseEntity<>(jobSeekerService.getJobSeekerByUserId(userId).toResponseDTO(), HttpStatus.OK);
     }
+
+    @PostMapping("/jobSeeker/resume/{jobSeekerId}")
+    public ResponseEntity<JobSeeker> addTextResumeJobSeeker(@RequestBody JobSeekerDTO jobSeekerDTO, @PathVariable Integer jobSeekerId) {
+        return null;
+    }
+
 }

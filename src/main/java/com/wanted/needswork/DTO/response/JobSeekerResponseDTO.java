@@ -14,5 +14,7 @@ public class JobSeekerResponseDTO {
     private Double latitude;
     @Getter
     private Double longitude;
+    @Getter
+    private String textResume;
 
 }

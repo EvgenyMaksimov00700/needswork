@@ -88,4 +88,8 @@ h2 {
 .resume-buttons::-webkit-scrollbar,
 .container::-webkit-scrollbar {
     display: none;
+
 }
+.text_resume{
+}
+

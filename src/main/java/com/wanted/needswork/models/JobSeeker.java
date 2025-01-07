@@ -36,6 +36,10 @@ public class JobSeeker {
     @Setter
     private Double longitude;
 
+    @Getter
+    @Setter
+    private String textResume;
+
     public JobSeeker(User user, Double latitude, Double longitude) {
 
         this.user = user;
@@ -44,6 +48,6 @@ public class JobSeeker {
     }
 
     public JobSeekerResponseDTO toResponseDTO() {
-        return new JobSeekerResponseDTO(id, user.toResponseDTO(), latitude, longitude);
+        return new JobSeekerResponseDTO(id, user.toResponseDTO(), latitude, longitude, textResume);
     }
 }
