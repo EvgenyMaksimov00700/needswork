@@ -1,7 +1,22 @@
 let clientID;
-try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;}
+try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
+
+function isDesktop() {
+        const userAgent = navigator.userAgent.toLowerCase();
+        return userAgent.includes("windows") || userAgent.includes("macintosh") || userAgent.includes("linux");
+    }
+    console.log(isDesktop());
+    if (!isDesktop()) {
+        window.Telegram.WebApp.requestFullscreen();
+    }
+}
+
+}
 catch(error) {clientID = 159619887}
 console.log(clientID)
+
+
+
 document.addEventListener('touchstart', function(event) {
             const activeElement = document.activeElement;
 
