@@ -22,7 +22,7 @@ window.Telegram.WebApp.openTelegramLink(`https://t.me/Cherchent`); // URL с ID 
                 }
 function sendVideo(videoCvMessage){
 url = "/videoCv/send"
-data = {videoCvMessage:  videoCvMessage, userId: clientID}
+data = {videoCvMessage:  videoCvMessage, userId: clientID, vacancyId: -1}
      const response = fetch(url, {
                   method: 'POST', // Метод запроса
                   headers: {

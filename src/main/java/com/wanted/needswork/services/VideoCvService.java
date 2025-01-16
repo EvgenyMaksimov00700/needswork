@@ -67,30 +67,51 @@ public class VideoCvService {
         }
     }
 
-    public void sendVideoNote(User user, String fileIdOrUrl) {
+    public void sendVideoNote(User user, String fileIdOrUrl, Vacancy vacancy) {
         HttpClient client = HttpClient.newHttpClient();
+        HttpClient client2 = HttpClient.newHttpClient();
         String requestBody = String.format("{\"chat_id\":\"%d\", \"video_note\":\"%s\"}", user.getId(), fileIdOrUrl);
-        Dotenv dotenv=Dotenv.load();
+        Dotenv dotenv = Dotenv.load();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.telegram.org/bot"+dotenv.get("TOKEN")+"/sendVideoNote"))
+                .uri(URI.create("https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendVideoNote"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
-        HttpClient client2 = HttpClient.newHttpClient();
-        String textMessage = String.format("Отклик по вакансии <b>%s</b>\nФИО: %s\nтел: %s", "Тест", user.getFullName(), user.getPhone());
-        String requestBody2 = String.format("{\"chat_id\":\"%d\", \"text\":\"%s\"}", user.getId(), textMessage);
-        HttpRequest request2 = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.telegram.org/bot"+dotenv.get("TOKEN")+"/sendMessage"))
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(requestBody2))
-                .build();
+
+
+
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            HttpResponse<String> response2 = client2.send(request2, HttpResponse.BodyHandlers.ofString());
+
             System.out.println("Ответ от Telegram: " + response.body());
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+        if (vacancy != null) {
+
+            String textMessage = String.format(
+                    "Отклик по вакансии <b>%s</b>\nФИО: %s\nтел: %s\nПрофиль: <a href=\"tg://user?id=%d\">Связаться</a>",
+                    vacancy.getPosition(), user.getFullName(), user.getPhone(), user.getId()
+            );
+
+            String requestBody2 = String.format(
+                    "{\"chat_id\":\"%d\", \"text\":\"%s\", \"parse_mode\":\"HTML\"}",
+                    user.getId(), textMessage
+            );
+            HttpRequest request2 = HttpRequest.newBuilder()
+                    .uri(URI.create("https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendMessage"))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(requestBody2))
+                    .build();
+            try {
+
+                HttpResponse<String> response2 = client2.send(request2, HttpResponse.BodyHandlers.ofString());
+                System.out.println("Ответ от Telegram: " + response2.body());
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
 }

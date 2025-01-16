@@ -8,11 +8,12 @@ import java.math.BigInteger;
 public class VideoCvSendDTO {
     private BigInteger userId;
     private String videoCvMessage;
+    private Integer vacancyId;
 
-
-    public VideoCvSendDTO(BigInteger userId, String videoCvMessage) {
+    public VideoCvSendDTO(BigInteger userId, String videoCvMessage, Integer vacancyId) {
         this.userId = userId;
         this.videoCvMessage = videoCvMessage;
+        this.vacancyId = vacancyId;
     }
 
 }

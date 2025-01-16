@@ -8,9 +8,11 @@ import com.wanted.needswork.DTO.response.VacancyResponseDTO;
 import com.wanted.needswork.DTO.response.VideoCvResponseDTO;
 import com.wanted.needswork.models.JobSeeker;
 import com.wanted.needswork.models.User;
+import com.wanted.needswork.models.Vacancy;
 import com.wanted.needswork.models.VideoCv;
 import com.wanted.needswork.services.JobSeekerService;
 import com.wanted.needswork.services.UserService;
+import com.wanted.needswork.services.VacancyService;
 import com.wanted.needswork.services.VideoCvService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,9 @@ public class VideoCvController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    VacancyService vacancyService;
 
 
     @GetMapping("/videoCv/showall")
@@ -88,7 +93,8 @@ public class VideoCvController {
     @PostMapping("/videoCv/send")
     public ResponseEntity<VideoCv> VideoCvSend (@RequestBody VideoCvSendDTO videoCvSendDTO) {
         User user = userService.getUser(videoCvSendDTO.getUserId());
-        videoCvService.sendVideoNote(user, videoCvSendDTO.getVideoCvMessage());
+        Vacancy vacancy = vacancyService.getVacancy(videoCvSendDTO.getVacancyId());
+        videoCvService.sendVideoNote(user, videoCvSendDTO.getVideoCvMessage(), vacancy);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

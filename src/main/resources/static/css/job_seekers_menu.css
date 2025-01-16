@@ -93,3 +93,22 @@ h2 {
 .text_resume{
 }
 
+/* Стили для кнопки загрузки резюме (использует общий стиль action-button) */
+.action-button {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #3c4043;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #0088cc; /* Telegram-синий */
+    color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: #007ab8;
+    transform: scale(1.02);
+}
+
+

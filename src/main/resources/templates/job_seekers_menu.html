@@ -4,22 +4,40 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный кабинет </title>
+    <title>Личный кабинет</title>
     <link rel="stylesheet" href="/css/job_seekers_menu.css">
 </head>
 <body>
 <div class="container">
     <h2>Личный кабинет</h2>
-    <div class="resume-buttons" id ="resume-buttons">
-
+    <div class="resume-buttons" id="resume-buttons">
+        <!-- Место для подгрузки резюме -->
     </div>
-    <label> Текстовое резюме </label>
-    <input class="text_resume" type = "file">
+
     <div class="action-buttons">
+        <!-- Кнопка для загрузки текстового резюме -->
+        <button class="action-button" onclick="triggerFileUpload()">Загрузить текстовое резюме</button>
+        <input id="text-resume-upload" type="file" accept=".txt,.doc,.docx,.pdf" style="display: none;">
+
+        <!-- Другие кнопки -->
         <button class="action-button" onclick="window.location.href='/jobSeeker/account/favorites'">Избранные вакансии</button>
         <button class="action-button" onclick="support()">Поддержка</button>
     </div>
 </div>
-<script src = "/js/job_sekkers_menu.js"> </script>
+
+<script src="/js/job_seekers_menu.js"></script>
+<script>
+    function triggerFileUpload() {
+        const fileInput = document.getElementById('text-resume-upload');
+        fileInput.click(); // Открытие окна выбора файла
+        fileInput.onchange = () => {
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                alert(`Вы выбрали файл: ${fileName}`);
+                // Здесь можно добавить логику загрузки файла на сервер
+            }
+        };
+    }
+</script>
 </body>
 </html>

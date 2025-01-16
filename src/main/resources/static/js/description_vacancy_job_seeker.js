@@ -8,7 +8,7 @@ function isDesktop() {
     if (!isDesktop()) {
         window.Telegram.WebApp.requestFullscreen();
     }
-}
+
 }
 
 catch(error) {clientID = 159619887}
@@ -114,10 +114,10 @@ function closeModal (){
 const resumeButtons = document.getElementById('resume-buttons');
 resumeModal.style.display = 'none';
 }
-function sendVideo(videoCvName, videoName, vacancyId){
-const message = "На Вашу вакансию "+ videoName + " поступил новый отклик";
-const url1 = "/message/send"
-data = {message:  message, userId: employerUserId}
+function sendVideo(videoCvName, vacancyName, vacancyId){
+const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
+url1 = "/videoCv/send"
+data = {videoCvMessage:  videoCvName, userId: employerUserId, vacancyId: vacancyId}
      const response = fetch(url1, {
           method: 'POST', // Метод запроса
           headers: {
