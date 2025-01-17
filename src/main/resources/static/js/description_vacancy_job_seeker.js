@@ -117,7 +117,7 @@ resumeModal.style.display = 'none';
 function sendVideo(videoCvName, vacancyName, vacancyId){
 const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
 url1 = "/videoCv/send"
-data = {videoCvMessage:  videoCvName, userId: employerUserId, vacancyId: vacancyId}
+data = {videoCvMessage:  videoCvName, userId: clientID, vacancyId: vacancyId}
      const response = fetch(url1, {
           method: 'POST', // Метод запроса
           headers: {

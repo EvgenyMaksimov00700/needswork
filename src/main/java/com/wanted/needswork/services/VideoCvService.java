@@ -68,9 +68,11 @@ public class VideoCvService {
     }
 
     public void sendVideoNote(User user, String fileIdOrUrl, Vacancy vacancy) {
+
+        User employer_user =vacancy.getEmployer().getUser();
         HttpClient client = HttpClient.newHttpClient();
         HttpClient client2 = HttpClient.newHttpClient();
-        String requestBody = String.format("{\"chat_id\":\"%d\", \"video_note\":\"%s\"}", user.getId(), fileIdOrUrl);
+        String requestBody = String.format("{\"chat_id\":\"%d\", \"video_note\":\"%s\"}", employer_user.getId(), fileIdOrUrl);
         Dotenv dotenv = Dotenv.load();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendVideoNote"))
@@ -90,14 +92,15 @@ public class VideoCvService {
         if (vacancy != null) {
 
             String textMessage = String.format(
-                    "Отклик по вакансии <b>%s</b>\nФИО: %s\nтел: %s\nПрофиль: <a href=\"tg://user?id=%d\">Связаться</a>",
-                    vacancy.getPosition(), user.getFullName(), user.getPhone(), user.getId()
+                    "Отклик по вакансии <b>%s</b>\nФИО: <a href='tg://user?id=%d'>%s</a>\nтел: %s",
+                    vacancy.getPosition(), user.getId(), user.getFullName(), user.getPhone()
             );
 
             String requestBody2 = String.format(
                     "{\"chat_id\":\"%d\", \"text\":\"%s\", \"parse_mode\":\"HTML\"}",
-                    user.getId(), textMessage
+                    employer_user.getId(), textMessage
             );
+            System.out.println(requestBody2);
             HttpRequest request2 = HttpRequest.newBuilder()
                     .uri(URI.create("https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendMessage"))
                     .header("Content-Type", "application/json")
