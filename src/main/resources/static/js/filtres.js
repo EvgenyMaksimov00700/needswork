@@ -12,7 +12,7 @@ try {
     }
 
 
-} catch (error) {
+ catch (error) {
     clientID = 159619887;
 }
 console.log(clientID);
