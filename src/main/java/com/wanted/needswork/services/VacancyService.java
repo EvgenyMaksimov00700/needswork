@@ -147,7 +147,7 @@ public class VacancyService {
         System.out.println("Отправляем запрос на Telegram: " + requestBody);
         
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://tworker.ru:5000/similarity"))
+                .uri(URI.create("http://212.34.133.246:5000/similarity"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody.toString()))
                 .build();
