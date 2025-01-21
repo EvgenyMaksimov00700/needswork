@@ -68,26 +68,24 @@ public class VideoCvService {
     }
 
     public void sendVideoNote(User user, String fileIdOrUrl, Vacancy vacancy) {
-
-        User employer_user =vacancy.getEmployer().getUser();
-        HttpClient client = HttpClient.newHttpClient();
+        User employer_user = vacancy.getEmployer().getUser();
         HttpClient client2 = HttpClient.newHttpClient();
-        String requestBody = String.format("{\"chat_id\":\"%d\", \"video_note\":\"%s\"}", employer_user.getId(), fileIdOrUrl);
         Dotenv dotenv = Dotenv.load();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendVideoNote"))
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-                .build();
+        if (fileIdOrUrl != null) {
+            HttpClient client = HttpClient.newHttpClient();
+            String requestBody = String.format("{\"chat_id\":\"%d\", \"video_note\":\"%s\"}", employer_user.getId(), fileIdOrUrl);
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendVideoNote"))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                    .build();
+            try {
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-
-
-        try {
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            System.out.println("Ответ от Telegram: " + response.body());
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+                System.out.println("Ответ от Telegram: " + response.body());
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         if (vacancy != null) {
 
