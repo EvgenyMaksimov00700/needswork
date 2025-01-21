@@ -68,11 +68,15 @@ public class VideoCvService {
     }
 
     public void sendVideoNote(User user, String fileIdOrUrl, Vacancy vacancy) {
-        User employer_user = vacancy.getEmployer().getUser();
+
         HttpClient client2 = HttpClient.newHttpClient();
         Dotenv dotenv = Dotenv.load();
         if (fileIdOrUrl != null) {
             HttpClient client = HttpClient.newHttpClient();
+            User employer_user = user;
+            if (vacancy!=null) {
+                employer_user = vacancy.getEmployer().getUser();
+            }
             String requestBody = String.format("{\"chat_id\":\"%d\", \"video_note\":\"%s\"}", employer_user.getId(), fileIdOrUrl);
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendVideoNote"))
@@ -88,6 +92,7 @@ public class VideoCvService {
             }
         }
         if (vacancy != null) {
+            User employer_user = vacancy.getEmployer().getUser();
 
             String textMessage = String.format(
                     "Отклик по вакансии <b>%s</b>\nФИО: <a href='tg://user?id=%d'>%s</a>\nтел: %s",
