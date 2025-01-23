@@ -84,5 +84,34 @@ fetch( `/videoCv/${videoCvId}`, {
                                          element.remove();
                                      }})
 
+
 }
+
 }
+function triggerFileUpload() {
+    document.getElementById('text-resume-upload').click();
+}
+
+document.getElementById('text-resume-upload').addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            const response = await fetch(`/jobSeeker/resume/${clientID}`, {
+                method: 'PUT',
+                body: formData,
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Файл успешно загружен:', result);
+            } else {
+                console.error('Ошибка при загрузке файла:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Ошибка при отправке файла:', error);
+        }
+    }
+});

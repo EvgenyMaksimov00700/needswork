@@ -46,4 +46,12 @@ public class JobSeekerService {
     public JobSeeker getJobSeekerByUserId(BigInteger userId) {
         return jobSeekerRepository.getJobSeekerByUserId(userId);
     }
+
+    public void addTextResume(BigInteger jobSeekerId, String absolutePath) {
+        JobSeeker jobSeeker = getJobSeekerByUserId(jobSeekerId);
+        if (jobSeeker != null) {
+            jobSeeker.setTextResume(absolutePath);
+            jobSeekerRepository.save(jobSeeker);
+        }
+    }
 }

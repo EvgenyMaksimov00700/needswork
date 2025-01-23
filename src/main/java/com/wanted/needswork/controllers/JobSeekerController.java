@@ -12,9 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class JobSeekerController {
@@ -68,9 +73,40 @@ public class JobSeekerController {
         return new ResponseEntity<>(jobSeekerService.getJobSeekerByUserId(userId).toResponseDTO(), HttpStatus.OK);
     }
 
-    @PostMapping("/jobSeeker/resume/{jobSeekerId}")
-    public ResponseEntity<JobSeeker> addTextResumeJobSeeker(@RequestBody JobSeekerDTO jobSeekerDTO, @PathVariable Integer jobSeekerId) {
-        return null;
+    @PutMapping("/jobSeeker/resume/{jobSeekerId}")
+    public void addTextResumeJobSeeker(@RequestParam("file") MultipartFile file, @PathVariable BigInteger jobSeekerId) {
+        if (file.isEmpty()) {
+            return;
+        }
+
+        try {
+            // Сохраняем файл в локальный путь
+            String currentDir = System.getProperty("user.dir");
+            String uploadDir = Paths.get(currentDir, "textResume").toString();
+            File directory = new File(uploadDir);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
+            String fileExtension = getFileExtension(file.getOriginalFilename());
+            String randomFileName = UUID.randomUUID().toString() + fileExtension;
+            String filePath = Paths.get(uploadDir, randomFileName).toString();
+            File savedFile = new File(filePath);
+            file.transferTo(savedFile);
+
+            // Вывод пути сохраненного файла
+            System.out.println("Файл сохранен по пути: " + savedFile.getAbsolutePath());
+            jobSeekerService.addTextResume(jobSeekerId, savedFile.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getFileExtension(String fileName) {
+        if (fileName != null && fileName.contains(".")) {
+            return fileName.substring(fileName.lastIndexOf("."));
+        }
+        return "";
     }
 
 }
