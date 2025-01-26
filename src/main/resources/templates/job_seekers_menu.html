@@ -16,7 +16,14 @@
 
     <div class="action-buttons">
         <!-- Кнопка для загрузки текстового резюме -->
-        <button class="action-button" onclick="triggerFileUpload()">Загрузить текстовое резюме</button>
+        <div id="resume-not-uploaded">
+            <button class="action-button" onclick="triggerFileUpload()">Загрузить текстовое резюме</button>
+        </div>
+        <div id="resume-uploaded" class="update-show-resume">
+            <button class="action-button update-resume" onclick="triggerFileUpload()">Обновить</button>
+            <a class = "show-resume" id="resume-text"> Мое текстовое резюме</a>
+        </div>
+
         <input id="text-resume-upload" type="file" accept=".txt,.doc,.docx,.pdf" style="display: none;">
 
         <!-- Другие кнопки -->

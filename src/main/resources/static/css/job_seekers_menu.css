@@ -110,5 +110,13 @@ h2 {
     background-color: #007ab8;
     transform: scale(1.02);
 }
-
-
+.update-show-resume {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    font-size: 14px;
+    }
+.update-resume{width:30%}
+.show-resume{margin-left: 15px; text-decoration: underline; color: white}

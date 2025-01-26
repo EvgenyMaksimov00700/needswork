@@ -63,6 +63,25 @@ document.addEventListener('DOMContentLoaded', function() {
             vacancies.innerHTML += element;
         });
     });
+    fetch(`/jobSeeker/user/${clientID}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`Ошибка HTTP: ${response.status}`); // Бросаем ошибку, если ответ не в порядке
+            }
+            return response.json();
+        }).then(data => {
+            if (data.textResume==null) {
+            document.getElementById("resume-uploaded").style.display = 'none';
+            }
+            else {
+            document.getElementById("resume-not-uploaded").style.display = 'none';
+            document.getElementById("resume-text").href = data.textResume;
+            }
+        });
 });
 
 function delete_videoCv(videoCvId) {
