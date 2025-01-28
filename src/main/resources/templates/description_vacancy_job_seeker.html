@@ -24,8 +24,15 @@
         <p>👁 83</p>
     </div>
     <div class="button-group">
-        <button class="button green" onclick="vacancy_responses()" id="response">Откликнуться c резюме</button>
-        <button class="button green" onclick="vacancy_no_resume()" id="no-resume">Откликнуться без резюме</button>
+
+        <button class="button green" onclick="vacancy_text_resume()" id="text-resume">Откликнуться с текстовым резюме
+        </button>
+        <div class="resume-buttons-two">
+            <button class="button green" onclick="vacancy_response()" id="response">Видео резюме</button>
+            <button class="button green" onclick="vacancy_no_resume()" id="no-resume">Без резюме</button>
+        </div>
+
+
         <button class="button green" onclick="vacancy_back()">Назад</button>
     </div>
 </div>
@@ -36,6 +43,7 @@
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Список резюме</h2>
         <div id="resume-buttons" class="resume-buttons"></div>
+
     </div>
 </div>
 <div id="loading" class="loading-overlay">

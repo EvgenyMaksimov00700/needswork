@@ -113,8 +113,8 @@ h2 {
 .update-show-resume {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 10px;
     align-items: center;
-    padding: 10px;
     color: white;
     font-size: 14px;
     }

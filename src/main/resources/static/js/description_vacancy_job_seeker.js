@@ -225,6 +225,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + formatDateTime(data.createdDateTime);
                 document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id)};
                 document.getElementById("no-resume").onclick = () => {vacancy_no_resume(data.position, data.id)};
+                document.getElementById("text-resume").onclick = () => {vacancy_text_resume(data.position, data.id)};
             });
 setTimeout(() => {
                 const loadingOverlay = document.getElementById("loading");
@@ -233,6 +234,47 @@ setTimeout(() => {
 });
 
 function vacancy_no_resume(vacancyName, vacancyId) {
+
+    const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
+    url1 = "/videoCv/send"
+    data = {videoCvMessage:  null, userId: clientID, vacancyId: vacancyId}
+         const response = fetch(url1, {
+              method: 'POST', // Метод запроса
+              headers: {
+                  'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+              },
+              body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+          });
+          fetch("/jobSeeker/user/"+clientID, {
+              method: 'GET', // Метод запроса
+              headers: {
+                  'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+              },
+
+          }).then(responseJs => {
+          if (!responseJs.ok) {
+                  throw new Error(`Ошибка HTTP: ${responseJs.status}`); // Бросаем ошибку, если ответ не в порядке
+          }
+                return responseJs.json();
+          }).then(jobSeeker => {
+            const url2 = "/response"
+                  data = {vacancy_id: parseInt (vacancyId), job_seeker_id: jobSeeker.id, comment: null}
+                  console.log (data);
+                       const response1 = fetch(url2, {
+                            method: 'POST', // Метод запроса
+                            headers: {
+                                'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                            },
+                            body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+                        });
+
+                  alert("Ваше резюме было успешно отправлено");
+                  const resumeButtons = document.getElementById('resume-buttons');
+          })
+// ��огика отклика без резюме
+    // Логика отклика без резюме
+}
+function vacancy_text_resume(vacancyName, vacancyId) {
 
     const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
     url1 = "/videoCv/send"

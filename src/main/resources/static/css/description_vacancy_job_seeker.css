@@ -71,14 +71,25 @@ h1 {
     color: white; /* Светлый текст */
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
+.resume-buttons-two {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+
+
+}
 
 .button.green {
     background-color: #0088cc; /* Telegram-синий */
+    width: 100%;
 }
 
 .button.green:hover {
     background-color: #007ab8; /* Светлее при наведении */
     transform: scale(1.02); /* Лёгкое увеличение */
+
 }
 
 .button.red {
@@ -143,6 +154,7 @@ h1 {
     cursor: pointer;
     background-color: #0088cc; /* Telegram-синий */
     transition: background-color 0.3s ease, transform 0.3s ease;
+
 }
 
 .resume-button:hover {
