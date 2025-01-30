@@ -94,7 +94,7 @@ public class VideoCvController {
     public ResponseEntity<VideoCv> VideoCvSend (@RequestBody VideoCvSendDTO videoCvSendDTO) {
         User user = userService.getUser(videoCvSendDTO.getUserId());
         Vacancy vacancy = vacancyService.getVacancy(videoCvSendDTO.getVacancyId());
-        videoCvService.sendVideoNote(user, videoCvSendDTO.getVideoCvMessage(), vacancy);
+        videoCvService.sendVideoNote(user, videoCvSendDTO.getVideoCvMessage(), vacancy, videoCvSendDTO.getTextResume());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -116,6 +116,7 @@ h1 {
 
 .modal-content {
     background-color: #23272a; /* Фон модального окна */
+    margin-top: 130px;
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #3c4043; /* Тонкая обводка */

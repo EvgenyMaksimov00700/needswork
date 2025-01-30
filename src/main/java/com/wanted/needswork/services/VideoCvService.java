@@ -10,6 +10,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.URI;
@@ -19,11 +20,15 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
+import kong.unirest.MultipartBody;
+import kong.unirest.Unirest;
+
 @Service
 public class VideoCvService {
     @Autowired
     VideoCvRepository videoCvRepository;
-
+    @Autowired
+    JobSeekerRepository jobSeekerRepository;
     public VideoCv getVideoCv(Integer id) {
         return videoCvRepository.findById(id).orElse(null);
     }
@@ -67,14 +72,14 @@ public class VideoCvService {
         }
     }
 
-    public void sendVideoNote(User user, String fileIdOrUrl, Vacancy vacancy) {
+    public void sendVideoNote(User user, String fileIdOrUrl, Vacancy vacancy, Boolean textResume) {
 
         HttpClient client2 = HttpClient.newHttpClient();
         Dotenv dotenv = Dotenv.load();
         if (fileIdOrUrl != null) {
             HttpClient client = HttpClient.newHttpClient();
             User employer_user = user;
-            if (vacancy!=null) {
+            if (vacancy != null) {
                 employer_user = vacancy.getEmployer().getUser();
             }
             String requestBody = String.format("{\"chat_id\":\"%d\", \"video_note\":\"%s\"}", employer_user.getId(), fileIdOrUrl);
@@ -99,23 +104,38 @@ public class VideoCvService {
                     vacancy.getPosition(), user.getId(), user.getFullName(), user.getPhone()
             );
 
-            String requestBody2 = String.format(
-                    "{\"chat_id\":\"%d\", \"text\":\"%s\", \"parse_mode\":\"HTML\"}",
-                    employer_user.getId(), textMessage
-            );
-            System.out.println(requestBody2);
-            HttpRequest request2 = HttpRequest.newBuilder()
-                    .uri(URI.create("https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendMessage"))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(requestBody2))
-                    .build();
-            try {
+            if (textResume) {
+            JobSeeker jobSeeker = jobSeekerRepository.getJobSeekerByUserId(user.getId());
+                String url = "https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendDocument";
 
-                HttpResponse<String> response2 = client2.send(request2, HttpResponse.BodyHandlers.ofString());
-                System.out.println("Ответ от Telegram: " + response2.body());
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
+                kong.unirest.HttpResponse <String> response = Unirest.post(url)
+                        .field("chat_id", employer_user.getId())
+                        .field("caption", textMessage)  // Можно добавить подпись
+                        .field("document", new File(jobSeeker.getTextResume())) // Загружаем файл
+                        .field("parse_mode", "HTML")
+                        .asString();
+
+                System.out.println(response.getBody());
+            } else {
+                String requestBody2 = String.format(
+                        "{\"chat_id\":\"%d\", \"text\":\"%s\", \"parse_mode\":\"HTML\"}",
+                        employer_user.getId(), textMessage
+                );
+                System.out.println(requestBody2);
+                HttpRequest request2 = HttpRequest.newBuilder()
+                        .uri(URI.create("https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendMessage"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(requestBody2))
+                        .build();
+                try {
+
+                    HttpResponse<String> response2 = client2.send(request2, HttpResponse.BodyHandlers.ofString());
+                    System.out.println("Ответ от Telegram: " + response2.body());
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+
         }
 
     }

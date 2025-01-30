@@ -51,6 +51,7 @@ dependencies {
 	// https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations
 //	implementation group: 'io.swagger.core.v3', name: 'swagger-annotations', version: '2.2.22'
 	implementation 'org.json:json:20240303'
+	implementation 'com.konghq:unirest-java:3.13.6'
 
 
 

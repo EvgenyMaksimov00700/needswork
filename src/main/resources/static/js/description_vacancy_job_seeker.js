@@ -278,7 +278,7 @@ function vacancy_text_resume(vacancyName, vacancyId) {
 
     const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
     url1 = "/videoCv/send"
-    data = {videoCvMessage:  null, userId: clientID, vacancyId: vacancyId}
+    data = {videoCvMessage:  null, userId: clientID, vacancyId: vacancyId, textResume: true}
          const response = fetch(url1, {
               method: 'POST', // Метод запроса
               headers: {
