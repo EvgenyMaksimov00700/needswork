@@ -85,6 +85,11 @@ public class WebUpController {
         return "filtres";
     }
 
+    @GetMapping("/admin")
+    public String adminPage() {
+        return "admin_panel";
+    }
+
     @PostMapping("/message/send")
     public ResponseEntity<Object> messageSend (@RequestBody TgMessageDTO tgMessageDTO) {
 
