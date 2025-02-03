@@ -8,40 +8,38 @@
     <link rel="stylesheet" href="/css/job_seekers_menu.css">
 </head>
 <body>
-<div class="container">
-    <h2>Личный кабинет</h2>
-    <div class="resume-buttons" id="resume-buttons">
-        <!-- Место для подгрузки резюме -->
-    </div>
+<div class="phone">
+    <div class="screen">
+        <h2 class="header">Личный кабинет</h2>
 
-    <div class="action-buttons">
-        <!-- Кнопка для загрузки текстового резюме -->
-        <div id="resume-not-uploaded">
-            <button class="action-button" onclick="triggerFileUpload()">Загрузить текстовое резюме</button>
-        </div>
-        <div id="resume-uploaded" class="update-show-resume">
-            <button class="action-button update-resume" onclick="triggerFileUpload()">Обновить</button>
-            <a class = "show-resume" id="resume-text"> Мое текстовое резюме</a>
+        <div class="resume-buttons" id="resume-buttons">
+            <!-- Место для подгрузки резюме -->
         </div>
 
-        <input id="text-resume-upload" type="file" accept=".txt,.doc,.docx,.pdf" style="display: none;">
+        <!-- Все кнопки внизу -->
+        <div class="bottom-buttons">
+            <button class="button large-button" onclick="triggerFileUpload()">Загрузить текстовое резюме</button>
+            <div id="resume-uploaded" class="update-show-resume">
+                <button class="button update-resume" onclick="triggerFileUpload()">Обновить</button>
+                <a class="show-resume" id="resume-text">Мое текстовое резюме</a>
+            </div>
+            <input id="text-resume-upload" type="file" accept=".txt,.doc,.docx,.pdf" style="display: none;">
 
-        <!-- Другие кнопки -->
-        <button class="action-button" onclick="window.location.href='/jobSeeker/account/favorites'">Избранные вакансии</button>
-        <button class="action-button" onclick="support()">Поддержка</button>
+            <button class="button" onclick="window.location.href='/jobSeeker/account/favorites'">Избранные вакансии</button>
+            <button class="button" onclick="support()">Поддержка</button>
+        </div>
     </div>
 </div>
 
-<script src="/js/job_seekers_menu.js"></script>
+<script src="job_seekers_menu.js"></script>
 <script>
     function triggerFileUpload() {
         const fileInput = document.getElementById('text-resume-upload');
-        fileInput.click(); // Открытие окна выбора файла
+        fileInput.click();
         fileInput.onchange = () => {
             if (fileInput.files.length > 0) {
                 const fileName = fileInput.files[0].name;
                 alert(`Вы выбрали файл: ${fileName}`);
-                // Здесь можно добавить логику загрузки файла на сервер
             }
         };
     }
