@@ -28,30 +28,25 @@ body {
 /* Экран приложения */
 .screen {
     position: absolute;
-    top: 40px; /* Смещение вниз, чтобы не резало верхнюю часть */
+    top: 60px; /* Еще сильнее сдвинул вниз */
     left: 0;
     width: 100%;
-    height: calc(100% - 40px); /* Учитываем сдвиг вниз */
+    height: calc(100% - 60px); /* Учитываем сдвиг вниз */
     background-color: #20232A;
     border-radius: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 10px;
+    padding: 10px 10px; /* Уменьшил отступы */
     box-sizing: border-box;
-    overflow-y: auto;
-}
-
-/* Скрытие стандартного скролла */
-.screen::-webkit-scrollbar {
-    width: 0;
+    overflow: hidden; /* Убрал скролл */
 }
 
 /* Заголовок */
 .header {
-    font-size: 24px;
+    font-size: 20px; /* Уменьшил размер */
     color: #E0E0E0;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Сократил отступ */
 }
 
 /* Кнопки */
@@ -60,9 +55,9 @@ body {
     background-color: #4A9FDF;
     color: white;
     text-align: center;
-    padding: 12px 0;
+    padding: 10px 0; /* Уменьшил высоту */
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 14px; /* Чуть меньше текст */
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     text-decoration: none;
@@ -77,18 +72,18 @@ body {
 /* Кнопки внизу экрана */
 .bottom-buttons {
     position: absolute;
-    bottom: 20px;
+    bottom: 10px; /* Сильнее прижал к низу */
     width: 90%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px; /* Уменьшил расстояние между кнопками */
     align-items: center;
 }
 
 /* Кнопка "Загрузить текстовое резюме" */
 .large-button {
-    height: 50px; /* Высота, как у других кнопок */
-    font-size: 18px;
+    height: 45px; /* Сделал чуть меньше */
+    font-size: 16px;
 }
 
 /* Блок загрузки/обновления резюме */
@@ -101,17 +96,20 @@ body {
 
 .update-resume {
     width: 48%;
+    height: 40px; /* Сделал ниже */
+    font-size: 14px;
 }
 
 .show-resume {
     width: 48%;
     background-color: #353A43;
     text-align: center;
-    padding: 12px 0;
+    padding: 10px 0;
     border-radius: 8px;
     color: white;
     cursor: pointer;
     text-decoration: none;
+    font-size: 14px;
 }
 
 .show-resume:hover {
