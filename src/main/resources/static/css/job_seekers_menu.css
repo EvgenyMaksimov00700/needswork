@@ -28,10 +28,10 @@ body {
 /* Экран приложения */
 .screen {
     position: absolute;
-    top: 0;
+    top: 40px; /* Смещение вниз, чтобы не резало верхнюю часть */
     left: 0;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 40px); /* Учитываем сдвиг вниз */
     background-color: #20232A;
     border-radius: 40px;
     display: flex;
@@ -39,9 +39,10 @@ body {
     align-items: center;
     padding: 20px 10px;
     box-sizing: border-box;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
+/* Скрытие стандартного скролла */
 .screen::-webkit-scrollbar {
     width: 0;
 }
@@ -84,9 +85,9 @@ body {
     align-items: center;
 }
 
-/* Кнопка "Загрузить текстовое резюме" на весь экран */
+/* Кнопка "Загрузить текстовое резюме" */
 .large-button {
-    height: 50px; /* Делаем её такой же по высоте, как другие кнопки */
+    height: 50px; /* Высота, как у других кнопок */
     font-size: 18px;
 }
 

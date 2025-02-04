@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -55,4 +56,32 @@ public class ResponseService {
         return null;
 
     }
+
+    public List<Response> getVideoResponses() {
+        List<Response> videoResponses = new ArrayList<>();
+        List<Response> responses = responseRepository.findAll();
+        for (Response response : responses)
+            if (response.getComment() != null && !response.getComment().contains("/home"))
+                videoResponses.add(response);
+        return videoResponses;
+    }
+
+    public List<Response> getTextResponses() {
+        List<Response> textResponses = new ArrayList<>();
+        List<Response> responses = responseRepository.findAll();
+        for (Response response : responses)
+            if (response.getComment() != null && response.getComment().contains("/home"))
+                textResponses.add(response);
+        return textResponses;
+    }
+
+    public List<Response> getWithoutResume() {
+        List<Response> responses = responseRepository.findAll();
+        List<Response> withoutResume = new ArrayList<>();
+        for (Response response : responses)
+            if (response.getComment() == null)
+                withoutResume.add(response);
+        return withoutResume;
+    }
+
 }
