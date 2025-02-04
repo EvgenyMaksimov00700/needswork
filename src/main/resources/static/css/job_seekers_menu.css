@@ -1,5 +1,5 @@
 * {
-    margin: 0;
+    margin: 20;
     padding: 0;
     box-sizing: border-box;
 }
@@ -10,7 +10,7 @@ body {
     align-items: center;
     background-color: #1C1E22;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    height: 100vh;
+    height: 90vh;
 }
 
 /* Контейнер iPhone 14 */
@@ -28,36 +28,40 @@ body {
 /* Экран приложения */
 .screen {
     position: absolute;
-    top: 60px; /* Еще сильнее сдвинул вниз */
+    top: 0;
     left: 0;
     width: 100%;
-    height: calc(100% - 60px); /* Учитываем сдвиг вниз */
+    height: 100%;
     background-color: #20232A;
     border-radius: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 10px; /* Уменьшил отступы */
+    padding: 20px 10px;
     box-sizing: border-box;
-    overflow: hidden; /* Убрал скролл */
+    overflow-y: scroll;
+}
+
+.screen::-webkit-scrollbar {
+    width: 0;
 }
 
 /* Заголовок */
 .header {
-    font-size: 20px; /* Уменьшил размер */
+    font-size: 24px;
     color: #E0E0E0;
-    margin-bottom: 10px; /* Сократил отступ */
+    margin-bottom: 20px;
 }
 
 /* Кнопки */
 .button {
     width: 100%;
-    background-color: #4A9FDF;
+    background-color: #0088cc;
     color: white;
     text-align: center;
-    padding: 10px 0; /* Уменьшил высоту */
+    padding: 12px 0;
     border-radius: 8px;
-    font-size: 14px; /* Чуть меньше текст */
+    font-size: 16px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     text-decoration: none;
@@ -72,18 +76,18 @@ body {
 /* Кнопки внизу экрана */
 .bottom-buttons {
     position: absolute;
-    bottom: 10px; /* Сильнее прижал к низу */
+    bottom: 20px;
     width: 90%;
     display: flex;
     flex-direction: column;
-    gap: 8px; /* Уменьшил расстояние между кнопками */
+    gap: 10px;
     align-items: center;
 }
 
-/* Кнопка "Загрузить текстовое резюме" */
+/* Кнопка "Загрузить текстовое резюме" на весь экран */
 .large-button {
-    height: 45px; /* Сделал чуть меньше */
-    font-size: 16px;
+    height: 50px; /* Делаем её такой же по высоте, как другие кнопки */
+    font-size: 18px;
 }
 
 /* Блок загрузки/обновления резюме */
@@ -96,20 +100,17 @@ body {
 
 .update-resume {
     width: 48%;
-    height: 40px; /* Сделал ниже */
-    font-size: 14px;
 }
 
 .show-resume {
     width: 48%;
     background-color: #353A43;
     text-align: center;
-    padding: 10px 0;
+    padding: 12px 0;
     border-radius: 8px;
     color: white;
     cursor: pointer;
     text-decoration: none;
-    font-size: 14px;
 }
 
 .show-resume:hover {
