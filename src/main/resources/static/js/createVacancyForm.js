@@ -9,7 +9,7 @@ function isDesktop() {
     if (!isDesktop()) {
         window.Telegram.WebApp.requestFullscreen();
     }
-}
+
 
 }
 catch(error) {clientID = 159619887}
