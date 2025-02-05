@@ -1,98 +1,157 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #121212; /* Фон Telegram Ночь */
-    color: #D1D1D1; /* Светлый текст */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1C1E22; /* Темный фон, как в ночной теме Telegram */
+  position: relative;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.container {
-    background-color: #1E1E1E; /* Фон контейнера */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    width: 250px;
-    border: 2px solid #2C2C2C; /* Граница контейнера */
+.phone {
+  position: relative;
+  width: 390px; /* Ширина экрана iPhone 14 */
+  height: 844px; /* Высота экрана iPhone 14 */
+  border-radius: 40px;
+  background-color: #1C1E22; /* Темный фон для телефона */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden; /* Прячем полосы прокрутки */
+  border: 2px solid #2C2F36; /* Темная рамка */
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.screen {
+  margin-top: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #20232A; /* Темный фон для экрана */
+  border-radius: 40px; /* Радиус экрана совпадает с рамкой телефона */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  overflow-y: scroll; /* Позволяет прокручивать контент по вертикали */
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #D1D1D1;
+/* Скрытие вертикальной полосы прокрутки */
+.screen::-webkit-scrollbar {
+  width: 0;
 }
 
-.section {
-    margin-bottom: 20px;
-    text-align: left;
-    width: 100%;
+.screen::-webkit-scrollbar-thumb {
+  background: transparent;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #D1D1D1;
+.header {
+  font-size: 24px;
+  color: #E0E0E0; /* Светлый текст, похожий на Telegram */
+  margin-bottom: 20px;
 }
 
-input[type="text"] {
-    width: 95%;
-    background-color: #2C2C2C; /* Фон поля ввода */
-    color: #D1D1D1; /* Текст в поле ввода */
-    border: 2px solid #2C2C2C; /* Граница */
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    box-sizing: border-box;
+.stats {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 120px; /* Отступ для кнопок внизу */
 }
 
-.buttons {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+.stat {
+  background-color: #2A2E35; /* Темно-серый фон для карточек */
+  width: 90%;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-button {
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 5px 0;
-    border: 2px solid transparent; /* Убираем лишние границы */
-    color: #FFFFFF; /* Текст кнопок */
-    font-size: 14px;
-    box-sizing: border-box;
+.stat .number {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-button.resume {
-    background-color: #007BFF; /* Синий цвет кнопки */
+.stat .label {
+  font-size: 14px;
+  color: #B0B0B0; /* Более светлый цвет для меток */
 }
 
-button.resume:hover {
-    background-color: #0056b3; /* Темно-синий при наведении */
+.substats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-button.block {
-    background-color: #D32F2F; /* Красный цвет кнопки */
+.substat {
+  background-color: #353A43; /* Темно-серый для подкатегорий */
+  width: 80%;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  color: white;
 }
 
-button.block:hover {
-    background-color: #9A0007; /* Темно-красный при наведении */
+.vacancy-list {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vacancy {
+  background-color: #353A43; /* Темно-серый для вакансий */
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  color: white;
+}
+
+/* Кнопки внизу экрана */
+.button-container {
+  position: fixed; /* Фиксированное положение */
+  bottom: 0; /* Прижаты к низу */
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: #20232A; /* Фон контейнера кнопок */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* Тень сверху */
+}
+
+button.block-client, button.back {
+  width: calc(100% - 20px); /* На всю ширину экрана с отступами по 10px с каждой стороны */
+  padding: 15px;
+  border: none;
+  border-radius: 8px; /* Скругленные углы */
+  font-size: 16px;
+  cursor: pointer;
+  color: #ffffff; /* Белый текст */
+  transition: background-color 0.3s ease;
+}
+
+button.block-client {
+  background-color: #d9354d; /* Красный фон */
+  margin-bottom: 10px; /* Отступ между кнопками */
+}
+
+button.block-client:hover {
+  background-color: #b2293d; /* Темно-красный при наведении */
 }
 
 button.back {
-    background-color: #007BFF; /* Синий цвет кнопки */
-    margin-top: 20px;
-    width: 100%;
+  background-color: #0088cc; /* Синий фон */
 }
 
 button.back:hover {
-    background-color: #0056b3; /* Темно-синий при наведении */
-}
+  background-color: #3a5e80; /* Темно-синий при наведении */
 }

@@ -1,25 +1,45 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Управление пользователями</title>
+    <title>Admin Panel</title>
     <link rel="stylesheet" href="../static/css/admin_users12.css">
 </head>
 <body>
-<div class="container">
-    <form>
-        <h2>Управление пользователями</h2>
-        <div class="section">
-            <label for="vacancy-list">список вакансий</label>
-            <input type="text" id="vacancy-list" required>
+<div class="phone">
+    <div class="screen" id="screen">
+        <div class="header">Наименование соискателя (ID):</div>
+        <div class="stats">
+            <div class="stat">
+                <div class="number">30</div>
+                <div class="label">Количество откликов</div>
+                <div class="substats">
+                    <div class="substat">
+                        <div class="subnumber">10</div>
+                        <div class="sublabel">Видео-резюме</div>
+                    </div>
+                    <div class="substat">
+                        <div class="subnumber">15</div>
+                        <div class="sublabel">Текстовое резюме</div>
+                    </div>
+                    <div class="substat">
+                        <div class="subnumber">5</div>
+                        <div class="sublabel">Без резюме</div>
+                    </div>
+                </div>
+            </div>
+            <div class="stat">
+                <div class="label">Вакансии: список вакансий</div>
+                <div class="vacancy-list">
+                    <div class="vacancy">Курьер на легкие заказы до 2кг</div>
+                    <div class="vacancy">Менеджер по продажам</div>
+                </div>
+            </div>
         </div>
-        <div class="buttons">
-            <button type="button" class="resume">резюме</button>
-            <button type="button" class="block">заблокировать пользователя</button>
-        </div>
+        <button type="button" class="block-client">Заблокировать соискателя</button>
         <button type="button" class="back">Назад</button>
-    </form>
+    </div>
 </div>
 </body>
 </html>
