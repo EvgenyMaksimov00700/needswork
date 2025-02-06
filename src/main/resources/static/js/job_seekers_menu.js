@@ -7,6 +7,7 @@ window.Telegram.WebApp.expand();
     }
     console.log(isDesktop());
     if (!isDesktop()) {
+        document.getElementById("phone").style.marginTop="120px"
         window.Telegram.WebApp.requestFullscreen();
     }
 }

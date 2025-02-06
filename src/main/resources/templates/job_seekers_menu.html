@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Личный кабинет</title>
-    <link rel="stylesheet" href="/css/job_seekers_menu.css">
+    <link rel="stylesheet" href="../static/css/job_seekers_menu.css">
 </head>
 <body>
-<div class="phone">
+<div class="phone" id="phone">
     <div class="screen">
         <h2 class="header">Личный кабинет</h2>
 
@@ -18,7 +18,7 @@
 
         <!-- Все кнопки внизу -->
         <div class="bottom-buttons">
-            <button class="button large-button" onclick="triggerFileUpload()">Загрузить текстовое резюме</button>
+            <button class="button large-button" onclick="triggerFileUpload()" id="resume-not-uploaded"> Загрузить текстовое резюме</button>
             <div id="resume-uploaded" class="update-show-resume">
                 <button class="button update-resume" onclick="triggerFileUpload()">Обновить</button>
                 <a class="show-resume" id="resume-text">Мое текстовое резюме</a>
