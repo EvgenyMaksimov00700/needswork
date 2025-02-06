@@ -14,8 +14,6 @@ function isDesktop() {
         window.Telegram.WebApp.requestFullscreen();
     }
 }
-
-}
 catch(error) {clientID = 159619887}
 console.log(clientID)
 function back () {

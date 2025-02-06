@@ -9,8 +9,11 @@ try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
     if (!isDesktop()) {
         window.Telegram.WebApp.requestFullscreen();
     }
-window.Telegram.WebApp.expand();}
-catch(error) {clientID = 159619887}
+window.Telegram.WebApp.expand();
+}
+catch(error) {
+        clientID = 159619887
+}
 console.log(clientID)
 
 document.addEventListener('touchstart', function(event) {
