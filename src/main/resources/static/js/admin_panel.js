@@ -13,3 +13,35 @@ try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
 window.Telegram.WebApp.expand();}
 catch(error) {clientID = 159619887}
 console.log(clientID)
+
+document.addEventListener('DOMContentLoaded', function(){
+     fetch( `/admin/info/total`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (!response.ok) {
+
+                    throw new Error(`Ошибка HTTP: ${response.status}`);
+                }
+                return response.json();
+
+            }).then(data => {
+                console.log (data);
+document.getElementById('vacancies').textContent = data.vacancies;
+document.getElementById('responses').textContent = data.responses;
+document.getElementById('videoResponses').textContent = data.videoResponses;
+document.getElementById('textResponses').textContent = data.textResponses;
+document.getElementById('withoutResponses').textContent = data.withoutResponses;
+document.getElementById('jobSeekers').textContent = data.jobSeekers;
+document.getElementById('employers').textContent = data.employers;
+document.getElementById('payments').textContent = data.payments;
+
+;
+            });
+setTimeout(() => {
+                const loadingOverlay = document.getElementById("loading");
+            loadingOverlay.style.display = "none";
+            }, 1000);
+});

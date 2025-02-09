@@ -25,30 +25,34 @@ public class AdminController {
     @Autowired
     JobSeekerService jobSeekerService;
     @Autowired
-    ResponseService responseService;}
+    ResponseService responseService;
 
-   /* @GetMapping("/admin/info/total")
+    @GetMapping("/admin/info/total")
     public ResponseEntity<AdminTotalInfoResponseDTO> info() {
         Integer totalEmployers = employerService.getEmployers().size();
         Integer totalVacancies = vacancyService.getVacancy().size();
         Integer totalJobSeekers = jobSeekerService.getJobSeekers().size();
         Integer totalResponses = responseService.getResponse().size();
         Integer totalVideoResponses = responseService.getVideoResponses().size();
-    }
-
-       /* Integer totalTextResponses = responseService.getTextResponses().size;
-       // Integer totalWithoutResponses = responseService.getTextWithoutResponses().size;
-       // AdminTotalInfoResponseDTO responseDTO = new AdminTotalInfoResponseDTO(
+        Integer totalTextResponses = responseService.getTextResponses().size();
+        Integer totalWithoutResponses = responseService.getWithoutResume().size();
+        Integer totalPayed = 0;
+        Integer totalAvgTime = 0;
+        AdminTotalInfoResponseDTO responseDTO = new AdminTotalInfoResponseDTO(
                 totalVacancies,
                 totalResponses,
                 totalVideoResponses,
                 totalTextResponses,
-                totalWithoutResponses
+                totalWithoutResponses,
+                totalPayed,
+                totalJobSeekers,
+                totalEmployers,
+                totalAvgTime
         );
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
+}
 
-*/
 
 
 
