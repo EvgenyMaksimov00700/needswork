@@ -10,7 +10,7 @@ body {
     align-items: center;
     background-color: #1C1E22;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    height: 90vh;
+    height: 100vh;
 }
 
 /* Контейнер iPhone 14 */
@@ -115,4 +115,36 @@ body {
 
 .show-resume:hover {
     background-color: #2A2E35;
+}
+
+.resume-buttons {
+    max-height: 75vh;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    flex-grow: 1;
+    margin-left: 10px;
+    width:96%;
+}
+
+.resume-button {
+    background-color: #0088cc; /* Telegram-синий для кнопок */
+    color: white;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #3c4043; /* Лёгкая обводка */
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.resume-button:hover {
+    background-color: #007ab8; /* Светлее при наведении */
+    transform: scale(1.02); /* Лёгкое увеличение */
+}
+.resume-buttons::-webkit-scrollbar,
+.container::-webkit-scrollbar {
+    display: none;
+
 }

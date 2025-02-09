@@ -37,11 +37,25 @@ document.getElementById('withoutResponses').textContent = data.withoutResponses;
 document.getElementById('jobSeekers').textContent = data.jobSeekers;
 document.getElementById('employers').textContent = data.employers;
 document.getElementById('payments').textContent = data.payments;
+document.getElementById('averageVisitTimeSeconds').textContent = formatSeconds(data.averageVisitTimeSeconds);
 
-;
             });
 setTimeout(() => {
                 const loadingOverlay = document.getElementById("loading");
             loadingOverlay.style.display = "none";
-            }, 1000);
+            }, 3000);
 });
+function formatSeconds(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+
+    let result = "";
+    if (hours > 0) {
+        result += `${hours}ч `;
+    }
+    if (minutes > 0 || hours === 0) {
+        result += `${minutes}м`;
+    }
+
+    return result.trim();
+}
