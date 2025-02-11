@@ -82,7 +82,7 @@ public class JobSeekerController {
         try {
             // Сохраняем файл в локальный путь
             String currentDir = System.getProperty("user.dir");
-            String uploadDir = Paths.get(currentDir, "resources/static/textResume").toString();
+            String uploadDir = Paths.get(currentDir, "src/main/resources/static/textResume").toString();
             File directory = new File(uploadDir);
             if (!directory.exists()) {
                 directory.mkdirs();
