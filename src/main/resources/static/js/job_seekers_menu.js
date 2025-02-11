@@ -125,8 +125,8 @@ document.getElementById('text-resume-upload').addEventListener('change', async (
             });
 
             if (response.ok) {
-                const result = await response.json();
-                console.log('Файл успешно загружен:', result);
+
+                window.location.reload();
             } else {
                 console.error('Ошибка при загрузке файла:', response.statusText);
             }
