@@ -44,6 +44,18 @@ setTimeout(() => {
                 const loadingOverlay = document.getElementById("loading");
             loadingOverlay.style.display = "none";
             }, 3000);
+document.getElementById("next") addEventListener("submit", function(event){
+event.preventDefault();
+const text1 = document.getElementById("text1");
+const text2 = document.getElementById("text2");
+if (text1.value !=""){
+window.location.href = "/"
+}
+else if(text2.value !=""){
+window.location.href = "/"
+}
+else{alert("Заполните хотя-бы одно поле")}
+})
 });
 function formatSeconds(seconds) {
     const hours = Math.floor(seconds / 3600);

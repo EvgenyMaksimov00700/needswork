@@ -90,6 +90,7 @@ public class WebUpController {
         return "admin_panel";
     }
 
+
     @PostMapping("/message/send")
     public ResponseEntity<Object> messageSend (@RequestBody TgMessageDTO tgMessageDTO) {
 
