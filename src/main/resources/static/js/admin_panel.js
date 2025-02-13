@@ -49,10 +49,11 @@ event.preventDefault();
 const text1 = document.getElementById("text1");
 const text2 = document.getElementById("text2");
 if (text1.value !=""){
-window.location.href = "/"
+window.location.href = "/admin/employer"
+
 }
 else if(text2.value !=""){
-window.location.href = "/"
+window.location.href = "/admin/jobSeeker"
 }
 else{alert("Заполните хотя-бы одно поле")}
 })

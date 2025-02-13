@@ -90,6 +90,18 @@ public class WebUpController {
         return "admin_panel";
     }
 
+    @GetMapping("/admin/jobSeeker")
+    public String adminJobSeekerPage() {
+        return "admin_users12";
+    }
+
+    @GetMapping("/admin/Employer")
+    public String adminEmployerPage() {
+        return "admin_clients11";
+    }
+
+
+
 
     @PostMapping("/message/send")
     public ResponseEntity<Object> messageSend (@RequestBody TgMessageDTO tgMessageDTO) {

@@ -8,5 +8,8 @@ import java.math.BigInteger;
 
 public interface EmployerRepository extends JpaRepository <Employer,Integer> {
     Employer findByUserId(BigInteger userId);
+
+    Employer findByInn(BigInteger inn);
 }
+
 

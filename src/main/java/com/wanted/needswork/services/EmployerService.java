@@ -68,5 +68,9 @@ public class EmployerService {
         employerRepository.delete(employer);
         return employer;
     }
+
+    public Employer getEmployerByInn(BigInteger inn) {
+        return employerRepository.findByInn(inn);
+    }
 }
 

@@ -5,6 +5,7 @@ import com.wanted.needswork.DTO.response.AdminTotalInfoResponseDTO;
 import com.wanted.needswork.DTO.response.EmployerResponseDTO;
 import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.User;
+import com.wanted.needswork.models.Vacancy;
 import com.wanted.needswork.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,6 +51,15 @@ public class AdminController {
                 totalAvgTime
         );
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/admin/info/employer/{userId}")
+    public ResponseEntity<AdminTotalInfoResponseDTO> info(@PathVariable Integer userId) {
+    Integer totalAmountVacancies = vacancyService.getVacancyUser(userId).size();
+    //Integer totalAmountResponses = responseService.getResponseUser(userId).size();
+    List<Vacancy> vacancies= vacancyService.getVacancyUser(userId);
+    Integer totalPayed = 0;
+    return null;
     }
 }
 

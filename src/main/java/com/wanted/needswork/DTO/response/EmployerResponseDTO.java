@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.math.BigInteger;
+import java.util.List;
+
 @AllArgsConstructor
 public class EmployerResponseDTO {
     @Getter
@@ -20,4 +22,7 @@ public class EmployerResponseDTO {
     private String logo;
     @Getter
     private String description;
+
 }
+
+
