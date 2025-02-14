@@ -8,34 +8,40 @@
 </head>
 <body>
 <div class="container">
-    <h2>Наименование работодателя (ИНН, ID)</h2>
-    <form>
-        <div class="form-group">
-            <label for="vacancies">количество размещенных вакансий</label>
-            <input type="text" id="vacancies">
+    <div class="header">
+        <h2>Наименование работодателя (ИНН, ID)</h2>
+    </div>
+    <div class="stats-block">
+        <div class="stat-item">
+            <span class="stat-label">Количество размещенных вакансий</span>
+            <span class="stat-value">42</span>
         </div>
-        <div class="form-group">
-            <label for="responses">количество откликов</label>
-            <input type="text" id="responses">
+        <div class="stat-item">
+            <span class="stat-label">Количество откликов</span>
+            <span class="stat-value">120</span>
         </div>
-        <div class="form-group">
-            <label for="paid-vacancies">оплачено вакансий</label>
-            <input type="text" id="paid-vacancies">
+        <div class="stat-item">
+            <span class="stat-label">Оплачено вакансий</span>
+            <span class="stat-value">35</span>
         </div>
-        <label for="vacancy-list">список вакансий:</label>
+    </div>
+    <div class="vacancies-block">
+        <h3>Список вакансий:</h3>
         <div id="vacancy-list" class="vacancy-list">
             <div class="vacancy">
                 <p>Курьер на легкие заказы до 2кг<br>от 125 310 до 178 130 ₽ на руки</p>
-                <button type="button" class="block-job">заблокировать вакансию</button>
+                <button type="button" class="block-job">Заблокировать вакансию</button>
             </div>
             <div class="vacancy">
                 <p>Курьер на легкие заказы до 2кг<br>от 125 310 до 178 130 ₽ на руки</p>
-                <button type="button" class="block-job">заблокировать вакансию</button>
+                <button type="button" class="block-job">Заблокировать вакансию</button>
             </div>
         </div>
-        <button type="button" class="block-client">заблокировать клиента</button>
-        <button type="button" class="back">назад</button>
-    </form>
+    </div>
+    <div class="actions-block">
+        <button type="button" class="block-client">Заблокировать клиента</button>
+        <button type="button" class="back">Назад</button>
+    </div>
 </div>
 </body>
 </html>
