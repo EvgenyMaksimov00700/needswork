@@ -13,7 +13,7 @@ body {
 .container {
     background-color: #23272a; /* Контрастный фон контейнера */
     padding: 20px;
-    border-radius: 10px; /* Более округлые углы */
+    border-radius: 40px; /* Более округлые углы */
     width: 90%;
     max-width: 400px;
     box-sizing: border-box;

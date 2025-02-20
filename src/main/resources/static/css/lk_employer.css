@@ -15,7 +15,7 @@ body {
     padding: 20px;
     box-sizing: border-box;
     background-color: #23272a; /* Контрастный фон контейнера */
-    border-radius: 10px; /* Округлённые углы */
+    border-radius: 40px; /* Округлённые углы */
     border: 1px solid #3c4043; /* Лёгкая обводка */
 }
 

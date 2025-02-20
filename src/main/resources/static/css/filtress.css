@@ -16,7 +16,7 @@ body {
     box-sizing: border-box;
     background-color: #23272a; /* Контрастный фон контейнера */
     border: 1px solid #3c4043; /* Лёгкая обводка */
-    border-radius: 10px; /* Округлённые углы */
+    border-radius: 40px; /* Округлённые углы */
 }
 
 h2 {

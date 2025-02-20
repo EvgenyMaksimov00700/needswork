@@ -14,7 +14,7 @@ body {
     border: 1px solid #2A2A2A; /* Тонкая темная граница */
     box-sizing: border-box;
     background-color: #1E1E1E; /* Фон контейнера */
-    border-radius: 10px; /* Округлые края */
+    border-radius: 40px; /* Округлые края */
 }
 
 .container input[type="text"],
