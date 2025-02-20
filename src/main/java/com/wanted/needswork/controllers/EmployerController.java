@@ -82,7 +82,7 @@ public class EmployerController {
         return new ResponseEntity<>(employerService.deleteEmployer(employer),
                 HttpStatus.OK);
     }
-    @GetMapping("/employer/user/{inn}")
+    @GetMapping("/employer/user/inn/{inn}")
     public ResponseEntity<EmployerResponseDTO> getEmployerByInn(@PathVariable BigInteger inn) {
         Employer employer = employerService.getEmployerByInn(inn);
         if (employer == null) {
