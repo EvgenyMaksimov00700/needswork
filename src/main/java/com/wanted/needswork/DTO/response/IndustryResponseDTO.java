@@ -6,7 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class IndustryResponseDTO {
     @Getter
-    private Integer id;
+    private String id;
 
     @Getter
     private String name;

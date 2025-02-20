@@ -14,7 +14,7 @@ public class Industry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     @Setter
-    private Integer id;
+    private String id;
 
     @Getter
     @Setter
