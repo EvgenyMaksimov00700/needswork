@@ -1,5 +1,6 @@
 package com.wanted.needswork.services;
 
+import com.wanted.needswork.models.Industry;
 import com.wanted.needswork.repository.IndustryRepository;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,15 @@ public class HHService {
     private RestTemplate restTemplate;
 
 
+    public void addIndustries(List<List<String>> industries) {
+        for (int i = 0; i < industries.size(); i++) {
+            String id = industries.get(i).get(0);
+            String category = industries.get(i).get(1);
+            String industry = industries.get(i).get(2);
+            Industry industryNew = new Industry(id, category, industry);
+            industryRepository.save(industryNew);
+        }
+    }
 
     public List<List<String>> fetchIndustries() {
         Dotenv dotenv = Dotenv.load();
@@ -32,7 +42,7 @@ public class HHService {
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         ResponseEntity<List> response = restTemplate.exchange(
-                API_URL+"industries", HttpMethod.GET, entity, List.class);
+                API_URL + "industries", HttpMethod.GET, entity, List.class);
 
         List<List<String>> result = new ArrayList<>();
 
