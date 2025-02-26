@@ -59,7 +59,7 @@ function industrySelect() {
            industries.forEach(industry => {
              const option = document.createElement('option');
              option.value = industry.id;
-             option.text = industry.name;
+             option.text = industry.category;
              industrySelect.appendChild(option);
            });
       })
