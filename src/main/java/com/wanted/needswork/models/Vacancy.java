@@ -106,7 +106,7 @@ public class Vacancy {
     }
 
     public VacancyResponseDTO toResponseDTO() {
-        return new VacancyResponseDTO(id, employer.toResponseDTO(), industry.toResponseDTO(), position, city, fromSalary, toSalary,  workSchedule, distantWork, address, exp, responsibility, createdDateTime, lastModifiedDateTime);
+        return new VacancyResponseDTO(id, employer.toResponseDTO(), industry.toResponseDTO(), position, city, fromSalary, toSalary,  workSchedule, distantWork, address, exp, responsibility, createdDateTime, lastModifiedDateTime, false);
     }
 }
 

@@ -23,6 +23,16 @@ public class EmployerResponseDTO {
     @Getter
     private String description;
 
+    public EmployerResponseDTO(String name, String logo) {
+        this.name = name;
+        this.logo = logo;
+        this.employer_id = null;
+        this.user_id = null;
+        this.inn = null;
+        this.ogrn = null;
+        this.description = null;
+    }
+
 }
 
 

@@ -9,7 +9,7 @@ public class VacancyDTO {
     @Getter
     private Integer employer_id;
     @Getter
-    private Integer industry_id;
+    private String industry_id;
     @Getter
     private String position;
     @Getter

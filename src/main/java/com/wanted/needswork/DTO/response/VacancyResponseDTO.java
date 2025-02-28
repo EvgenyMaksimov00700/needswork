@@ -5,12 +5,13 @@ import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
 public class VacancyResponseDTO {
     @Getter
-    private Integer id;
+    private BigInteger id;
     @Getter
     private EmployerResponseDTO employer;
     @Getter
@@ -37,5 +38,7 @@ public class VacancyResponseDTO {
     private LocalDateTime createdDateTime;
     @Getter
     private LocalDateTime lastModifiedDateTime;
+    @Getter
+    private Boolean from_hh=false;
 
 }
