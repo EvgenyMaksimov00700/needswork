@@ -99,15 +99,50 @@ public class HHService {
                     Map<String, Object> area = (Map<String, Object>) item.get("area");
                     String city = (String) area.get("city");
                     Map<String, Object> salary = (Map<String, Object>) area.get("salary");
-                    String fromSalary = (String) salary.get("from");
-                    String toSalary = (String) salary.get("to");
-                    Map<String, Object> workSchedule = (Map<String, Object>) item.get("working_schedule_by_days");
+                    Integer fromSalary = (Integer) salary.get("from");
+                    Integer toSalary = (Integer) salary.get("to");
+                    Map<String, Object> employment = (Map<String, Object>) item.get("employment_form");
+                    String workScheduleValue = (String) employment.get("name");
+                    String workSchedule;
+                    if (workScheduleValue=="Полная") {
+                        workSchedule = "Полная занятость";
+                    }
+                    else if (workScheduleValue=="Частичная") {
+                        workSchedule = "Частичная занятость";
+                    }
+                    else if (workScheduleValue=="Проект или разовое задание") {
+                        workSchedule = "Проект или разовое задание";
+                    }
+                    else if (workScheduleValue=="Вахта") {
+                        workSchedule = "Вахта";
+                    }
+                    else {
+                        workSchedule = "Гибкий график";
+                    }
+
+                    List<Map<String, Object>> workFormat = (List<Map<String, Object>>) item.get("workFormat");
+                    Boolean distantWork = false;
+                    for (Map<String, Object> entry : workFormat) {
+                        if (((String) entry.get("id")) == "REMOTE"){
+                            distantWork = true;
+                            break;
+                        }
+
+
+
+                    }
+                    Map<String, Object> experience = (Map<String, Object>) item.get("experience");
+                    String exp = (String) experience.get("name");
+
+
                     String address = (String) item.get("address");
                     Map<String, Object> snippet = (Map<String, Object>) item.get("snippet");
                     String responsibility = ((String) snippet.get("requirement"))+"\n\n"+ ((String) snippet.get("responsibility"));
                     LocalDateTime createdDateTime = LocalDateTime.parse((String)item.get("created_at"));
                     LocalDateTime lastModifiedDateTime = LocalDateTime.parse((String) item.get("published_at"));
-
+                    result.add( new VacancyResponseDTO(id, employeeResponseDTO, null, position,
+                            city, fromSalary, toSalary, workSchedule, distantWork, address, exp, responsibility,
+                             createdDateTime, lastModifiedDateTime, true));
                 }
             }
         }
