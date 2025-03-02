@@ -21,7 +21,7 @@ public class IndustryService {
         return industryRepository.findAll();
     }
 
-    public Industry getIndustry(Integer industryId) {
+    public Industry getIndustry(String industryId) {
         return industryRepository.findById(industryId).orElse(null);
 
 

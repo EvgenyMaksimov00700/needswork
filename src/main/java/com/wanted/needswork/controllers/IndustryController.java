@@ -37,7 +37,7 @@ public class IndustryController {
 
 
     @GetMapping ("/industry/{industryId}")
-    public ResponseEntity <IndustryResponseDTO> getIndustryById (@PathVariable Integer industryId) {
+    public ResponseEntity <IndustryResponseDTO> getIndustryById (@PathVariable String industryId) {
         return new ResponseEntity<>(industryService.getIndustry(industryId).toResponseDTO(), HttpStatus.OK);
 
     }
@@ -48,7 +48,7 @@ public class IndustryController {
                 HttpStatus.OK);
     }
     @PutMapping ("/industry/{industryId}")
-    public ResponseEntity <Industry> updateIndustry (@RequestBody IndustryDTO industryDTO, @PathVariable Integer industryId) {
+    public ResponseEntity <Industry> updateIndustry (@RequestBody IndustryDTO industryDTO, @PathVariable String industryId) {
         Industry industry = industryService. getIndustry(industryId);
         if (industry == null) { return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

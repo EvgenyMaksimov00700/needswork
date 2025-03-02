@@ -12,6 +12,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -76,8 +78,8 @@ public class HHService {
         headers.setBearerAuth(Objects.requireNonNull(dotenv.get("API_HH_TOKEN")));
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        ResponseEntity<List> response = restTemplate.exchange(
-                API_URL + "vacancies", HttpMethod.GET, entity, List.class);
+        ResponseEntity<Map> response = restTemplate.exchange(
+                API_URL + "vacancies", HttpMethod.GET, entity, Map.class);
 
         List<VacancyResponseDTO> result = new ArrayList<>();
 
@@ -89,7 +91,7 @@ public class HHService {
                 List<Map<String, Object>> items = (List<Map<String, Object>>) responseBody.get("items");
 
                 for (Map<String, Object> item : items) {
-                    BigInteger id = (BigInteger) item.get("id");
+                    BigInteger id = new BigInteger ((String) item.get("id"));
                     Map<String, Object> employer = (Map<String, Object>) item.get("employer");
                     String employerName = (String) employer.get("name");
                     Map<String, Object> logo_urls = (Map<String, Object>) employer.get("logo_urls");
@@ -98,9 +100,13 @@ public class HHService {
                     String position = (String) item.get("name");
                     Map<String, Object> area = (Map<String, Object>) item.get("area");
                     String city = (String) area.get("city");
-                    Map<String, Object> salary = (Map<String, Object>) area.get("salary");
-                    Integer fromSalary = (Integer) salary.get("from");
-                    Integer toSalary = (Integer) salary.get("to");
+                    Map<String, Object> salary = (Map<String, Object>) item.get("salary");
+                    Integer fromSalary = null;
+                    Integer toSalary = null;
+                    if (salary != null) {
+                        fromSalary = (Integer) salary.get("from");
+                        toSalary = (Integer) salary.get("to");
+                    }
                     Map<String, Object> employment = (Map<String, Object>) item.get("employment_form");
                     String workScheduleValue = (String) employment.get("name");
                     String workSchedule;
@@ -120,7 +126,7 @@ public class HHService {
                         workSchedule = "Гибкий график";
                     }
 
-                    List<Map<String, Object>> workFormat = (List<Map<String, Object>>) item.get("workFormat");
+                    List<Map<String, Object>> workFormat = (List<Map<String, Object>>) item.get("work_format");
                     Boolean distantWork = false;
                     for (Map<String, Object> entry : workFormat) {
                         if (((String) entry.get("id")) == "REMOTE"){
@@ -133,13 +139,16 @@ public class HHService {
                     }
                     Map<String, Object> experience = (Map<String, Object>) item.get("experience");
                     String exp = (String) experience.get("name");
-
-
-                    String address = (String) item.get("address");
+                    String address = null;
+                    Map<String, Object> addressObject = (Map<String, Object>) item.get("address");
+                    if (addressObject!= null) {
+                        address = (String) addressObject.get("raw");
+                    }
                     Map<String, Object> snippet = (Map<String, Object>) item.get("snippet");
                     String responsibility = ((String) snippet.get("requirement"))+"\n\n"+ ((String) snippet.get("responsibility"));
-                    LocalDateTime createdDateTime = LocalDateTime.parse((String)item.get("created_at"));
-                    LocalDateTime lastModifiedDateTime = LocalDateTime.parse((String) item.get("published_at"));
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+                    LocalDateTime createdDateTime = OffsetDateTime.parse((String) item.get("created_at"), formatter).toLocalDateTime();
+                    LocalDateTime lastModifiedDateTime = OffsetDateTime.parse((String) item.get("published_at"), formatter).toLocalDateTime();
                     result.add( new VacancyResponseDTO(id, employeeResponseDTO, null, position,
                             city, fromSalary, toSalary, workSchedule, distantWork, address, exp, responsibility,
                              createdDateTime, lastModifiedDateTime, true));

@@ -2,8 +2,6 @@ package com.wanted.needswork.DTO.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;

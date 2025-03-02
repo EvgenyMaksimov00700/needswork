@@ -6,6 +6,7 @@ import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.Industry;
 import com.wanted.needswork.models.Vacancy;
 import com.wanted.needswork.services.EmployerService;
+import com.wanted.needswork.services.HHService;
 import com.wanted.needswork.services.IndustryService;
 import com.wanted.needswork.services.VacancyService;
 import org.json.JSONArray;
@@ -30,6 +31,8 @@ public class VacancyController {
     IndustryService industryService;
     @Autowired
     EmployerService employerService;
+    @Autowired
+    HHService hhService;
 
     @GetMapping("/vacancy/showall")
     public ResponseEntity<List<VacancyResponseDTO>> showall() {
@@ -38,6 +41,7 @@ public class VacancyController {
         for (Vacancy vacancy : vacancies) {
             vacancyResponseDTOs.add(vacancy.toResponseDTO());
         }
+        vacancyResponseDTOs.addAll(hhService.fetchVacancies());
         return new ResponseEntity<>(vacancyResponseDTOs, HttpStatus.OK);
     }
 
