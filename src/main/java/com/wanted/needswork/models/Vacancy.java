@@ -88,7 +88,10 @@ public class Vacancy {
     @OneToMany(mappedBy = "vacancy", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Response> responses = new ArrayList<>();
-
+    @Transient
+    @Getter
+    @Setter
+    private Boolean from_hh;
     public Vacancy(Employer employer, Industry industry, String position, String city, Integer toSalary, Integer fromSalary, String exp, String responsibility, String workSchedule, Boolean distantWork, String address) {
         this.employer = employer;
         this.industry = industry;
@@ -101,13 +104,29 @@ public class Vacancy {
         this.workSchedule = workSchedule;
         this.distantWork = distantWork;
         this.address = address;
+        this.from_hh=false;
 
-
-
+    }
+    public Vacancy(BigInteger id, Employer employer, Industry industry, String position, String city, Integer fromSalary, Integer toSalary, String workSchedule, Boolean distantWork, String address,  String exp, String responsibility, LocalDateTime createDateTime, LocalDateTime lastModifiedDateTime) {
+        this.id = id;
+        this.employer = employer;
+        this.industry = industry;
+        this.position = position;
+        this.city = city;
+        this.fromSalary = fromSalary;
+        this.toSalary = toSalary;
+        this.workSchedule = workSchedule;
+        this.distantWork = distantWork;
+        this.address = address;
+        this.exp = exp;
+        this.responsibility = responsibility;
+        this.createdDateTime = createDateTime;
+        this.lastModifiedDateTime = lastModifiedDateTime;
+        this.from_hh=true;
     }
 
     public VacancyResponseDTO toResponseDTO() {
-        return new VacancyResponseDTO(id, employer.toResponseDTO(), industry.toResponseDTO(), position, city, fromSalary, toSalary,  workSchedule, distantWork, address, exp, responsibility, createdDateTime, lastModifiedDateTime, false);
+        return new VacancyResponseDTO(id, employer.toResponseDTO(), industry.toResponseDTO(), position, city, fromSalary, toSalary,  workSchedule, distantWork, address, exp, responsibility, createdDateTime, lastModifiedDateTime, true);
     }
 }
 

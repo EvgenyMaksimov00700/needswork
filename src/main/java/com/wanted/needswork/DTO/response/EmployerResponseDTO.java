@@ -23,14 +23,14 @@ public class EmployerResponseDTO {
     @Getter
     private String description;
 
-    public EmployerResponseDTO(String name, String logo) {
+    public EmployerResponseDTO(String name, String logo, String email) {
         this.name = name;
         this.logo = logo;
         this.employer_id = null;
         this.user_id = null;
         this.inn = null;
         this.ogrn = null;
-        this.description = null;
+        this.description = email;
     }
 
 }

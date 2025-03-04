@@ -53,7 +53,13 @@ public class Employer {
         this.name = name;
 
     }
-
+    public Employer (String name, String logo, String email) {
+        this.name = name;
+        this.logo = logo;
+        this.inn = null;
+        this.ogrn = null;
+        this.description = email;
+    }
    public EmployerResponseDTO toResponseDTO() {
        return new EmployerResponseDTO(id, user.toResponseDTO(), inn, ogrn, name, logo, description);
   }
