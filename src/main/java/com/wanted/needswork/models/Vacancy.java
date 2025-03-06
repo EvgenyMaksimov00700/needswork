@@ -3,6 +3,7 @@ package com.wanted.needswork.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.wanted.needswork.DTO.response.EmployerResponseDTO;
+import com.wanted.needswork.DTO.response.IndustryResponseDTO;
 import com.wanted.needswork.DTO.response.UserResponseDTO;
 import com.wanted.needswork.DTO.response.VacancyResponseDTO;
 import jakarta.persistence.*;
@@ -126,7 +127,15 @@ public class Vacancy {
     }
 
     public VacancyResponseDTO toResponseDTO() {
-        return new VacancyResponseDTO(id, employer.toResponseDTO(), industry.toResponseDTO(), position, city, fromSalary, toSalary,  workSchedule, distantWork, address, exp, responsibility, createdDateTime, lastModifiedDateTime, true);
+        EmployerResponseDTO employerResponseDTO = null;
+        if(employer!=null) {
+            employerResponseDTO = employer.toResponseDTO();
+        }
+        IndustryResponseDTO industryResponseDTO = null;
+        if(industry!=null) {
+            industryResponseDTO = industry.toResponseDTO();
+        }
+        return new VacancyResponseDTO(id, employerResponseDTO, industryResponseDTO, position, city, fromSalary, toSalary,  workSchedule, distantWork, address, exp, responsibility, createdDateTime, lastModifiedDateTime, true);
     }
 }
 

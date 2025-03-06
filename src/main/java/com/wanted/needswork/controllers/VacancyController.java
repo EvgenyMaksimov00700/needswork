@@ -37,11 +37,12 @@ public class VacancyController {
     @GetMapping("/vacancy/showall")
     public ResponseEntity<List<VacancyResponseDTO>> showall() {
         List<Vacancy> vacancies = vacancyService.getVacancy();
+        vacancies.addAll(hhService.fetchVacancies());
         List<VacancyResponseDTO> vacancyResponseDTOs = new ArrayList<>();
         for (Vacancy vacancy : vacancies) {
             vacancyResponseDTOs.add(vacancy.toResponseDTO());
         }
-        vacancyResponseDTOs.addAll(hhService.fetchVacancies());
+
         return new ResponseEntity<>(vacancyResponseDTOs, HttpStatus.OK);
     }
 
@@ -113,6 +114,7 @@ public class VacancyController {
 
 
         List<Vacancy> vacancies = vacancyService.getVacancy();
+        vacancies.addAll(hhService.fetchVacancies());
         List<String> exps = List.of(exp.split(","));
         List<String> workSchedules = List.of(workSchedule.split(","));
         JSONArray jsonArray = null;
@@ -123,19 +125,19 @@ public class VacancyController {
         for (int i = 0; i < vacancies.size(); i++) {
             Vacancy vacancy = vacancies.get(i);
             boolean is_fits = true;
-            if (!Objects.equals(city, "") && !Objects.equals(vacancy.getCity(), city)) {
+            if (vacancy.getCity()!=null&&!Objects.equals(city, "") && !Objects.equals(vacancy.getCity(), city)) {
                 is_fits = false;
             }
-            if (!Objects.equals(industry, "") && !Objects.equals(vacancy.getIndustry().getId(), parseInt(industry))) {
+            if (vacancy.getIndustry()!=null&&!Objects.equals(industry, "") && !Objects.equals(vacancy.getIndustry().getId(), parseInt(industry))) {
                 is_fits = false;
             }
-            if (!Objects.equals(company, "") && !Objects.equals(vacancy.getEmployer().getName(), company)) {
+            if (vacancy.getEmployer()!=null&&!Objects.equals(company, "") && !Objects.equals(vacancy.getEmployer().getName(), company)) {
                 is_fits = false;
             }
             if (!Objects.equals(position, "") && jsonArray != null && jsonArray.getJSONObject(i).getDouble("final_score") <= 0.6) {
                 is_fits = false;
             }
-            if (!Objects.equals(salary, "") && vacancy.getFromSalary() < parseInt(salary)) {
+            if (vacancy.getFromSalary()!=null&&!Objects.equals(salary, "") && vacancy.getFromSalary() < parseInt(salary)) {
                 is_fits = false;
             }
             if (!Objects.equals(exp, "") && !exps.contains(vacancy.getExp())) {

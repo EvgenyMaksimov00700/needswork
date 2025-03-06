@@ -81,7 +81,7 @@ public class HHService {
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         ResponseEntity<Map> response = restTemplate.exchange(
-                API_URL + "vacancies", HttpMethod.GET, entity, Map.class);
+                API_URL + "vacancies?currency=RUR&per_page=100", HttpMethod.GET, entity, Map.class);
 
         List<Vacancy> result = new ArrayList<>();
 
@@ -94,9 +94,9 @@ public class HHService {
 
                 for (Map<String, Object> item : items) {
                     BigInteger id = new BigInteger ((String) item.get("id"));
-                    Map<String, Object> employer = (Map<String, Object>) item.get("employer");
-                    String employerName = (String) employer.get("name");
-                    Map<String, Object> logo_urls = (Map<String, Object>) employer.get("logo_urls");
+                    Map<String, Object> employerObject = (Map<String, Object>) item.get("employer");
+                    String employerName = (String) employerObject.get("name");
+                    Map<String, Object> logo_urls = (Map<String, Object>) employerObject.get("logo_urls");
                     String employerLogo=null;
                     if (logo_urls!= null) {
                         employerLogo = (String) logo_urls.get("original");
@@ -110,7 +110,7 @@ public class HHService {
                         continue;
                     }
 
-                    Employer employee = new Employer(employerName, employerLogo, email);
+                    Employer employer = new Employer(employerName, employerLogo, email);
                     String position = (String) item.get("name");
                     Map<String, Object> area = (Map<String, Object>) item.get("area");
                     String city = (String) area.get("name");
@@ -177,9 +177,9 @@ public class HHService {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
                     LocalDateTime createdDateTime = OffsetDateTime.parse((String) item.get("created_at"), formatter).toLocalDateTime();
                     LocalDateTime lastModifiedDateTime = OffsetDateTime.parse((String) item.get("published_at"), formatter).toLocalDateTime();
-                    result.add( new Vacancy(id, employee, null, position,
+                    result.add( new Vacancy(id, employer, null, position,
                             city, fromSalary, toSalary, workSchedule, distantWork, address, exp, responsibility_total,
-                             createdDateTime, lastModifiedDateTime, true));
+                             createdDateTime, lastModifiedDateTime));
                 }
             }
         }

@@ -2,6 +2,8 @@ package com.wanted.needswork.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.wanted.needswork.DTO.response.EmployerResponseDTO;
+import com.wanted.needswork.DTO.response.IndustryResponseDTO;
+import com.wanted.needswork.DTO.response.UserResponseDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -61,6 +63,10 @@ public class Employer {
         this.description = email;
     }
    public EmployerResponseDTO toResponseDTO() {
-       return new EmployerResponseDTO(id, user.toResponseDTO(), inn, ogrn, name, logo, description);
+       UserResponseDTO userResponseDTO = null;
+       if(user!=null) {
+           userResponseDTO = user.toResponseDTO();
+       }
+       return new EmployerResponseDTO(id, userResponseDTO, inn, ogrn, name, logo, description);
   }
 }
