@@ -3,6 +3,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -41,7 +42,7 @@ public class VacancyService {
         return vacancyRepository.findAll();
     }
 
-    public Vacancy getVacancy(Integer vacancyId) {
+    public Vacancy getVacancy(BigInteger vacancyId) {
         return vacancyRepository.findById(vacancyId).orElse(null);
     }
 
@@ -112,11 +113,11 @@ public class VacancyService {
         return cityList;
     }
 
-    public List<Vacancy> getVacancyUser(Integer userId) {
+    public List<Vacancy> getVacancyUser(BigInteger userId) {
         return vacancyRepository.findAllByEmployer_UserId(userId);
     }
 
-    public void deleteVacancy(Integer vacancyId) {
+    public void deleteVacancy(BigInteger vacancyId) {
         Optional<Vacancy> vacancy = vacancyRepository.findById(vacancyId);
         if (vacancy.isPresent()) {
             vacancyRepository.delete(vacancy.get());

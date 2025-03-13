@@ -10,6 +10,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigInteger;
@@ -74,6 +75,96 @@ public class HHService {
         return result;
     }
 
+    private Vacancy parseVacancy(Map<String, Object> item) {
+        BigInteger id = new BigInteger((String) item.get("id"));
+        Map<String, Object> employerObject = (Map<String, Object>) item.get("employer");
+        String employerName = (String) employerObject.get("name");
+        Map<String, Object> logo_urls = (Map<String, Object>) employerObject.get("logo_urls");
+        String employerLogo = null;
+        if (logo_urls != null) {
+            employerLogo = (String) logo_urls.get("original");
+        }
+        Map<String, Object> contacts = (Map<String, Object>) item.get("contacts");
+        if (contacts == null) {
+            return null;
+        }
+        String email = (String) contacts.get("email");
+        if (email == null){
+            return null;
+        }
+
+        Employer employer = new Employer(employerName, employerLogo, email);
+        String position = (String) item.get("name");
+        Map<String, Object> area = (Map<String, Object>) item.get("area");
+        String city = (String) area.get("name");
+        Map<String, Object> salary = (Map<String, Object>) item.get("salary");
+        Integer fromSalary = null;
+        Integer toSalary = null;
+        if (salary != null) {
+            fromSalary = (Integer) salary.get("from");
+            toSalary = (Integer) salary.get("to");
+        }
+        Map<String, Object> employment = (Map<String, Object>) item.get("employment_form");
+        String workScheduleValue = (String) employment.get("name");
+        String workSchedule;
+        if (workScheduleValue == "Полная") {
+            workSchedule = "Полная занятость";
+        } else if (workScheduleValue == "Частичная") {
+            workSchedule = "Частичная занятость";
+        } else if (workScheduleValue == "Проект или разовое задание") {
+            workSchedule = "Проект или разовое задание";
+        } else if (workScheduleValue == "Вахта") {
+            workSchedule = "Вахта";
+        } else {
+            workSchedule = "Гибкий график";
+        }
+
+        List<Map<String, Object>> workFormat = (List<Map<String, Object>>) item.get("work_format");
+        Boolean distantWork = false;
+        for (Map<String, Object> entry : workFormat) {
+            if (((String) entry.get("id")) == "REMOTE") {
+                distantWork = true;
+                break;
+            }
+
+        }
+        Map<String, Object> experience = (Map<String, Object>) item.get("experience");
+        String exp = (String) experience.get("name");
+        String address = null;
+        Map<String, Object> addressObject = (Map<String, Object>) item.get("address");
+        if (addressObject != null) {
+            address = (String) addressObject.get("raw");
+        }
+        Map<String, Object> snippet = (Map<String, Object>) item.get("snippet");
+        String description = (String) item.get("description");
+        String responsibility_total = "";
+        if (snippet != null) {
+            String requirement = ((String) snippet.get("requirement"));
+            if (requirement != null) {
+                responsibility_total = responsibility_total + requirement;
+            }
+            String responsibility = ((String) snippet.get("responsibility"));
+            if (responsibility != null) {
+                if (responsibility_total != "") {
+                    responsibility_total = responsibility_total + "\n" + "\n";
+                }
+                responsibility_total = responsibility_total + responsibility;
+            }
+        } else if(description != null){
+            responsibility_total = description;
+        }
+
+
+
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+        LocalDateTime createdDateTime = OffsetDateTime.parse((String) item.get("created_at"), formatter).toLocalDateTime();
+        LocalDateTime lastModifiedDateTime = OffsetDateTime.parse((String) item.get("published_at"), formatter).toLocalDateTime();
+        return new Vacancy(id, employer, null, position,
+                city, fromSalary, toSalary, workSchedule, distantWork, address, exp, responsibility_total,
+                createdDateTime, lastModifiedDateTime);
+    }
+
     public List<Vacancy> fetchVacancies() {
         Dotenv dotenv = Dotenv.load();
         HttpHeaders headers = new HttpHeaders();
@@ -93,96 +184,30 @@ public class HHService {
                 List<Map<String, Object>> items = (List<Map<String, Object>>) responseBody.get("items");
 
                 for (Map<String, Object> item : items) {
-                    BigInteger id = new BigInteger ((String) item.get("id"));
-                    Map<String, Object> employerObject = (Map<String, Object>) item.get("employer");
-                    String employerName = (String) employerObject.get("name");
-                    Map<String, Object> logo_urls = (Map<String, Object>) employerObject.get("logo_urls");
-                    String employerLogo=null;
-                    if (logo_urls!= null) {
-                        employerLogo = (String) logo_urls.get("original");
+                    Vacancy vacancy = parseVacancy(item);
+                    if (vacancy != null) {
+                        result.add(vacancy);
                     }
-                    Map<String, Object> contacts = (Map<String, Object>) item.get("contacts");
-                    if (contacts==null) {
-                        continue;
-                    }
-                    String email = (String)contacts.get("email");
-                    if (email == null){
-                        continue;
-                    }
-
-                    Employer employer = new Employer(employerName, employerLogo, email);
-                    String position = (String) item.get("name");
-                    Map<String, Object> area = (Map<String, Object>) item.get("area");
-                    String city = (String) area.get("name");
-                    Map<String, Object> salary = (Map<String, Object>) item.get("salary");
-                    Integer fromSalary = null;
-                    Integer toSalary = null;
-                    if (salary != null) {
-                        fromSalary = (Integer) salary.get("from");
-                        toSalary = (Integer) salary.get("to");
-                    }
-                    Map<String, Object> employment = (Map<String, Object>) item.get("employment_form");
-                    String workScheduleValue = (String) employment.get("name");
-                    String workSchedule;
-                    if (workScheduleValue=="Полная") {
-                        workSchedule = "Полная занятость";
-                    }
-                    else if (workScheduleValue=="Частичная") {
-                        workSchedule = "Частичная занятость";
-                    }
-                    else if (workScheduleValue=="Проект или разовое задание") {
-                        workSchedule = "Проект или разовое задание";
-                    }
-                    else if (workScheduleValue=="Вахта") {
-                        workSchedule = "Вахта";
-                    }
-                    else {
-                        workSchedule = "Гибкий график";
-                    }
-
-                    List<Map<String, Object>> workFormat = (List<Map<String, Object>>) item.get("work_format");
-                    Boolean distantWork = false;
-                    for (Map<String, Object> entry : workFormat) {
-                        if (((String) entry.get("id")) == "REMOTE"){
-                            distantWork = true;
-                            break;
-                        }
-
-
-
-                    }
-                    Map<String, Object> experience = (Map<String, Object>) item.get("experience");
-                    String exp = (String) experience.get("name");
-                    String address = null;
-                    Map<String, Object> addressObject = (Map<String, Object>) item.get("address");
-                    if (addressObject!= null) {
-                        address = (String) addressObject.get("raw");
-                    }
-                    Map<String, Object> snippet = (Map<String, Object>) item.get("snippet");
-                    String responsibility_total = "";
-                    String requirement=((String) snippet.get("requirement"));
-                    if (requirement != null) {
-                        responsibility_total = responsibility_total + requirement;
-                    }
-
-                    String responsibility=((String) snippet.get("responsibility"));
-                    if (responsibility!= null) {
-                        if (responsibility_total!="") {
-                            responsibility_total = responsibility_total + "\n"+ "\n";
-                        }
-                        responsibility_total = responsibility_total + responsibility;
-                    }
-
-
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
-                    LocalDateTime createdDateTime = OffsetDateTime.parse((String) item.get("created_at"), formatter).toLocalDateTime();
-                    LocalDateTime lastModifiedDateTime = OffsetDateTime.parse((String) item.get("published_at"), formatter).toLocalDateTime();
-                    result.add( new Vacancy(id, employer, null, position,
-                            city, fromSalary, toSalary, workSchedule, distantWork, address, exp, responsibility_total,
-                             createdDateTime, lastModifiedDateTime));
                 }
             }
         }
         return result;
+    }
+
+    public Vacancy fetchVacancy(BigInteger vacancyId) {
+        Dotenv dotenv = Dotenv.load();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(Objects.requireNonNull(dotenv.get("API_HH_TOKEN")));
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+        try {
+            ResponseEntity<Map> response = restTemplate.exchange(
+                    API_URL + "vacancies/" + vacancyId, HttpMethod.GET, entity, Map.class);
+
+            return parseVacancy((Map<String, Object>) response.getBody());
+        } catch (HttpClientErrorException.NotFound errorException) {
+            return null;
+        }
+
+
     }
 }

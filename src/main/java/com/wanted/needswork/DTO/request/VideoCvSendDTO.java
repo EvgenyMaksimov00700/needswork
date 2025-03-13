@@ -9,9 +9,9 @@ import java.math.BigInteger;
 public class VideoCvSendDTO {
     private BigInteger userId;
     private String videoCvMessage;
-    private Integer vacancyId;
+    private BigInteger vacancyId;
     private Boolean textResume=false;
-    public VideoCvSendDTO(BigInteger userId, String videoCvMessage, Integer vacancyId, Boolean textResume) {
+    public VideoCvSendDTO(BigInteger userId, String videoCvMessage, BigInteger vacancyId, Boolean textResume) {
         this.userId = userId;
         this.videoCvMessage = videoCvMessage;
         this.vacancyId = vacancyId;
@@ -20,7 +20,7 @@ public class VideoCvSendDTO {
 
 
 
-    public VideoCvSendDTO(BigInteger userId, String videoCvMessage, Integer vacancyId) {
+    public VideoCvSendDTO(BigInteger userId, String videoCvMessage, BigInteger vacancyId) {
         this.userId = userId;
         this.videoCvMessage = videoCvMessage;
         this.vacancyId = vacancyId;

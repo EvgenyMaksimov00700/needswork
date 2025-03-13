@@ -54,7 +54,7 @@ public class AdminController {
     }
 
     @GetMapping("/admin/info/employer/{userId}")
-    public ResponseEntity<AdminTotalInfoResponseDTO> info(@PathVariable Integer userId) {
+    public ResponseEntity<AdminTotalInfoResponseDTO> info(@PathVariable BigInteger userId) {
     Integer totalAmountVacancies = vacancyService.getVacancyUser(userId).size();
     //Integer totalAmountResponses = responseService.getResponseUser(userId).size();
     List<Vacancy> vacancies= vacancyService.getVacancyUser(userId);

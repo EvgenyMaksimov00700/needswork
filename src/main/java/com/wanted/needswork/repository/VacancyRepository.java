@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.math.BigInteger;
 import java.util.List;
 
-public interface VacancyRepository extends JpaRepository <Vacancy, Integer> {
+public interface VacancyRepository extends JpaRepository <Vacancy, BigInteger> {
 
-    List<Vacancy> findAllByEmployer_UserId(Integer userId);
+    List<Vacancy> findAllByEmployer_UserId(BigInteger userId);
 }

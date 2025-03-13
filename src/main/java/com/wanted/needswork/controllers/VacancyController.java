@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -47,8 +48,15 @@ public class VacancyController {
     }
 
     @GetMapping("/vacancy/{vacancyId}")
-    public ResponseEntity<VacancyResponseDTO> getVacancyByID(@PathVariable Integer vacancyId) {
-        return new ResponseEntity<>(vacancyService.getVacancy(vacancyId).toResponseDTO(), HttpStatus.OK);
+    public ResponseEntity<VacancyResponseDTO> getVacancyByID(@PathVariable BigInteger vacancyId) {
+        Vacancy vacancy = vacancyService.getVacancy(vacancyId);
+        if (vacancy==null) {
+            vacancy = hhService.fetchVacancy(vacancyId);
+        }
+        if (vacancy == null){
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(vacancy.toResponseDTO(), HttpStatus.OK);
 
     }
 
@@ -67,7 +75,7 @@ public class VacancyController {
     }
 
     @PutMapping("/vacancy/{vacancyId}")
-    public ResponseEntity<Vacancy> updateVacancy(@RequestBody VacancyDTO vacancyDTO, @PathVariable Integer vacancyId) {
+    public ResponseEntity<Vacancy> updateVacancy(@RequestBody VacancyDTO vacancyDTO, @PathVariable BigInteger vacancyId) {
         Vacancy vacancy = vacancyService.getVacancy(vacancyId);
         if (vacancy == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -89,13 +97,13 @@ public class VacancyController {
     }
 
     @GetMapping("/vacancy/user/{userId}")
-    public ResponseEntity<List<VacancyResponseDTO>> getVacancyByUser(@PathVariable Integer userId) {
+    public ResponseEntity<List<VacancyResponseDTO>> getVacancyByUser(@PathVariable BigInteger userId) {
         List<Vacancy> vacancyUser = vacancyService.getVacancyUser(userId);
         return new ResponseEntity<>(vacancyUser.stream().map(Vacancy::toResponseDTO).toList(), HttpStatus.OK);
     }
 
     @DeleteMapping("/vacancy/{vacancyId}")
-    public ResponseEntity<VacancyResponseDTO> deleteVacancyByID(@PathVariable Integer vacancyId) {
+    public ResponseEntity<VacancyResponseDTO> deleteVacancyByID(@PathVariable BigInteger vacancyId) {
         vacancyService.deleteVacancy(vacancyId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
