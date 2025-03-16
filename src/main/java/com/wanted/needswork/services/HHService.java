@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 
@@ -210,4 +210,35 @@ public class HHService {
 
 
     }
+    public void sendEmail(String recipientEmail) {
+        Dotenv dotenv = Dotenv.load();
+        final String senderEmail = "awesome.iocc@mail.ru";
+        final String senderPassword = dotenv.get("EMAIL_PASSWORD");
+        final String smtpHost = "smtp.mail.ru";
+        final String smtpPort = "587";
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", smtpHost);
+        props.put("mail.smtp.port", smtpPort);
+        Session session = Session.getInstance(props, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(senderEmail, senderPassword);
+            }
+        });
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(senderEmail));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+            message.setSubject("Тестовое HTML письмо");
+            String htmlContent = "<html><body><h1>Заголовок</h1><p>Это пример HTML письма.</p></body></html>";
+            message.setContent(htmlContent, "text/html; charset=utf-8");
+            Transport.send(message);
+            System.out.println("Письмо отправлено на " + recipientEmail);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.wanted.needswork.controllers;
 
+import com.wanted.needswork.DTO.request.EmailDTO;
 import com.wanted.needswork.DTO.request.IndustryDTO;
 import com.wanted.needswork.models.Industry;
 import com.wanted.needswork.services.HHService;
@@ -17,6 +18,12 @@ import java.util.List;
 public class HHController {
     @Autowired
     HHService hhService;
+
+    @PostMapping ("/api/email/send")
+    public ResponseEntity<Object> sendEmail (@RequestBody EmailDTO emailDTO){
+        hhService.sendEmail(emailDTO.getEmail());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 //    @GetMapping("/api/industry")
 //    public ResponseEntity<Object> getIndustry() {
