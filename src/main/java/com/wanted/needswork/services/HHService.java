@@ -1,7 +1,5 @@
 package com.wanted.needswork.services;
 
-import com.wanted.needswork.DTO.response.EmployerResponseDTO;
-import com.wanted.needswork.DTO.response.VacancyResponseDTO;
 import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.Industry;
 import com.wanted.needswork.models.Vacancy;
@@ -210,7 +208,7 @@ public class HHService {
 
 
     }
-    public void sendEmail(String recipientEmail) {
+    public void sendResponseEmail(String recipientEmail, String buttonUrl, String vacancyName) {
         Dotenv dotenv = Dotenv.load();
         final String senderEmail = "awesome.iocc@mail.ru";
         final String senderPassword = dotenv.get("EMAIL_PASSWORD");
@@ -221,18 +219,41 @@ public class HHService {
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", smtpHost);
         props.put("mail.smtp.port", smtpPort);
+
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(senderEmail, senderPassword);
             }
         });
+
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(senderEmail));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
-            message.setSubject("Тестовое HTML письмо");
-            String htmlContent = "<html><body><h1>Заголовок</h1><p>Это пример HTML письма.</p></body></html>";
+            // Подставляем название вакансии в тему письма
+            message.setSubject("Отклик на вакансию: " + vacancyName);
+
+            // Формируем тело письма с подстановкой названия вакансии
+            String htmlContent = "<!DOCTYPE html>" +
+                    "<html lang=\"ru\">" +
+                    "<head>" +
+                    "  <meta charset=\"UTF-8\">" +
+                    "  <title>Отклик на вакансию: " + vacancyName + "</title>" +
+                    "  <style>" +
+                    "    body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }" +
+                    "    .container { background-color: #ffffff; max-width: 600px; margin: 0 auto; padding: 30px; border: 1px solid #dddddd; text-align: center; }" +
+                    "    .btn { display: inline-block; padding: 15px 25px; margin-top: 20px; font-size: 16px; color: #ffffff; background-color: #007BFF; text-decoration: none; border-radius: 5px; }" +
+                    "    .btn:hover { background-color: #0056b3; }" +
+                    "  </style>" +
+                    "</head>" +
+                    "<body>" +
+                    "  <div class=\"container\">" +
+                    "    <p>На вакансию <strong>" + vacancyName + "</strong> поступил отклик.</p>" +
+                    "    <a href=\"" + buttonUrl + "\" class=\"btn\">Посмотрите резюме соискателя</a>" +
+                    "  </div>" +
+                    "</body>" +
+                    "</html>";
             message.setContent(htmlContent, "text/html; charset=utf-8");
             Transport.send(message);
             System.out.println("Письмо отправлено на " + recipientEmail);

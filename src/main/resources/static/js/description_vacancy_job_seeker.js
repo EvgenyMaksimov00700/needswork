@@ -76,7 +76,7 @@ window.location.href=`/vacancy/menu?${existParams.toString()}`}
 
 let employerUserId;
 
-function vacancy_responses(vacancyName, vacancyId) {
+function vacancy_responses(vacancyName, vacancyId, from_hh, email) {
 
     const resumeModal = document.getElementById('resumeModal');
     const resumeButtons = document.getElementById('resume-buttons');
@@ -105,7 +105,7 @@ function vacancy_responses(vacancyName, vacancyId) {
 
                 ${videoCv.name}
             `;
-            element.onclick = () => sendVideo(videoCv.video_message, vacancyName, vacancyId);
+            element.onclick = () => sendVideo(videoCv.video_message, vacancyName, vacancyId, from_hh, email);
             resumeButtons.appendChild(element);
         });
     })
@@ -115,17 +115,22 @@ function closeModal (){
 const resumeButtons = document.getElementById('resume-buttons');
 resumeModal.style.display = 'none';
 }
-function sendVideo(videoCvName, vacancyName, vacancyId) {
-const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
-url1 = "/videoCv/send"
-data = {videoCvMessage:  videoCvName, userId: clientID, vacancyId: vacancyId}
-     const response = fetch(url1, {
-          method: 'POST', // Метод запроса
-          headers: {
-              'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
-          },
-          body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
-      });
+function sendVideo(videoCvName, vacancyName, vacancyId, from_hh, email) {
+    console.log(from_hh)
+    if (!from_hh) {
+         const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
+         url1 = "/videoCv/send"
+         data = {videoCvMessage:  videoCvName, userId: clientID, vacancyId: vacancyId}
+         const response = fetch(url1, {
+              method: 'POST', // Метод запроса
+              headers: {
+                  'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+              },
+              body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+          });
+      }
+
+
       fetch("/jobSeeker/user/"+clientID, {
           method: 'GET', // Метод запроса
           headers: {
@@ -141,13 +146,30 @@ data = {videoCvMessage:  videoCvName, userId: clientID, vacancyId: vacancyId}
         const url2 = "/response"
               data = {vacancy_id: parseInt (vacancyId), job_seeker_id: jobSeeker.id, comment: videoCvName}
               console.log (data);
-                   const response1 = fetch(url2, {
+              fetch(url2, {
+                        method: 'POST', // Метод запроса
+                        headers: {
+                            'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                        },
+                        body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+                    }).then(responseJs => {
+                    if (!responseJs.ok) {
+                            throw new Error(`Ошибка HTTP: ${responseJs.status}`); // Бросаем ошибку, если ответ не в порядке
+                    }
+                          return responseJs.json();
+                    }).then(response1 => {
+                  if (from_hh) {
+                    const data1= {email:"maksiel1983@icloud.com", responseID: response1.id, vacancyName: vacancyName}
+                    const url3 = "/api/send/email"
+                    const response1 = fetch(url3, {
                         method: 'POST', // Метод запроса
                         headers: {
                             'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
                         },
                         body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
                     });
+                  }
+              });
 
               alert("Ваше резюме было успешно отправлено");
               const resumeButtons = document.getElementById('resume-buttons');
@@ -191,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
             }).then(data => {
                 console.log (data);
+
                 if (data.employer.user_id!=null) {
                 employerUserId=data.employer.user_id.id;}
                 else {
@@ -231,11 +254,10 @@ document.addEventListener('DOMContentLoaded', function(){
                                else {
                                outputDiv.innerHTML=data.responsibility
                                }
-                               
-                document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + formatDateTime(data.createdDateTime);
-                document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id)};
-                document.getElementById("no-resume").onclick = () => {vacancy_no_resume(data.position, data.id)};
-                document.getElementById("text-resume").onclick = () => {vacancy_text_resume(data.position, data.id)};
+               document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + formatDateTime(data.createdDateTime);
+                document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id, data.from_hh, data.employer.description)};
+                document.getElementById("no-resume").onclick = () => {vacancy_no_resume(data.position, data.id, data.from_hh, data.employer.description)};
+                document.getElementById("text-resume").onclick = () => {vacancy_text_resume(data.position, data.id, data.from_hh, data.employer.description)};
             });
 setTimeout(() => {
                 const loadingOverlay = document.getElementById("loading");

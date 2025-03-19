@@ -6,7 +6,11 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
- public class EmailDTO {
+ public class EmailResponseDTO {
     @Getter
     String email;
+    @Getter
+    Integer responseID;
+    @Getter
+    String vacancyName;
 }
