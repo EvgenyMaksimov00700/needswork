@@ -349,7 +349,7 @@ function vacancy_text_resume(vacancyName, vacancyId, from_hh, email) {
             return responseJs.json();
       }).then(jobSeeker => {
             const url2 = "/response"
-                  data = {vacancy_id: parseInt (vacancyId), job_seeker_id: jobSeeker.id, comment: null}
+                  data = {vacancy_id: parseInt (vacancyId), job_seeker_id: jobSeeker.id, comment: jobSeeker.textResume}
                   console.log (data);
                    fetch(url2, {
                         method: 'POST', // Метод запроса
