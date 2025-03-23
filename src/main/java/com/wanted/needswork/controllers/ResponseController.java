@@ -66,4 +66,11 @@ public class ResponseController {
     public ResponseEntity <ResponseResponseDTO> deleteResponseByID (@PathVariable Integer responseId) {
         return new ResponseEntity<>(responseService.deleteResponse(responseId).toResponseDTO(), HttpStatus.OK);
     }
+    @GetMapping ("/response/contact/{responseID}")
+    public ResponseEntity <List<ResponseResponseDTO>> getResponseContact (@PathVariable Integer responseId) {
+        Response response = responseService.getResponse(responseId);
+        User user = response.getJob_seeker().getUser();
+        Vacancy vacancy = vacancyService.getVacancy(response.getVacancyId());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
