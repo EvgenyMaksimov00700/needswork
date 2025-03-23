@@ -2,7 +2,6 @@ package com.wanted.needswork.services;
 
 import com.wanted.needswork.models.*;
 //import com.wanted.needswork.repository.JobSeeker;
-import com.wanted.needswork.repository.JobSeekerRepository;
 import com.wanted.needswork.repository.ResponseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,14 +23,14 @@ public class ResponseService {
         return responseRepository.findById(id).orElse(null);
     }
 
-    public Response addResponse(Vacancy vacancy_id, JobSeeker job_seeker_id, String comment){
+    public Response addResponse(BigInteger vacancy_id, JobSeeker job_seeker_id, String comment){
         Response response = new Response(vacancy_id, job_seeker_id, comment);
         return responseRepository.save(response);
     }
 
-    public Response updateResponse(Response response, Vacancy vacancy_id, JobSeeker job_seeker_id, String comment) {
+    public Response updateResponse(Response response, BigInteger vacancy_id, JobSeeker job_seeker_id, String comment) {
         if (vacancy_id != null) {
-            response.setVacancy(vacancy_id);
+            response.setVacancyId(vacancy_id);
         }
         if (job_seeker_id!= null) {
             response.setJob_seeker(job_seeker_id);
@@ -43,7 +42,7 @@ public class ResponseService {
     }
 
     public List<Response> getResponsesByVacancyId(Integer vacancyId) {
-        return responseRepository.findAllByVacancy_Id(vacancyId);
+        return responseRepository.findAllResponsesByVacancyId(vacancyId);
     }
 
     public Response deleteResponse(Integer responseId) {

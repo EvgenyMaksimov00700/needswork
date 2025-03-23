@@ -158,27 +158,24 @@ function sendVideo(videoCvName, vacancyName, vacancyId, from_hh, email) {
                     }
                           return responseJs.json();
                     }).then(response1 => {
-                  if (from_hh) {
-                    const data1= {email:"maksiel1983@icloud.com", responseID: response1.id, vacancyName: vacancyName}
-                    const url3 = "/api/send/email"
-                    const response1 = fetch(url3, {
-                        method: 'POST', // Метод запроса
-                        headers: {
-                            'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
-                        },
-                        body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
-                    });
-                  }
-              });
+                          if (from_hh) {
+                            const data1= {email:"maksiel1983@icloud.com", responseID: response1.id, vacancyName: vacancyName}
+                            const url3 = "/api/email/send"
+                            fetch(url3, {
+                                method: 'POST', // Метод запроса
+                                headers: {
+                                    'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                                },
+                                body: JSON.stringify(data1) // Данные, отправляемые в теле запроса, преобразованные в JSON
+                            });
+                          }
+                      });
 
               alert("Ваше резюме было успешно отправлено");
               const resumeButtons = document.getElementById('resume-buttons');
       })
 
-
-
-
-          // Открыть модальное окно
+      // Открыть модальное окно
       resumeModal.style.display = 'none';
 }
 
@@ -265,52 +262,69 @@ setTimeout(() => {
             }, 1000);
 });
 
-function vacancy_no_resume(vacancyName, vacancyId) {
+function vacancy_no_resume(vacancyName, vacancyId,  from_hh, email) {
+    if (!from_hh) {
+        const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
+        url1 = "/videoCv/send"
+        data = {videoCvMessage:  null, userId: clientID, vacancyId: vacancyId}
+             const response = fetch(url1, {
+                  method: 'POST', // Метод запроса
+                  headers: {
+                      'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                  },
+                  body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+              });
+     }
+  fetch("/jobSeeker/user/"+clientID, {
+      method: 'GET', // Метод запроса
+      headers: {
+          'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+      },
 
-    const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
-    url1 = "/videoCv/send"
-    data = {videoCvMessage:  null, userId: clientID, vacancyId: vacancyId}
-         const response = fetch(url1, {
-              method: 'POST', // Метод запроса
-              headers: {
-                  'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
-              },
-              body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
-          });
-          fetch("/jobSeeker/user/"+clientID, {
-              method: 'GET', // Метод запроса
-              headers: {
-                  'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
-              },
+  }).then(responseJs => {
+  if (!responseJs.ok) {
+          throw new Error(`Ошибка HTTP: ${responseJs.status}`); // Бросаем ошибку, если ответ не в порядке
+  }
+        return responseJs.json();
+  }).then(jobSeeker => {
+    const url2 = "/response"
+          data = {vacancy_id: parseInt (vacancyId), job_seeker_id: jobSeeker.id, comment: null}
+          console.log (data);
+           const response1 = fetch(url2, {
+                method: 'POST', // Метод запроса
+                headers: {
+                    'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                },
+                body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+            }).then(responseJs => {
+              if (!responseJs.ok) {
+                      throw new Error(`Ошибка HTTP: ${responseJs.status}`); // Бросаем ошибку, если ответ не в порядке
+              }
+                    return responseJs.json();
+              }).then(response1 => {
+                    if (from_hh) {
+                      const data1= {email:"maksiel1983@icloud.com", responseID: response1.id, vacancyName: vacancyName}
+                      const url3 = "/api/email/send"
+                      fetch(url3, {
+                          method: 'POST', // Метод запроса
+                          headers: {
+                              'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                          },
+                          body: JSON.stringify(data1) // Данные, отправляемые в теле запроса, преобразованные в JSON
+                      });
+                    }
+              });
 
-          }).then(responseJs => {
-          if (!responseJs.ok) {
-                  throw new Error(`Ошибка HTTP: ${responseJs.status}`); // Бросаем ошибку, если ответ не в порядке
-          }
-                return responseJs.json();
-          }).then(jobSeeker => {
-            const url2 = "/response"
-                  data = {vacancy_id: parseInt (vacancyId), job_seeker_id: jobSeeker.id, comment: null}
-                  console.log (data);
-                       const response1 = fetch(url2, {
-                            method: 'POST', // Метод запроса
-                            headers: {
-                                'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
-                            },
-                            body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
-                        });
-
-                  alert("Ваше резюме было успешно отправлено");
-                  const resumeButtons = document.getElementById('resume-buttons');
-          })
-// ��огика отклика без резюме
-    // Логика отклика без резюме
+          alert("Ваше резюме было успешно отправлено");
+          const resumeButtons = document.getElementById('resume-buttons');
+  })
+// Логика отклика без резюме
 }
-function vacancy_text_resume(vacancyName, vacancyId) {
-
-    const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
-    url1 = "/videoCv/send"
-    data = {videoCvMessage:  null, userId: clientID, vacancyId: vacancyId, textResume: true}
+function vacancy_text_resume(vacancyName, vacancyId, from_hh, email) {
+     if (!from_hh) {
+        const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
+        url1 = "/videoCv/send"
+        data = {videoCvMessage:  null, userId: clientID, vacancyId: vacancyId, textResume: true}
          const response = fetch(url1, {
               method: 'POST', // Метод запроса
               headers: {
@@ -318,34 +332,53 @@ function vacancy_text_resume(vacancyName, vacancyId) {
               },
               body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
           });
-          fetch("/jobSeeker/user/"+clientID, {
-              method: 'GET', // Метод запроса
-              headers: {
-                  'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
-              },
+      }
 
-          }).then(responseJs => {
-          if (!responseJs.ok) {
-                  throw new Error(`Ошибка HTTP: ${responseJs.status}`); // Бросаем ошибку, если ответ не в порядке
-          }
-                return responseJs.json();
-          }).then(jobSeeker => {
+
+
+      fetch("/jobSeeker/user/"+clientID, {
+          method: 'GET', // Метод запроса
+          headers: {
+              'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+          },
+
+      }).then(responseJs => {
+      if (!responseJs.ok) {
+              throw new Error(`Ошибка HTTP: ${responseJs.status}`); // Бросаем ошибку, если ответ не в порядке
+      }
+            return responseJs.json();
+      }).then(jobSeeker => {
             const url2 = "/response"
                   data = {vacancy_id: parseInt (vacancyId), job_seeker_id: jobSeeker.id, comment: null}
                   console.log (data);
-                       const response1 = fetch(url2, {
-                            method: 'POST', // Метод запроса
-                            headers: {
-                                'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
-                            },
-                            body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+                   fetch(url2, {
+                        method: 'POST', // Метод запроса
+                        headers: {
+                            'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                        },
+                        body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+                    }).then(responseJs => {
+                        if (!responseJs.ok) {
+                                throw new Error(`Ошибка HTTP: ${responseJs.status}`); // Бросаем ошибку, если ответ не в порядке
+                        }
+                              return responseJs.json();
+                        }).then(response1 => {
+                              if (from_hh) {
+                                const data1= {email:"maksiel1983@icloud.com", responseID: response1.id, vacancyName: vacancyName}
+                                const url3 = "/api/email/send"
+                                fetch(url3, {
+                                    method: 'POST', // Метод запроса
+                                    headers: {
+                                        'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                                    },
+                                    body: JSON.stringify(data1) // Данные, отправляемые в теле запроса, преобразованные в JSON
+                                });
+                              }
                         });
 
                   alert("Ваше резюме было успешно отправлено");
                   const resumeButtons = document.getElementById('resume-buttons');
-          })
-// ��огика отклика без резюме
-    // Логика отклика без резюме
+      })
 }
 
 

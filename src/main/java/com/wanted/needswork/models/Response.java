@@ -7,8 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,9 +22,7 @@ public class Response {
 
     @Getter
     @Setter
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Vacancy vacancy;
+    private BigInteger vacancyId;
 
     @Getter
     @Setter
@@ -41,14 +39,14 @@ public class Response {
     private LocalDateTime createdDateTime;
 
 
-    public Response (Vacancy vacancy, JobSeeker job_seeker, String comment) {
-        this.vacancy = vacancy;
+    public Response (BigInteger vacancy_id, JobSeeker job_seeker, String comment) {
+        this.vacancyId = vacancy_id;
         this.job_seeker = job_seeker;
         this.comment = comment;
 
     }
     public ResponseResponseDTO toResponseDTO() {
-      return new ResponseResponseDTO(this.id, this.vacancy.toResponseDTO(), this.job_seeker.toResponseDTO(),
+      return new ResponseResponseDTO(this.id, this.vacancyId, this.job_seeker.toResponseDTO(),
                 this.comment, this.createdDateTime);
     }
 }

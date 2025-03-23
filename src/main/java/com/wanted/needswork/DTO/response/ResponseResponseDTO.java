@@ -11,7 +11,7 @@ public class ResponseResponseDTO {
     @Getter
     private Integer id;
     @Getter
-    private VacancyResponseDTO vacancy;
+    private BigInteger vacancy_id;
     @Getter
     private JobSeekerResponseDTO job_seeker;
 

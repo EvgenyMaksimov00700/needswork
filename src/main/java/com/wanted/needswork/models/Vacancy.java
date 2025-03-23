@@ -86,9 +86,6 @@ public class Vacancy {
     @Getter
     private LocalDateTime lastModifiedDateTime;
 
-    @OneToMany(mappedBy = "vacancy", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private List<Response> responses = new ArrayList<>();
     @Transient
     @Getter
     @Setter

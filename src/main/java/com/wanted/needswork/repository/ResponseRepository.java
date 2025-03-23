@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ResponseRepository extends JpaRepository <Response, Integer> {
 
-    List<Response> findAllByVacancy_Id(Integer vacancyId);
+    List<Response> findAllResponsesByVacancyId(Integer vacancy_id);
 }
 
