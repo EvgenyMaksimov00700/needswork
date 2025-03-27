@@ -104,6 +104,7 @@ public class VideoCvService {
                     vacancy.getPosition(), user.getId(), user.getFullName(), user.getPhone()
             );
 
+
             if (textResume) {
             JobSeeker jobSeeker = jobSeekerRepository.getJobSeekerByUserId(user.getId());
                 String url = "https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendDocument";

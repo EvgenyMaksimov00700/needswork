@@ -4,11 +4,9 @@ import com.wanted.needswork.DTO.request.ResponseDTO;
 import com.wanted.needswork.DTO.request.UserDTO;
 import com.wanted.needswork.DTO.response.EmployerResponseDTO;
 import com.wanted.needswork.DTO.response.ResponseResponseDTO;
+import com.wanted.needswork.DTO.response.ResponseVacancyUserDTO;
 import com.wanted.needswork.models.*;
-import com.wanted.needswork.services.EmployerService;
-import com.wanted.needswork.services.JobSeekerService;
-import com.wanted.needswork.services.ResponseService;
-import com.wanted.needswork.services.VacancyService;
+import com.wanted.needswork.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -26,6 +24,8 @@ public class ResponseController {
     JobSeekerService jobSeekerService;
     @Autowired
     VacancyService vacancyService;
+    @Autowired
+    HHService hhService;
     @GetMapping ("/response/showall")
     public ResponseEntity <List<ResponseResponseDTO>> showall () {
         List<Response> responses = responseService.getResponse();
@@ -66,11 +66,17 @@ public class ResponseController {
     public ResponseEntity <ResponseResponseDTO> deleteResponseByID (@PathVariable Integer responseId) {
         return new ResponseEntity<>(responseService.deleteResponse(responseId).toResponseDTO(), HttpStatus.OK);
     }
-    @GetMapping ("/response/contact/{responseID}")
-    public ResponseEntity <List<ResponseResponseDTO>> getResponseContact (@PathVariable Integer responseId) {
+    @GetMapping ("/response/contact/{responseId}")
+    public ResponseEntity <ResponseVacancyUserDTO> getResponseContact (@PathVariable Integer responseId) {
         Response response = responseService.getResponse(responseId);
         User user = response.getJob_seeker().getUser();
         Vacancy vacancy = vacancyService.getVacancy(response.getVacancyId());
-        return new ResponseEntity<>(HttpStatus.OK);
+        if (vacancy==null) {
+            vacancy = hhService.fetchVacancy(response.getVacancyId());
+        }
+        if (vacancy == null){
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(new ResponseVacancyUserDTO(vacancy.toResponseDTO(), user.toResponseDTO(), response.getComment()),  HttpStatus.OK);
     }
 }
