@@ -46,13 +46,18 @@ public class Employer {
     @Setter
     private String description;
 
-    public Employer (User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description) {
+    @Getter
+    @Setter
+    private String email;
+
+    public Employer (User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description, String email) {
         this.user = user;
         this.inn = inn;
         this.ogrn = ogrn;
         this.logo = logo;
         this.description = description;
         this.name = name;
+        this.email = email;
 
     }
     public Employer (String name, String logo, String email) {
@@ -60,13 +65,13 @@ public class Employer {
         this.logo = logo;
         this.inn = null;
         this.ogrn = null;
-        this.description = email;
+        this.email = email;
     }
    public EmployerResponseDTO toResponseDTO() {
        UserResponseDTO userResponseDTO = null;
        if(user!=null) {
            userResponseDTO = user.toResponseDTO();
        }
-       return new EmployerResponseDTO(id, userResponseDTO, inn, ogrn, name, logo, description);
+       return new EmployerResponseDTO(id, userResponseDTO, inn, ogrn, name, logo, description, email);
   }
 }

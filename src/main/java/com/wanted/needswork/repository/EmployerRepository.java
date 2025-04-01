@@ -10,6 +10,8 @@ public interface EmployerRepository extends JpaRepository <Employer,Integer> {
     Employer findByUserId(BigInteger userId);
 
     Employer findByInn(BigInteger inn);
+
+    Employer findByEmail(String email);
 }
 
 

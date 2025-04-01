@@ -22,6 +22,9 @@ public class EmployerResponseDTO {
     private String logo;
     @Getter
     private String description;
+    @Getter
+    private String email;
+
 
     public EmployerResponseDTO(String name, String logo, String email) {
         this.name = name;
@@ -30,7 +33,7 @@ public class EmployerResponseDTO {
         this.user_id = null;
         this.inn = null;
         this.ogrn = null;
-        this.description = email;
+        this.email = email;
     }
 
 }

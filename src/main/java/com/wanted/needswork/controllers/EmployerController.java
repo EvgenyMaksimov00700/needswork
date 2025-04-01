@@ -59,7 +59,7 @@ public class EmployerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(employerService.addEmployer(user, employerDTO.getInn(), employerDTO.getOgrn(),
-                employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription()), HttpStatus.OK);
+                employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription(), employerDTO.getEmail()),  HttpStatus.OK);
     }
 
     @PutMapping("/employer/{employerId}")
@@ -70,7 +70,7 @@ public class EmployerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(employerService.updateEmployer(employer, user, employerDTO.getInn(), employerDTO.getOgrn(),
-                employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription()),
+                employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription(), employerDTO.getEmail()),
                 HttpStatus.OK);
     }
     @DeleteMapping("/employer/{employerId}")
@@ -85,6 +85,15 @@ public class EmployerController {
     @GetMapping("/employer/user/inn/{inn}")
     public ResponseEntity<EmployerResponseDTO> getEmployerByInn(@PathVariable BigInteger inn) {
         Employer employer = employerService.getEmployerByInn(inn);
+        if (employer == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(employer.toResponseDTO(), HttpStatus.OK);
+
+    }
+    @GetMapping("/employer/user/email")
+    public ResponseEntity<EmployerResponseDTO> getEmployerByEmail(@RequestParam String email) {
+        Employer employer = employerService.getEmployerByEmail(email);
         if (employer == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -19,5 +19,7 @@ public class EmployerDTO {
     private String logo;
     @Getter
     private String description;
+    @Getter
+    private String email;
 
 }

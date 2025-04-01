@@ -55,6 +55,7 @@ async function fetchAndDisplayData() {
         document.getElementById("nameCompany").value = data.name || '';
         document.getElementById("logo").value = data.logo || '';
         document.getElementById("description").value = data.description || '';
+        document.getElementById("email").value = data.email || '';
     } catch (error) {
         console.error('Ошибка:', error); // Обрабатываем ошибку
     }
@@ -70,6 +71,7 @@ document.getElementById("next").addEventListener("click", async function(event) 
     const name = document.getElementById("nameCompany").value;
     const logo = document.getElementById("logo").value;
     const description = document.getElementById("description").value;
+    const email = document.getElementById("email").value;
 
     // Данные для отправки на сервер
     const url ="/employer/" + employer.employer_id; // Замените на свой URL API
@@ -79,7 +81,8 @@ document.getElementById("next").addEventListener("click", async function(event) 
         name: name,
         logo: logo,
         description: description,
-        user_id: clientID
+        user_id: clientID,
+        email: email
     };
 
     try {
