@@ -95,7 +95,7 @@ public class EmployerController {
     public ResponseEntity<EmployerResponseDTO> getEmployerByEmail(@RequestParam String email) {
         Employer employer = employerService.getEmployerByEmail(email);
         if (employer == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(employer.toResponseDTO(), HttpStatus.OK);
 

@@ -31,6 +31,17 @@ console.log(city);
 const existParams = new URLSearchParams();
 const encodeExistParams = new URLSearchParams();
 
+function getEmployerByEmail(email) {
+  const response = fetch(`/employer/user/email?email=${email}`);
+  if (!response.ok) return null;
+
+  const employer = response.json();
+  return employer?.user_id?.id ?? null;
+
+}
+
+
+
 
 if (city) {
     existParams.append('city', city);
@@ -76,7 +87,7 @@ window.location.href=`/vacancy/menu?${existParams.toString()}`}
 
 let employerUserId;
 
-function vacancy_responses(vacancyName, vacancyId, from_hh, email) {
+function vacancy_responses(vacancyName, vacancyId, from_hh, email, employerUserId) {
 
     const resumeModal = document.getElementById('resumeModal');
     const resumeButtons = document.getElementById('resume-buttons');
@@ -105,7 +116,7 @@ function vacancy_responses(vacancyName, vacancyId, from_hh, email) {
 
                 ${videoCv.name}
             `;
-            element.onclick = () => sendVideo(videoCv.video_message, vacancyName, vacancyId, from_hh, email);
+            element.onclick = () => sendVideo(videoCv.video_message, vacancyName, vacancyId, from_hh, email, employerUserId);
             resumeButtons.appendChild(element);
         });
     })
@@ -115,9 +126,9 @@ function closeModal (){
 const resumeButtons = document.getElementById('resume-buttons');
 resumeModal.style.display = 'none';
 }
-function sendVideo(videoCvName, vacancyName, vacancyId, from_hh, email) {
+function sendVideo(videoCvName, vacancyName, vacancyId, from_hh, email, employerUserId) {
     console.log(from_hh)
-    if (!from_hh) {
+    if (!from_hh || employerUserId!=null) {
          const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
          url1 = "/videoCv/send"
          data = {videoCvMessage:  videoCvName, userId: clientID, vacancyId: vacancyId}
@@ -158,8 +169,8 @@ function sendVideo(videoCvName, vacancyName, vacancyId, from_hh, email) {
                     }
                           return responseJs.json();
                     }).then(response1 => {
-                          if (from_hh) {
-                            const data1= {email:"maksiel1983@icloud.com", responseID: response1.id, vacancyName: vacancyName}
+                          if (from_hh && employerUserId==null) {
+                            const data1= {email:email, responseID: response1.id, vacancyName: vacancyName}
                             const url3 = "/api/email/send"
                             fetch(url3, {
                                 method: 'POST', // Метод запроса
@@ -214,7 +225,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 if (data.employer.user_id!=null) {
                 employerUserId=data.employer.user_id.id;}
                 else {
-                employerUserId=null}
+                employerUserId=getEmployerByEmail(email)}
+                console.log (employerUserId);
                 document.getElementById("position").innerHTML = data.position;
                 document.getElementById("employer_name").innerHTML = "<b>Компания: </b>" + data.employer.name;
                 document.getElementById("city").innerHTML = "<b>Город: </b>" + data.city;
@@ -237,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 document.getElementById("workSchedule").innerHTML += ", возможно удаленно";}
                const paragraphs = data.responsibility.split(/\n\s*\n/);
                                const outputDiv = document.getElementById("responsibility");
-                               if (employerUserId!=null) {
+                               if (!data.from_hh) {
                paragraphs.forEach(paragraph => {
                                               if (paragraph.trim() !== "") {
                                                   const p = document.createElement('p');
@@ -251,10 +263,10 @@ document.addEventListener('DOMContentLoaded', function(){
                                else {
                                outputDiv.innerHTML=data.responsibility
                                }
-               document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + formatDateTime(data.createdDateTime);
-                document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id, data.from_hh, data.employer.email)};
-                document.getElementById("no-resume").onclick = () => {vacancy_no_resume(data.position, data.id, data.from_hh, data.employer.email)};
-                document.getElementById("text-resume").onclick = () => {vacancy_text_resume(data.position, data.id, data.from_hh, data.employer.email)};
+                document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + formatDateTime(data.createdDateTime);
+                document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id, data.from_hh, data.employer.email, employerUserId)};
+                document.getElementById("no-resume").onclick = () => {vacancy_no_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId)};
+                document.getElementById("text-resume").onclick = () => {vacancy_text_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId)};
             });
 setTimeout(() => {
                 const loadingOverlay = document.getElementById("loading");
@@ -262,8 +274,8 @@ setTimeout(() => {
             }, 1000);
 });
 
-function vacancy_no_resume(vacancyName, vacancyId,  from_hh, email) {
-    if (!from_hh) {
+function vacancy_no_resume(vacancyName, vacancyId,  from_hh, email, employerUserId) {
+    if (!from_hh || employerUserId!=null) {
         const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
         url1 = "/videoCv/send"
         data = {videoCvMessage:  null, userId: clientID, vacancyId: vacancyId}
@@ -302,8 +314,8 @@ function vacancy_no_resume(vacancyName, vacancyId,  from_hh, email) {
               }
                     return responseJs.json();
               }).then(response1 => {
-                    if (from_hh) {
-                      const data1= {email:"maksiel1983@icloud.com", responseID: response1.id, vacancyName: vacancyName}
+                    if (from_hh && employerUserId==null) {
+                      const data1= {email:email, responseID: response1.id, vacancyName: vacancyName}
                       const url3 = "/api/email/send"
                       fetch(url3, {
                           method: 'POST', // Метод запроса
@@ -320,8 +332,8 @@ function vacancy_no_resume(vacancyName, vacancyId,  from_hh, email) {
   })
 // Логика отклика без резюме
 }
-function vacancy_text_resume(vacancyName, vacancyId, from_hh, email) {
-     if (!from_hh) {
+function vacancy_text_resume(vacancyName, vacancyId, from_hh, email, employerUserId) {
+     if (!from_hh || employerUserId!=null) {
         const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
         url1 = "/videoCv/send"
         data = {videoCvMessage:  null, userId: clientID, vacancyId: vacancyId, textResume: true}
@@ -363,8 +375,8 @@ function vacancy_text_resume(vacancyName, vacancyId, from_hh, email) {
                         }
                               return responseJs.json();
                         }).then(response1 => {
-                              if (from_hh) {
-                                const data1= {email:"maksiel1983@icloud.com", responseID: response1.id, vacancyName: vacancyName}
+                              if (from_hh && employerUserId==null) {
+                                const data1= {email:email, responseID: response1.id, vacancyName: vacancyName}
                                 const url3 = "/api/email/send"
                                 fetch(url3, {
                                     method: 'POST', // Метод запроса

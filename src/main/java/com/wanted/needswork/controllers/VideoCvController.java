@@ -10,10 +10,7 @@ import com.wanted.needswork.models.JobSeeker;
 import com.wanted.needswork.models.User;
 import com.wanted.needswork.models.Vacancy;
 import com.wanted.needswork.models.VideoCv;
-import com.wanted.needswork.services.JobSeekerService;
-import com.wanted.needswork.services.UserService;
-import com.wanted.needswork.services.VacancyService;
-import com.wanted.needswork.services.VideoCvService;
+import com.wanted.needswork.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +31,8 @@ public class VideoCvController {
 
     @Autowired
     VacancyService vacancyService;
+    @Autowired
+    HHService hhService;
 
 
     @GetMapping("/videoCv/showall")
@@ -94,6 +93,12 @@ public class VideoCvController {
     public ResponseEntity<VideoCv> VideoCvSend (@RequestBody VideoCvSendDTO videoCvSendDTO) {
         User user = userService.getUser(videoCvSendDTO.getUserId());
         Vacancy vacancy = vacancyService.getVacancy(videoCvSendDTO.getVacancyId());
+        if (vacancy==null) {
+            vacancy = hhService.fetchVacancy(videoCvSendDTO.getVacancyId());
+        }
+        if (vacancy == null){
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+        }
         videoCvService.sendVideoNote(user, videoCvSendDTO.getVideoCvMessage(), vacancy, videoCvSendDTO.getTextResume());
         return new ResponseEntity<>(HttpStatus.OK);
     }

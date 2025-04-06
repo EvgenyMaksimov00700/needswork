@@ -123,6 +123,7 @@ public class VideoCvService {
                         employer_user.getId(), textMessage
                 );
                 System.out.println(requestBody2);
+                System.out.println("https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendMessage");
                 HttpRequest request2 = HttpRequest.newBuilder()
                         .uri(URI.create("https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendMessage"))
                         .header("Content-Type", "application/json")

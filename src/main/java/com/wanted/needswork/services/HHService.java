@@ -3,6 +3,7 @@ package com.wanted.needswork.services;
 import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.Industry;
 import com.wanted.needswork.models.Vacancy;
+import com.wanted.needswork.repository.EmployerRepository;
 import com.wanted.needswork.repository.IndustryRepository;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ public class HHService {
     private static final String API_URL = "https://api.hh.ru/";
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    EmployerRepository employerRepository;
 
 
     public void addIndustries(List<List<String>> industries) {
@@ -90,8 +93,12 @@ public class HHService {
         if (email == null){
             return null;
         }
+        Employer employer = employerRepository.findByEmail(email);
+        if (employer == null) {
+            employer = new Employer(employerName, employerLogo, email);
+        }
 
-        Employer employer = new Employer(employerName, employerLogo, email);
+
         String position = (String) item.get("name");
         Map<String, Object> area = (Map<String, Object>) item.get("area");
         String city = (String) area.get("name");
