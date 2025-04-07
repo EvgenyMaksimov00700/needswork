@@ -1,0 +1,65 @@
+/* Общие настройки */
+body {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Стилизация шапки с логотипом */
+header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.logo-container img {
+  max-width: 150px;
+}
+
+/* Основной контент */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Заголовки */
+h1, h2, h3 {
+  color: #ffffff;
+}
+
+/* Секции */
+.content, .why, .contact, .signature, .changes {
+  margin-bottom: 25px;
+  padding: 15px;
+  border-bottom: 1px solid #333;
+}
+
+/* Стилизация списка и кнопок */
+ol, ul {
+  margin-left: 20px;
+}
+
+a {
+  color: #4fc3f7;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Стилизация кнопки */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4fc3f7;
+  color: #1a1a1a;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background-color: #3aa0d8;
+}
