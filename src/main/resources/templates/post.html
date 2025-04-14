@@ -4,28 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Новый отклик на вакансию</title>
-    <link rel="stylesheet" href="../static/css/post.css">
+<!--    <link rel="stylesheet" href="/css/post.css">-->
 </head>
+<style>
+    /* Общие настройки */
+body {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Стилизация шапки с логотипом */
+header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.logo-container img {
+  max-width: 150px;
+}
+
+/* Основной контент */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Секции */
+.content, .why, .contact, .signature, .changes {
+  margin-bottom: 25px;
+  padding: 15px;
+  border-bottom: 1px solid #333;
+}
+
+/* Стилизация списка и кнопок */
+ol, ul {
+  margin-left: 20px;
+}
+
+a {
+  color: #4fc3f7;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Стилизация кнопки */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4fc3f7;
+  color: #1a1a1a;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background-color: #3aa0d8;
+}
+</style>
+
 <body>
 <header>
     <div class="logo-container">
         <!-- Место для логотипа -->
-        <img src="\logo.jpg" alt="Логотип tWorker">
+        <img src="{{logoImage}}" alt="Логотип tWorker">
     </div>
 </header>
 
 <main>
-    <h1>Новый отклик на вакансию «Специалист по проверке заявок на кредит» через tWorker (Telegram + HH.ru)</h1>
+    <h1>Новый отклик на вакансию «{{vacancyName}}» через tWorker (Telegram + HH.ru)</h1>
 
     <section class="content">
-        <p>Уважаемый(ая) [Имя работодателя],</p>
+        <p>Уважаемый Работодатель,</p>
         <p>Кандидат откликнулся на вашу вакансию через мини-приложение tWorker в Telegram. Вот главное:</p>
         <ol>
             <li>🔗 Ваша вакансия синхронизирована с HH.ru — данные обновляются автоматически.</li>
             <li>📲 Кандидаты заполняют анкету в формате «мини-приложения» (не чат-бота!) — это быстро и удобно.</li>
             <li> Вы можете размещать Ваши вакансии у нас в сервисе абсолютно бесплатно!</li>
         </ol>
-        <p><a href="#" class="button">Просмотреть резюме</a></p>
+        <p><a href="{{buttonUrl}}" class="button">Просмотреть резюме</a></p>
     </section>
 
     <section class="why">

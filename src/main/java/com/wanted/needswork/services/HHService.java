@@ -16,6 +16,9 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
@@ -242,29 +245,15 @@ public class HHService {
             message.setSubject("Отклик на вакансию: " + vacancyName);
 
             // Формируем тело письма с подстановкой названия вакансии
-            String htmlContent = "<!DOCTYPE html>" +
-                    "<html lang=\"ru\">" +
-                    "<head>" +
-                    "  <meta charset=\"UTF-8\">" +
-                    "  <title>Отклик на вакансию: " + vacancyName + "</title>" +
-                    "  <style>" +
-                    "    body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }" +
-                    "    .container { background-color: #ffffff; max-width: 600px; margin: 0 auto; padding: 30px; border: 1px solid #dddddd; text-align: center; }" +
-                    "    .btn { display: inline-block; padding: 15px 25px; margin-top: 20px; font-size: 16px; color: #ffffff; background-color: #007BFF; text-decoration: none; border-radius: 5px; }" +
-                    "    .btn:hover { background-color: #0056b3; }" +
-                    "  </style>" +
-                    "</head>" +
-                    "<body>" +
-                    "  <div class=\"container\">" +
-                    "    <p>На вакансию <strong>" + vacancyName + "</strong> поступил отклик.</p>" +
-                    "    <a href=\"" + buttonUrl + "\" class=\"btn\">Посмотрите резюме соискателя</a>" +
-                    "  </div>" +
-                    "</body>" +
-                    "</html>";
+            String htmlContent = new String(Files.readAllBytes(Paths.get("src/main/resources/templates/post.html")), StandardCharsets.UTF_8);
+            htmlContent=htmlContent.replace("{{vacancyName}}", vacancyName).replace("{{buttonUrl}}", buttonUrl);
+            byte[] imageBytes = Files.readAllBytes(Paths.get("src/main/resources/static/imag/logo.jpg"));
+            String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+            htmlContent = htmlContent.replace("{{logoImage}}", "data:image/png;base64," + base64Image);
             message.setContent(htmlContent, "text/html; charset=utf-8");
             Transport.send(message);
             System.out.println("Письмо отправлено на " + recipientEmail);
-        } catch (MessagingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
