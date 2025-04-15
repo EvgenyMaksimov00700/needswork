@@ -4,71 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Новый отклик на вакансию</title>
-<!--    <link rel="stylesheet" href="/css/post.css">-->
+    <style>
+        /* Общие стили */
+        body {
+          margin: 0;
+          padding: 0;
+          background-color: #1e1e2e;
+          color: #e0e0e0;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          line-height: 1.6;
+          box-sizing: border-box;
+        }
+
+        /* Глобальное box-sizing */
+        *, *:before, *:after {
+          box-sizing: inherit;
+        }
+
+        /* Шапка с логотипом */
+        header {
+          width: 100%;
+          margin-bottom: 30px;
+        }
+        .logo-container {
+          width: 100%;
+        }
+        .logo-container img {
+          width: 100%;
+          height: auto;
+          display: block;
+          object-fit: cover;
+        }
+
+        /* Контейнер контента */
+        main {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+        }
+
+        /* Заголовок */
+        h1 {
+          font-size: 2rem;
+          margin-bottom: 20px;
+        }
+
+        /* Секции */
+        section {
+          margin-bottom: 25px;
+          padding-bottom: 20px;
+          border-bottom: 1px solid #333;
+        }
+
+        /* Стилизация списка */
+        ul, ol {
+          padding-left: 20px;
+        }
+
+        /* Стили для галочек */
+        .check {
+          color: #63b3ed; /* голубой цвет */
+          margin-right: 5px;
+        }
+
+        /* Ссылки */
+        a {
+          color: #63b3ed;
+          text-decoration: none;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+
+        /* Кнопка */
+        .button {
+          display: inline-block;
+          padding: 10px 20px;
+          background-color: #63b3ed;
+          color: #1e1e2e;
+          border-radius: 5px;
+          font-weight: bold;
+          margin-top: 10px;
+          max-width: 100%;
+          text-align: center;
+          box-sizing: border-box;
+          transition: background-color 0.3s ease;
+        }
+        .button:hover {
+          background-color: #4299e1;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+          main {
+            padding: 10px;
+          }
+          .button {
+            width: 100%;
+          }
+          /* Уменьшение размера заголовка на мобильных устройствах */
+          h1 {
+            font-size: 1.5rem;
+          }
+        }
+    </style>
 </head>
-<style>
-    /* Общие настройки */
-body {
-  background-color: #1a1a1a;
-  color: #e0e0e0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 20px;
-}
-
-/* Стилизация шапки с логотипом */
-header {
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.logo-container img {
-  max-width: 150px;
-}
-
-/* Основной контент */
-main {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Секции */
-.content, .why, .contact, .signature, .changes {
-  margin-bottom: 25px;
-  padding: 15px;
-  border-bottom: 1px solid #333;
-}
-
-/* Стилизация списка и кнопок */
-ol, ul {
-  margin-left: 20px;
-}
-
-a {
-  color: #4fc3f7;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Стилизация кнопки */
-.button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #4fc3f7;
-  color: #1a1a1a;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-
-.button:hover {
-  background-color: #3aa0d8;
-}
-</style>
-
 <body>
 <header>
     <div class="logo-container">
@@ -78,7 +118,7 @@ a:hover {
 </header>
 
 <main>
-    <h1>Новый отклик на вакансию «{{vacancyName}}» через tWorker (Telegram + HH.ru)</h1>
+    <h3>Новый отклик на вакансию «Уничтожитель борщевика» через tWorker (Telegram + HH.ru)</h3>
 
     <section class="content">
         <p>Уважаемый Работодатель,</p>
@@ -88,36 +128,30 @@ a:hover {
             <li>📲 Кандидаты заполняют анкету в формате «мини-приложения» (не чат-бота!) — это быстро и удобно.</li>
             <li> Вы можете размещать Ваши вакансии у нас в сервисе абсолютно бесплатно!</li>
         </ol>
-        <p><a href="{{buttonUrl}}" class="button">Просмотреть резюме</a></p>
+        <p><a href="{{buttonUrl}}" class="button">Посмотреть резюме</a></p>
     </section>
 
     <section class="why">
         <h2>Почему tWorker?</h2>
         <ul>
-            <li>✅ Больше мобильных кандидатов — 80% откликов из Telegram.</li>
-            <li>✅ Никакого спама — контакты работодателя скрыты.</li>
-            <li>✅ Партнер HH.ru — вакансии защищены через API.</li>
+            <li><span class="check">✔</span> Больше мобильных кандидатов — 80% откликов из Telegram.</li>
+            <li><span class="check">✔</span> Никакого спама — контакты работодателя скрыты.</li>
+            <li><span class="check">✔</span> Партнер HH.ru — вакансии защищены через API.</li>
         </ul>
     </section>
 
     <section class="contact">
-
         <p>Следите за обновлениями в нашем канале:<br>
             👉 <a href="#">DigitalWorld07</a> — лайфхаки по найму, кейсы, новости tWorker.
-
-           <p>Ссылка на приложение: <a href="https://t.me/tworker_ru_bot">@tworker_ru_bot</a>
         </p>
+        <p>Ссылка на приложение: <a href="https://t.me/tworker_ru_bot">@tworker_ru_bot</a></p>
     </section>
 
     <section class="signature">
         <p>С уважением,<br>
             Команда tWorker<br>
-
         </p>
-
     </section>
-
-
 </main>
 </body>
 </html>
