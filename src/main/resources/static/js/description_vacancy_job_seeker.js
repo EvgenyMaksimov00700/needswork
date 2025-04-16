@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 if (data.employer.user_id!=null) {
                 employerUserId=data.employer.user_id.id;}
                 else {
-                employerUserId=getEmployerByEmail(email)}
+                employerUserId=getEmployerByEmail(data.employer.email)}
                 console.log (employerUserId);
                 document.getElementById("position").innerHTML = data.position;
                 document.getElementById("employer_name").innerHTML = "<b>Компания: </b>" + data.employer.name;
