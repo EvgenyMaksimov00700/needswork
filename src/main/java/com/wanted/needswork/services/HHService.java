@@ -247,7 +247,7 @@ public class HHService {
             // Формируем тело письма с подстановкой названия вакансии
             String htmlContent = new String(Files.readAllBytes(Paths.get("src/main/resources/templates/post.html")), StandardCharsets.UTF_8);
             htmlContent=htmlContent.replace("{{vacancyName}}", vacancyName).replace("{{buttonUrl}}", buttonUrl);
-            byte[] imageBytes = Files.readAllBytes(Paths.get("src/main/resources/static/imag/logo.jpg"));
+            byte[] imageBytes = Files.readAllBytes(Paths.get("src/main/resources/static/imag/logo.png"));
             String base64Image = Base64.getEncoder().encodeToString(imageBytes);
             htmlContent = htmlContent.replace("{{logoImage}}", "data:image/png;base64," + base64Image);
             message.setContent(htmlContent, "text/html; charset=utf-8");

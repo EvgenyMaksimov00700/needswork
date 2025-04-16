@@ -1,157 +1,184 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Новый отклик на вакансию</title>
     <style>
-        /* Общие стили */
+        /* Сброс стилей для email */
+        body, table, td, a {
+          -webkit-text-size-adjust: 100%;
+          -ms-text-size-adjust: 100%;
+        }
+        table {
+          border-collapse: separate;
+        }
+        img {
+          border: 0;
+          display: block;
+          max-width: 100%;
+          height: auto;
+        }
         body {
           margin: 0;
           padding: 0;
-          background-color: #1e1e2e;
-          color: #e0e0e0;
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          line-height: 1.6;
-          box-sizing: border-box;
+          width: 100% !important;
+          background-color: #f6f6f6;
+          font-family: Arial, sans-serif;
+          color: #333;
         }
 
-        /* Глобальное box-sizing */
-        *, *:before, *:after {
-          box-sizing: inherit;
-        }
-
-        /* Шапка с логотипом */
-        header {
-          width: 100%;
-          margin-bottom: 30px;
-        }
-        .logo-container {
-          width: 100%;
-        }
-        .logo-container img {
-          width: 100%;
-          height: auto;
-          display: block;
-          object-fit: cover;
-        }
-
-        /* Контейнер контента */
-        main {
-          max-width: 800px;
+        /* Основной контейнер письма с закруглением */
+        .email-container {
+          max-width: 600px;
           margin: 0 auto;
+          background-color: #ffffff;
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          overflow: hidden;
+        }
+
+        /* Шапка (верхний черный блок) */
+        .header {
+          background-color: #000000;
+          padding: 20px;
+          text-align: center;
+          border-bottom: 1px solid #e0e0e0;
+        }
+        .header img {
+          max-width: 50px;
+          height: auto;
+        }
+
+        /* Контент письма */
+        .content {
           padding: 20px;
         }
-
-        /* Заголовок */
-        h1 {
-          font-size: 2rem;
+        h3 {
+          font-size: 24px;
+          color: #1e1e2e;
           margin-bottom: 20px;
         }
-
-        /* Секции */
-        section {
-          margin-bottom: 25px;
-          padding-bottom: 20px;
-          border-bottom: 1px solid #333;
+        h4 {
+          font-size: 20px;
+          margin: 20px 0 10px;
+          color: #1e1e2e;
         }
-
-        /* Стилизация списка */
-        ul, ol {
-          padding-left: 20px;
+        p {
+          font-size: 16px;
+          line-height: 1.5;
+          margin: 0 0 15px;
         }
-
-        /* Стили для галочек */
+        ol, ul {
+          margin: 0 0 15px 20px;
+          font-size: 16px;
+          line-height: 1.5;
+        }
         .check {
-          color: #63b3ed; /* голубой цвет */
-          margin-right: 5px;
-        }
-
-        /* Ссылки */
-        a {
           color: #63b3ed;
-          text-decoration: none;
-        }
-        a:hover {
-          text-decoration: underline;
+          margin-right: 5px;
         }
 
         /* Кнопка */
         .button {
           display: inline-block;
-          padding: 10px 20px;
+          padding: 12px 20px;
           background-color: #63b3ed;
           color: #1e1e2e;
-          border-radius: 5px;
+          text-decoration: none;
+          border-radius: 4px;
           font-weight: bold;
           margin-top: 10px;
-          max-width: 100%;
-          text-align: center;
-          box-sizing: border-box;
-          transition: background-color 0.3s ease;
         }
         .button:hover {
           background-color: #4299e1;
         }
 
-        /* Адаптивность */
-        @media (max-width: 600px) {
-          main {
-            padding: 10px;
+        /* Футер (нижний черный блок) */
+        .footer {
+          background-color: #000000;
+          padding: 20px;
+          text-align: center;
+          font-size: 12px;
+          color: #ffffff;
+          border-top: 1px solid #e0e0e0;
+        }
+
+        @media only screen and (max-width: 600px) {
+          .email-container {
+            width: 100% !important;
           }
-          .button {
-            width: 100%;
-          }
-          /* Уменьшение размера заголовка на мобильных устройствах */
-          h1 {
-            font-size: 1.5rem;
+          h3 {
+            font-size: 20px !important;
           }
         }
     </style>
 </head>
 <body>
-<header>
-    <div class="logo-container">
-        <!-- Место для логотипа -->
-        <img src="{{logoImage}}" alt="Логотип tWorker">
-    </div>
-</header>
+<!-- Обертка для центрирования -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!-- Основной контейнер с закругленными краями -->
+            <table class="email-container" border="0" cellpadding="0" cellspacing="0">
 
-<main>
-    <h3>Новый отклик на вакансию «{{vacancyName}}» через tWorker (Telegram + HH.ru)</h3>
+                <!-- Верхний блок (шапка) -->
+                <tr>
+                    <td class="header">
+                        <img src="{{logoImage}}" alt="Логотип tWorker">
+                    </td>
+                </tr>
 
-    <section class="content">
-        <p>Уважаемый Работодатель,</p>
-        <p>Кандидат откликнулся на вашу вакансию через мини-приложение tWorker в Telegram. Вот главное:</p>
-        <ol>
-            <li>🔗 Ваша вакансия синхронизирована с HH.ru — данные обновляются автоматически.</li>
-            <li>📲 Кандидаты заполняют анкету в формате «мини-приложения» (не чат-бота!) — это быстро и удобно.</li>
-            <li> Вы можете размещать Ваши вакансии у нас в сервисе абсолютно бесплатно!</li>
-        </ol>
-        <p><a href="{{buttonUrl}}" class="button">Посмотреть резюме</a></p>
-    </section>
+                <!-- Основной контент -->
+                <tr>
+                    <td class="content">
+                        <h3>Новый отклик на вакансию «{{vacancyName}}» через tWorker (Telegram + HH.ru)</h3>
 
-    <section class="why">
-        <h4>Почему tWorker?</h4>
-        <ul>
-            <li><span class="check">✔</span> Больше мобильных кандидатов — 80% откликов из Telegram.</li>
-            <li><span class="check">✔</span> Никакого спама — контакты работодателя скрыты.</li>
-            <li><span class="check">✔</span> Партнер HH.ru — вакансии защищены через API.</li>
-        </ul>
-    </section>
+                        <section class="content">
+                            <p>Уважаемый Работодатель,</p>
+                            <p>Кандидат откликнулся на вашу вакансию через мини-приложение tWorker в Telegram. Вот главное:</p>
+                            <ol>
+                                <li>🔗 Ваша вакансия синхронизирована с HH.ru — данные обновляются автоматически.</li>
+                                <li>📲 Кандидаты заполняют анкету в формате «мини-приложения» (не чат-бота!) — это быстро и удобно.</li>
+                                <li>Вы можете размещать Ваши вакансии у нас в сервисе абсолютно бесплатно!</li>
+                            </ol>
+                            <p><a href="{{buttonUrl}}" class="button">Посмотреть резюме</a></p>
+                        </section>
 
-    <section class="contact">
-        <p>Следите за обновлениями в нашем канале:<br>
-            👉 <a href="#">DigitalWorld07</a> — лайфхаки по найму, кейсы, новости tWorker.
-        </p>
-        <p>Ссылка на приложение: <a href="https://t.me/tworker_ru_bot">@tworker_ru_bot</a></p>
-    </section>
+                        <section class="why">
+                            <h4>Почему tWorker?</h4>
+                            <ul>
+                                <li><span class="check">✔</span> Больше мобильных кандидатов — 80% откликов из Telegram.</li>
+                                <li><span class="check">✔</span> Никакого спама — контакты работодателя скрыты.</li>
+                                <li><span class="check">✔</span> Партнер HH.ru — вакансии защищены через API.</li>
+                            </ul>
+                        </section>
 
-    <section class="signature">
-        <p>С уважением,<br>
-            Команда tWorker<br>
-        </p>
-    </section>
-</main>
+                        <section class="contact">
+                            <p>Следите за обновлениями в нашем канале:<br>
+                                👉 <a href="#">DigitalWorld07</a> — лайфхаки по найму, кейсы, новости tWorker.
+                            </p>
+                            <p>Ссылка на приложение: <a href="https://t.me/tworker_ru_bot">@tworker_ru_bot</a></p>
+                        </section>
+
+                        <section class="signature">
+                            <p>С уважением,<br>
+                                Команда tWorker<br>
+                            </p>
+                        </section>
+                    </td>
+                </tr>
+
+                <!-- Нижний блок (футер) -->
+                <tr>
+                    <td class="footer">
+                        <p>© 2025 tWorker. Все права защищены.</p>
+                    </td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
