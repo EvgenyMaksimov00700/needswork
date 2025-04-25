@@ -215,8 +215,8 @@ function populateCitySelect() {
             const citySelect = document.getElementById('city-list');
             russianCities.forEach(city => {
                 const option = document.createElement('option');
-                option.value = city;
-                option.text = city;
+                option.value = city.name;
+                option.text = city.name;
                 citySelect.appendChild(option);
             });
         })

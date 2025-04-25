@@ -36,6 +36,8 @@ public class HHService {
     private RestTemplate restTemplate;
     @Autowired
     EmployerRepository employerRepository;
+    @Autowired
+    CityService cityService;
 
 
     public void addIndustries(List<List<String>> industries) {
@@ -76,6 +78,42 @@ public class HHService {
                 }
             }
         }
+        return result;
+    }
+    public List <Map<String, String>> getArea (List<Map<String, Object>> areas) {
+        List <Map<String, String>> city = new ArrayList<>();
+        for (Map<String, Object> area : areas){
+            List<Map<String, Object>> currentArea = (List<Map<String, Object>>) area.get("areas");
+            if (currentArea.isEmpty()){
+                Map<String, String> data = new HashMap<>();
+                data.put("id", (String) area.get("id"));
+                data.put("name", (String) area.get("name"));
+                city.add(data);
+            } else {
+                city.addAll(getArea(currentArea));
+            }
+        }
+        return city;
+    }
+
+    public List <Map<String, String>> fetchCities() {
+        Dotenv dotenv = Dotenv.load();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(Objects.requireNonNull(dotenv.get("API_HH_TOKEN")));
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<List> response = restTemplate.exchange(
+                API_URL + "areas", HttpMethod.GET, entity, List.class);
+
+        List <Map<String, String>> result = new ArrayList<>();
+
+        if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+            result = getArea(response.getBody());
+        }
+        result.sort(Comparator.comparing(map->map.get("name")));
+        //for (Map<String, String> city: result) {
+        //cityService.addCity(Integer.valueOf(city.get("id")), city.get("name"));
+        //}
         return result;
     }
 

@@ -5,6 +5,7 @@ import com.wanted.needswork.services.HHService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,17 +23,10 @@ public class HHController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-//    @GetMapping("/api/industry")
-//    public ResponseEntity<Object> getIndustry() {
-//        return new ResponseEntity<>(hhService.fetchIndustries(),
-//                HttpStatus.OK);
-//    }
-//
-//    @PostMapping("/api/industry")
-//    public ResponseEntity<Object> addIndustry() {
-//        List<List<String>> industries = hhService.fetchIndustries();
-//        hhService.addIndustries(industries);
-//        return new ResponseEntity<>(hhService.fetchIndustries(),
-//                HttpStatus.OK);
-//    }
+    @GetMapping("/api/city")
+    public ResponseEntity<Object> getCity() {
+        return new ResponseEntity<>(hhService.fetchCities(),
+                HttpStatus.OK);
+    }
+
 }

@@ -2,13 +2,11 @@ package com.wanted.needswork.controllers;
 
 import com.wanted.needswork.DTO.request.VacancyDTO;
 import com.wanted.needswork.DTO.response.VacancyResponseDTO;
+import com.wanted.needswork.models.City;
 import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.Industry;
 import com.wanted.needswork.models.Vacancy;
-import com.wanted.needswork.services.EmployerService;
-import com.wanted.needswork.services.HHService;
-import com.wanted.needswork.services.IndustryService;
-import com.wanted.needswork.services.VacancyService;
+import com.wanted.needswork.services.*;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +32,8 @@ public class VacancyController {
     EmployerService employerService;
     @Autowired
     HHService hhService;
+    @Autowired
+    CityService cityService;
 
     @GetMapping("/vacancy/showall")
     public ResponseEntity<List<VacancyResponseDTO>> showall() {
@@ -91,8 +91,8 @@ public class VacancyController {
     }
 
     @GetMapping("/vacancy/city")
-    public ResponseEntity<List<String>> getCities() {
-        List<String> cities = vacancyService.getCities();
+    public ResponseEntity<List<City>> getCities() {
+        List<City> cities = cityService.getCities();
         return new ResponseEntity<>(cities, HttpStatus.OK);
     }
 
