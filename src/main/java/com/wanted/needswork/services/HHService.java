@@ -1,5 +1,6 @@
 package com.wanted.needswork.services;
 
+import com.wanted.needswork.models.City;
 import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.Industry;
 import com.wanted.needswork.models.Vacancy;
@@ -210,6 +211,48 @@ public class HHService {
                 city, fromSalary, toSalary, workSchedule, distantWork, address, exp, responsibility_total,
                 createdDateTime, lastModifiedDateTime);
     }
+    public List<Vacancy> fetchVacancies(String city, String industry, String company, String position, String salary, String experience, String workSchedule, String dateTime  ) {
+        Dotenv dotenv = Dotenv.load();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(Objects.requireNonNull(dotenv.get("API_HH_TOKEN")));
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+        String url = "vacancies?currency=RUR&per_page=100&order_by=publication_time";
+        if (!Objects.equals(city, "") ){
+            city = city.substring(0,1).toUpperCase()+city.substring(1);
+            City cityObject = cityService.getCityByName(city);
+            if (cityObject != null){
+                url += "&area=" + cityObject.getId();
+            } else {
+                url += "&area=113";
+            }
+        } else {
+            url += "&area=113";
+        }
+
+
+
+        ResponseEntity<Map> response = restTemplate.exchange(
+                API_URL + url, HttpMethod.GET, entity, Map.class);
+
+        List<Vacancy> result = new ArrayList<>();
+
+        if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+            Map<String, Object> responseBody = (Map<String, Object>) response.getBody();
+
+            // Проверяем, есть ли ключ "items"
+            if (responseBody.containsKey("items")) {
+                List<Map<String, Object>> items = (List<Map<String, Object>>) responseBody.get("items");
+
+                for (Map<String, Object> item : items) {
+                    Vacancy vacancy = parseVacancy(item);
+                    if (vacancy != null) {
+                        result.add(vacancy);
+                    }
+                }
+            }
+        }
+        return result;
+    }
 
     public List<Vacancy> fetchVacancies() {
         Dotenv dotenv = Dotenv.load();
@@ -218,7 +261,7 @@ public class HHService {
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         ResponseEntity<Map> response = restTemplate.exchange(
-                API_URL + "vacancies?currency=RUR&per_page=100", HttpMethod.GET, entity, Map.class);
+                API_URL + "vacancies?currency=RUR&per_page=100&order_by=publication_time&area=113" , HttpMethod.GET, entity, Map.class);
 
         List<Vacancy> result = new ArrayList<>();
 

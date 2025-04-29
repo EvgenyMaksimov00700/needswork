@@ -7,6 +7,7 @@ try {
         }
         console.log(isDesktop());
         if (!isDesktop()) {
+        document.querySelector(".container").style.marginTop = "90px";
             window.Telegram.WebApp.requestFullscreen();
         }
     }

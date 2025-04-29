@@ -122,7 +122,7 @@ public class VacancyController {
 
 
         List<Vacancy> vacancies = vacancyService.getVacancy();
-        vacancies.addAll(hhService.fetchVacancies());
+        vacancies.addAll(hhService.fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date));
         List<String> exps = List.of(exp.split(","));
         List<String> workSchedules = List.of(workSchedule.split(","));
         JSONArray jsonArray = null;
@@ -133,7 +133,7 @@ public class VacancyController {
         for (int i = 0; i < vacancies.size(); i++) {
             Vacancy vacancy = vacancies.get(i);
             boolean is_fits = true;
-            if (vacancy.getCity()!=null&&!Objects.equals(city, "") && !Objects.equals(vacancy.getCity(), city)) {
+            if (vacancy.getCity()!=null&&!Objects.equals(city, "") && !Objects.equals(vacancy.getCity(), city.substring(0,1).toUpperCase()+city.substring(1))) {
                 is_fits = false;
             }
             if (vacancy.getIndustry()!=null&&!Objects.equals(industry, "") && !Objects.equals(vacancy.getIndustry().getId(), parseInt(industry))) {

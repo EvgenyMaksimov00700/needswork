@@ -6,6 +6,7 @@ try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
     }
     console.log(isDesktop());
     if (!isDesktop()) {
+    document.querySelector(".container").style.marginTop = "90px";
         window.Telegram.WebApp.requestFullscreen();
     }
 
