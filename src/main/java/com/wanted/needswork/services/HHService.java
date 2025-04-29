@@ -81,11 +81,12 @@ public class HHService {
         }
         return result;
     }
-    public List <Map<String, String>> getArea (List<Map<String, Object>> areas) {
-        List <Map<String, String>> city = new ArrayList<>();
-        for (Map<String, Object> area : areas){
+
+    public List<Map<String, String>> getArea(List<Map<String, Object>> areas) {
+        List<Map<String, String>> city = new ArrayList<>();
+        for (Map<String, Object> area : areas) {
             List<Map<String, Object>> currentArea = (List<Map<String, Object>>) area.get("areas");
-            if (currentArea.isEmpty()){
+            if (currentArea.isEmpty()) {
                 Map<String, String> data = new HashMap<>();
                 data.put("id", (String) area.get("id"));
                 data.put("name", (String) area.get("name"));
@@ -97,7 +98,7 @@ public class HHService {
         return city;
     }
 
-    public List <Map<String, String>> fetchCities() {
+    public List<Map<String, String>> fetchCities() {
         Dotenv dotenv = Dotenv.load();
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(Objects.requireNonNull(dotenv.get("API_HH_TOKEN")));
@@ -106,12 +107,12 @@ public class HHService {
         ResponseEntity<List> response = restTemplate.exchange(
                 API_URL + "areas", HttpMethod.GET, entity, List.class);
 
-        List <Map<String, String>> result = new ArrayList<>();
+        List<Map<String, String>> result = new ArrayList<>();
 
         if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
             result = getArea(response.getBody());
         }
-        result.sort(Comparator.comparing(map->map.get("name")));
+        result.sort(Comparator.comparing(map -> map.get("name")));
         //for (Map<String, String> city: result) {
         //cityService.addCity(Integer.valueOf(city.get("id")), city.get("name"));
         //}
@@ -132,7 +133,7 @@ public class HHService {
             return null;
         }
         String email = (String) contacts.get("email");
-        if (email == null){
+        if (email == null) {
             return null;
         }
         Employer employer = employerRepository.findByEmail(email);
@@ -197,11 +198,9 @@ public class HHService {
                 }
                 responsibility_total = responsibility_total + responsibility;
             }
-        } else if(description != null){
+        } else if (description != null) {
             responsibility_total = description;
         }
-
-
 
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
@@ -211,22 +210,75 @@ public class HHService {
                 city, fromSalary, toSalary, workSchedule, distantWork, address, exp, responsibility_total,
                 createdDateTime, lastModifiedDateTime);
     }
-    public List<Vacancy> fetchVacancies(String city, String industry, String company, String position, String salary, String experience, String workSchedule, String dateTime  ) {
+
+    public List<Vacancy> fetchVacancies(String city, String industry, String company, String position, String salary, String experience, String workSchedule, String dateTime) {
         Dotenv dotenv = Dotenv.load();
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(Objects.requireNonNull(dotenv.get("API_HH_TOKEN")));
         HttpEntity<String> entity = new HttpEntity<>(headers);
         String url = "vacancies?currency=RUR&per_page=100&order_by=publication_time";
-        if (!Objects.equals(city, "") ){
-            city = city.substring(0,1).toUpperCase()+city.substring(1);
+        if (!Objects.equals(city, "")) {
+            city = city.substring(0, 1).toUpperCase() + city.substring(1);
             City cityObject = cityService.getCityByName(city);
-            if (cityObject != null){
+            if (cityObject != null) {
                 url += "&area=" + cityObject.getId();
             } else {
                 url += "&area=113";
             }
         } else {
             url += "&area=113";
+        }
+        if (!Objects.equals(industry, "")) {
+            url += "&industry=" + industry;
+
+        }
+        if (!Objects.equals(company, "")) {
+            url += "&employer_id=" + company;
+
+        }
+
+        if (!Objects.equals(salary, "")) {
+            url += "&salary=" + salary;
+
+        }
+
+        if (!Objects.equals(position, "")) {
+            url += "&text=" + position;
+
+        }
+
+        if (!Objects.equals(experience, "")) {
+            if (Objects.equals(experience, "Нет опыта")) {
+                url += "&experience=noExperience";
+
+            }
+            if (Objects.equals(experience, "от 1 года до 3 лет")) {
+                url += "&experience=between1And3";
+            }
+            if (Objects.equals(experience, "от 3 года до 6 лет")) {
+                url += "&experience=between3And6";
+            }
+            if (Objects.equals(experience, "Более 6 лет")) {
+                url += "&experience=modeThan6";
+            }
+
+        }
+        if (!Objects.equals(dateTime, "")) {
+            if (Objects.equals(dateTime, "За месяц")) {
+                url += "&period=30";
+
+            }
+            if (Objects.equals(dateTime, "За неделю")) {
+                url += "&period=7";
+            }
+            if (Objects.equals(dateTime, "За 3 дня")) {
+                url += "&period=3";
+            }
+            if (Objects.equals(dateTime, "Сутки")) {
+                url += "&period=1";
+            }
+
+
         }
 
 
@@ -261,7 +313,7 @@ public class HHService {
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         ResponseEntity<Map> response = restTemplate.exchange(
-                API_URL + "vacancies?currency=RUR&per_page=100&order_by=publication_time&area=113" , HttpMethod.GET, entity, Map.class);
+                API_URL + "vacancies?currency=RUR&per_page=100&order_by=publication_time&area=113", HttpMethod.GET, entity, Map.class);
 
         List<Vacancy> result = new ArrayList<>();
 
@@ -299,6 +351,7 @@ public class HHService {
 
 
     }
+
     public void sendResponseEmail(String recipientEmail, String buttonUrl, String vacancyName) {
         Dotenv dotenv = Dotenv.load();
         final String senderEmail = "awesome.iocc@mail.ru";
@@ -327,7 +380,7 @@ public class HHService {
 
             // Формируем тело письма с подстановкой названия вакансии
             String htmlContent = new String(Files.readAllBytes(Paths.get("src/main/resources/templates/post.html")), StandardCharsets.UTF_8);
-            htmlContent=htmlContent.replace("{{vacancyName}}", vacancyName).replace("{{buttonUrl}}", buttonUrl);
+            htmlContent = htmlContent.replace("{{vacancyName}}", vacancyName).replace("{{buttonUrl}}", buttonUrl);
             byte[] imageBytes = Files.readAllBytes(Paths.get("src/main/resources/static/imag/logo.png"));
             String base64Image = Base64.getEncoder().encodeToString(imageBytes);
             htmlContent = htmlContent.replace("{{logoImage}}", "data:image/png;base64," + base64Image);
