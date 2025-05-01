@@ -136,7 +136,7 @@ public class VacancyController {
             if (vacancy.getCity()!=null&&!Objects.equals(city, "") && !Objects.equals(vacancy.getCity(), city.substring(0,1).toUpperCase()+city.substring(1))) {
                 is_fits = false;
             }
-            if (vacancy.getIndustry()!=null&&!Objects.equals(industry, "") && !Objects.equals(vacancy.getIndustry().getId(), parseInt(industry))) {
+            if (vacancy.getIndustry()!=null&&!Objects.equals(industry, "") && !Objects.equals(vacancy.getIndustry().getId(), industry)) {
                 is_fits = false;
             }
             if (vacancy.getEmployer()!=null&&!Objects.equals(company, "") && !Objects.equals(vacancy.getEmployer().getName(), company)) {

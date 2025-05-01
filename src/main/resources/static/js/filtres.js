@@ -212,20 +212,29 @@ function populateCitySelect() {
             return response.json();
         })
         .then(russianCities => {
-            console.log(russianCities);
-            const citySelect = document.getElementById('city-list');
+
+            const citySelect = document.getElementById('city');
             russianCities.forEach(city => {
                 const option = document.createElement('option');
                 option.value = city.name;
                 option.text = city.name;
                 citySelect.appendChild(option);
             });
+            if (city != null) {
+                                    const cityOption = Array.from(citySelect.options).find(option => option.value === city);
+                                    if (cityOption) {
+                                        citySelect.value = city;
+                                    }
+                                }
         })
+
+
         .catch(error => console.error('Ошибка загрузки городов:', error));
 }
 
 // Функция для заполнения выпадающего списка отраслей
 function industrySelect() {
+
     fetch('/industry/showall')
         .then(response => {
             if (!response.ok) {
@@ -238,7 +247,7 @@ function industrySelect() {
             industries.forEach(industry => {
                 const option = document.createElement('option');
                 option.value = industry.id;
-                option.text = industry.name;
+                option.text = industry.category;
                 industrySelect.appendChild(option);
             });
 
@@ -278,8 +287,11 @@ function companySelect() {
             });
 
             // Установим выбранное значение после загрузки опций
+
             if (company != null) {
                 const companyOption = Array.from(companySelect.options).find(option => option.value === company);
+
+
                 if (companyOption) {
                     companySelect.value = company;
                 }
