@@ -230,7 +230,9 @@ document.addEventListener('DOMContentLoaded', function(){
                 document.getElementById("position").innerHTML = data.position;
                 document.getElementById("employer_name").innerHTML = "<b>Компания: </b>" + data.employer.name;
                 document.getElementById("city").innerHTML = "<b>Город: </b>" + data.city;
-                document.getElementById("address").innerHTML = "<b>Адрес: </b>" + data.address;
+                if (data.address!=null) {
+                document.getElementById("address").innerHTML = "<b>Адрес: </b>" + data.address;}
+
                 document.getElementById("salary").innerHTML += "<b>Зарплата: </b>";
                 if (data.fromSalary!=null) {
                 document.getElementById("salary").innerHTML += "от " + data.fromSalary + " ";

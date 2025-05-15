@@ -122,7 +122,6 @@ public class VacancyController {
 
 
         List<Vacancy> vacancies = vacancyService.getVacancy();
-        vacancies.addAll(hhService.fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date));
         List<String> exps = List.of(exp.split(","));
         List<String> workSchedules = List.of(workSchedule.split(","));
         JSONArray jsonArray = null;
@@ -176,6 +175,10 @@ public class VacancyController {
                 vacancyResponseDTOs.add(vacancy.toResponseDTO());
             }
         }
+        vacancyResponseDTOs.addAll(
+                hhService.fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date)
+                        .stream().map(Vacancy::toResponseDTO).toList()
+        );
         return new ResponseEntity<>(vacancyResponseDTOs, HttpStatus.OK);
     }
 }
