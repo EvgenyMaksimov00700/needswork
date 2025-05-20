@@ -73,6 +73,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (city != null) {
         document.getElementById('city').value = city;
     }
+    if (company!=null) {
+    document.getElementById('company').value = company;
+    }
     if (position != null) {
     document.getElementById('position').value = position;
     }
@@ -304,7 +307,7 @@ function companySelect() {
 function windowsLoad() {
     industrySelect();
     populateCitySelect();
-    companySelect();
+   // companySelect();
 }
 
 function chooseWorkExperience(button) {

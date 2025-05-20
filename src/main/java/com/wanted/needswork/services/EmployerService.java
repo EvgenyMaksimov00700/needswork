@@ -25,7 +25,7 @@ public class EmployerService {
         return employerRepository.findAll();
     }
 
-    public Employer getEmployer(Integer employerId) {
+    public Employer getEmployer(BigInteger employerId) {
         return employerRepository.findById(employerId).orElse(null);
 
 

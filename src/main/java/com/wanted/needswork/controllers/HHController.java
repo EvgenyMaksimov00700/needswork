@@ -28,5 +28,10 @@ public class HHController {
         return new ResponseEntity<>(hhService.fetchCities(),
                 HttpStatus.OK);
     }
+    @GetMapping("/api/employer")
+    public ResponseEntity<Object> getEmployer() throws Exception {
+        return new ResponseEntity<>(hhService.fetchEmployers(),
+                HttpStatus.OK);
+    }
 
 }

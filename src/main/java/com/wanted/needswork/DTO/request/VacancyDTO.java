@@ -3,11 +3,13 @@ package com.wanted.needswork.DTO.request;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.math.BigInteger;
+
 @AllArgsConstructor
 public class VacancyDTO {
 
     @Getter
-    private Integer employer_id;
+    private BigInteger employer_id;
     @Getter
     private String industry_id;
     @Getter

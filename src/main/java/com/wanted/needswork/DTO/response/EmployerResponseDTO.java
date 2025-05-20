@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 public class EmployerResponseDTO {
     @Getter
-    private Integer employer_id;
+    private BigInteger employer_id;
     @Getter
     private UserResponseDTO user_id;
     @Getter

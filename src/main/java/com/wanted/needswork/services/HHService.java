@@ -1,5 +1,15 @@
 package com.wanted.needswork.services;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.wanted.needswork.models.City;
 import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.Industry;
@@ -39,7 +49,6 @@ public class HHService {
     EmployerRepository employerRepository;
     @Autowired
     CityService cityService;
-
 
     public void addIndustries(List<List<String>> industries) {
         for (int i = 0; i < industries.size(); i++) {
@@ -217,6 +226,8 @@ public class HHService {
         headers.setBearerAuth(Objects.requireNonNull(dotenv.get("API_HH_TOKEN")));
         HttpEntity<String> entity = new HttpEntity<>(headers);
         String url = "vacancies?currency=RUR&per_page=100&order_by=publication_time";
+        String text = "";
+
         if (!Objects.equals(city, "")) {
             city = city.substring(0, 1).toUpperCase() + city.substring(1);
             City cityObject = cityService.getCityByName(city);
@@ -233,7 +244,7 @@ public class HHService {
 
         }
         if (!Objects.equals(company, "")) {
-            url += "&employer_id=" + company;
+            text += company+" ";
 
         }
 
@@ -243,7 +254,11 @@ public class HHService {
         }
 
         if (!Objects.equals(position, "")) {
-            url += "&text=" + position;
+             text+= position;
+
+        }
+        if (!text.isEmpty()){
+            url += "&text=" + text;
 
         }
 
@@ -280,7 +295,6 @@ public class HHService {
 
 
         }
-
 
 
         ResponseEntity<Map> response = restTemplate.exchange(
@@ -392,4 +406,57 @@ public class HHService {
         }
     }
 
+
+    public List<Employer> fetchEmployers() {
+        Dotenv dotenv = Dotenv.load();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(Objects.requireNonNull(dotenv.get("API_HH_TOKEN")));
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        List<Employer> result = new ArrayList<>();
+
+        int currentPage = 0;
+        int totalPages = 1; // будет обновлено после первого запроса
+
+        while (currentPage < totalPages) {
+            String url = "https://api.hh.ru/employers?per_page=100&page=" + currentPage;
+
+            ResponseEntity<Map> response = restTemplate.exchange(
+                    url,
+                    HttpMethod.GET,
+                    entity,
+                    Map.class
+            );
+
+            if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+                Map<String, Object> responseBody = (Map<String, Object>) response.getBody();
+
+                // обновляем общее число страниц (делается один раз — в первом успешном ответе)
+                if (responseBody.containsKey("pages")) {
+                    totalPages = ((Number) responseBody.get("pages")).intValue();
+                }
+
+                if (responseBody.containsKey("items")) {
+                    List<Map<String, Object>> items = (List<Map<String, Object>>) responseBody.get("items");
+
+                    for (Map<String, Object> item : items) {
+                        BigInteger id = new BigInteger(item.get("id").toString());
+                        String name = String.valueOf(item.get("name"));
+                        Employer employer = new Employer(id, name);
+                        employerRepository.save(employer);
+                        result.add(employer);
+                    }
+                }
+            }
+
+            currentPage++;
+        }
+
+        return result;
+    }
+
+
 }
+
+
+

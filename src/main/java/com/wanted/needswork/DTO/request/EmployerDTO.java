@@ -22,4 +22,10 @@ public class EmployerDTO {
     @Getter
     private String email;
 
+    public EmployerDTO(BigInteger user_id, String name) {
+        this.user_id = user_id;
+        this.name = name;
+    }
 }
+
+

@@ -15,10 +15,10 @@ import java.math.BigInteger;
 @NoArgsConstructor
 public class Employer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Getter
     @Setter
-    private Integer id;
+    private BigInteger id;
 
     @Getter
     @Setter
@@ -67,11 +67,18 @@ public class Employer {
         this.ogrn = null;
         this.email = email;
     }
-   public EmployerResponseDTO toResponseDTO() {
+
+    public Employer(BigInteger id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public EmployerResponseDTO toResponseDTO() {
        UserResponseDTO userResponseDTO = null;
        if(user!=null) {
            userResponseDTO = user.toResponseDTO();
        }
        return new EmployerResponseDTO(id, userResponseDTO, inn, ogrn, name, logo, description, email);
+
   }
 }

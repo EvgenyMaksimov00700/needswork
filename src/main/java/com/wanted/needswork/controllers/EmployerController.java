@@ -33,7 +33,7 @@ public class EmployerController {
 
 
     @GetMapping("/employer/get/{employerId}")
-    public ResponseEntity<EmployerResponseDTO> getEmployerById(@PathVariable Integer employerId) {
+    public ResponseEntity<EmployerResponseDTO> getEmployerById(@PathVariable BigInteger employerId) {
         Employer employer = employerService.getEmployer(employerId);
         if (employer == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -63,7 +63,7 @@ public class EmployerController {
     }
 
     @PutMapping("/employer/{employerId}")
-    public ResponseEntity<Employer> updateEmployer(@RequestBody EmployerDTO employerDTO, @PathVariable Integer employerId) {
+    public ResponseEntity<Employer> updateEmployer(@RequestBody EmployerDTO employerDTO, @PathVariable BigInteger employerId) {
         Employer employer = employerService.getEmployer(employerId);
         User user = userService.getUser(employerDTO.getUser_id());
         if (employer == null) {
@@ -74,7 +74,7 @@ public class EmployerController {
                 HttpStatus.OK);
     }
     @DeleteMapping("/employer/{employerId}")
-    public ResponseEntity<Employer> deleteEmployer(@PathVariable Integer employerId) {
+    public ResponseEntity<Employer> deleteEmployer(@PathVariable BigInteger employerId) {
         Employer employer = employerService.getEmployer(employerId);
         if (employer == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
