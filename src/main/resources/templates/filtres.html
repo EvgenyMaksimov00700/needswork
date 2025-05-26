@@ -15,12 +15,14 @@
         <!-- Выбор отрасли -->
         <div class="form-group">
             <label for="industry">Отрасль</label>
+            <div class = "searchable-select" data-target="industry">
             <select id="industry">
-                <option value="" disabled selected>Выберите отрасль</option>
                 <option value="">Все отрасли</option>
-
             </select>
+                <input type="text" id="industry-search" placeholder="Введите отрасль" autocomplete="off">
+                <div class="options-container"></div>
         </div>
+
 
         <!-- Верхнее поле с выбором должности -->
         <div class="form-group">
@@ -47,7 +49,7 @@
                 <option value="Массажист">Массажист</option>
                 <option value="Кладовщик на склад">Кладовщик на склад</option>
                 <option value="Санитар/санитарки в частную клинику">Санитар/санитарки в частную клинику</option>
-                <option value="Puthon разработчик, middle">Puthon разработчик, middle</option>
+                <option value="Python разработчик, middle">Python разработчик, middle</option>
                 <option value="Frontend-разработчик (Angular)">Frontend-разработчик (Angular)</option>
                 <option value="Junior Backend Developer">Junior Backend Developer</option>
                 <option value="Flutter Разработчик (Стажер)">Flutter Разработчик (Стажер)</option>
@@ -110,13 +112,16 @@
         <!-- Город -->
         <div class="form-group">
             <label for="city">Город</label>
+            <div class = "searchable-select" data-target="city">
 
 
             <select id="city">
-                <option value="" disabled selected>Выберите город</option>
                 <option value="">Все города</option>
             </select>
+            <input type="text" id="city-search" placeholder="Введите город" autocomplete="off">
+            <div class="options-container"></div>
         </div>
+
 
 
 

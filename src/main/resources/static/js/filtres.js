@@ -71,8 +71,11 @@ document.addEventListener('DOMContentLoaded', function () {
     windowsLoad();
 
     if (city != null) {
-        document.getElementById('city').value = city;
+        document.getElementById('city-search').value = city;
     }
+    if (industry  != null) {
+            document.getElementById('industry-search').value = industry;
+        }
     if (company!=null) {
     document.getElementById('company').value = company;
     }
@@ -119,9 +122,9 @@ function vacancy_back() {
 
 function apply() {
 const currentParams = new URLSearchParams();
-const currentCity = document.getElementById("city").value;
+const currentCity = document.getElementById("city-search").value;
 const currentCompany = document.getElementById("company").value;
-const currentIndustry = document.getElementById("industry").value;
+const currentIndustry = document.getElementById("industry-search").value;
 const currentPosition = document.getElementById("position").value;
 const currentSalary = document.getElementById("income").value;
 if (currentCity) {
@@ -302,12 +305,75 @@ function companySelect() {
         })
         .catch(error => console.error('Ошибка загрузки компаний:', error));
 }
+function initSearchableSelect(wrapper) {
+  const select = wrapper.querySelector('select');
+  const input  = wrapper.querySelector('input');
+  const list   = wrapper.querySelector('.options-container');
+
+  // Сохраняем исходные опции (обновляется при каждом вызове)
+  function getOpts() {
+    return Array.from(select.options).map(o => ({
+      value: o.value,
+      label: o.text
+    }));
+  }
+
+  // Рендерим отфильтрованные варианты
+  function showOptions() {
+    const term = input.value.trim().toLowerCase();
+    const opts = getOpts();
+    list.innerHTML = '';
+    opts
+      .filter(o => o.label.toLowerCase().includes(term))
+      .forEach(o => {
+        const div = document.createElement('div');
+        div.className = 'option';
+        div.textContent = o.label;
+        div.dataset.value = o.value;
+        list.appendChild(div);
+      });
+    list.style.display = list.children.length ? 'block' : 'none';
+  }
+
+  // События
+  input.addEventListener('input', showOptions);
+  input.addEventListener('focus', showOptions);
+
+  // При клике на вариант: установить select и input, скрыть список
+  list.addEventListener('click', e => {
+    if (!e.target.classList.contains('option')) return;
+    const { value } = e.target.dataset;
+    const { label } = getOpts().find(o => o.value === value);
+    select.value = value;
+    input.value = label;
+    list.style.display = 'none';
+  });
+
+  // Клик вне компонента — скрыть список
+  document.addEventListener('click', e => {
+    if (!wrapper.contains(e.target)) {
+      list.style.display = 'none';
+    }
+  });
+
+  // Если в URL был уже выбран город — показать его в поле поиска
+  const pre = select.value;
+  if (pre) {
+    const match = getOpts().find(o => o.value === pre);
+    if (match) input.value = match.label;
+  }
+}
+
 
 // Функция для выполнения загрузки данных
 function windowsLoad() {
     industrySelect();
     populateCitySelect();
    // companySelect();
+   setTimeout(() => {
+       document.querySelectorAll('.searchable-select')
+         .forEach(initSearchableSelect);
+     }, 300);
 }
 
 function chooseWorkExperience(button) {
