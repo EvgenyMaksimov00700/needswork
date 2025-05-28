@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 }
                const vacancy_url = `/vacancy/description?id=${vacancy.id}&${existParams.toString()}`;
                const element = `<button class="vacancy" onclick="window.location.href='${vacancy_url}'">
-                                   ${vacancy.position}<br>${salary}<br>${vacancy.city}<br>${vacancy.employer.name}
+                                   <b>${vacancy.position}</b><br>${salary}<br>${vacancy.city}<br>${vacancy.employer.name}
                                </button>`;
                vacancies.innerHTML += element;
             })
