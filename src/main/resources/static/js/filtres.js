@@ -74,8 +74,23 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('city-search').value = city;
     }
     if (industry  != null) {
-            document.getElementById('industry-search').value = industry;
-        }
+        document.getElementById('industry').value = industry;
+        fetch(`/industry/${industry}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка при получении отрасли');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.name) {
+                    document.getElementById('industry-search').value = data.category;
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+    }
     if (company!=null) {
     document.getElementById('company').value = company;
     }
@@ -124,7 +139,7 @@ function apply() {
 const currentParams = new URLSearchParams();
 const currentCity = document.getElementById("city-search").value;
 const currentCompany = document.getElementById("company").value;
-const currentIndustry = document.getElementById("industry-search").value;
+const currentIndustry = document.getElementById("industry").value;
 const currentPosition = document.getElementById("position").value;
 const currentSalary = document.getElementById("income").value;
 if (currentCity) {

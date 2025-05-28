@@ -164,13 +164,13 @@ public class HHService {
         Map<String, Object> employment = (Map<String, Object>) item.get("employment_form");
         String workScheduleValue = (String) employment.get("name");
         String workSchedule;
-        if (workScheduleValue == "Полная") {
+        if (Objects.equals(workScheduleValue, "Полная")) {
             workSchedule = "Полная занятость";
-        } else if (workScheduleValue == "Частичная") {
+        } else if (Objects.equals(workScheduleValue, "Частичная")) {
             workSchedule = "Частичная занятость";
-        } else if (workScheduleValue == "Проект или разовое задание") {
+        } else if (Objects.equals(workScheduleValue, "Проект или разовое задание")) {
             workSchedule = "Проект или разовое задание";
-        } else if (workScheduleValue == "Вахта") {
+        } else if (Objects.equals(workScheduleValue, "Вахта")) {
             workSchedule = "Вахта";
         } else {
             workSchedule = "Гибкий график";
@@ -263,21 +263,39 @@ public class HHService {
         }
 
         if (!Objects.equals(experience, "")) {
-            if (Objects.equals(experience, "Нет опыта")) {
+            if (experience.contains("Нет опыта")) {
                 url += "&experience=noExperience";
 
             }
-            if (Objects.equals(experience, "от 1 года до 3 лет")) {
+            if (experience.contains("от 1 года до 3 лет")) {
                 url += "&experience=between1And3";
             }
-            if (Objects.equals(experience, "от 3 года до 6 лет")) {
+            if (experience.contains("от 3 до 6 лет")) {
                 url += "&experience=between3And6";
             }
-            if (Objects.equals(experience, "Более 6 лет")) {
-                url += "&experience=modeThan6";
+            if (experience.contains("Более 6 лет")) {
+                url += "&experience=moreThan6";
             }
 
         }
+
+        if (!Objects.equals(workSchedule, "")) {
+            if (workSchedule.contains("Полная занятость")) {
+                url += "&schedule=fullDay";
+
+            }
+            if (workSchedule.contains("Удаленка")) {
+                url += "&schedule=remote";
+            }
+            if (workSchedule.contains("Частичная занятость")) {
+                url += "&schedule=shift";
+            }
+            if (workSchedule.contains("Гибкий график")) {
+                url += "&schedule=flexible";
+            }
+
+        }
+
         if (!Objects.equals(dateTime, "")) {
             if (Objects.equals(dateTime, "За месяц")) {
                 url += "&period=30";
@@ -295,8 +313,7 @@ public class HHService {
 
 
         }
-
-
+        System.out.println(url);
         ResponseEntity<Map> response = restTemplate.exchange(
                 API_URL + url, HttpMethod.GET, entity, Map.class);
 
