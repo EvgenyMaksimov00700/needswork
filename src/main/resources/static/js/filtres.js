@@ -335,9 +335,13 @@ function initSearchableSelect(wrapper) {
 
   // Рендерим отфильтрованные варианты
   function showOptions() {
-    const term = input.value.trim().toLowerCase();
+    let term = input.value.trim().toLowerCase();
     const opts = getOpts();
     list.innerHTML = '';
+    const e = opts.filter(o => o.label.toLowerCase()==term);
+    if (e.length>0) {
+    term=""
+    }
     opts
       .filter(o => o.label.toLowerCase().includes(term))
       .forEach(o => {
@@ -347,6 +351,7 @@ function initSearchableSelect(wrapper) {
         div.dataset.value = o.value;
         list.appendChild(div);
       });
+
     list.style.display = list.children.length ? 'block' : 'none';
   }
 
