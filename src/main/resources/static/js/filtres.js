@@ -16,6 +16,7 @@ try {
  catch (error) {
     clientID = 159619887;
 }
+ window.Telegram.WebApp.expand();
 console.log(clientID);
 
 const currentUrl = window.location.href;
