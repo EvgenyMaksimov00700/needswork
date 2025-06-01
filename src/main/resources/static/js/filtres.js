@@ -326,6 +326,9 @@ function initSearchableSelect(wrapper) {
   const input  = wrapper.querySelector('input');
   const list   = wrapper.querySelector('.options-container');
 
+  // Флаг: было ли какое-то нажатие клавиши (то есть ввод)
+  let typed = false;
+
   // Сохраняем исходные опции (обновляется при каждом вызове)
   function getOpts() {
     return Array.from(select.options).map(o => ({
@@ -335,30 +338,68 @@ function initSearchableSelect(wrapper) {
   }
 
   // Рендерим отфильтрованные варианты
-  function showOptions() {
-    let term = input.value.trim().toLowerCase();
+  function showOptions(event) {
+    const raw = input.value.trim();
+    const term = raw.toLowerCase();
     const opts = getOpts();
     list.innerHTML = '';
-    const e = opts.filter(o => o.label.toLowerCase()==term);
-    if (e.length>0) {
-    term=""
-    }
-    opts
-      .filter(o => o.label.toLowerCase().includes(term))
-      .forEach(o => {
-        const div = document.createElement('div');
-        div.className = 'option';
-        div.textContent = o.label;
-        div.dataset.value = o.value;
-        list.appendChild(div);
-      });
 
-    list.style.display = list.children.length ? 'block' : 'none';
+    // Ищем точные совпадения
+    const exactMatches = opts.filter(o => o.label.toLowerCase() === term);
+
+    // Если есть точное совпадение:
+    if (exactMatches.length > 0) {
+      if (typed) {
+        // Пользователь вводил текст, показываем только точное совпадение
+        exactMatches.forEach(o => {
+          const div = document.createElement('div');
+          div.className = 'option';
+          div.textContent = o.label;
+          div.dataset.value = o.value;
+          list.appendChild(div);
+        });
+      } else {
+        // Пользователь просто кликнул (без нового ввода), показываем все
+        opts.forEach(o => {
+          const div = document.createElement('div');
+          div.className = 'option';
+          div.textContent = o.label;
+          div.dataset.value = o.value;
+          list.appendChild(div);
+        });
+      }
+      list.style.display = 'block';
+      return;
+    }
+
+    // Если точных совпадений нет, фильтруем по подстроке
+    if (term.length > 0) {
+      opts
+        .filter(o => o.label.toLowerCase().includes(term))
+        .forEach(o => {
+          const div = document.createElement('div');
+          div.className = 'option';
+          div.textContent = o.label;
+          div.dataset.value = o.value;
+          list.appendChild(div);
+        });
+      list.style.display = list.children.length ? 'block' : 'none';
+    } else {
+      // Если поле пустое (никакого ввода), скрываем список
+      list.style.display = 'none';
+    }
   }
 
   // События
-  input.addEventListener('input', showOptions);
-  input.addEventListener('focus', showOptions);
+  input.addEventListener('input', () => {
+    typed = true;
+    showOptions();
+  });
+
+  input.addEventListener('focus', event => {
+    // При фокусе не ставим typed = true, чтобы отличать «просто клик» от «реального ввода»
+    showOptions(event);
+  });
 
   // При клике на вариант: установить select и input, скрыть список
   list.addEventListener('click', e => {
@@ -367,6 +408,8 @@ function initSearchableSelect(wrapper) {
     const { label } = getOpts().find(o => o.value === value);
     select.value = value;
     input.value = label;
+    // После выбора сбрасываем флаг typed, потому что это не ввод, а выбор
+    typed = false;
     list.style.display = 'none';
   });
 
@@ -377,11 +420,14 @@ function initSearchableSelect(wrapper) {
     }
   });
 
-  // Если в URL был уже выбран город — показать его в поле поиска
+  // Если в URL (или при загрузке) был уже выбран город — показать его в поле поиска
   const pre = select.value;
   if (pre) {
     const match = getOpts().find(o => o.value === pre);
-    if (match) input.value = match.label;
+    if (match) {
+      input.value = match.label;
+      // Так как мы не вводили ничего вручную,typed остаётся false
+    }
   }
 }
 

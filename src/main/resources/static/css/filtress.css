@@ -76,10 +76,6 @@ input[type="text"] {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.button-group button:hover {
-    background-color: #007ab8; /* Светлее при наведении */
-    transform: scale(1.02); /* Лёгкое увеличение */
-}
 
 button.apply, button.back {
     width: 100%;
@@ -94,10 +90,7 @@ button.apply, button.back {
     margin-bottom: 10px;
 }
 
-button.apply:hover {
-    background-color: #007ab8; /* Светлее при наведении */
-    transform: scale(1.02); /* Лёгкое увеличение */
-}
+
 .searchable-select {
   position: relative;
   width: 100%;
