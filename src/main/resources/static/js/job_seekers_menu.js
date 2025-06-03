@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             else {
             document.getElementById("resume-not-uploaded").style.display = 'none';
-            document.getElementById("resume-text").href = '/testResume/' + data.textResume.split('/').pop();
+            document.getElementById("resume-text").href = '/textResume/' + data.textResume.split('/').pop();
             }
         });
 });

@@ -161,23 +161,22 @@ public class HHService {
             fromSalary = (Integer) salary.get("from");
             toSalary = (Integer) salary.get("to");
         }
-        Map<String, Object> employment = (Map<String, Object>) item.get("employment_form");
-        String workScheduleValue = (String) employment.get("name");
+        Map<String, Object> employment = (Map<String, Object>) item.get("schedule");
+        String workScheduleValue = (String) employment.get("id");
         String workSchedule;
-        if (Objects.equals(workScheduleValue, "Полная")) {
+        Boolean distantWork = false;
+        if (Objects.equals(workScheduleValue, "fullDay")) {
             workSchedule = "Полная занятость";
-        } else if (Objects.equals(workScheduleValue, "Частичная")) {
+        } else if (Objects.equals(workScheduleValue, "shift")) {
             workSchedule = "Частичная занятость";
-        } else if (Objects.equals(workScheduleValue, "Проект или разовое задание")) {
-            workSchedule = "Проект или разовое задание";
-        } else if (Objects.equals(workScheduleValue, "Вахта")) {
-            workSchedule = "Вахта";
+        } else if (Objects.equals(workScheduleValue, "remote")) {
+            workSchedule = "Удаленная работа";
         } else {
             workSchedule = "Гибкий график";
         }
 
         List<Map<String, Object>> workFormat = (List<Map<String, Object>>) item.get("work_format");
-        Boolean distantWork = false;
+
         for (Map<String, Object> entry : workFormat) {
             if (((String) entry.get("id")) == "REMOTE") {
                 distantWork = true;
