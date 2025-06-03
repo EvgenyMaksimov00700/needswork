@@ -109,6 +109,8 @@ function vacancy_responses(vacancyName, vacancyId, from_hh, email, employerUserI
         return response.json();
     })
     .then(data => {
+    if (data && data.length > 0) {
+
         data.forEach(videoCv => {
             const element = document.createElement('div');
             element.className = 'resume-button';
@@ -118,7 +120,16 @@ function vacancy_responses(vacancyName, vacancyId, from_hh, email, employerUserI
             `;
             element.onclick = () => sendVideo(videoCv.video_message, vacancyName, vacancyId, from_hh, email, employerUserId);
             resumeButtons.appendChild(element);
-        });
+        });}
+        else { data = {userId: clientID, message:"Перед тем как выбрать вакансию, запишите видео-резюме (в формате видео сообщения кружка telegram) с вашей презентацией. Видео будет доступно только работодателям, которым вы отправите отклик. Следуйте инструкции по записи видео - резюме: https://drive.google.com/file/d/1CZz-rHORxlP_HcacAtY5jyQ56I5UpIV5/view"}
+                        const response = fetch("/message/send", {
+                             method: 'POST', // Метод запроса
+                             headers: {
+                                 'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                             },
+                             body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+                         });
+                        window.Telegram.WebApp.close();}
     })
     .catch(error => console.error(error));
 }
