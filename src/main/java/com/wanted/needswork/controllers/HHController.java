@@ -1,6 +1,6 @@
 package com.wanted.needswork.controllers;
 
-import com.wanted.needswork.DTO.request.EmailResponseDTO;
+import com.wanted.needswork.DTO.request.EmailRequestDTO;
 import com.wanted.needswork.services.HHService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,7 @@ public class HHController {
     HHService hhService;
 
     @PostMapping ("/api/email/send")
-    public ResponseEntity<Object> sendEmail (@RequestBody EmailResponseDTO emailDTO){
+    public ResponseEntity<Object> sendEmail (@RequestBody EmailRequestDTO emailDTO){
         String url = "https://t.me/tworker_ru_bot?start=response_" + emailDTO.getResponseID();
         String vacancyName = emailDTO.getVacancyName();
         hhService.sendResponseEmail(emailDTO.getEmail(), url, vacancyName);

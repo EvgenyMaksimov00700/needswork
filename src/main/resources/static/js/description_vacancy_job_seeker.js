@@ -129,6 +129,15 @@ function vacancy_responses(vacancyName, vacancyId, from_hh, email, employerUserI
                              },
                              body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
                          });
+                        const body_data ={userId: clientID, vacancyId: vacancyId, urlParams: decodeURIComponent(existParams.toString())}
+                        console.log(body_data)
+                        const response1 = fetch("/state/create", {
+                             method: 'POST', // Метод запроса
+                             headers: {
+                                 'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                             },
+                             body: JSON.stringify(body_data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+                         });
                         window.Telegram.WebApp.close();}
     })
     .catch(error => console.error(error));

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
- public class EmailResponseDTO {
+ public class EmailRequestDTO {
     @Getter
     String email;
     @Getter
