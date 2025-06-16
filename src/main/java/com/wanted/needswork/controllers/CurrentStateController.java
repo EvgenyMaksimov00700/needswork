@@ -1,10 +1,9 @@
 package com.wanted.needswork.controllers;
 
 import com.wanted.needswork.DTO.request.CurrentStateDTO;
+import com.wanted.needswork.DTO.request.StateSendRequestDTO;
 import com.wanted.needswork.DTO.response.CurrentStateResponseDTO;
-import com.wanted.needswork.models.CurrentState;
-import com.wanted.needswork.models.User;
-import com.wanted.needswork.models.Vacancy;
+import com.wanted.needswork.models.*;
 import com.wanted.needswork.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
+import java.util.List;
 
 @RestController
 public class CurrentStateController {
@@ -21,6 +21,10 @@ public class CurrentStateController {
     UserService userService;
     @Autowired
     VacancyService vacancyService;
+    @Autowired
+    VideoCvService videoCvService;
+    @Autowired
+    JobSeekerService jobSeekerService;
     @Autowired
     HHService hhService;
 
@@ -48,6 +52,28 @@ public class CurrentStateController {
         return new ResponseEntity<>(currentStateService.addCurrentState(user,currentStateDTO.getVacancyId(), currentStateDTO.getUrlParams()), HttpStatus.CREATED);
     }
 
+
+    @PostMapping("/state/send/response")
+    public ResponseEntity<String> sendResponse (@RequestBody StateSendRequestDTO stateSendRequestDTO) {
+        User user = userService.getUser(stateSendRequestDTO.getUserId());
+        Vacancy vacancy = vacancyService.getVacancy(stateSendRequestDTO.getVacancyId());
+        if (vacancy==null) {
+            vacancy = hhService.fetchVacancy(stateSendRequestDTO.getVacancyId());
+        }
+        if (vacancy == null){
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+        }
+        JobSeeker jobSeeker = jobSeekerService.getJobSeekerByUserId(user.getId());
+        List<VideoCv> videoCv = videoCvService.getVideoCvByUser(jobSeeker);
+        videoCvService.sendVideoNote(user, videoCv.getLast().getVideo_message(), vacancy, false);
+
+        CurrentState currentState = currentStateService.getCurrentState(stateSendRequestDTO.getStateId());
+        if (currentState == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        currentStateService.deleteCurrentState(currentState);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     @DeleteMapping("/state/{stateId}")
     public ResponseEntity<CurrentState> deleteCurrentState(@PathVariable Integer stateId) {
