@@ -33,5 +33,9 @@ public class HHController {
         return new ResponseEntity<>(hhService.fetchEmployers(),
                 HttpStatus.OK);
     }
+    @PostMapping ("/api/auth")
+    public ResponseEntity<String> apiAuth (@RequestBody String code){
+        return new ResponseEntity<>(hhService.updateToken(code), HttpStatus.OK);
+    }
 
 }

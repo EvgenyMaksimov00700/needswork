@@ -4,9 +4,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +20,13 @@ import com.wanted.needswork.repository.EmployerRepository;
 import com.wanted.needswork.repository.IndustryRepository;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MultiValueMap;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -34,6 +38,7 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 
@@ -471,6 +476,57 @@ public class HHService {
         return result;
     }
 
+
+    public void updateEnvToken(String newToken) {
+        Path envPath = Paths.get(".env");
+
+        try {
+            List<String> lines = Files.readAllLines(envPath);
+
+            List<String> updatedLines = lines.stream()
+                    .map(line -> line.startsWith("API_HH_TOKEN=") ? "API_HH_TOKEN=" + newToken : line)
+                    .collect(Collectors.toList());
+
+            Files.write(envPath, updatedLines);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public String updateToken(String code) {
+        Dotenv dotenv = Dotenv.load();
+
+        String clientId=dotenv.get("CLIENT_ID");
+        String clientSecret=dotenv.get("CLIENT_SECRET");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
+        body.add("code", code); // параметры
+        body.add("client_id", clientId); // параметры
+        body.add("client_secret", clientSecret); // параметры
+        body.add("grant_type", "authorization_code"); // параметры
+
+        HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(body, headers);
+
+        ResponseEntity<Map<String, String>> response = restTemplate.exchange(
+                API_URL + "token",
+                HttpMethod.POST,
+                entity,
+                new ParameterizedTypeReference<Map<String, String>>() {}
+        );
+        if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+            Map<String, String> authData = response.getBody();
+            String accessToken = authData.get("access_token");
+            updateEnvToken(accessToken);
+            return accessToken;
+        }
+
+        return null;
+
+    }
 
 }
 

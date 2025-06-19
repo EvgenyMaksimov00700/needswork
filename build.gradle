@@ -53,6 +53,7 @@ dependencies {
 	implementation 'org.json:json:20240303'
 	implementation 'com.konghq:unirest-java:3.13.6'
 	implementation 'com.sun.mail:javax.mail:1.6.2'
+	implementation 'io.github.cdimascio:java-dotenv:5.2.2'
 
 
 }
