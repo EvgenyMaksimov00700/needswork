@@ -1,5 +1,9 @@
 let clientID;
 try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
+window.Telegram.WebApp.BackButton.show();
+window.Telegram.WebApp.BackButton.onClick(() => {
+  window.history.back();
+});
 function isDesktop() {
         const userAgent = navigator.userAgent.toLowerCase();
         return userAgent.includes("windows") || userAgent.includes("macintosh") || userAgent.includes("linux");
@@ -83,7 +87,26 @@ function vacancy_back() {
 window.location.href=`/vacancy/menu?${existParams.toString()}`}
 
 
-
+function addNewVideoCV(vacancyId){
+    data = {userId: clientID, message:"Перед тем как выбрать вакансию, запишите видео-резюме (в формате видео сообщения кружка telegram) с вашей презентацией. Видео будет доступно только работодателям, которым вы отправите отклик. Следуйте инструкции по записи видео - резюме: https://drive.google.com/file/d/1CZz-rHORxlP_HcacAtY5jyQ56I5UpIV5/view"}
+    const response = fetch("/message/send", {
+         method: 'POST', // Метод запроса
+         headers: {
+             'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+         },
+         body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+     });
+    const body_data ={userId: clientID, vacancyId: vacancyId, urlParams: decodeURIComponent(existParams.toString())}
+    console.log(body_data)
+    const response1 = fetch("/state/create", {
+         method: 'POST', // Метод запроса
+         headers: {
+             'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+         },
+         body: JSON.stringify(body_data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+     });
+    window.Telegram.WebApp.close();
+}
 
 let employerUserId;
 
@@ -120,25 +143,18 @@ function vacancy_responses(vacancyName, vacancyId, from_hh, email, employerUserI
             `;
             element.onclick = () => sendVideo(videoCv.video_message, vacancyName, vacancyId, from_hh, email, employerUserId);
             resumeButtons.appendChild(element);
-        });}
-        else { data = {userId: clientID, message:"Перед тем как выбрать вакансию, запишите видео-резюме (в формате видео сообщения кружка telegram) с вашей презентацией. Видео будет доступно только работодателям, которым вы отправите отклик. Следуйте инструкции по записи видео - резюме: https://drive.google.com/file/d/1CZz-rHORxlP_HcacAtY5jyQ56I5UpIV5/view"}
-                        const response = fetch("/message/send", {
-                             method: 'POST', // Метод запроса
-                             headers: {
-                                 'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
-                             },
-                             body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
-                         });
-                        const body_data ={userId: clientID, vacancyId: vacancyId, urlParams: decodeURIComponent(existParams.toString())}
-                        console.log(body_data)
-                        const response1 = fetch("/state/create", {
-                             method: 'POST', // Метод запроса
-                             headers: {
-                                 'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
-                             },
-                             body: JSON.stringify(body_data) // Данные, отправляемые в теле запроса, преобразованные в JSON
-                         });
-                        window.Telegram.WebApp.close();}
+        });
+
+        const element = document.createElement('div');
+        element.className = 'resume-button';
+        element.innerHTML = `Добавить видеорезюме`;
+        element.onclick = () => addNewVideoCV(vacancyId);
+        resumeButtons.appendChild(element);
+    }
+
+        else {
+            addNewVideoCV(vacancyId)
+        }
     })
     .catch(error => console.error(error));
 }

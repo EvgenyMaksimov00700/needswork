@@ -1,6 +1,9 @@
 let clientID;
 try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
-
+window.Telegram.WebApp.BackButton.show();
+window.Telegram.WebApp.BackButton.onClick(() => {
+  window.history.back();
+});
 function isDesktop() {
         const userAgent = navigator.userAgent.toLowerCase();
         return userAgent.includes("windows") || userAgent.includes("macintosh") || userAgent.includes("linux");
