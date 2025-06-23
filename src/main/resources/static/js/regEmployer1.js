@@ -3,11 +3,12 @@
 let clientID;
 try {
     clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
-    if (window.history.length > 1) {
+if (window.history.length > 1) {
         window.Telegram.WebApp.BackButton.show();
         window.Telegram.WebApp.BackButton.onClick(() => {
-        window.history.back();
-    });
+            window.history.back();
+        });
+    }
   function isDesktop()
  {
 
