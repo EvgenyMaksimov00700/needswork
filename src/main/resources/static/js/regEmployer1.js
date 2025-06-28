@@ -26,6 +26,43 @@ catch(error) {clientID = 159619887}
 console.log(clientID)
 let employer ;
 
+document.getElementById('phone').addEventListener('input', function (e) {
+    let digits = e.target.value.replace(/\D/g, '');
+
+    if (digits && digits[0] !== '7') {
+        digits = '7' + digits;
+    }
+
+    if (digits.startsWith('7')) {
+        digits = digits.slice(1);
+    }
+
+    const part1 = digits.substring(0, 3);
+    const part2 = digits.substring(3, 6);
+    const part3 = digits.substring(6, 8);
+    const part4 = digits.substring(8, 10);
+
+    let formatted = '+7';
+    if (part1) {
+        formatted += ' (' + part1;
+        if (part1.length === 3) {
+            formatted += ')';
+        }
+    }
+    if (part2) {
+        formatted += ' ' + part2;
+    }
+    if (part3) {
+        formatted += '-' + part3;
+    }
+    if (part4) {
+        formatted += '-' + part4;
+    }
+
+    e.target.value = formatted;
+});
+
+
 document.addEventListener('touchstart', function(event) {
             const activeElement = document.activeElement;
 
@@ -62,6 +99,7 @@ async function fetchAndDisplayData() {
         document.getElementById("logo").value = data.logo || '';
         document.getElementById("description").value = data.description || '';
         document.getElementById("email").value = data.email || '';
+        document.getElementById("phone").value = data.phone || '';
     } catch (error) {
         console.error('Ошибка:', error); // Обрабатываем ошибку
     }
@@ -78,6 +116,7 @@ document.getElementById("next").addEventListener("click", async function(event) 
     const logo = document.getElementById("logo").value;
     const description = document.getElementById("description").value;
     const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
 
     // Данные для отправки на сервер
     const url ="/employer/" + employer.employer_id; // Замените на свой URL API
@@ -88,7 +127,8 @@ document.getElementById("next").addEventListener("click", async function(event) 
         logo: logo,
         description: description,
         user_id: clientID,
-        email: email
+        email: email,
+        phone: phone
     };
 
     try {
