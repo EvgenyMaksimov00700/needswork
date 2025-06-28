@@ -267,6 +267,9 @@ document.addEventListener('DOMContentLoaded', function(){
                 console.log (employerUserId);
                 document.getElementById("position").innerHTML = data.position;
                 document.getElementById("employer_name").innerHTML = "<b>Компания: </b>" + data.employer.name;
+                if (data.employer.email!=null) {
+                    document.getElementById("employer_phone").innerHTML = "<b>Тел: </b>" + data.employer.phone;
+                }
                 document.getElementById("city").innerHTML = "<b>Город: </b>" + data.city;
                 if (data.address!=null) {
                 document.getElementById("address").innerHTML = "<b>Адрес: </b>" + data.address;}

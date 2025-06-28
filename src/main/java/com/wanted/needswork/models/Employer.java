@@ -1,6 +1,7 @@
 package com.wanted.needswork.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.wanted.needswork.DTO.response.EmployerResponseDTO;
 import com.wanted.needswork.DTO.response.IndustryResponseDTO;
 import com.wanted.needswork.DTO.response.UserResponseDTO;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigInteger;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -53,6 +55,12 @@ public class Employer {
     @Getter
     @Setter
     private String phone;
+
+    @Getter
+    @Setter
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Vacancy> vacancies;
 
     public Employer (User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description, String email, String phone) {
         this.user = user;
