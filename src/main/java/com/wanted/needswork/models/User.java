@@ -36,7 +36,7 @@ public class User {
     @Getter
     @Setter
     @JsonManagedReference
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     Employer employer;
 
     @Getter
