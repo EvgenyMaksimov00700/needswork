@@ -59,7 +59,7 @@ public class EmployerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(employerService.addEmployer(user, employerDTO.getInn(), employerDTO.getOgrn(),
-                employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription(), employerDTO.getEmail()),  HttpStatus.OK);
+                employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription(), employerDTO.getEmail(), employerDTO.getPhone()),  HttpStatus.OK);
     }
 
     @PutMapping("/employer/{employerId}")
@@ -70,7 +70,7 @@ public class EmployerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(employerService.updateEmployer(employer, user, employerDTO.getInn(), employerDTO.getOgrn(),
-                employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription(), employerDTO.getEmail()),
+                employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription(), employerDTO.getEmail(), employerDTO.getPhone()),
                 HttpStatus.OK);
     }
     @DeleteMapping("/employer/{employerId}")

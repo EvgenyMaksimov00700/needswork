@@ -23,6 +23,8 @@ public class EmployerDTO {
     private String description;
     @Getter
     private String email;
+    @Getter
+    private String phone;
 
     public EmployerDTO(BigInteger user_id, String name) {
         this.user_id = user_id;

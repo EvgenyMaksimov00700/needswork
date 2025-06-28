@@ -50,7 +50,11 @@ public class Employer {
     @Setter
     private String email;
 
-    public Employer (User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description, String email) {
+    @Getter
+    @Setter
+    private String phone;
+
+    public Employer (User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description, String email, String phone) {
         this.user = user;
         this.inn = inn;
         this.ogrn = ogrn;
@@ -58,6 +62,7 @@ public class Employer {
         this.description = description;
         this.name = name;
         this.email = email;
+        this.phone = phone;
 
     }
     public Employer (String name, String logo, String email) {

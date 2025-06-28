@@ -36,12 +36,12 @@ public class EmployerService {
 
     }
 
-    public Employer addEmployer(User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description, String email) {
-        Employer employer = new Employer(user, inn, ogrn, name, logo, description, email);
+    public Employer addEmployer(User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description, String email, String phone) {
+        Employer employer = new Employer(user, inn, ogrn, name, logo, description, email, phone);
         return employerRepository.save(employer);
     }
 
-    public Employer updateEmployer(Employer employer, User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description, String email) {
+    public Employer updateEmployer(Employer employer, User user, BigInteger inn, BigInteger ogrn, String name, String logo, String description, String email, String phone) {
         if (user != null) {
             employer.setUser(user);
         }
@@ -62,6 +62,9 @@ public class EmployerService {
         }
         if (email!= null) {
             employer.setEmail(email);
+        }
+        if (phone != null) {
+            employer.setPhone(phone);
         }
 
         return employerRepository.save(employer);
