@@ -83,7 +83,7 @@ public class Employer {
        if(user!=null) {
            userResponseDTO = user.toResponseDTO();
        }
-       return new EmployerResponseDTO(id, userResponseDTO, inn, ogrn, name, logo, description, email);
+       return new EmployerResponseDTO(id, userResponseDTO, inn, ogrn, name, logo, description, email, phone);
 
   }
 }

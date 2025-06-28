@@ -24,6 +24,8 @@ public class EmployerResponseDTO {
     private String description;
     @Getter
     private String email;
+    @Getter
+    private String phone;
 
 
     public EmployerResponseDTO(String name, String logo, String email) {
