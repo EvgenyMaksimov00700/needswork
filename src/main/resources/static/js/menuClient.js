@@ -68,12 +68,39 @@ if (time) {
     existParams.append('time', time);
     encodeExistParams.append('time', encodeURIComponent(time));
     }
+function getCurrentPage() {
+const params = new URLSearchParams(window.location.search);
+const page = parseInt(params.get("page"));
+return isNaN(page) || page < 1 ? 1 : page;
+}
 
+function updatePageNumberDisplay(page) {
+document.getElementById("page-number").textContent = page;
+}
+
+function goToPage(page) {
+window.location.search = `?page=${page}&${existParams.toString()}`;
+}
+
+function prevPage() {
+const currentPage = getCurrentPage();
+if (currentPage > 1) {
+  goToPage(currentPage - 1);
+}
+}
+
+function nextPage() {
+const currentPage = getCurrentPage();
+goToPage(currentPage + 1);
+}
 
 document.addEventListener('DOMContentLoaded', function(){
     const filter_button=document.getElementById('filter_button');
     filter_button.href=`/vacancy/filter/page?${existParams.toString()}`;
-    const url = `/vacancy/filter?${existParams.toString()}`;
+    const currentPage = getCurrentPage();
+    updatePageNumberDisplay(currentPage);
+
+    const url = `/vacancy/filter?page=${currentPage}&${existParams.toString()}`;
     console.log(url);
      fetch( url, {
                 method: 'GET',

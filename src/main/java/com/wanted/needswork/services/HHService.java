@@ -224,12 +224,12 @@ public class HHService {
                 createdDateTime, lastModifiedDateTime);
     }
 
-    public List<Vacancy> fetchVacancies(String city, String industry, String company, String position, String salary, String experience, String workSchedule, String dateTime) {
+    public List<Vacancy> fetchVacancies(String city, String industry, String company, String position, String salary, String experience, String workSchedule, String dateTime, Integer page) {
         Dotenv dotenv = Dotenv.load();
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(Objects.requireNonNull(dotenv.get("API_HH_TOKEN")));
         HttpEntity<String> entity = new HttpEntity<>(headers);
-        String url = "vacancies?currency=RUR&per_page=100&order_by=publication_time";
+        String url = "vacancies?currency=RUR&per_page=100&order_by=publication_time&page="+page;
         String text = "";
 
         if (!Objects.equals(city, "")) {
