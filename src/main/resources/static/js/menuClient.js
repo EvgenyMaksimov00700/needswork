@@ -97,8 +97,8 @@ goToPage(currentPage + 1);
 document.addEventListener('DOMContentLoaded', function(){
     try {
         const webApp = window.Telegram.WebApp;
-        webApp.expand();
         const startParam = webApp.initDataUnsafe.start_param;
+        console.log(startParam);
         if (startParam && startParam.startsWith('vacancy_')) {
             const vacancyId = startParam.split('_')[1];
             window.location.href = `/vacancy/description?id=${vacancyId}`;
