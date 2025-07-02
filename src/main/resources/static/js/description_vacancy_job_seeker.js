@@ -434,6 +434,12 @@ function vacancy_text_resume(vacancyName, vacancyId, from_hh, email, employerUse
                   alert("Ваше резюме было успешно отправлено");
                   const resumeButtons = document.getElementById('resume-buttons');
       })
-}
 
+}
+function shareVacancy() {
+    const params = new URLSearchParams(window.location.search);
+    const vacancyId = params.get('id');
+    const shareUrl = `https://t.me/tworker_ru_bot?startapp=vacancy_${vacancyId}`;
+    window.open(shareUrl, '_blank');
+}
 

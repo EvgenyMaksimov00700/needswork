@@ -95,6 +95,17 @@ goToPage(currentPage + 1);
 }
 
 document.addEventListener('DOMContentLoaded', function(){
+    try {
+        const webApp = window.Telegram.WebApp;
+        webApp.expand();
+        const startParam = webApp.initDataUnsafe.start_param;
+        if (startParam && startParam.startsWith('vacancy_')) {
+            const vacancyId = startParam.split('_')[1];
+            window.location.href = `/vacancy/description?id=${vacancyId}`;
+        }
+    } catch (e) {
+        console.warn('Telegram WebApp init error', e);
+    }
     const filter_button=document.getElementById('filter_button');
     filter_button.href=`/vacancy/filter/page?${existParams.toString()}`;
     const currentPage = getCurrentPage();

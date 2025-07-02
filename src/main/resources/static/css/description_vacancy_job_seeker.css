@@ -180,3 +180,39 @@ h1 {
   width: 200px; /* Adjust the width as needed */
   height: 200px; /* Adjust the height as needed */
 }
+/* Обёртка для заголовка и кнопки */
+.header-group {
+    position: relative;      /* для абсолютного позиционирования кнопки */
+    text-align: center;      /* центрируем заголовок */
+    margin-bottom: 20px;
+}
+
+/* Заголовок */
+.header-group h1 {
+    display: inline-block;   /* чтобы text-align сработал по центру */
+    margin: 0;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+/* Кнопка «Поделиться» */
+.share-button {
+    position: absolute;
+    right: 10px;             /* отступ от правого края контейнера */
+    top: 50%;                /* вертикально по центру */
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #d1d1d1;
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: color 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+/* Эффект при наведении */
+.share-button:hover {
+    color: #ffffff;
+    transform: translateY(-50%) scale(1.1);
+}
