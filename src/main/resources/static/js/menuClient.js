@@ -98,14 +98,16 @@ document.addEventListener('DOMContentLoaded', function(){
     try {
         const webApp = window.Telegram.WebApp;
         const startParam = webApp.initDataUnsafe.start_param;
-        console.log(startParam);
-        if (startParam && startParam.startsWith('vacancy_')) {
+        const visitedKey = 'vacancyRedirectDone';
+
+        if (!localStorage.getItem(visitedKey) && startParam && startParam.startsWith('vacancy_')) {
             const vacancyId = startParam.split('_')[1];
-            console.log(vacancyId);
+            localStorage.setItem(visitedKey, 'true');
             window.location.href = `/vacancy/description?id=${vacancyId}`;
+            return;
         }
     } catch (e) {
-        console.warn('Telegram WebApp init error', e);
+         console.warn('Telegram WebApp init error', e);
     }
     const filter_button=document.getElementById('filter_button');
     filter_button.href=`/vacancy/filter/page?${existParams.toString()}`;

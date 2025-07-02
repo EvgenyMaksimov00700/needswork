@@ -245,6 +245,19 @@ function formatDateTime(isoString) {
     return `${day}.${month}.${year} ${hours}:${minutes}`;
 }
 document.addEventListener('DOMContentLoaded', function(){
+    try {
+        const webApp = window.Telegram.WebApp;
+        const startParam = webApp.initDataUnsafe.start_param;
+
+        if (startApp && startApp.startsWith('vacancy_')) {
+            const backBtn = document.getElementById('back-btn');
+            if (backBtn) {
+                backBtn.textContent = 'В меню';
+            }
+        }
+    } catch (e) {
+         console.warn('Telegram WebApp init error', e);
+    }
      fetch( `/vacancy/${vacancyId}`, {
                 method: 'GET',
                 headers: {
