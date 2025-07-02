@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function(){
         console.log(startParam);
         if (startParam && startParam.startsWith('vacancy_')) {
             const vacancyId = startParam.split('_')[1];
+            console.log(vacancyId);
             window.location.href = `/vacancy/description?id=${vacancyId}`;
         }
     } catch (e) {
