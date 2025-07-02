@@ -437,9 +437,51 @@ function vacancy_text_resume(vacancyName, vacancyId, from_hh, email, employerUse
 
 }
 function shareVacancy() {
-    const params = new URLSearchParams(window.location.search);
-    const vacancyId = params.get('id');
-    const shareUrl = `https://t.me/tworker_ru_bot?startapp=vacancy_${vacancyId}`;
-    window.open(shareUrl, '_blank');
+  const params = new URLSearchParams(window.location.search);
+  const vacancyId = params.get('id');
+  const shareUrl = `https://t.me/tworker_ru_bot?startapp=vacancy_${vacancyId}`;
+
+  // Если браузер поддерживает Web Share API
+  if (navigator.share) {
+    navigator.share({
+      title: 'Вакансия на TWorker',
+      text: 'Посмотри эту вакансию:',
+      url: shareUrl
+    })
+    .catch(err => console.error('Ошибка шаринга:', err));
+  } else {
+    // Иначе показываем окно с возможностью скопировать ссылку
+    const container = document.createElement('div');
+    container.style.position = 'fixed';
+    container.style.top = '50%';
+    container.style.left = '50%';
+    container.style.transform = 'translate(-50%, -50%)';
+    container.style.padding = '1em';
+    container.style.background = '#fff';
+    container.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+    container.innerHTML = `
+      <p>Скопируйте и отправьте ссылку:</p>
+      <input type="text" readonly value="${shareUrl}" style="width:100%;margin-bottom:0.5em;" id="vacancy-link-input">
+      <button id="copy-btn">Копировать</button>
+      <button id="close-btn" style="margin-left:0.5em;">Закрыть</button>
+    `;
+    document.body.appendChild(container);
+
+    const input = container.querySelector('#vacancy-link-input');
+    const copyBtn = container.querySelector('#copy-btn');
+    const closeBtn = container.querySelector('#close-btn');
+
+    copyBtn.addEventListener('click', () => {
+      input.select();
+      document.execCommand('copy');
+      copyBtn.textContent = 'Скопировано!';
+      setTimeout(() => copyBtn.textContent = 'Копировать', 2000);
+    });
+
+    closeBtn.addEventListener('click', () => {
+      document.body.removeChild(container);
+    });
+  }
 }
+
 
