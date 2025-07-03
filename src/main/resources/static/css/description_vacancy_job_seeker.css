@@ -216,3 +216,84 @@ h1 {
     color: #ffffff;
     transform: translateY(-50%) scale(1.1);
 }
+
+/* Контактное модальное окно */
+#contactModal {
+    display: none; /* по умолчанию скрыто */
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#contactModal .modal-content {
+    background-color: #23272a;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #3c4043;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 8px;
+    color: #d1d1d1;
+    position: relative;
+}
+
+#contactModal .close {
+    color: #d1d1d1;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#contactModal .close:hover {
+    color: #ffffff;
+}
+
+#contactModal p {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+#contactModal input[type="checkbox"] {
+    vertical-align: middle;
+    margin: 0 8px 0 0;
+    width: 16px;
+    height: 16px;
+    accent-color: #0088cc; /* цвет чекбокса */
+}
+
+#contactModal a {
+    color: #0088cc;
+    text-decoration: underline;
+}
+
+#contactModal a:hover {
+    color: #007ab8;
+}
+
+#shareContactBtn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #3c4043;
+    background-color: #0088cc;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#shareContactBtn:hover {
+    background-color: #007ab8;
+    transform: scale(1.02);
+}

@@ -497,4 +497,47 @@ function shareVacancy() {
   }
 }
 
+let pendingAction = null;
+
+// Показываем контактное окно
+function openContactModal(action) {
+  pendingAction = action;
+  document.getElementById('contactModal').style.display = 'block';
+}
+
+// Скрываем его
+document.getElementById('closeContactModal').onclick = () => {
+  document.getElementById('contactModal').style.display = 'none';
+};
+
+// Перехватываем клики на исходные кнопки
+document.getElementById('no-resume').onclick = () => openContactModal('no_resume');
+document.getElementById('text-resume').onclick = () => openContactModal('text_resume');
+
+// Обработка кнопки «Поделиться номером телефона»
+document.getElementById('shareContactBtn').onclick = () => {
+  const checkbox = document.getElementById('offerCheckbox');
+  if (!checkbox.checked) {
+    alert('Пожалуйста, подтвердите договор-оферты');
+    return;
+  }
+  // Запрашиваем контакт
+  Telegram.WebApp.requestContact();  // Bot API 6.9+ :contentReference[oaicite:0]{index=0}
+};
+Telegram.WebApp.onEvent('contactRequested', (event) => {  // web_app_request_phone :contentReference[oaicite:1]{index=1}
+  document.getElementById('contactModal').style.display = 'none';
+
+  if (event.status === 'sent') {
+    // Пользователь поделился номером — вызываем нужную функцию
+    if (pendingAction === 'no_resume') {
+      vacancy_no_resume(/* передать все необходимые параметры */);
+    } else if (pendingAction === 'text_resume') {
+      vacancy_text_resume(/* передать все необходимые параметры */);
+    }
+  } else {
+    alert('Не удалось получить номер телефона');
+  }
+});
+
+
 
