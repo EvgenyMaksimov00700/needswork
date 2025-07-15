@@ -321,8 +321,8 @@ document.addEventListener('DOMContentLoaded', function(){
                                }
                 document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + formatDateTime(data.createdDateTime);
                 document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id, data.from_hh, data.employer.email, employerUserId)};
-                document.getElementById("no-resume").onclick = () => {vacancy_no_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId)};
-                document.getElementById("text-resume").onclick = () => {vacancy_text_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId)};
+                document.getElementById("no-resume").onclick = () => {vacancy_no_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId, true)};
+                document.getElementById("text-resume").onclick = () => {vacancy_text_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId, true)};
             });
 setTimeout(() => {
                 const loadingOverlay = document.getElementById("loading");
@@ -330,7 +330,12 @@ setTimeout(() => {
             }, 1000);
 });
 
-function vacancy_no_resume(vacancyName, vacancyId,  from_hh, email, employerUserId) {
+function vacancy_no_resume(vacancyName, vacancyId,  from_hh, email, employerUserId, requestPhone) {
+    if (requestPhone){
+        openContactModal('no_resume', vacancyName, vacancyId,  from_hh, email, employerUserId);
+        return;
+    }
+
     if (!from_hh || employerUserId!=null) {
         const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
         url1 = "/videoCv/send"
@@ -388,7 +393,11 @@ function vacancy_no_resume(vacancyName, vacancyId,  from_hh, email, employerUser
   })
 // Логика отклика без резюме
 }
-function vacancy_text_resume(vacancyName, vacancyId, from_hh, email, employerUserId) {
+function vacancy_text_resume(vacancyName, vacancyId, from_hh, email, employerUserId, requestPhone) {
+     if (requestPhone){
+         openContactModal('text_resume', vacancyName, vacancyId,  from_hh, email, employerUserId);
+         return;
+     }
      if (!from_hh || employerUserId!=null) {
         const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
         url1 = "/videoCv/send"
@@ -498,10 +507,20 @@ function shareVacancy() {
 }
 
 let pendingAction = null;
+let vacancyName = null;
+let vacancyIdCur = null;
+let from_hh = null;
+let email = null;
+let employerUserIdCur = null;
 
 // Показываем контактное окно
-function openContactModal(action) {
+function openContactModal(action, vacancyNameParam, vacancyIdParam,  from_hhParam, emailParam, employerUserIdParam) {
   pendingAction = action;
+  vacancyName = vacancyNameParam;
+  employerUserIdCur = vacancyIdParam;
+  from_hh = from_hhParam;
+  email = emailParam;
+  employerUserId = employerUserIdParam;
   document.getElementById('contactModal').style.display = 'block';
 }
 
@@ -509,10 +528,6 @@ function openContactModal(action) {
 document.getElementById('closeContactModal').onclick = () => {
   document.getElementById('contactModal').style.display = 'none';
 };
-
-// Перехватываем клики на исходные кнопки
-document.getElementById('no-resume').onclick = () => openContactModal('no_resume');
-document.getElementById('text-resume').onclick = () => openContactModal('text_resume');
 
 // Обработка кнопки «Поделиться номером телефона»
 document.getElementById('shareContactBtn').onclick = () => {
@@ -522,17 +537,17 @@ document.getElementById('shareContactBtn').onclick = () => {
     return;
   }
   // Запрашиваем контакт
-  Telegram.WebApp.requestContact();  // Bot API 6.9+ :contentReference[oaicite:0]{index=0}
+  Telegram.WebApp.requestContact();
 };
-Telegram.WebApp.onEvent('contactRequested', (event) => {  // web_app_request_phone :contentReference[oaicite:1]{index=1}
+Telegram.WebApp.onEvent('contactRequested', (event) => {
   document.getElementById('contactModal').style.display = 'none';
 
   if (event.status === 'sent') {
     // Пользователь поделился номером — вызываем нужную функцию
     if (pendingAction === 'no_resume') {
-      vacancy_no_resume(/* передать все необходимые параметры */);
+      vacancy_no_resume(vacancyName, vacancyIdCur, from_hh, email, employerUserIdCur, false);
     } else if (pendingAction === 'text_resume') {
-      vacancy_text_resume(/* передать все необходимые параметры */);
+      vacancy_text_resume(vacancyName, vacancyIdCur, from_hh, email, employerUserIdCur, false);
     }
   } else {
     alert('Не удалось получить номер телефона');
