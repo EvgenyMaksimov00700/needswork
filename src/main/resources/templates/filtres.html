@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -13,107 +12,109 @@
 
 <div class="container">
     <h2>Фильтры</h2>
-        <!-- Выбор отрасли -->
-        <div class="form-group">
-            <label for="industry">Отрасль</label>
-            <div class = "searchable-select" data-target="industry">
+
+
+    <!-- Верхнее поле с выбором должности -->
+    <div class="form-group">
+        <label for="position">Должность</label>
+        <input list="position-list" id="position" placeholder="Желаемая должность" type="text">
+        <datalist id="position-list">
+            <option value="Разработчик">Разработчик</option>
+            <option value="Менеджер">Менеджер</option>
+            <option value="Дизайнер">Дизайнер</option>
+            <option value="Аналитик">Аналитик</option>
+            <option value="Бухгалтер">Бухгалтер</option>
+            <option value="Сотрудник магазина">Сотрудник магазина</option>
+            <option value="Курьер с личным а/м">Курьер с личным а/м</option>
+            <option value="Пеший Курьер">Пеший Курьер</option>
+            <option value="Упаковщик">Упаковщик</option>
+            <option value="Повар-пиццамейкер">Повар-пиццамейкер</option>
+            <option value="Фасовщик">Фасовщик</option>
+            <option value="Помощник повара">Помощник повара</option>
+            <option value="Сотрудник пунка выдачи заказов">Сотрудник пунка выдачи заказов</option>
+            <option value="Разнорабочий">Разнорабочий</option>
+            <option value="Пикер штрих-кодов малогабаритных интернет-заказов в пунк выдачи">Пикер штрих-кодов
+                малогабаритных интернет-заказов в пунк выдачи
+            </option>
+            <option value="Ночной клинер/уборщица">Ночной клинер/уборщица</option>
+            <option value="Охранник">Охранник</option>
+            <option value="Массажист">Массажист</option>
+            <option value="Кладовщик на склад">Кладовщик на склад</option>
+            <option value="Санитар/санитарки в частную клинику">Санитар/санитарки в частную клинику</option>
+            <option value="Python разработчик, middle">Python разработчик, middle</option>
+            <option value="Frontend-разработчик (Angular)">Frontend-разработчик (Angular)</option>
+            <option value="Junior Backend Developer">Junior Backend Developer</option>
+            <option value="Flutter Разработчик (Стажер)">Flutter Разработчик (Стажер)</option>
+            <option value="Java/Flutter разработчик">Java/Flutter разработчик</option>
+            <option value="Стажер-разработчик React">Стажер-разработчик React</option>
+            <option value="Backend разработчик (стажер)">Backend разработчик (стажер)</option>
+            <option value="Разработчик No Code">Разработчик No Code</option>
+            <option value="Rust-разработчик">Rust-разработчик</option>
+            <option value="Java разработчик/Java Developer">Java разработчик/Java Developer</option>
+            <option value="Java разработчик/Java Developer (Стажер)">Java разработчик/Java Developer (Стажер)</option>
+            <option value="Начинающий разработчик (программист) 1С">Начинающий разработчик (программист) 1С</option>
+            <option value="C# Продакт Разработчик Трейдинг">C# Продакт Разработчик Трейдинг</option>
+            <option value="Программист-разработчик JavaScript">Программист-разработчик JavaScript</option>
+            <option value="DL-разработчик">DL-разработчик</option>
+            <option value="Elixir-разработчик">Elixir-разработчик</option>
+            <option value="Web-разработчик (Backend-разработчик)">Web-разработчик (Backend-разработчик)</option>
+            <option value="Разработчик (GreenData)">Разработчик (GreenData)</option>
+            <option value="Разработчик операций AL, Python/React">Разработчик операций AL, Python/React</option>
+            <option value="Fullstack-разработчик в онлайн школу">Fullstack-разработчик в онлайн школу</option>
+            <option value="Junior Fullstack разработчик (удаленно)">Junior Fullstack разработчик (удаленно)</option>
+            <option value="Менеджер контроля качества">Менеджер контроля качества</option>
+            <option value="Менеджер по продажам">Менеджер по продажам</option>
+            <option value="Менеджер по персоналу">Менеджер по персоналу</option>
+            <option value="Менеджер по закупкам">Менеджер по закупкам</option>
+            <option value="Менеджер по туризму">Менеджер по туризму</option>
+            <option value="Менеджер проектов">Менеджер проектов</option>
+            <option value="Менеджер интернет магазина">Менеджер интернет магазина</option>
+            <option value="Менеджер по продажам рекламы">Менеджер по продажам рекламы</option>
+            <option value="БМаркетолог">Маркетолог</option>
+            <option value="Монтажник рекламных конструкций">Монтажник рекламных конструкций</option>
+            <option value="Юрист">Юрист</option>
+            <option value="помощник Юриста">помощник Юриста</option>
+        </datalist>
+    </div>
+    <!-- Выбор отрасли -->
+    <div class="form-group">
+        <label for="industry">Отрасль</label>
+        <div class="searchable-select" data-target="industry">
             <select id="industry">
                 <option value="">Все отрасли</option>
             </select>
-                <input type="text" id="industry-search" placeholder="Введите отрасль" autocomplete="off">
-                <div class="options-container"></div>
+            <input type="text" id="industry-search" placeholder="Введите отрасль" autocomplete="off">
+            <div class="options-container"></div>
         </div>
+    </div>
+    <!-- Список компаний -->
+    <div class="form-group">
+        <label for="company">Компания</label>
+        <input id="company" placeholder="Желаемая компания" type="text">
+    </div>
 
+    <!-- Уровень дохода -->
+    <div class="form-group">
+        <label for="income">Уровень дохода, от (руб)</label>
+        <input type="number" id="income" placeholder="Укажите сумму">
+    </div>
 
-        <!-- Верхнее поле с выбором должности -->
-        <div class="form-group">
-            <label for="position">Должность</label>
-            <input list="position-list" id="position" placeholder="Желаемая должность" type="text">
-            <datalist id="position-list">
-                <option value="Разработчик">Разработчик</option>
-                <option value="Менеджер">Менеджер</option>
-                <option value="Дизайнер">Дизайнер</option>
-                <option value="Аналитик">Аналитик</option>
-                <option value="Бухгалтер">Бухгалтер</option>
-                <option value="Сотрудник магазина">Сотрудник магазина</option>
-                <option value="Курьер с личным а/м">Курьер с личным а/м</option>
-                <option value="Пеший Курьер">Пеший Курьер</option>
-                <option value="Упаковщик">Упаковщик</option>
-                <option value="Повар-пиццамейкер">Повар-пиццамейкер</option>
-                <option value="Фасовщик">Фасовщик</option>
-                <option value="Помощник повара">Помощник повара</option>
-                <option value="Сотрудник пунка выдачи заказов">Сотрудник пунка выдачи заказов</option>
-                <option value="Разнорабочий">Разнорабочий</option>
-                <option value="Пикер штрих-кодов малогабаритных интернет-заказов в пунк выдачи">Пикер штрих-кодов малогабаритных интернет-заказов в пунк выдачи</option>
-                <option value="Ночной клинер/уборщица">Ночной клинер/уборщица</option>
-                <option value="Охранник">Охранник</option>
-                <option value="Массажист">Массажист</option>
-                <option value="Кладовщик на склад">Кладовщик на склад</option>
-                <option value="Санитар/санитарки в частную клинику">Санитар/санитарки в частную клинику</option>
-                <option value="Python разработчик, middle">Python разработчик, middle</option>
-                <option value="Frontend-разработчик (Angular)">Frontend-разработчик (Angular)</option>
-                <option value="Junior Backend Developer">Junior Backend Developer</option>
-                <option value="Flutter Разработчик (Стажер)">Flutter Разработчик (Стажер)</option>
-                <option value="Java/Flutter разработчик">Java/Flutter разработчик</option>
-                <option value="Стажер-разработчик React">Стажер-разработчик React</option>
-                <option value="Backend разработчик (стажер)">Backend разработчик (стажер)</option>
-                <option value="Разработчик No Code">Разработчик No Code</option>
-                <option value="Rust-разработчик">Rust-разработчик</option>
-                <option value="Java разработчик/Java Developer">Java разработчик/Java Developer</option>
-                <option value="Java разработчик/Java Developer (Стажер)">Java разработчик/Java Developer (Стажер)</option>
-                <option value="Начинающий разработчик (программист) 1С">Начинающий разработчик (программист) 1С</option>
-                <option value="C# Продакт Разработчик Трейдинг">C# Продакт Разработчик Трейдинг</option>
-                <option value="Программист-разработчик JavaScript">Программист-разработчик JavaScript</option>
-                <option value="DL-разработчик">DL-разработчик</option>
-                <option value="Elixir-разработчик">Elixir-разработчик</option>
-                <option value="Web-разработчик (Backend-разработчик)">Web-разработчик (Backend-разработчик)</option>
-                <option value="Разработчик (GreenData)">Разработчик (GreenData)</option>
-                <option value="Разработчик операций AL, Python/React">Разработчик операций AL, Python/React</option>
-                <option value="Fullstack-разработчик в онлайн школу">Fullstack-разработчик в онлайн школу</option>
-                <option value="Junior Fullstack разработчик (удаленно)">Junior Fullstack разработчик (удаленно)</option>
-                <option value="Менеджер контроля качества">Менеджер контроля качества</option>
-                <option value="Менеджер по продажам">Менеджер по продажам</option>
-                <option value="Менеджер по персоналу">Менеджер по персоналу</option>
-                <option value="Менеджер по закупкам">Менеджер по закупкам</option>
-                <option value="Менеджер по туризму">Менеджер по туризму</option>
-                <option value="Менеджер проектов">Менеджер проектов</option>
-                <option value="Менеджер интернет магазина">Менеджер интернет магазина</option>
-                <option value="Менеджер по продажам рекламы">Менеджер по продажам рекламы</option>
-                <option value="БМаркетолог">Маркетолог</option>
-                <option value="Монтажник рекламных конструкций">Монтажник рекламных конструкций</option>
-                <option value="Юрист">Юрист</option>
-                <option value="помощник Юриста">помощник Юриста</option>
-            </datalist>
-        </div>
-
-        <!-- Список компаний -->
-        <div class="form-group">
-            <label for="company">Компания</label>
-            <input id="company" placeholder="Желаемая компания" type="text">
-        </div>
-
-        <!-- Уровень дохода -->
-        <div class="form-group">
-            <label for="income">Уровень дохода, от (руб)</label>
-            <input type="number" id="income" placeholder="Укажите сумму">
-        </div>
-
-        <!-- Страна
-        <div class="form-group">
-            <label for="country">Страна</label>
-            <input list="country-list" id="country" placeholder="Выберите страну" type="text">
-            <datalist id="country-list">
-                <option value="Россия"></option>
-                <option value="США"></option>
-                <option value="Канада"></option>
-                <option value="Германия"></option>
-            </datalist>
-        </div>
+    <!-- Страна
+    <div class="form-group">
+        <label for="country">Страна</label>
+        <input list="country-list" id="country" placeholder="Выберите страну" type="text">
+        <datalist id="country-list">
+            <option value="Россия"></option>
+            <option value="США"></option>
+            <option value="Канада"></option>
+            <option value="Германия"></option>
+        </datalist>
+    </div>
 -->
-        <!-- Город -->
-        <div class="form-group">
-            <label for="city">Город</label>
-            <div class = "searchable-select" data-target="city">
+    <!-- Город -->
+    <div class="form-group">
+        <label for="city">Город</label>
+        <div class="searchable-select" data-target="city">
 
 
             <select id="city">
@@ -122,8 +123,6 @@
             <input type="text" id="city-search" placeholder="Введите город" autocomplete="off">
             <div class="options-container"></div>
         </div>
-
-
 
 
         <!-- Требуемый опыт -->
@@ -154,16 +153,16 @@
             <label>Время публикации</label>
             <div class="button-group">
                 <button type="button" class="time" onclick="chooseTime(this)">За месяц</button>
-                <button type="button" class="time"  onclick="chooseTime(this)">За неделю</button>
-                <button type="button" class="time"  onclick="chooseTime(this)">За 3 дня</button>
-                <button type="button" class="time"  onclick="chooseTime(this)">Сутки</button>
+                <button type="button" class="time" onclick="chooseTime(this)">За неделю</button>
+                <button type="button" class="time" onclick="chooseTime(this)">За 3 дня</button>
+                <button type="button" class="time" onclick="chooseTime(this)">Сутки</button>
             </div>
         </div>
 
         <!-- Кнопка отправки -->
         <button type="submit" class="apply" onclick="apply()">Применить</button>
         <button type="button" onclick="vacancy_back()" class="back">Назад</button>
-</div>
-<script src="/js/filtres.js"></script>
+    </div>
+    <script src="/js/filtres.js"></script>
 </body>
 </html>
