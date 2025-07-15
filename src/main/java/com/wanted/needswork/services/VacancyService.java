@@ -159,12 +159,17 @@ public class VacancyService {
             System.out.println("Ответ от Telegram: " + response.body());
 
             // Парсинг ответа
-            JSONObject jsonResponse = new JSONObject(response.body());
-            if (jsonResponse.has("results")) {
-                JSONArray resultArray = jsonResponse.getJSONArray("results");
-                return resultArray;
-            } else {
-                System.out.println("Ответ не содержит ожидаемого массива 'result'.");
+            if (response != null && response.statusCode() == 200) {
+                JSONObject jsonResponse = new JSONObject(response.body());
+                if (jsonResponse.has("results")) {
+                    JSONArray resultArray = jsonResponse.getJSONArray("results");
+                    return resultArray;
+                } else {
+                    System.out.println("Ответ не содержит ожидаемого массива 'result'.");
+                    return null;
+                }
+            }
+            else {
                 return null;
             }
         } catch (IOException | InterruptedException e) {
