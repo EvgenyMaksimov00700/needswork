@@ -20,25 +20,8 @@ function isDesktop() {
 
 catch(error) {clientID = 159619887}
 console.log(clientID)
-function getUserById(userId) {
-  const url = `/user/${userId}`;
 
-  fetch(url)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Ошибка запроса: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Данные пользователя:', data);
-      // здесь можно, например, отобразить данные на странице
-    })
-    .catch(error => {
-      console.error('Ошибка при получении пользователя:', error);
-    });
-}
-const user = getUserById(clientID);
+let user;
 const currentUrl = window.location.href;
 const url = new URL(currentUrl);
 const params = new URLSearchParams(url.search);
@@ -280,11 +263,28 @@ document.addEventListener('DOMContentLoaded', function(){
          console.warn('Telegram WebApp init error', e);
     }
     const checkbox = document.getElementById('offerCheckbox');
-      const button = document.getElementById('shareContactBtn');
+    const button = document.getElementById('shareContactBtn');
 
-      checkbox.addEventListener('change', function () {
+    checkbox.addEventListener('change', function () {
         button.disabled = !this.checked;
-      });
+    });
+
+    const url = `/user/${clientID}`;
+
+   fetch(url)
+     .then(response => {
+       if (!response.ok) {
+         throw new Error(`Ошибка запроса: ${response.status}`);
+       }
+       return response.json();
+     })
+     .then(data => {
+       console.log('Данные пользователя:', data);
+       user= data;
+     })
+     .catch(error => {
+       console.error('Ошибка при получении пользователя:', error);
+     });
      fetch( `/vacancy/${vacancyId}`, {
                 method: 'GET',
                 headers: {
