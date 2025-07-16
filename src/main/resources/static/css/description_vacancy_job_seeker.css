@@ -232,10 +232,10 @@ h1 {
 
 #contactModal .modal-content {
     background-color: #23272a;
-    margin: 10% auto;
+    margin: 60% 4%;
     padding: 20px;
     border: 1px solid #3c4043;
-    width: 90%;
+    width: 82%;
     max-width: 400px;
     border-radius: 8px;
     color: #d1d1d1;
@@ -296,4 +296,9 @@ h1 {
 #shareContactBtn:hover {
     background-color: #007ab8;
     transform: scale(1.02);
+}
+#shareContactBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
 }

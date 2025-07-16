@@ -258,6 +258,12 @@ document.addEventListener('DOMContentLoaded', function(){
     } catch (e) {
          console.warn('Telegram WebApp init error', e);
     }
+    const checkbox = document.getElementById('offerCheckbox');
+      const button = document.getElementById('shareContactBtn');
+
+      checkbox.addEventListener('change', function () {
+        button.disabled = !this.checked;
+      });
      fetch( `/vacancy/${vacancyId}`, {
                 method: 'GET',
                 headers: {
@@ -517,10 +523,10 @@ let employerUserIdCur = null;
 function openContactModal(action, vacancyNameParam, vacancyIdParam,  from_hhParam, emailParam, employerUserIdParam) {
   pendingAction = action;
   vacancyName = vacancyNameParam;
-  employerUserIdCur = vacancyIdParam;
+  vacancyIdCur = vacancyIdParam;
   from_hh = from_hhParam;
   email = emailParam;
-  employerUserId = employerUserIdParam;
+  employerUserIdCur = employerUserIdParam;
   document.getElementById('contactModal').style.display = 'block';
 }
 
