@@ -20,7 +20,25 @@ function isDesktop() {
 
 catch(error) {clientID = 159619887}
 console.log(clientID)
+function getUserById(userId) {
+  const url = `/user/${userId}`;
 
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Ошибка запроса: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Данные пользователя:', data);
+      // здесь можно, например, отобразить данные на странице
+    })
+    .catch(error => {
+      console.error('Ошибка при получении пользователя:', error);
+    });
+}
+const user = getUserById(clientID);
 const currentUrl = window.location.href;
 const url = new URL(currentUrl);
 const params = new URLSearchParams(url.search);
@@ -329,9 +347,9 @@ document.addEventListener('DOMContentLoaded', function(){
                                outputDiv.innerHTML=data.responsibility
                                }
                 document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + formatDateTime(data.createdDateTime);
-                document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id, data.from_hh, data.employer.email, employerUserId, true)};
-                document.getElementById("no-resume").onclick = () => {vacancy_no_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId, true)};
-                document.getElementById("text-resume").onclick = () => {vacancy_text_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId, true)};
+                document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id, data.from_hh, data.employer.email, employerUserId, user.phone === null)};
+                document.getElementById("no-resume").onclick = () => {vacancy_no_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId, user.phone === null)};
+                document.getElementById("text-resume").onclick = () => {vacancy_text_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId, user.phone === null)};
             });
 setTimeout(() => {
                 const loadingOverlay = document.getElementById("loading");
