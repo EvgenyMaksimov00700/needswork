@@ -112,14 +112,17 @@ function addNewVideoCV(vacancyId){
 
 let employerUserId;
 
-function vacancy_responses(vacancyName, vacancyId, from_hh, email, employerUserId) {
+    function vacancy_responses(vacancyName, vacancyId, from_hh, email, employerUserId, requestPhone) {
+    if (requestPhone){
+             openContactModal('text_resume', vacancyName, vacancyId,  from_hh, email, employerUserId);
+             return;
+         }
+        const resumeModal = document.getElementById('resumeModal');
+        const resumeButtons = document.getElementById('resume-buttons');
 
-    const resumeModal = document.getElementById('resumeModal');
-    const resumeButtons = document.getElementById('resume-buttons');
-
-    // Открыть модальное окно
-    resumeModal.style.display = 'block';
-    resumeButtons.innerHTML = ''; // Очищаем перед загрузкой новых данных
+        // Открыть модальное окно
+        resumeModal.style.display = 'block';
+        resumeButtons.innerHTML = ''; // Очищаем перед загрузкой новых данных
 
     fetch(`/videoCv/user/${clientID}`, {
         method: 'GET',
@@ -326,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function(){
                                outputDiv.innerHTML=data.responsibility
                                }
                 document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + formatDateTime(data.createdDateTime);
-                document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id, data.from_hh, data.employer.email, employerUserId)};
+                document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id, data.from_hh, data.employer.email, employerUserId, true)};
                 document.getElementById("no-resume").onclick = () => {vacancy_no_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId, true)};
                 document.getElementById("text-resume").onclick = () => {vacancy_text_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId, true)};
             });
@@ -549,12 +552,17 @@ Telegram.WebApp.onEvent('contactRequested', (event) => {
   document.getElementById('contactModal').style.display = 'none';
 
   if (event.status === 'sent') {
+  setTimeout(() => {
     // Пользователь поделился номером — вызываем нужную функцию
     if (pendingAction === 'no_resume') {
       vacancy_no_resume(vacancyName, vacancyIdCur, from_hh, email, employerUserIdCur, false);
     } else if (pendingAction === 'text_resume') {
       vacancy_text_resume(vacancyName, vacancyIdCur, from_hh, email, employerUserIdCur, false);
     }
+    else if (pendingAction === 'video_resume') {
+          vacancy_responses(vacancyName, vacancyIdCur, from_hh, email, employerUserIdCur, false);
+        }
+        }, 1000);
   } else {
     alert('Не удалось получить номер телефона');
   }
