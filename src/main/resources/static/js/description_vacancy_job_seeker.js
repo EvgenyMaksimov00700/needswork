@@ -115,7 +115,7 @@ let employerUserId;
 
     function vacancy_responses(vacancyName, vacancyId, from_hh, email, employerUserId, requestPhone) {
     if (requestPhone){
-             openContactModal('text_resume', vacancyName, vacancyId,  from_hh, email, employerUserId);
+             openContactModal('video_resume', vacancyName, vacancyId,  from_hh, email, employerUserId);
              return;
          }
         const resumeModal = document.getElementById('resumeModal');
@@ -425,20 +425,6 @@ function vacancy_text_resume(vacancyName, vacancyId, from_hh, email, employerUse
          openContactModal('text_resume', vacancyName, vacancyId,  from_hh, email, employerUserId);
          return;
      }
-     if (!from_hh || employerUserId!=null) {
-        const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
-        url1 = "/videoCv/send"
-        data = {videoCvMessage:  null, userId: clientID, vacancyId: vacancyId, textResume: true}
-         const response = fetch(url1, {
-              method: 'POST', // Метод запроса
-              headers: {
-                  'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
-              },
-              body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
-          });
-      }
-
-
 
       fetch("/jobSeeker/user/"+clientID, {
           method: 'GET', // Метод запроса
@@ -452,6 +438,46 @@ function vacancy_text_resume(vacancyName, vacancyId, from_hh, email, employerUse
       }
             return responseJs.json();
       }).then(jobSeeker => {
+if (jobSeeker.textResume == null) {
+        // 1) Показываем модалку
+        const modal = document.getElementById('noResumeModal');
+        modal.style.display = 'block';
+
+        // 2) Берём кнопки из модалки
+        const btnWith = document.getElementById('respondWithResumeBtn');
+        const btnNo = document.getElementById('noResumeBtn');
+
+        // 3) Чистим старые слушатели (на всякий случай)
+        btnWith.replaceWith(btnWith.cloneNode(true));
+        btnNo.replaceWith(btnNo.cloneNode(true));
+
+        // 4) Снова достаём кнопки
+        const freshBtnWith = document.getElementById('respondWithResumeBtn');
+        const freshBtnNo = document.getElementById('noResumeBtn');
+
+        // 5) Навешиваем
+        freshBtnWith.addEventListener('click', () => {
+          // тот же самый вызов, что вы передали в эту функцию
+          vacancy_text_resume(vacancyName, vacancyId, from_hh, email, employerUserId, requestPhone);
+        });
+        freshBtnNo.addEventListener('click', () => {
+          vacancy_no_resume(vacancyName, vacancyId, from_hh, email, employerUserId, requestPhone);
+        });
+
+        return;
+      }
+      if (!from_hh || employerUserId!=null) {
+              const message = "На Вашу вакансию "+ vacancyName + " поступил новый отклик";
+              url1 = "/videoCv/send"
+              data = {videoCvMessage:  null, userId: clientID, vacancyId: vacancyId, textResume: true}
+               const response = fetch(url1, {
+                    method: 'POST', // Метод запроса
+                    headers: {
+                        'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+                    },
+                    body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+                });
+            }
             const url2 = "/response"
                   data = {vacancy_id: parseInt (vacancyId), job_seeker_id: jobSeeker.id, comment: jobSeeker.textResume}
                   console.log (data);
@@ -585,6 +611,47 @@ Telegram.WebApp.onEvent('contactRequested', (event) => {
     alert('Не удалось получить номер телефона');
   }
 });
+function triggerFileUpload() {
+  document.getElementById('text-resume-upload').click();
+}
 
+document
+  .getElementById('text-resume-upload')
+  .addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+   try {
+         const response = await fetch(`/jobSeeker/resume/${clientID}`, {
+           method: 'PUT',
+           body: formData,
+         });
+         if (!response.ok) {
+           console.error('Ошибка при загрузке файла:', response.statusText);
+           return;
+         }
+
+         // **Загрузка прошла успешно** — обновляем кнопку и показываем ссылку
+         const uploadBtn = document.getElementById('uploadResumeBtn');
+         uploadBtn.textContent = 'Обновить резюме';
+         const resumeLink = document.getElementById('resume-text');
+         resumeLink.textContent = file.name;
+         // если у вас есть URL на сервере, можно подставить его вместо createObjectURL
+         resumeLink.href = URL.createObjectURL(file);
+         resumeLink.style.display = 'inline-block';
+         document.getElementById('respondWithResumeBtn').style.display = 'block';
+
+       } catch (error) {
+         console.error('Ошибка при отправке файла:', error);
+       }
+  });
+
+// Логика открытия/закрытия модального окна
+document.getElementById('closeNoResumeModal').onclick = () => {
+  document.getElementById('noResumeModal').style.display = 'none';
+};
 
 

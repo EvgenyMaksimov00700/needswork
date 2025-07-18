@@ -69,6 +69,65 @@
         <button class="button green" id="shareContactBtn" disabled>Поделиться номером телефона</button>
     </div>
 </div>
+<!-- Модал -->
+<div id="noResumeModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeNoResumeModal">&times;</span>
+
+        <p class="modal-text">
+            Загрузите своё резюме, прежде чем откликаться на вакансию.<br>
+            Или откликнитесь без резюме.
+        </p>
+
+        <div class="buttons">
+            <!-- Загрузить/Обновить резюме -->
+            <button
+                    class="button green"
+                    id="uploadResumeBtn"
+                    onclick="triggerFileUpload()"
+            >
+                Загрузить резюме
+            </button>
+
+            <!-- Показ имени загруженного файла -->
+            <a
+                    id="resume-text"
+                    class="show-resume"
+                    href="#"
+                    target="_blank"
+                    style="display: none; margin-left: 12px;"
+            ></a>
+        </div>
+
+        <!-- Появится после загрузки -->
+        <button
+                class="button green"
+                id="respondWithResumeBtn"
+
+                style="display: none; margin-top: 10px;"
+        >
+            Откликнуться с резюме
+        </button>
+
+        <!-- Отклик без резюме -->
+        <button
+                class="button green"
+                id="noResumeBtn"
+
+                style="margin-top: 10px;"
+        >
+            Откликнуться без резюме
+        </button>
+    </div>
+</div>
+
+<!-- Скрытый инпут для файлов -->
+<input
+        id="text-resume-upload"
+        type="file"
+        accept=".txt,.doc,.docx,.pdf"
+        style="display: none;"
+/>
 <div id="loading" class="loading-overlay">
     <img src="/imag/DuckCounting.gif" alt="Loading">
 </div>
