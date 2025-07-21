@@ -54,4 +54,12 @@ public class JobSeekerService {
             jobSeekerRepository.save(jobSeeker);
         }
     }
+
+    public String getTextResumeFileName(Integer jobSeekerId) {
+        JobSeeker entity = jobSeekerRepository.findById(jobSeekerId)
+                .orElse(null);
+
+        assert entity != null;
+        return entity.getTextResume();
+    }
 }

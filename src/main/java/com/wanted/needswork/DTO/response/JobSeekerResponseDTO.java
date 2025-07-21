@@ -2,6 +2,7 @@ package com.wanted.needswork.DTO.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigInteger;
 @AllArgsConstructor
@@ -16,5 +17,8 @@ public class JobSeekerResponseDTO {
     private Double longitude;
     @Getter
     private String textResume;
+    @Getter
+    @Setter
+    private String textResumeLink;
 
 }

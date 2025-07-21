@@ -48,6 +48,6 @@ public class JobSeeker {
     }
 
     public JobSeekerResponseDTO toResponseDTO() {
-        return new JobSeekerResponseDTO(id, user.toResponseDTO(), latitude, longitude, textResume);
+        return new JobSeekerResponseDTO(id, user.toResponseDTO(), latitude, longitude, textResume, null);
     }
 }

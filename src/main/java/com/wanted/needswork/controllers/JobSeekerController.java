@@ -8,15 +8,25 @@ import com.wanted.needswork.models.JobSeeker;
 import com.wanted.needswork.models.User;
 import com.wanted.needswork.services.JobSeekerService;
 import com.wanted.needswork.services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
@@ -27,6 +37,8 @@ public class JobSeekerController {
     JobSeekerService jobSeekerService;
     @Autowired
     UserService userService;
+    @Value("${app.textResume.base-path}")
+    private String resumesBasePath;
 
     @GetMapping("/jobSeeker/showall")
     public ResponseEntity<List<JobSeekerResponseDTO>> showall() {
@@ -41,8 +53,24 @@ public class JobSeekerController {
     }
 
     @GetMapping("/jobSeeker/{jobSeekerId}")
-    public ResponseEntity<JobSeekerResponseDTO> getJobSeekerById(@PathVariable Integer jobSeekerId) {
-        return new ResponseEntity<>(jobSeekerService.getJobSeeker(jobSeekerId).toResponseDTO(), HttpStatus.OK);
+    public ResponseEntity<JobSeekerResponseDTO> getJobSeekerById(@PathVariable Integer jobSeekerId, HttpServletRequest request) {
+        JobSeeker entity = jobSeekerService.getJobSeeker(jobSeekerId);
+        JobSeekerResponseDTO dto = entity.toResponseDTO();
+
+        // Собираем прямую ссылку на PDF
+        String baseUrl = ServletUriComponentsBuilder.fromRequestUri(request)
+                .replacePath(request.getContextPath())
+                .build()
+                .toUriString();
+        String resumeUrl = ServletUriComponentsBuilder
+                .fromHttpUrl(baseUrl)
+                .path("/jobSeeker/")
+                .path(jobSeekerId.toString())
+                .path("/textResume")
+                .toUriString();
+
+        dto.setTextResumeLink(resumeUrl);
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping("/jobSeeker")
@@ -68,9 +96,43 @@ public class JobSeekerController {
                 HttpStatus.OK);
     }
 
+    @GetMapping("/jobSeeker/{jobSeekerId}/textResume")
+    public ResponseEntity<Resource> getTextResume(@PathVariable Integer jobSeekerId) throws MalformedURLException {
+        // допустим, у вас в БД лежит имя файла или вы формируете его по шаблону:
+        String fileName = jobSeekerService.getTextResumeFileName(jobSeekerId);
+        Path file = Paths.get(resumesBasePath).resolve(fileName);
+
+        if (!Files.exists(file)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Resource resource = new UrlResource(file.toUri());
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_PDF)
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "inline; filename=\"" + file.getFileName().toString() + "\"")
+                .body(resource);
+    }
+
     @GetMapping("/jobSeeker/user/{userId}")
-    public ResponseEntity<JobSeekerResponseDTO> getJobSeekerByUserId(@PathVariable BigInteger userId) {
-        return new ResponseEntity<>(jobSeekerService.getJobSeekerByUserId(userId).toResponseDTO(), HttpStatus.OK);
+    public ResponseEntity<JobSeekerResponseDTO> getJobSeekerByUserId(@PathVariable BigInteger userId, HttpServletRequest request) {
+        JobSeeker entity = jobSeekerService.getJobSeekerByUserId(userId);
+        JobSeekerResponseDTO dto = entity.toResponseDTO();
+
+        // Собираем прямую ссылку на PDF
+        String baseUrl = ServletUriComponentsBuilder.fromRequestUri(request)
+                .replacePath(request.getContextPath())
+                .build()
+                .toUriString();
+        String resumeUrl = ServletUriComponentsBuilder
+                .fromHttpUrl(baseUrl)
+                .path("/jobSeeker/")
+                .path(entity.getId().toString())
+                .path("/textResume")
+                .toUriString();
+
+        dto.setTextResumeLink(resumeUrl);
+        return ResponseEntity.ok(dto);
     }
 
     @PutMapping("/jobSeeker/resume/{jobSeekerId}")

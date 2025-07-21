@@ -1,0 +1,1068 @@
+01-01 09:41:52 Code<error>[2010]: reason: All pools disabled for 277s, please check the network or pools configure.
+01-01 09:41:53 Code<error>[2010]: reason: All pools disabled for 278s, please check the network or pools configure.
+01-01 09:41:54 Code<error>[2010]: reason: All pools disabled for 279s, please check the network or pools configure.
+01-01 09:41:55 Code<error>[2010]: reason: All pools disabled for 280s, please check the network or pools configure.
+01-01 09:41:56 Code<error>[2010]: reason: All pools disabled for 281s, please check the network or pools configure.
+01-01 09:41:58 Code<error>[2010]: reason: All pools disabled for 283s, please check the network or pools configure.
+01-01 09:41:59 Code<error>[2010]: reason: All pools disabled for 284s, please check the network or pools configure.
+01-01 09:42:00 Code<error>[2010]: reason: All pools disabled for 285s, please check the network or pools configure.
+42:01 0.0,150,10,0|0.0,150,10,0|0.0,150,10,0|58,58|16|29, 2,135|0,8,234
+01-01 09:42:01 Code<error>[2010]: reason: All pools disabled for 286s, please check the network or pools configure.
+01-01 09:42:02 Code<error>[2010]: reason: All pools disabled for 287s, please check the network or pools configure.
+01-01 09:42:03 Code<error>[2010]: reason: All pools disabled for 288s, please check the network or pools configure.
+01-01 09:42:04 Code<error>[2010]: reason: All pools disabled for 289s, please check the network or pools configure.
+01-01 09:42:07 Code<error>[2010]: reason: All pools disabled for 291s, please check the network or pools configure.
+01-01 09:42:08 Code<error>[2010]: reason: All pools disabled for 292s, please check the network or pools configure.
+01-01 09:42:09 Code<error>[2010]: reason: All pools disabled for 293s, please check the network or pools configure.
+01-01 09:42:10 Code<error>[2010]: reason: All pools disabled for 294s, please check the network or pools configure.
+42:31 0.0,0,10,0|0.0,0,10,0|0.0,0,10,0|117,146|16|25, 0,144|0,10,235
+42:41 0.0,0,10,0|0.0,0,10,0|0.0,0,10,0|0,0|16|25, 2,143|0,6,234
+01-01 09:42:41 Restart btminer as as No btminer
+01-01 09:42:43 Code<error>[2010]: reason: All pools disabled for 2s, please check the network or pools configure.
+01-01 09:42:44 Code<error>[2010]: reason: All pools disabled for 3s, please check the network or pools configure.
+01-01 09:42:45 Code<error>[2010]: reason: All pools disabled for 4s, please check the network or pools configure.
+01-01 09:42:46 Code<error>[2010]: reason: All pools disabled for 5s, please check the network or pools configure.
+01-01 09:42:47 Code<error>[2010]: reason: All pools disabled for 6s, please check the network or pools configure.
+01-01 09:42:50 Code<error>[2010]: reason: All pools disabled for 9s, please check the network or pools configure.
+01-01 09:42:51 Code<error>[2010]: reason: All pools disabled for 10s, please check the network or pools configure.
+01-01 09:42:52 Code<error>[2010]: reason: All pools disabled for 11s, please check the network or pools configure.
+01-01 09:42:53 Code<error>[2010]: reason: All pools disabled for 12s, please check the network or pools configure.
+01-01 09:42:54 Code<error>[2010]: reason: All pools disabled for 13s, please check the network or pools configure.
+01-01 09:42:55 Code<error>[2010]: reason: All pools disabled for 14s, please check the network or pools configure.
+01-01 09:42:56 Code<error>[2010]: reason: All pools disabled for 15s, please check the network or pools configure.
+01-01 09:42:57 Code<error>[2010]: reason: All pools disabled for 16s, please check the network or pools configure.
+01-01 09:42:59 Code<error>[2010]: reason: All pools disabled for 18s, please check the network or pools configure.
+01-01 09:43:01 Code<error>[2010]: reason: All pools disabled for 19s, please check the network or pools configure.
+43:01 0.0,150,10,0|0.0,150,10,0|0.0,150,10,0|0,0|16|31, 0,136|0,8,233
+01-01 09:43:02 Code<error>[2010]: reason: All pools disabled for 20s, please check the network or pools configure.
+01-01 09:43:03 Code<error>[2010]: reason: All pools disabled for 21s, please check the network or pools configure.
+01-01 09:43:04 Code<error>[2010]: reason: All pools disabled for 22s, please check the network or pools configure.
+01-01 09:43:05 Code<error>[2010]: reason: All pools disabled for 23s, please check the network or pools configure.
+01-01 09:43:06 Code<error>[2010]: reason: All pools disabled for 24s, please check the network or pools configure.
+01-01 09:43:07 Code<error>[2010]: reason: All pools disabled for 25s, please check the network or pools configure.
+01-01 09:43:08 Code<error>[2010]: reason: All pools disabled for 26s, please check the network or pools configure.
+01-01 09:43:10 Code<error>[2010]: reason: All pools disabled for 28s, please check the network or pools configure.
+01-01 09:43:11 Code<error>[2010]: reason: All pools disabled for 29s, please check the network or pools configure.
+01-01 09:43:12 Code<error>[2010]: reason: All pools disabled for 30s, please check the network or pools configure.
+01-01 09:43:13 Code<error>[2010]: reason: All pools disabled for 31s, please check the network or pools configure.
+01-01 09:43:14 Code<error>[2010]: reason: All pools disabled for 32s, please check the network or pools configure.
+01-01 09:43:15 Code<error>[2010]: reason: All pools disabled for 33s, please check the network or pools configure.
+01-01 09:43:16 Code<error>[2010]: reason: All pools disabled for 34s, please check the network or pools configure.
+01-01 09:43:17 Code<error>[2010]: reason: All pools disabled for 35s, please check the network or pools configure.
+01-01 09:43:18 Code<error>[2010]: reason: All pools disabled for 36s, please check the network or pools configure.
+01-01 09:43:19 Code<error>[2010]: reason: All pools disabled for 37s, please check the network or pools configure.
+01-01 09:43:20 Code<error>[2010]: reason: All pools disabled for 38s, please check the network or pools configure.
+01-01 09:43:22 Code<error>[2010]: reason: All pools disabled for 40s, please check the network or pools configure.
+01-01 09:43:23 Code<error>[2010]: reason: All pools disabled for 41s, please check the network or pools configure.
+01-01 09:43:24 Code<error>[2010]: reason: All pools disabled for 42s, please check the network or pools configure.
+01-01 09:43:25 Code<error>[2010]: reason: All pools disabled for 43s, please check the network or pools configure.
+01-01 09:43:26 Code<error>[2010]: reason: All pools disabled for 44s, please check the network or pools configure.
+01-01 09:43:27 Code<error>[2010]: reason: All pools disabled for 45s, please check the network or pools configure.
+01-01 09:43:28 Code<error>[2010]: reason: All pools disabled for 46s, please check the network or pools configure.
+01-01 09:43:29 Code<error>[2010]: reason: All pools disabled for 47s, please check the network or pools configure.
+01-01 09:43:30 Code<error>[2010]: reason: All pools disabled for 48s, please check the network or pools configure.
+43:31 0.0,150,11,0|0.0,150,11,0|0.0,150,11,0|58,58|16|30, 2,136|0,17,229
+01-01 09:43:31 Code<error>[2010]: reason: All pools disabled for 49s, please check the network or pools configure.
+01-01 09:43:33 Code<error>[2010]: reason: All pools disabled for 51s, please check the network or pools configure.
+01-01 09:43:34 Code<error>[2010]: reason: All pools disabled for 52s, please check the network or pools configure.
+01-01 09:43:35 Code<error>[2010]: reason: All pools disabled for 53s, please check the network or pools configure.
+01-01 09:43:36 Code<error>[2010]: reason: All pools disabled for 54s, please check the network or pools configure.
+01-01 09:43:37 Code<error>[2010]: reason: All pools disabled for 55s, please check the network or pools configure.
+01-01 09:43:38 Code<error>[2010]: reason: All pools disabled for 56s, please check the network or pools configure.
+01-01 09:43:39 Code<error>[2010]: reason: All pools disabled for 57s, please check the network or pools configure.
+01-01 09:43:40 Code<error>[2010]: reason: All pools disabled for 58s, please check the network or pools configure.
+01-01 09:43:42 Code<error>[2010]: reason: All pools disabled for 60s, please check the network or pools configure.
+01-01 09:43:43 Code<error>[2010]: reason: All pools disabled for 61s, please check the network or pools configure.
+01-01 09:43:44 Code<error>[2010]: reason: All pools disabled for 62s, please check the network or pools configure.
+01-01 09:43:45 Code<error>[2010]: reason: All pools disabled for 63s, please check the network or pools configure.
+01-01 09:43:46 Code<error>[2010]: reason: All pools disabled for 64s, please check the network or pools configure.
+01-01 09:43:47 Code<error>[2010]: reason: All pools disabled for 65s, please check the network or pools configure.
+01-01 09:43:48 Code<error>[2010]: reason: All pools disabled for 66s, please check the network or pools configure.
+01-01 09:43:49 Code<error>[2010]: reason: All pools disabled for 67s, please check the network or pools configure.
+01-01 09:43:50 Code<error>[2010]: reason: All pools disabled for 68s, please check the network or pools configure.
+01-01 09:43:51 Code<error>[2010]: reason: All pools disabled for 69s, please check the network or pools configure.
+01-01 09:43:52 Code<error>[2010]: reason: All pools disabled for 70s, please check the network or pools configure.
+01-01 09:43:53 Code<error>[2010]: reason: All pools disabled for 71s, please check the network or pools configure.
+01-01 09:43:55 Code<error>[2010]: reason: All pools disabled for 73s, please check the network or pools configure.
+01-01 09:43:57 Code<error>[2010]: reason: All pools disabled for 74s, please check the network or pools configure.
+01-01 09:43:58 Code<error>[2010]: reason: All pools disabled for 75s, please check the network or pools configure.
+01-01 09:43:59 Code<error>[2010]: reason: All pools disabled for 76s, please check the network or pools configure.
+01-01 09:44:00 Code<error>[2010]: reason: All pools disabled for 77s, please check the network or pools configure.
+01-01 09:44:01 Code<error>[2010]: reason: All pools disabled for 78s, please check the network or pools configure.
+44:01 0.0,150,11,0|0.0,150,11,0|0.0,150,11,0|146,117|17|30, 2,136|0,9,234
+01-01 09:44:02 Code<error>[2010]: reason: All pools disabled for 79s, please check the network or pools configure.
+01-01 09:44:03 Code<error>[2010]: reason: All pools disabled for 80s, please check the network or pools configure.
+01-01 09:44:04 Code<error>[2010]: reason: All pools disabled for 81s, please check the network or pools configure.
+01-01 09:44:05 Code<error>[2010]: reason: All pools disabled for 82s, please check the network or pools configure.
+01-01 09:44:06 Code<error>[2010]: reason: All pools disabled for 83s, please check the network or pools configure.
+01-01 09:44:07 Code<error>[2010]: reason: All pools disabled for 84s, please check the network or pools configure.
+01-01 09:44:09 Code<error>[2010]: reason: All pools disabled for 86s, please check the network or pools configure.
+01-01 09:44:10 Code<error>[2010]: reason: All pools disabled for 87s, please check the network or pools configure.
+01-01 09:44:11 Code<error>[2010]: reason: All pools disabled for 88s, please check the network or pools configure.
+01-01 09:44:12 Code<error>[2010]: reason: All pools disabled for 89s, please check the network or pools configure.
+01-01 09:44:13 Code<error>[2010]: reason: All pools disabled for 90s, please check the network or pools configure.
+01-01 09:44:14 Code<error>[2010]: reason: All pools disabled for 91s, please check the network or pools configure.
+01-01 09:44:15 Code<error>[2010]: reason: All pools disabled for 92s, please check the network or pools configure.
+01-01 09:44:16 Code<error>[2010]: reason: All pools disabled for 93s, please check the network or pools configure.
+01-01 09:44:17 Code<error>[2010]: reason: All pools disabled for 94s, please check the network or pools configure.
+01-01 09:44:18 Code<error>[2010]: reason: All pools disabled for 95s, please check the network or pools configure.
+01-01 09:44:20 Code<error>[2010]: reason: All pools disabled for 97s, please check the network or pools configure.
+01-01 09:44:21 Code<error>[2010]: reason: All pools disabled for 98s, please check the network or pools configure.
+01-01 09:44:22 Code<error>[2010]: reason: All pools disabled for 99s, please check the network or pools configure.
+01-01 09:44:23 Code<error>[2010]: reason: All pools disabled for 100s, please check the network or pools configure.
+01-01 09:44:24 Code<error>[2010]: reason: All pools disabled for 101s, please check the network or pools configure.
+01-01 09:44:25 Code<error>[2010]: reason: All pools disabled for 102s, please check the network or pools configure.
+01-01 09:44:26 Code<error>[2010]: reason: All pools disabled for 103s, please check the network or pools configure.
+01-01 09:44:27 Code<error>[2010]: reason: All pools disabled for 104s, please check the network or pools configure.
+01-01 09:44:28 Code<error>[2010]: reason: All pools disabled for 105s, please check the network or pools configure.
+01-01 09:44:30 Code<error>[2010]: reason: All pools disabled for 107s, please check the network or pools configure.
+01-01 09:44:31 Code<error>[2010]: reason: All pools disabled for 108s, please check the network or pools configure.
+44:31 0.0,150,11,0|0.0,150,11,0|0.0,150,11,0|0,0|17|32, 5,136|0,7,234
+01-01 09:44:32 Code<error>[2010]: reason: All pools disabled for 109s, please check the network or pools configure.
+01-01 09:44:33 Code<error>[2010]: reason: All pools disabled for 110s, please check the network or pools configure.
+01-01 09:44:34 Code<error>[2010]: reason: All pools disabled for 111s, please check the network or pools configure.
+01-01 09:44:35 Code<error>[2010]: reason: All pools disabled for 112s, please check the network or pools configure.
+01-01 09:44:36 Code<error>[2010]: reason: All pools disabled for 113s, please check the network or pools configure.
+01-01 09:44:37 Code<error>[2010]: reason: All pools disabled for 114s, please check the network or pools configure.
+01-01 09:44:38 Code<error>[2010]: reason: All pools disabled for 115s, please check the network or pools configure.
+01-01 09:44:39 Code<error>[2010]: reason: All pools disabled for 116s, please check the network or pools configure.
+01-01 09:44:41 Code<error>[2010]: reason: All pools disabled for 118s, please check the network or pools configure.
+01-01 09:44:42 Code<error>[2010]: reason: All pools disabled for 119s, please check the network or pools configure.
+01-01 09:44:43 Code<error>[2010]: reason: All pools disabled for 120s, please check the network or pools configure.
+01-01 09:44:44 Code<error>[2010]: reason: All pools disabled for 121s, please check the network or pools configure.
+01-01 09:44:45 Code<error>[2010]: reason: All pools disabled for 122s, please check the network or pools configure.
+01-01 09:44:46 Code<error>[2010]: reason: All pools disabled for 123s, please check the network or pools configure.
+01-01 09:44:47 Code<error>[2010]: reason: All pools disabled for 124s, please check the network or pools configure.
+01-01 09:44:48 Code<error>[2010]: reason: All pools disabled for 125s, please check the network or pools configure.
+01-01 09:44:50 Code<error>[2010]: reason: All pools disabled for 127s, please check the network or pools configure.
+01-01 09:44:51 Code<error>[2010]: reason: All pools disabled for 128s, please check the network or pools configure.
+01-01 09:44:52 Code<error>[2010]: reason: All pools disabled for 129s, please check the network or pools configure.
+01-01 09:44:53 Code<error>[2010]: reason: All pools disabled for 130s, please check the network or pools configure.
+01-01 09:44:54 Code<error>[2010]: reason: All pools disabled for 131s, please check the network or pools configure.
+01-01 09:44:55 Code<error>[2010]: reason: All pools disabled for 132s, please check the network or pools configure.
+01-01 09:44:56 Code<error>[2010]: reason: All pools disabled for 133s, please check the network or pools configure.
+01-01 09:44:57 Code<error>[2010]: reason: All pools disabled for 134s, please check the network or pools configure.
+01-01 09:44:59 Code<error>[2010]: reason: All pools disabled for 135s, please check the network or pools configure.
+01-01 09:45:00 Code<error>[2010]: reason: All pools disabled for 136s, please check the network or pools configure.
+45:01 0.0,150,11,0|0.0,150,11,0|0.0,150,11,0|58,58|17|30, 2,136|0,13,232
+01-01 09:45:02 Code<error>[2010]: reason: All pools disabled for 138s, please check the network or pools configure.
+01-01 09:45:03 Code<error>[2010]: reason: All pools disabled for 139s, please check the network or pools configure.
+01-01 09:45:04 Code<error>[2010]: reason: All pools disabled for 140s, please check the network or pools configure.
+01-01 09:45:05 Code<error>[2010]: reason: All pools disabled for 141s, please check the network or pools configure.
+01-01 09:45:06 Code<error>[2010]: reason: All pools disabled for 142s, please check the network or pools configure.
+01-01 09:45:07 Code<error>[2010]: reason: All pools disabled for 143s, please check the network or pools configure.
+01-01 09:45:08 Code<error>[2010]: reason: All pools disabled for 144s, please check the network or pools configure.
+01-01 09:45:09 Code<error>[2010]: reason: All pools disabled for 145s, please check the network or pools configure.
+01-01 09:45:10 Code<error>[2010]: reason: All pools disabled for 146s, please check the network or pools configure.
+01-01 09:45:12 Code<error>[2010]: reason: All pools disabled for 148s, please check the network or pools configure.
+01-01 09:45:13 Code<error>[2010]: reason: All pools disabled for 149s, please check the network or pools configure.
+01-01 09:45:14 Code<error>[2010]: reason: All pools disabled for 150s, please check the network or pools configure.
+01-01 09:45:15 Code<error>[2010]: reason: All pools disabled for 151s, please check the network or pools configure.
+01-01 09:45:16 Code<error>[2010]: reason: All pools disabled for 152s, please check the network or pools configure.
+01-01 09:45:17 Code<error>[2010]: reason: All pools disabled for 153s, please check the network or pools configure.
+01-01 09:45:18 Code<error>[2010]: reason: All pools disabled for 154s, please check the network or pools configure.
+01-01 09:45:19 Code<error>[2010]: reason: All pools disabled for 155s, please check the network or pools configure.
+01-01 09:45:20 Code<error>[2010]: reason: All pools disabled for 156s, please check the network or pools configure.
+01-01 09:45:21 Code<error>[2010]: reason: All pools disabled for 157s, please check the network or pools configure.
+01-01 09:45:22 Code<error>[2010]: reason: All pools disabled for 158s, please check the network or pools configure.
+01-01 09:45:24 Code<error>[2010]: reason: All pools disabled for 160s, please check the network or pools configure.
+01-01 09:45:25 Code<error>[2010]: reason: All pools disabled for 161s, please check the network or pools configure.
+01-01 09:45:26 Code<error>[2010]: reason: All pools disabled for 162s, please check the network or pools configure.
+01-01 09:45:27 Code<error>[2010]: reason: All pools disabled for 163s, please check the network or pools configure.
+01-01 09:45:28 Code<error>[2010]: reason: All pools disabled for 164s, please check the network or pools configure.
+01-01 09:45:29 Code<error>[2010]: reason: All pools disabled for 165s, please check the network or pools configure.
+01-01 09:45:31 Code<error>[2010]: reason: All pools disabled for 167s, please check the network or pools configure.
+45:32 0.0,150,11,0|0.0,150,12,0|0.0,150,12,0|117,117|17|30, 2,136|0,8,234
+01-01 09:45:32 Code<error>[2010]: reason: All pools disabled for 168s, please check the network or pools configure.
+01-01 09:45:33 Code<error>[2010]: reason: All pools disabled for 169s, please check the network or pools configure.
+01-01 09:45:34 Code<error>[2010]: reason: All pools disabled for 170s, please check the network or pools configure.
+01-01 09:45:35 Code<error>[2010]: reason: All pools disabled for 171s, please check the network or pools configure.
+01-01 09:45:36 Code<error>[2010]: reason: All pools disabled for 172s, please check the network or pools configure.
+01-01 09:45:37 Code<error>[2010]: reason: All pools disabled for 173s, please check the network or pools configure.
+01-01 09:45:38 Code<error>[2010]: reason: All pools disabled for 174s, please check the network or pools configure.
+01-01 09:45:39 Code<error>[2010]: reason: All pools disabled for 175s, please check the network or pools configure.
+01-01 09:45:40 Code<error>[2010]: reason: All pools disabled for 176s, please check the network or pools configure.
+01-01 09:45:41 Code<error>[2010]: reason: All pools disabled for 177s, please check the network or pools configure.
+01-01 09:45:43 Code<error>[2010]: reason: All pools disabled for 179s, please check the network or pools configure.
+01-01 09:45:44 Code<error>[2010]: reason: All pools disabled for 180s, please check the network or pools configure.
+01-01 09:45:45 Code<error>[2010]: reason: All pools disabled for 181s, please check the network or pools configure.
+01-01 09:45:47 Code<error>[2010]: reason: All pools disabled for 182s, please check the network or pools configure.
+01-01 09:45:48 Code<error>[2010]: reason: All pools disabled for 183s, please check the network or pools configure.
+01-01 09:45:49 Code<error>[2010]: reason: All pools disabled for 184s, please check the network or pools configure.
+01-01 09:45:50 Code<error>[2010]: reason: All pools disabled for 185s, please check the network or pools configure.
+01-01 09:45:51 Code<error>[2010]: reason: All pools disabled for 186s, please check the network or pools configure.
+01-01 09:45:52 Code<error>[2010]: reason: All pools disabled for 187s, please check the network or pools configure.
+01-01 09:45:53 Code<error>[2010]: reason: All pools disabled for 188s, please check the network or pools configure.
+01-01 09:45:55 Code<error>[2010]: reason: All pools disabled for 190s, please check the network or pools configure.
+01-01 09:45:56 Code<error>[2010]: reason: All pools disabled for 191s, please check the network or pools configure.
+01-01 09:45:57 Code<error>[2010]: reason: All pools disabled for 192s, please check the network or pools configure.
+01-01 09:45:58 Code<error>[2010]: reason: All pools disabled for 193s, please check the network or pools configure.
+01-01 09:45:59 Code<error>[2010]: reason: All pools disabled for 194s, please check the network or pools configure.
+01-01 09:46:00 Code<error>[2010]: reason: All pools disabled for 195s, please check the network or pools configure.
+01-01 09:46:01 Code<error>[2010]: reason: All pools disabled for 196s, please check the network or pools configure.
+46:02 0.0,150,12,0|0.0,150,12,0|0.0,150,12,0|87,87|17|32, 7,136|0,8,235
+01-01 09:46:02 Code<error>[2010]: reason: All pools disabled for 197s, please check the network or pools configure.
+01-01 09:46:03 Code<error>[2010]: reason: All pools disabled for 198s, please check the network or pools configure.
+01-01 09:46:04 Code<error>[2010]: reason: All pools disabled for 199s, please check the network or pools configure.
+01-01 09:46:05 Code<error>[2010]: reason: All pools disabled for 200s, please check the network or pools configure.
+01-01 09:46:07 Code<error>[2010]: reason: All pools disabled for 202s, please check the network or pools configure.
+01-01 09:46:08 Code<error>[2010]: reason: All pools disabled for 203s, please check the network or pools configure.
+01-01 09:46:09 Code<error>[2010]: reason: All pools disabled for 204s, please check the network or pools configure.
+01-01 09:46:10 Code<error>[2010]: reason: All pools disabled for 205s, please check the network or pools configure.
+01-01 09:46:11 Code<error>[2010]: reason: All pools disabled for 206s, please check the network or pools configure.
+01-01 09:46:12 Code<error>[2010]: reason: All pools disabled for 207s, please check the network or pools configure.
+01-01 09:46:13 Code<error>[2010]: reason: All pools disabled for 208s, please check the network or pools configure.
+01-01 09:46:14 Code<error>[2010]: reason: All pools disabled for 209s, please check the network or pools configure.
+01-01 09:46:15 Code<error>[2010]: reason: All pools disabled for 210s, please check the network or pools configure.
+01-01 09:46:16 Code<error>[2010]: reason: All pools disabled for 211s, please check the network or pools configure.
+01-01 09:46:17 Code<error>[2010]: reason: All pools disabled for 212s, please check the network or pools configure.
+01-01 09:46:19 Code<error>[2010]: reason: All pools disabled for 214s, please check the network or pools configure.
+01-01 09:46:20 Code<error>[2010]: reason: All pools disabled for 215s, please check the network or pools configure.
+01-01 09:46:21 Code<error>[2010]: reason: All pools disabled for 216s, please check the network or pools configure.
+01-01 09:46:22 Code<error>[2010]: reason: All pools disabled for 217s, please check the network or pools configure.
+01-01 09:46:23 Code<error>[2010]: reason: All pools disabled for 218s, please check the network or pools configure.
+01-01 09:46:24 Code<error>[2010]: reason: All pools disabled for 219s, please check the network or pools configure.
+01-01 09:46:25 Code<error>[2010]: reason: All pools disabled for 220s, please check the network or pools configure.
+01-01 09:46:26 Code<error>[2010]: reason: All pools disabled for 221s, please check the network or pools configure.
+01-01 09:46:27 Code<error>[2010]: reason: All pools disabled for 222s, please check the network or pools configure.
+01-01 09:46:28 Code<error>[2010]: reason: All pools disabled for 223s, please check the network or pools configure.
+01-01 09:46:29 Code<error>[2010]: reason: All pools disabled for 224s, please check the network or pools configure.
+01-01 09:46:31 Code<error>[2010]: reason: All pools disabled for 226s, please check the network or pools configure.
+46:32 0.0,150,12,0|0.0,150,12,0|0.0,150,12,0|1026,1026|17|31, 0,136|0,12,234
+01-01 09:46:32 Code<error>[2010]: reason: All pools disabled for 227s, please check the network or pools configure.
+01-01 09:46:33 Code<error>[2010]: reason: All pools disabled for 228s, please check the network or pools configure.
+01-01 09:46:34 Code<error>[2010]: reason: All pools disabled for 229s, please check the network or pools configure.
+01-01 09:46:35 Code<error>[2010]: reason: All pools disabled for 230s, please check the network or pools configure.
+01-01 09:46:36 Code<error>[2010]: reason: All pools disabled for 231s, please check the network or pools configure.
+01-01 09:46:37 Code<error>[2010]: reason: All pools disabled for 232s, please check the network or pools configure.
+01-01 09:46:38 Code<error>[2010]: reason: All pools disabled for 233s, please check the network or pools configure.
+01-01 09:46:40 Code<error>[2010]: reason: All pools disabled for 234s, please check the network or pools configure.
+01-01 09:46:41 Code<error>[2010]: reason: All pools disabled for 235s, please check the network or pools configure.
+01-01 09:46:42 Code<error>[2010]: reason: All pools disabled for 236s, please check the network or pools configure.
+01-01 09:46:44 Code<error>[2010]: reason: All pools disabled for 238s, please check the network or pools configure.
+01-01 09:46:45 Code<error>[2010]: reason: All pools disabled for 239s, please check the network or pools configure.
+01-01 09:46:46 Code<error>[2010]: reason: All pools disabled for 240s, please check the network or pools configure.
+01-01 09:46:47 Code<error>[2010]: reason: All pools disabled for 241s, please check the network or pools configure.
+01-01 09:46:48 Code<error>[2010]: reason: All pools disabled for 242s, please check the network or pools configure.
+01-01 09:46:49 Code<error>[2010]: reason: All pools disabled for 243s, please check the network or pools configure.
+01-01 09:46:50 Code<error>[2010]: reason: All pools disabled for 244s, please check the network or pools configure.
+01-01 09:46:51 Code<error>[2010]: reason: All pools disabled for 245s, please check the network or pools configure.
+01-01 09:46:52 Code<error>[2010]: reason: All pools disabled for 246s, please check the network or pools configure.
+01-01 09:46:53 Code<error>[2010]: reason: All pools disabled for 247s, please check the network or pools configure.
+01-01 09:46:55 Code<error>[2010]: reason: All pools disabled for 249s, please check the network or pools configure.
+01-01 09:46:56 Code<error>[2010]: reason: All pools disabled for 250s, please check the network or pools configure.
+01-01 09:46:57 Code<error>[2010]: reason: All pools disabled for 251s, please check the network or pools configure.
+01-01 09:46:58 Code<error>[2010]: reason: All pools disabled for 252s, please check the network or pools configure.
+01-01 09:46:59 Code<error>[2010]: reason: All pools disabled for 253s, please check the network or pools configure.
+01-01 09:47:00 Code<error>[2010]: reason: All pools disabled for 254s, please check the network or pools configure.
+01-01 09:47:01 Code<error>[2010]: reason: All pools disabled for 255s, please check the network or pools configure.
+47:02 0.0,150,12,0|0.0,150,12,0|0.0,150,12,0|117,117|17|32, 2,136|0,7,234
+01-01 09:47:03 Code<error>[2010]: reason: All pools disabled for 257s, please check the network or pools configure.
+01-01 09:47:04 Code<error>[2010]: reason: All pools disabled for 258s, please check the network or pools configure.
+01-01 09:47:05 Code<error>[2010]: reason: All pools disabled for 259s, please check the network or pools configure.
+01-01 09:47:06 Code<error>[2010]: reason: All pools disabled for 260s, please check the network or pools configure.
+01-01 09:47:07 Code<error>[2010]: reason: All pools disabled for 261s, please check the network or pools configure.
+01-01 09:47:08 Code<error>[2010]: reason: All pools disabled for 262s, please check the network or pools configure.
+01-01 09:47:09 Code<error>[2010]: reason: All pools disabled for 263s, please check the network or pools configure.
+01-01 09:47:10 Code<error>[2010]: reason: All pools disabled for 264s, please check the network or pools configure.
+01-01 09:47:11 Code<error>[2010]: reason: All pools disabled for 265s, please check the network or pools configure.
+01-01 09:47:12 Code<error>[2010]: reason: All pools disabled for 266s, please check the network or pools configure.
+01-01 09:47:14 Code<error>[2010]: reason: All pools disabled for 268s, please check the network or pools configure.
+01-01 09:47:15 Code<error>[2010]: reason: All pools disabled for 269s, please check the network or pools configure.
+01-01 09:47:16 Code<error>[2010]: reason: All pools disabled for 270s, please check the network or pools configure.
+01-01 09:47:17 Code<error>[2010]: reason: All pools disabled for 271s, please check the network or pools configure.
+01-01 09:47:18 Code<error>[2010]: reason: All pools disabled for 272s, please check the network or pools configure.
+01-01 09:47:19 Code<error>[2010]: reason: All pools disabled for 273s, please check the network or pools configure.
+01-01 09:47:20 Code<error>[2010]: reason: All pools disabled for 274s, please check the network or pools configure.
+01-01 09:47:21 Code<error>[2010]: reason: All pools disabled for 275s, please check the network or pools configure.
+01-01 09:47:22 Code<error>[2010]: reason: All pools disabled for 276s, please check the network or pools configure.
+01-01 09:47:23 Code<error>[2010]: reason: All pools disabled for 277s, please check the network or pools configure.
+01-01 09:47:24 Code<error>[2010]: reason: All pools disabled for 278s, please check the network or pools configure.
+01-01 09:47:25 Code<error>[2010]: reason: All pools disabled for 279s, please check the network or pools configure.
+01-01 09:47:27 Code<error>[2010]: reason: All pools disabled for 281s, please check the network or pools configure.
+01-01 09:47:28 Code<error>[2010]: reason: All pools disabled for 282s, please check the network or pools configure.
+01-01 09:47:29 Code<error>[2010]: reason: All pools disabled for 283s, please check the network or pools configure.
+01-01 09:47:30 Code<error>[2010]: reason: All pools disabled for 284s, please check the network or pools configure.
+01-01 09:47:31 Code<error>[2010]: reason: All pools disabled for 285s, please check the network or pools configure.
+47:32 0.0,150,12,0|0.0,150,12,0|0.0,150,12,0|87,58|17|33, 0,136|0,9,234
+01-01 09:47:32 Code<error>[2010]: reason: All pools disabled for 286s, please check the network or pools configure.
+01-01 09:47:33 Code<error>[2010]: reason: All pools disabled for 287s, please check the network or pools configure.
+01-01 09:47:35 Code<error>[2010]: reason: All pools disabled for 288s, please check the network or pools configure.
+01-01 09:47:36 Code<error>[2010]: reason: All pools disabled for 289s, please check the network or pools configure.
+01-01 09:47:38 Code<error>[2010]: reason: All pools disabled for 291s, please check the network or pools configure.
+01-01 09:47:39 Code<error>[2010]: reason: All pools disabled for 292s, please check the network or pools configure.
+01-01 09:47:40 Code<error>[2010]: reason: All pools disabled for 293s, please check the network or pools configure.
+01-01 09:47:41 Code<error>[2010]: reason: All pools disabled for 294s, please check the network or pools configure.
+01-01 09:47:42 Code<error>[2010]: reason: All pools disabled for 295s, please check the network or pools configure.
+48:02 0.0,0,12,0|0.0,0,12,0|0.0,0,12,0|1026,1143|17|27, 2,144|0,11,233
+48:13 0.0,0,12,0|0.0,0,12,0|0.0,0,13,0|87,87|17|28, 0,144|0,7,232
+01-01 09:48:13 Restart btminer as as No btminer
+01-01 09:48:15 Code<error>[2010]: reason: All pools disabled for 2s, please check the network or pools configure.
+01-01 09:48:16 Code<error>[2010]: reason: All pools disabled for 3s, please check the network or pools configure.
+01-01 09:48:17 Code<error>[2010]: reason: All pools disabled for 4s, please check the network or pools configure.
+01-01 09:48:18 Code<error>[2010]: reason: All pools disabled for 5s, please check the network or pools configure.
+01-01 09:48:19 Code<error>[2010]: reason: All pools disabled for 6s, please check the network or pools configure.
+01-01 09:48:21 Code<error>[2010]: reason: All pools disabled for 8s, please check the network or pools configure.
+01-01 09:48:22 Code<error>[2010]: reason: All pools disabled for 9s, please check the network or pools configure.
+01-01 09:48:23 Code<error>[2010]: reason: All pools disabled for 10s, please check the network or pools configure.
+01-01 09:48:24 Code<error>[2010]: reason: All pools disabled for 11s, please check the network or pools configure.
+01-01 09:48:25 Code<error>[2010]: reason: All pools disabled for 12s, please check the network or pools configure.
+01-01 09:48:26 Code<error>[2010]: reason: All pools disabled for 13s, please check the network or pools configure.
+01-01 09:48:27 Code<error>[2010]: reason: All pools disabled for 14s, please check the network or pools configure.
+01-01 09:48:29 Code<error>[2010]: reason: All pools disabled for 16s, please check the network or pools configure.
+01-01 09:48:30 Code<error>[2010]: reason: All pools disabled for 17s, please check the network or pools configure.
+01-01 09:48:31 Code<error>[2010]: reason: All pools disabled for 18s, please check the network or pools configure.
+01-01 09:48:32 Code<error>[2010]: reason: All pools disabled for 19s, please check the network or pools configure.
+48:32 0.0,150,12,0|0.0,150,13,0|0.0,150,13,0|0,0|17|31, 9,135|0,8,234
+01-01 09:48:33 Code<error>[2010]: reason: All pools disabled for 20s, please check the network or pools configure.
+01-01 09:48:34 Code<error>[2010]: reason: All pools disabled for 21s, please check the network or pools configure.
+01-01 09:48:35 Code<error>[2010]: reason: All pools disabled for 22s, please check the network or pools configure.
+01-01 09:48:36 Code<error>[2010]: reason: All pools disabled for 23s, please check the network or pools configure.
+01-01 09:48:37 Code<error>[2010]: reason: All pools disabled for 24s, please check the network or pools configure.
+01-01 09:48:38 Code<error>[2010]: reason: All pools disabled for 25s, please check the network or pools configure.
+01-01 09:48:39 Code<error>[2010]: reason: All pools disabled for 26s, please check the network or pools configure.
+01-01 09:48:40 Code<error>[2010]: reason: All pools disabled for 27s, please check the network or pools configure.
+01-01 09:48:41 Code<error>[2010]: reason: All pools disabled for 28s, please check the network or pools configure.
+01-01 09:48:43 Code<error>[2010]: reason: All pools disabled for 30s, please check the network or pools configure.
+01-01 09:48:44 Code<error>[2010]: reason: All pools disabled for 31s, please check the network or pools configure.
+01-01 09:48:45 Code<error>[2010]: reason: All pools disabled for 32s, please check the network or pools configure.
+01-01 09:48:46 Code<error>[2010]: reason: All pools disabled for 33s, please check the network or pools configure.
+01-01 09:48:47 Code<error>[2010]: reason: All pools disabled for 34s, please check the network or pools configure.
+01-01 09:48:48 Code<error>[2010]: reason: All pools disabled for 35s, please check the network or pools configure.
+01-01 09:48:50 Code<error>[2010]: reason: All pools disabled for 37s, please check the network or pools configure.
+01-01 09:48:52 Code<error>[2010]: reason: All pools disabled for 38s, please check the network or pools configure.
+01-01 09:48:53 Code<error>[2010]: reason: All pools disabled for 39s, please check the network or pools configure.
+01-01 09:48:54 Code<error>[2010]: reason: All pools disabled for 40s, please check the network or pools configure.
+01-01 09:48:55 Code<error>[2010]: reason: All pools disabled for 41s, please check the network or pools configure.
+01-01 09:48:56 Code<error>[2010]: reason: All pools disabled for 42s, please check the network or pools configure.
+01-01 09:48:57 Code<error>[2010]: reason: All pools disabled for 43s, please check the network or pools configure.
+01-01 09:48:58 Code<error>[2010]: reason: All pools disabled for 44s, please check the network or pools configure.
+01-01 09:48:59 Code<error>[2010]: reason: All pools disabled for 45s, please check the network or pools configure.
+01-01 09:49:00 Code<error>[2010]: reason: All pools disabled for 46s, please check the network or pools configure.
+01-01 09:49:02 Code<error>[2010]: reason: All pools disabled for 48s, please check the network or pools configure.
+49:03 0.0,150,13,0|0.0,150,13,0|0.0,150,13,0|87,87|18|33, 2,136|0,8,236
+01-01 09:49:03 Code<error>[2010]: reason: All pools disabled for 49s, please check the network or pools configure.
+01-01 09:49:04 Code<error>[2010]: reason: All pools disabled for 50s, please check the network or pools configure.
+01-01 09:49:05 Code<error>[2010]: reason: All pools disabled for 51s, please check the network or pools configure.
+01-01 09:49:06 Code<error>[2010]: reason: All pools disabled for 52s, please check the network or pools configure.
+01-01 09:49:07 Code<error>[2010]: reason: All pools disabled for 53s, please check the network or pools configure.
+01-01 09:49:08 Code<error>[2010]: reason: All pools disabled for 54s, please check the network or pools configure.
+01-01 09:49:09 Code<error>[2010]: reason: All pools disabled for 55s, please check the network or pools configure.
+01-01 09:49:10 Code<error>[2010]: reason: All pools disabled for 56s, please check the network or pools configure.
+01-01 09:49:11 Code<error>[2010]: reason: All pools disabled for 57s, please check the network or pools configure.
+01-01 09:49:12 Code<error>[2010]: reason: All pools disabled for 58s, please check the network or pools configure.
+01-01 09:49:13 Code<error>[2010]: reason: All pools disabled for 59s, please check the network or pools configure.
+01-01 09:49:15 Code<error>[2010]: reason: All pools disabled for 61s, please check the network or pools configure.
+01-01 09:49:16 Code<error>[2010]: reason: All pools disabled for 62s, please check the network or pools configure.
+01-01 09:49:17 Code<error>[2010]: reason: All pools disabled for 63s, please check the network or pools configure.
+01-01 09:49:18 Code<error>[2010]: reason: All pools disabled for 64s, please check the network or pools configure.
+01-01 09:49:19 Code<error>[2010]: reason: All pools disabled for 65s, please check the network or pools configure.
+01-01 09:49:20 Code<error>[2010]: reason: All pools disabled for 66s, please check the network or pools configure.
+01-01 09:49:21 Code<error>[2010]: reason: All pools disabled for 67s, please check the network or pools configure.
+01-01 09:49:22 Code<error>[2010]: reason: All pools disabled for 68s, please check the network or pools configure.
+01-01 09:49:23 Code<error>[2010]: reason: All pools disabled for 69s, please check the network or pools configure.
+01-01 09:49:25 Code<error>[2010]: reason: All pools disabled for 71s, please check the network or pools configure.
+01-01 09:49:26 Code<error>[2010]: reason: All pools disabled for 72s, please check the network or pools configure.
+01-01 09:49:27 Code<error>[2010]: reason: All pools disabled for 73s, please check the network or pools configure.
+01-01 09:49:28 Code<error>[2010]: reason: All pools disabled for 74s, please check the network or pools configure.
+01-01 09:49:29 Code<error>[2010]: reason: All pools disabled for 75s, please check the network or pools configure.
+01-01 09:49:30 Code<error>[2010]: reason: All pools disabled for 76s, please check the network or pools configure.
+01-01 09:49:31 Code<error>[2010]: reason: All pools disabled for 77s, please check the network or pools configure.
+01-01 09:49:32 Code<error>[2010]: reason: All pools disabled for 78s, please check the network or pools configure.
+49:33 0.0,150,13,0|0.0,150,13,0|0.0,150,13,0|146,175|18|30, 2,136|0,8,235
+01-01 09:49:33 Code<error>[2010]: reason: All pools disabled for 79s, please check the network or pools configure.
+01-01 09:49:34 Code<error>[2010]: reason: All pools disabled for 80s, please check the network or pools configure.
+01-01 09:49:35 Code<error>[2010]: reason: All pools disabled for 81s, please check the network or pools configure.
+01-01 09:49:37 Code<error>[2010]: reason: All pools disabled for 83s, please check the network or pools configure.
+01-01 09:49:38 Code<error>[2010]: reason: All pools disabled for 84s, please check the network or pools configure.
+01-01 09:49:39 Code<error>[2010]: reason: All pools disabled for 85s, please check the network or pools configure.
+01-01 09:49:40 Code<error>[2010]: reason: All pools disabled for 86s, please check the network or pools configure.
+01-01 09:49:41 Code<error>[2010]: reason: All pools disabled for 87s, please check the network or pools configure.
+01-01 09:49:42 Code<error>[2010]: reason: All pools disabled for 88s, please check the network or pools configure.
+01-01 09:49:43 Code<error>[2010]: reason: All pools disabled for 89s, please check the network or pools configure.
+01-01 09:49:44 Code<error>[2010]: reason: All pools disabled for 90s, please check the network or pools configure.
+01-01 09:49:45 Code<error>[2010]: reason: All pools disabled for 91s, please check the network or pools configure.
+01-01 09:49:46 Code<error>[2010]: reason: All pools disabled for 92s, please check the network or pools configure.
+01-01 09:49:47 Code<error>[2010]: reason: All pools disabled for 93s, please check the network or pools configure.
+01-01 09:49:49 Code<error>[2010]: reason: All pools disabled for 95s, please check the network or pools configure.
+01-01 09:49:51 Code<error>[2010]: reason: All pools disabled for 96s, please check the network or pools configure.
+01-01 09:49:52 Code<error>[2010]: reason: All pools disabled for 97s, please check the network or pools configure.
+01-01 09:49:53 Code<error>[2010]: reason: All pools disabled for 98s, please check the network or pools configure.
+01-01 09:49:54 Code<error>[2010]: reason: All pools disabled for 99s, please check the network or pools configure.
+01-01 09:49:55 Code<error>[2010]: reason: All pools disabled for 100s, please check the network or pools configure.
+01-01 09:49:56 Code<error>[2010]: reason: All pools disabled for 101s, please check the network or pools configure.
+01-01 09:49:57 Code<error>[2010]: reason: All pools disabled for 102s, please check the network or pools configure.
+01-01 09:49:59 Code<error>[2010]: reason: All pools disabled for 104s, please check the network or pools configure.
+01-01 09:50:00 Code<error>[2010]: reason: All pools disabled for 105s, please check the network or pools configure.
+01-01 09:50:01 Code<error>[2010]: reason: All pools disabled for 106s, please check the network or pools configure.
+01-01 09:50:02 Code<error>[2010]: reason: All pools disabled for 107s, please check the network or pools configure.
+01-01 09:50:03 Code<error>[2010]: reason: All pools disabled for 108s, please check the network or pools configure.
+50:03 0.0,150,13,0|0.0,150,13,0|0.0,150,13,0|0,0|18|31, 2,136|0,8,233
+01-01 09:50:04 Code<error>[2010]: reason: All pools disabled for 109s, please check the network or pools configure.
+01-01 09:50:05 Code<error>[2010]: reason: All pools disabled for 110s, please check the network or pools configure.
+01-01 09:50:06 Code<error>[2010]: reason: All pools disabled for 111s, please check the network or pools configure.
+01-01 09:50:07 Code<error>[2010]: reason: All pools disabled for 112s, please check the network or pools configure.
+01-01 09:50:08 Code<error>[2010]: reason: All pools disabled for 113s, please check the network or pools configure.
+01-01 09:50:09 Code<error>[2010]: reason: All pools disabled for 114s, please check the network or pools configure.
+01-01 09:50:11 Code<error>[2010]: reason: All pools disabled for 116s, please check the network or pools configure.
+01-01 09:50:12 Code<error>[2010]: reason: All pools disabled for 117s, please check the network or pools configure.
+01-01 09:50:13 Code<error>[2010]: reason: All pools disabled for 118s, please check the network or pools configure.
+01-01 09:50:14 Code<error>[2010]: reason: All pools disabled for 119s, please check the network or pools configure.
+01-01 09:50:15 Code<error>[2010]: reason: All pools disabled for 120s, please check the network or pools configure.
+01-01 09:50:16 Code<error>[2010]: reason: All pools disabled for 121s, please check the network or pools configure.
+01-01 09:50:17 Code<error>[2010]: reason: All pools disabled for 122s, please check the network or pools configure.
+01-01 09:50:18 Code<error>[2010]: reason: All pools disabled for 123s, please check the network or pools configure.
+01-01 09:50:19 Code<error>[2010]: reason: All pools disabled for 124s, please check the network or pools configure.
+01-01 09:50:20 Code<error>[2010]: reason: All pools disabled for 125s, please check the network or pools configure.
+01-01 09:50:22 Code<error>[2010]: reason: All pools disabled for 127s, please check the network or pools configure.
+01-01 09:50:23 Code<error>[2010]: reason: All pools disabled for 128s, please check the network or pools configure.
+01-01 09:50:24 Code<error>[2010]: reason: All pools disabled for 129s, please check the network or pools configure.
+01-01 09:50:25 Code<error>[2010]: reason: All pools disabled for 130s, please check the network or pools configure.
+01-01 09:50:26 Code<error>[2010]: reason: All pools disabled for 131s, please check the network or pools configure.
+01-01 09:50:28 Code<error>[2010]: reason: All pools disabled for 133s, please check the network or pools configure.
+01-01 09:50:29 Code<error>[2010]: reason: All pools disabled for 134s, please check the network or pools configure.
+01-01 09:50:30 Code<error>[2010]: reason: All pools disabled for 135s, please check the network or pools configure.
+01-01 09:50:31 Code<error>[2010]: reason: All pools disabled for 136s, please check the network or pools configure.
+01-01 09:50:32 Code<error>[2010]: reason: All pools disabled for 137s, please check the network or pools configure.
+50:33 0.0,150,13,0|0.0,150,13,0|0.0,150,13,0|87,87|18|34, 2,136|0,11,235
+01-01 09:50:33 Code<error>[2010]: reason: All pools disabled for 138s, please check the network or pools configure.
+01-01 09:50:34 Code<error>[2010]: reason: All pools disabled for 139s, please check the network or pools configure.
+01-01 09:50:35 Code<error>[2010]: reason: All pools disabled for 140s, please check the network or pools configure.
+01-01 09:50:37 Code<error>[2010]: reason: All pools disabled for 142s, please check the network or pools configure.
+01-01 09:50:38 Code<error>[2010]: reason: All pools disabled for 143s, please check the network or pools configure.
+01-01 09:50:39 Code<error>[2010]: reason: All pools disabled for 144s, please check the network or pools configure.
+01-01 09:50:40 Code<error>[2010]: reason: All pools disabled for 145s, please check the network or pools configure.
+01-01 09:50:41 Code<error>[2010]: reason: All pools disabled for 146s, please check the network or pools configure.
+01-01 09:50:42 Code<error>[2010]: reason: All pools disabled for 147s, please check the network or pools configure.
+01-01 09:50:43 Code<error>[2010]: reason: All pools disabled for 148s, please check the network or pools configure.
+01-01 09:50:44 Code<error>[2010]: reason: All pools disabled for 149s, please check the network or pools configure.
+01-01 09:50:45 Code<error>[2010]: reason: All pools disabled for 150s, please check the network or pools configure.
+01-01 09:50:48 Code<error>[2010]: reason: All pools disabled for 152s, please check the network or pools configure.
+01-01 09:50:49 Code<error>[2010]: reason: All pools disabled for 153s, please check the network or pools configure.
+01-01 09:50:50 Code<error>[2010]: reason: All pools disabled for 154s, please check the network or pools configure.
+01-01 09:50:51 Code<error>[2010]: reason: All pools disabled for 155s, please check the network or pools configure.
+01-01 09:50:52 Code<error>[2010]: reason: All pools disabled for 156s, please check the network or pools configure.
+01-01 09:50:53 Code<error>[2010]: reason: All pools disabled for 157s, please check the network or pools configure.
+01-01 09:50:54 Code<error>[2010]: reason: All pools disabled for 158s, please check the network or pools configure.
+01-01 09:50:55 Code<error>[2010]: reason: All pools disabled for 159s, please check the network or pools configure.
+01-01 09:50:56 Code<error>[2010]: reason: All pools disabled for 160s, please check the network or pools configure.
+01-01 09:50:57 Code<error>[2010]: reason: All pools disabled for 161s, please check the network or pools configure.
+01-01 09:50:59 Code<error>[2010]: reason: All pools disabled for 163s, please check the network or pools configure.
+01-01 09:51:00 Code<error>[2010]: reason: All pools disabled for 164s, please check the network or pools configure.
+01-01 09:51:01 Code<error>[2010]: reason: All pools disabled for 165s, please check the network or pools configure.
+01-01 09:51:02 Code<error>[2010]: reason: All pools disabled for 166s, please check the network or pools configure.
+01-01 09:51:03 Code<error>[2010]: reason: All pools disabled for 167s, please check the network or pools configure.
+51:03 0.0,150,13,0|0.0,150,13,0|0.0,150,13,0|175,205|18|32, 5,135|0,7,235
+01-01 09:51:04 Code<error>[2010]: reason: All pools disabled for 168s, please check the network or pools configure.
+01-01 09:51:05 Code<error>[2010]: reason: All pools disabled for 169s, please check the network or pools configure.
+01-01 09:51:06 Code<error>[2010]: reason: All pools disabled for 170s, please check the network or pools configure.
+01-01 09:51:07 Code<error>[2010]: reason: All pools disabled for 171s, please check the network or pools configure.
+01-01 09:51:08 Code<error>[2010]: reason: All pools disabled for 172s, please check the network or pools configure.
+01-01 09:51:09 Code<error>[2010]: reason: All pools disabled for 173s, please check the network or pools configure.
+01-01 09:51:10 Code<error>[2010]: reason: All pools disabled for 174s, please check the network or pools configure.
+01-01 09:51:12 Code<error>[2010]: reason: All pools disabled for 176s, please check the network or pools configure.
+01-01 09:51:13 Code<error>[2010]: reason: All pools disabled for 177s, please check the network or pools configure.
+01-01 09:51:14 Code<error>[2010]: reason: All pools disabled for 178s, please check the network or pools configure.
+01-01 09:51:15 Code<error>[2010]: reason: All pools disabled for 179s, please check the network or pools configure.
+01-01 09:51:16 Code<error>[2010]: reason: All pools disabled for 180s, please check the network or pools configure.
+01-01 09:51:17 Code<error>[2010]: reason: All pools disabled for 181s, please check the network or pools configure.
+01-01 09:51:18 Code<error>[2010]: reason: All pools disabled for 182s, please check the network or pools configure.
+01-01 09:51:19 Code<error>[2010]: reason: All pools disabled for 183s, please check the network or pools configure.
+01-01 09:51:20 Code<error>[2010]: reason: All pools disabled for 184s, please check the network or pools configure.
+01-01 09:51:21 Code<error>[2010]: reason: All pools disabled for 185s, please check the network or pools configure.
+01-01 09:51:23 Code<error>[2010]: reason: All pools disabled for 187s, please check the network or pools configure.
+01-01 09:51:24 Code<error>[2010]: reason: All pools disabled for 188s, please check the network or pools configure.
+01-01 09:51:25 Code<error>[2010]: reason: All pools disabled for 189s, please check the network or pools configure.
+01-01 09:51:26 Code<error>[2010]: reason: All pools disabled for 190s, please check the network or pools configure.
+01-01 09:51:27 Code<error>[2010]: reason: All pools disabled for 191s, please check the network or pools configure.
+01-01 09:51:28 Code<error>[2010]: reason: All pools disabled for 192s, please check the network or pools configure.
+01-01 09:51:29 Code<error>[2010]: reason: All pools disabled for 193s, please check the network or pools configure.
+01-01 09:51:30 Code<error>[2010]: reason: All pools disabled for 194s, please check the network or pools configure.
+01-01 09:51:31 Code<error>[2010]: reason: All pools disabled for 195s, please check the network or pools configure.
+01-01 09:51:32 Code<error>[2010]: reason: All pools disabled for 196s, please check the network or pools configure.
+51:33 0.0,150,13,0|0.0,150,13,0|0.0,150,13,0|0,0|18|32, 4,135|0,8,234
+01-01 09:51:34 Code<error>[2010]: reason: All pools disabled for 198s, please check the network or pools configure.
+01-01 09:51:35 Code<error>[2010]: reason: All pools disabled for 199s, please check the network or pools configure.
+01-01 09:51:36 Code<error>[2010]: reason: All pools disabled for 200s, please check the network or pools configure.
+01-01 09:51:37 Code<error>[2010]: reason: All pools disabled for 201s, please check the network or pools configure.
+01-01 09:51:38 Code<error>[2010]: reason: All pools disabled for 202s, please check the network or pools configure.
+01-01 09:51:39 Code<error>[2010]: reason: All pools disabled for 203s, please check the network or pools configure.
+01-01 09:51:41 Code<error>[2010]: reason: All pools disabled for 204s, please check the network or pools configure.
+01-01 09:51:42 Code<error>[2010]: reason: All pools disabled for 205s, please check the network or pools configure.
+01-01 09:51:43 Code<error>[2010]: reason: All pools disabled for 206s, please check the network or pools configure.
+01-01 09:51:44 Code<error>[2010]: reason: All pools disabled for 207s, please check the network or pools configure.
+01-01 09:51:45 Code<error>[2010]: reason: All pools disabled for 208s, please check the network or pools configure.
+01-01 09:51:48 Code<error>[2010]: reason: All pools disabled for 211s, please check the network or pools configure.
+01-01 09:51:49 Code<error>[2010]: reason: All pools disabled for 212s, please check the network or pools configure.
+01-01 09:51:50 Code<error>[2010]: reason: All pools disabled for 213s, please check the network or pools configure.
+01-01 09:51:51 Code<error>[2010]: reason: All pools disabled for 214s, please check the network or pools configure.
+01-01 09:51:52 Code<error>[2010]: reason: All pools disabled for 215s, please check the network or pools configure.
+01-01 09:51:53 Code<error>[2010]: reason: All pools disabled for 216s, please check the network or pools configure.
+01-01 09:51:54 Code<error>[2010]: reason: All pools disabled for 217s, please check the network or pools configure.
+01-01 09:51:55 Code<error>[2010]: reason: All pools disabled for 218s, please check the network or pools configure.
+01-01 09:51:56 Code<error>[2010]: reason: All pools disabled for 219s, please check the network or pools configure.
+01-01 09:51:57 Code<error>[2010]: reason: All pools disabled for 220s, please check the network or pools configure.
+01-01 09:51:58 Code<error>[2010]: reason: All pools disabled for 221s, please check the network or pools configure.
+01-01 09:51:59 Code<error>[2010]: reason: All pools disabled for 222s, please check the network or pools configure.
+01-01 09:52:00 Code<error>[2010]: reason: All pools disabled for 223s, please check the network or pools configure.
+01-01 09:52:02 Code<error>[2010]: reason: All pools disabled for 225s, please check the network or pools configure.
+01-01 09:52:03 Code<error>[2010]: reason: All pools disabled for 226s, please check the network or pools configure.
+52:04 0.0,150,13,0|0.0,150,13,0|0.0,150,13,0|821,821|18|34, 8,134|0,9,232
+01-01 09:52:04 Code<error>[2010]: reason: All pools disabled for 227s, please check the network or pools configure.
+01-01 09:52:05 Code<error>[2010]: reason: All pools disabled for 228s, please check the network or pools configure.
+01-01 09:52:08 Code<error>[2010]: reason: All pools disabled for 231s, please check the network or pools configure.
+01-01 09:52:09 Code<error>[2010]: reason: All pools disabled for 232s, please check the network or pools configure.
+01-01 09:52:10 Code<error>[2010]: reason: All pools disabled for 233s, please check the network or pools configure.
+01-01 09:52:11 Code<error>[2010]: reason: All pools disabled for 234s, please check the network or pools configure.
+01-01 09:52:12 Code<error>[2010]: reason: All pools disabled for 235s, please check the network or pools configure.
+01-01 09:52:13 Code<error>[2010]: reason: All pools disabled for 236s, please check the network or pools configure.
+01-01 09:52:15 Code<error>[2010]: reason: All pools disabled for 238s, please check the network or pools configure.
+01-01 09:52:16 Code<error>[2010]: reason: All pools disabled for 239s, please check the network or pools configure.
+01-01 09:52:17 Code<error>[2010]: reason: All pools disabled for 240s, please check the network or pools configure.
+01-01 09:52:18 Code<error>[2010]: reason: All pools disabled for 241s, please check the network or pools configure.
+01-01 09:52:19 Code<error>[2010]: reason: All pools disabled for 242s, please check the network or pools configure.
+01-01 09:52:20 Code<error>[2010]: reason: All pools disabled for 243s, please check the network or pools configure.
+01-01 09:52:21 Code<error>[2010]: reason: All pools disabled for 244s, please check the network or pools configure.
+01-01 09:52:22 Code<error>[2010]: reason: All pools disabled for 245s, please check the network or pools configure.
+01-01 09:52:23 Code<error>[2010]: reason: All pools disabled for 246s, please check the network or pools configure.
+01-01 09:52:26 Code<error>[2010]: reason: All pools disabled for 249s, please check the network or pools configure.
+01-01 09:52:28 Code<error>[2010]: reason: All pools disabled for 250s, please check the network or pools configure.
+01-01 09:52:29 Code<error>[2010]: reason: All pools disabled for 251s, please check the network or pools configure.
+01-01 09:52:30 Code<error>[2010]: reason: All pools disabled for 252s, please check the network or pools configure.
+01-01 09:52:31 Code<error>[2010]: reason: All pools disabled for 253s, please check the network or pools configure.
+01-01 09:52:32 Code<error>[2010]: reason: All pools disabled for 254s, please check the network or pools configure.
+01-01 09:52:33 Code<error>[2010]: reason: All pools disabled for 255s, please check the network or pools configure.
+01-01 09:52:34 Code<error>[2010]: reason: All pools disabled for 256s, please check the network or pools configure.
+52:34 0.0,150,13,0|0.0,150,13,0|0.0,150,13,0|0,0|18|31, 2,136|0,7,233
+01-01 09:52:35 Code<error>[2010]: reason: All pools disabled for 257s, please check the network or pools configure.
+01-01 09:52:36 Code<error>[2010]: reason: All pools disabled for 258s, please check the network or pools configure.
+01-01 09:52:38 Code<error>[2010]: reason: All pools disabled for 260s, please check the network or pools configure.
+01-01 09:52:39 Code<error>[2010]: reason: All pools disabled for 261s, please check the network or pools configure.
+01-01 09:52:40 Code<error>[2010]: reason: All pools disabled for 262s, please check the network or pools configure.
+01-01 09:52:41 Code<error>[2010]: reason: All pools disabled for 263s, please check the network or pools configure.
+01-01 09:52:42 Code<error>[2010]: reason: All pools disabled for 264s, please check the network or pools configure.
+01-01 09:52:43 Code<error>[2010]: reason: All pools disabled for 265s, please check the network or pools configure.
+01-01 09:52:44 Code<error>[2010]: reason: All pools disabled for 266s, please check the network or pools configure.
+01-01 09:52:45 Code<error>[2010]: reason: All pools disabled for 267s, please check the network or pools configure.
+01-01 09:52:46 Code<error>[2010]: reason: All pools disabled for 268s, please check the network or pools configure.
+01-01 09:52:49 Code<error>[2010]: reason: All pools disabled for 271s, please check the network or pools configure.
+01-01 09:52:50 Code<error>[2010]: reason: All pools disabled for 272s, please check the network or pools configure.
+01-01 09:52:51 Code<error>[2010]: reason: All pools disabled for 273s, please check the network or pools configure.
+01-01 09:52:52 Code<error>[2010]: reason: All pools disabled for 274s, please check the network or pools configure.
+01-01 09:52:53 Code<error>[2010]: reason: All pools disabled for 275s, please check the network or pools configure.
+01-01 09:52:54 Code<error>[2010]: reason: All pools disabled for 276s, please check the network or pools configure.
+01-01 09:52:55 Code<error>[2010]: reason: All pools disabled for 277s, please check the network or pools configure.
+01-01 09:52:56 Code<error>[2010]: reason: All pools disabled for 278s, please check the network or pools configure.
+01-01 09:52:57 Code<error>[2010]: reason: All pools disabled for 279s, please check the network or pools configure.
+01-01 09:52:59 Code<error>[2010]: reason: All pools disabled for 281s, please check the network or pools configure.
+01-01 09:53:00 Code<error>[2010]: reason: All pools disabled for 282s, please check the network or pools configure.
+01-01 09:53:01 Code<error>[2010]: reason: All pools disabled for 283s, please check the network or pools configure.
+01-01 09:53:02 Code<error>[2010]: reason: All pools disabled for 284s, please check the network or pools configure.
+01-01 09:53:03 Code<error>[2010]: reason: All pools disabled for 285s, please check the network or pools configure.
+53:04 0.0,150,13,0|0.0,150,13,0|0.0,150,14,0|58,58|18|31, 4,136|0,12,234
+01-01 09:53:04 Code<error>[2010]: reason: All pools disabled for 286s, please check the network or pools configure.
+01-01 09:53:05 Code<error>[2010]: reason: All pools disabled for 287s, please check the network or pools configure.
+01-01 09:53:06 Code<error>[2010]: reason: All pools disabled for 288s, please check the network or pools configure.
+01-01 09:53:07 Code<error>[2010]: reason: All pools disabled for 289s, please check the network or pools configure.
+01-01 09:53:09 Code<error>[2010]: reason: All pools disabled for 291s, please check the network or pools configure.
+01-01 09:53:10 Code<error>[2010]: reason: All pools disabled for 292s, please check the network or pools configure.
+01-01 09:53:11 Code<error>[2010]: reason: All pools disabled for 293s, please check the network or pools configure.
+01-01 09:53:12 Code<error>[2010]: reason: All pools disabled for 294s, please check the network or pools configure.
+01-01 09:53:13 Code<error>[2010]: reason: All pools disabled for 295s, please check the network or pools configure.
+53:34 0.0,0,13,0|0.0,0,14,0|0.0,0,14,0|821,821|18|29, 0,141|0,9,232
+53:44 0.0,0,13,0|0.0,0,14,0|0.0,0,14,0|0,0|18|28, 0,144|0,6,233
+01-01 09:53:44 Restart btminer as as No btminer
+01-01 09:53:46 Code<error>[2010]: reason: All pools disabled for 2s, please check the network or pools configure.
+01-01 09:53:47 Code<error>[2010]: reason: All pools disabled for 3s, please check the network or pools configure.
+01-01 09:53:48 Code<error>[2010]: reason: All pools disabled for 4s, please check the network or pools configure.
+01-01 09:53:51 Code<error>[2010]: reason: All pools disabled for 7s, please check the network or pools configure.
+01-01 09:53:52 Code<error>[2010]: reason: All pools disabled for 8s, please check the network or pools configure.
+01-01 09:53:53 Code<error>[2010]: reason: All pools disabled for 9s, please check the network or pools configure.
+01-01 09:53:54 Code<error>[2010]: reason: All pools disabled for 10s, please check the network or pools configure.
+01-01 09:53:56 Code<error>[2010]: reason: All pools disabled for 11s, please check the network or pools configure.
+01-01 09:53:57 Code<error>[2010]: reason: All pools disabled for 12s, please check the network or pools configure.
+01-01 09:53:58 Code<error>[2010]: reason: All pools disabled for 13s, please check the network or pools configure.
+01-01 09:53:59 Code<error>[2010]: reason: All pools disabled for 14s, please check the network or pools configure.
+01-01 09:54:00 Code<error>[2010]: reason: All pools disabled for 15s, please check the network or pools configure.
+01-01 09:54:01 Code<error>[2010]: reason: All pools disabled for 16s, please check the network or pools configure.
+01-01 09:54:02 Code<error>[2010]: reason: All pools disabled for 17s, please check the network or pools configure.
+01-01 09:54:04 Code<error>[2010]: reason: All pools disabled for 19s, please check the network or pools configure.
+54:04 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|146,175|18|31, 0,136|0,8,235
+01-01 09:54:05 Code<error>[2010]: reason: All pools disabled for 20s, please check the network or pools configure.
+01-01 09:54:06 Code<error>[2010]: reason: All pools disabled for 21s, please check the network or pools configure.
+01-01 09:54:07 Code<error>[2010]: reason: All pools disabled for 22s, please check the network or pools configure.
+01-01 09:54:08 Code<error>[2010]: reason: All pools disabled for 23s, please check the network or pools configure.
+01-01 09:54:09 Code<error>[2010]: reason: All pools disabled for 24s, please check the network or pools configure.
+01-01 09:54:10 Code<error>[2010]: reason: All pools disabled for 25s, please check the network or pools configure.
+01-01 09:54:11 Code<error>[2010]: reason: All pools disabled for 26s, please check the network or pools configure.
+01-01 09:54:13 Code<error>[2010]: reason: All pools disabled for 28s, please check the network or pools configure.
+01-01 09:54:14 Code<error>[2010]: reason: All pools disabled for 29s, please check the network or pools configure.
+01-01 09:54:15 Code<error>[2010]: reason: All pools disabled for 30s, please check the network or pools configure.
+01-01 09:54:16 Code<error>[2010]: reason: All pools disabled for 31s, please check the network or pools configure.
+01-01 09:54:17 Code<error>[2010]: reason: All pools disabled for 32s, please check the network or pools configure.
+01-01 09:54:18 Code<error>[2010]: reason: All pools disabled for 33s, please check the network or pools configure.
+01-01 09:54:19 Code<error>[2010]: reason: All pools disabled for 34s, please check the network or pools configure.
+01-01 09:54:20 Code<error>[2010]: reason: All pools disabled for 35s, please check the network or pools configure.
+01-01 09:54:21 Code<error>[2010]: reason: All pools disabled for 36s, please check the network or pools configure.
+01-01 09:54:22 Code<error>[2010]: reason: All pools disabled for 37s, please check the network or pools configure.
+01-01 09:54:24 Code<error>[2010]: reason: All pools disabled for 39s, please check the network or pools configure.
+01-01 09:54:25 Code<error>[2010]: reason: All pools disabled for 40s, please check the network or pools configure.
+01-01 09:54:26 Code<error>[2010]: reason: All pools disabled for 41s, please check the network or pools configure.
+01-01 09:54:27 Code<error>[2010]: reason: All pools disabled for 42s, please check the network or pools configure.
+01-01 09:54:28 Code<error>[2010]: reason: All pools disabled for 43s, please check the network or pools configure.
+01-01 09:54:29 Code<error>[2010]: reason: All pools disabled for 44s, please check the network or pools configure.
+01-01 09:54:30 Code<error>[2010]: reason: All pools disabled for 45s, please check the network or pools configure.
+01-01 09:54:31 Code<error>[2010]: reason: All pools disabled for 46s, please check the network or pools configure.
+01-01 09:54:33 Code<error>[2010]: reason: All pools disabled for 48s, please check the network or pools configure.
+01-01 09:54:34 Code<error>[2010]: reason: All pools disabled for 49s, please check the network or pools configure.
+54:34 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|58,58|18|31,13,135|0,9,234
+01-01 09:54:35 Code<error>[2010]: reason: All pools disabled for 50s, please check the network or pools configure.
+01-01 09:54:36 Code<error>[2010]: reason: All pools disabled for 51s, please check the network or pools configure.
+01-01 09:54:37 Code<error>[2010]: reason: All pools disabled for 52s, please check the network or pools configure.
+01-01 09:54:38 Code<error>[2010]: reason: All pools disabled for 53s, please check the network or pools configure.
+01-01 09:54:39 Code<error>[2010]: reason: All pools disabled for 54s, please check the network or pools configure.
+01-01 09:54:40 Code<error>[2010]: reason: All pools disabled for 55s, please check the network or pools configure.
+01-01 09:54:41 Code<error>[2010]: reason: All pools disabled for 56s, please check the network or pools configure.
+01-01 09:54:42 Code<error>[2010]: reason: All pools disabled for 57s, please check the network or pools configure.
+01-01 09:54:43 Code<error>[2010]: reason: All pools disabled for 58s, please check the network or pools configure.
+01-01 09:54:45 Code<error>[2010]: reason: All pools disabled for 60s, please check the network or pools configure.
+01-01 09:54:46 Code<error>[2010]: reason: All pools disabled for 61s, please check the network or pools configure.
+01-01 09:54:47 Code<error>[2010]: reason: All pools disabled for 62s, please check the network or pools configure.
+01-01 09:54:48 Code<error>[2010]: reason: All pools disabled for 63s, please check the network or pools configure.
+01-01 09:54:49 Code<error>[2010]: reason: All pools disabled for 64s, please check the network or pools configure.
+01-01 09:54:50 Code<error>[2010]: reason: All pools disabled for 65s, please check the network or pools configure.
+01-01 09:54:51 Code<error>[2010]: reason: All pools disabled for 66s, please check the network or pools configure.
+01-01 09:54:52 Code<error>[2010]: reason: All pools disabled for 67s, please check the network or pools configure.
+01-01 09:54:55 Code<error>[2010]: reason: All pools disabled for 69s, please check the network or pools configure.
+01-01 09:54:56 Code<error>[2010]: reason: All pools disabled for 70s, please check the network or pools configure.
+01-01 09:54:57 Code<error>[2010]: reason: All pools disabled for 71s, please check the network or pools configure.
+01-01 09:54:58 Code<error>[2010]: reason: All pools disabled for 72s, please check the network or pools configure.
+01-01 09:54:59 Code<error>[2010]: reason: All pools disabled for 73s, please check the network or pools configure.
+01-01 09:55:00 Code<error>[2010]: reason: All pools disabled for 74s, please check the network or pools configure.
+01-01 09:55:01 Code<error>[2010]: reason: All pools disabled for 75s, please check the network or pools configure.
+01-01 09:55:02 Code<error>[2010]: reason: All pools disabled for 76s, please check the network or pools configure.
+01-01 09:55:03 Code<error>[2010]: reason: All pools disabled for 77s, please check the network or pools configure.
+55:05 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|146,117|18|34, 0,136|0,11,234
+01-01 09:55:05 Code<error>[2010]: reason: All pools disabled for 79s, please check the network or pools configure.
+01-01 09:55:06 Code<error>[2010]: reason: All pools disabled for 80s, please check the network or pools configure.
+01-01 09:55:07 Code<error>[2010]: reason: All pools disabled for 81s, please check the network or pools configure.
+01-01 09:55:08 Code<error>[2010]: reason: All pools disabled for 82s, please check the network or pools configure.
+01-01 09:55:09 Code<error>[2010]: reason: All pools disabled for 83s, please check the network or pools configure.
+01-01 09:55:10 Code<error>[2010]: reason: All pools disabled for 84s, please check the network or pools configure.
+01-01 09:55:11 Code<error>[2010]: reason: All pools disabled for 85s, please check the network or pools configure.
+01-01 09:55:12 Code<error>[2010]: reason: All pools disabled for 86s, please check the network or pools configure.
+01-01 09:55:15 Code<error>[2010]: reason: All pools disabled for 89s, please check the network or pools configure.
+01-01 09:55:16 Code<error>[2010]: reason: All pools disabled for 90s, please check the network or pools configure.
+01-01 09:55:17 Code<error>[2010]: reason: All pools disabled for 91s, please check the network or pools configure.
+01-01 09:55:18 Code<error>[2010]: reason: All pools disabled for 92s, please check the network or pools configure.
+01-01 09:55:19 Code<error>[2010]: reason: All pools disabled for 93s, please check the network or pools configure.
+01-01 09:55:20 Code<error>[2010]: reason: All pools disabled for 94s, please check the network or pools configure.
+01-01 09:55:21 Code<error>[2010]: reason: All pools disabled for 95s, please check the network or pools configure.
+01-01 09:55:22 Code<error>[2010]: reason: All pools disabled for 96s, please check the network or pools configure.
+01-01 09:55:23 Code<error>[2010]: reason: All pools disabled for 97s, please check the network or pools configure.
+01-01 09:55:24 Code<error>[2010]: reason: All pools disabled for 98s, please check the network or pools configure.
+01-01 09:55:25 Code<error>[2010]: reason: All pools disabled for 99s, please check the network or pools configure.
+01-01 09:55:26 Code<error>[2050]: reason: Failed to configure new pools
+01-01 09:55:27 Code<error>[2010]: reason: All pools disabled for 101s, please check the network or pools configure.
+01-01 09:55:28 Code<error>[2010]: reason: All pools disabled for 102s, please check the network or pools configure.
+01-01 09:55:29 Code<error>[2010]: reason: All pools disabled for 103s, please check the network or pools configure.
+01-01 09:55:30 Code<error>[2010]: reason: All pools disabled for 104s, please check the network or pools configure.
+01-01 09:55:31 Code<error>[2010]: reason: All pools disabled for 105s, please check the network or pools configure.
+01-01 09:55:32 Code<error>[2010]: reason: All pools disabled for 106s, please check the network or pools configure.
+01-01 09:55:33 Code<error>[2010]: reason: All pools disabled for 107s, please check the network or pools configure.
+01-01 09:55:34 Code<error>[2010]: reason: All pools disabled for 108s, please check the network or pools configure.
+55:35 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|0,0|18|32, 0,134|0,7,236
+01-01 09:55:35 Code<error>[2010]: reason: All pools disabled for 109s, please check the network or pools configure.
+01-01 09:55:37 Code<error>[2010]: reason: All pools disabled for 111s, please check the network or pools configure.
+01-01 09:55:38 Code<error>[2010]: reason: All pools disabled for 112s, please check the network or pools configure.
+01-01 09:55:39 Code<error>[2010]: reason: All pools disabled for 113s, please check the network or pools configure.
+01-01 09:55:40 Code<error>[2010]: reason: All pools disabled for 114s, please check the network or pools configure.
+01-01 09:55:41 Code<error>[2010]: reason: All pools disabled for 115s, please check the network or pools configure.
+01-01 09:55:42 Code<error>[2010]: reason: All pools disabled for 116s, please check the network or pools configure.
+01-01 09:55:44 Code<error>[2010]: reason: All pools disabled for 117s, please check the network or pools configure.
+01-01 09:55:45 Code<error>[2010]: reason: All pools disabled for 118s, please check the network or pools configure.
+01-01 09:55:47 Code<error>[2010]: reason: All pools disabled for 120s, please check the network or pools configure.
+01-01 09:55:48 Code<error>[2010]: reason: All pools disabled for 121s, please check the network or pools configure.
+01-01 09:55:49 Code<error>[2010]: reason: All pools disabled for 122s, please check the network or pools configure.
+01-01 09:55:50 Code<error>[2010]: reason: All pools disabled for 123s, please check the network or pools configure.
+01-01 09:55:51 Code<error>[2010]: reason: All pools disabled for 124s, please check the network or pools configure.
+01-01 09:55:52 Code<error>[2010]: reason: All pools disabled for 125s, please check the network or pools configure.
+01-01 09:55:53 Code<error>[2010]: reason: All pools disabled for 126s, please check the network or pools configure.
+01-01 09:55:54 Code<error>[2010]: reason: All pools disabled for 127s, please check the network or pools configure.
+01-01 09:55:55 Code<error>[2010]: reason: All pools disabled for 128s, please check the network or pools configure.
+01-01 09:55:56 Code<error>[2010]: reason: All pools disabled for 129s, please check the network or pools configure.
+01-01 09:55:58 Code<error>[2010]: reason: All pools disabled for 131s, please check the network or pools configure.
+01-01 09:55:59 Code<error>[2010]: reason: All pools disabled for 132s, please check the network or pools configure.
+01-01 09:56:00 Code<error>[2010]: reason: All pools disabled for 133s, please check the network or pools configure.
+01-01 09:56:01 Code<error>[2010]: reason: All pools disabled for 134s, please check the network or pools configure.
+01-01 09:56:02 Code<error>[2010]: reason: All pools disabled for 135s, please check the network or pools configure.
+01-01 09:56:03 Code<error>[2010]: reason: All pools disabled for 136s, please check the network or pools configure.
+01-01 09:56:04 Code<error>[2010]: reason: All pools disabled for 137s, please check the network or pools configure.
+01-01 09:56:05 Code<error>[2010]: reason: All pools disabled for 138s, please check the network or pools configure.
+56:05 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|1026,1143|18|31, 2,134|0,12,236
+01-01 09:56:06 Code<error>[2010]: reason: All pools disabled for 139s, please check the network or pools configure.
+01-01 09:56:07 Code<error>[2010]: reason: All pools disabled for 140s, please check the network or pools configure.
+01-01 09:56:08 Code<error>[2010]: reason: All pools disabled for 141s, please check the network or pools configure.
+01-01 09:56:09 Code<error>[2010]: reason: All pools disabled for 142s, please check the network or pools configure.
+01-01 09:56:11 Code<error>[2010]: reason: All pools disabled for 144s, please check the network or pools configure.
+01-01 09:56:12 Code<error>[2010]: reason: All pools disabled for 145s, please check the network or pools configure.
+01-01 09:56:13 Code<error>[2010]: reason: All pools disabled for 146s, please check the network or pools configure.
+01-01 09:56:14 Code<error>[2010]: reason: All pools disabled for 147s, please check the network or pools configure.
+01-01 09:56:15 Code<error>[2010]: reason: All pools disabled for 148s, please check the network or pools configure.
+01-01 09:56:16 Code<error>[2010]: reason: All pools disabled for 149s, please check the network or pools configure.
+01-01 09:56:17 Code<error>[2010]: reason: All pools disabled for 150s, please check the network or pools configure.
+01-01 09:56:18 Code<error>[2010]: reason: All pools disabled for 151s, please check the network or pools configure.
+01-01 09:56:19 Code<error>[2010]: reason: All pools disabled for 152s, please check the network or pools configure.
+01-01 09:56:20 Code<error>[2010]: reason: All pools disabled for 153s, please check the network or pools configure.
+01-01 09:56:21 Code<error>[2010]: reason: All pools disabled for 154s, please check the network or pools configure.
+01-01 09:56:24 Code<error>[2010]: reason: All pools disabled for 157s, please check the network or pools configure.
+01-01 09:56:25 Code<error>[2010]: reason: All pools disabled for 158s, please check the network or pools configure.
+01-01 09:56:26 Code<error>[2010]: reason: All pools disabled for 159s, please check the network or pools configure.
+01-01 09:56:27 Code<error>[2010]: reason: All pools disabled for 160s, please check the network or pools configure.
+01-01 09:56:28 Code<error>[2010]: reason: All pools disabled for 161s, please check the network or pools configure.
+01-01 09:56:29 Code<error>[2010]: reason: All pools disabled for 162s, please check the network or pools configure.
+01-01 09:56:30 Code<error>[2010]: reason: All pools disabled for 163s, please check the network or pools configure.
+01-01 09:56:31 Code<error>[2010]: reason: All pools disabled for 164s, please check the network or pools configure.
+01-01 09:56:32 Code<error>[2010]: reason: All pools disabled for 165s, please check the network or pools configure.
+01-01 09:56:35 Code<error>[2010]: reason: All pools disabled for 167s, please check the network or pools configure.
+56:35 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|146,117|18|34, 2,134|0,8,236
+01-01 09:56:36 Code<error>[2010]: reason: All pools disabled for 168s, please check the network or pools configure.
+01-01 09:56:37 Code<error>[2010]: reason: All pools disabled for 169s, please check the network or pools configure.
+01-01 09:56:38 Code<error>[2010]: reason: All pools disabled for 170s, please check the network or pools configure.
+01-01 09:56:39 Code<error>[2010]: reason: All pools disabled for 171s, please check the network or pools configure.
+01-01 09:56:40 Code<error>[2010]: reason: All pools disabled for 172s, please check the network or pools configure.
+01-01 09:56:41 Code<error>[2010]: reason: All pools disabled for 173s, please check the network or pools configure.
+01-01 09:56:42 Code<error>[2010]: reason: All pools disabled for 174s, please check the network or pools configure.
+01-01 09:56:43 Code<error>[2010]: reason: All pools disabled for 175s, please check the network or pools configure.
+01-01 09:56:44 Code<error>[2010]: reason: All pools disabled for 176s, please check the network or pools configure.
+01-01 09:56:45 Code<error>[2010]: reason: All pools disabled for 177s, please check the network or pools configure.
+01-01 09:56:46 Code<error>[2010]: reason: All pools disabled for 178s, please check the network or pools configure.
+01-01 09:56:47 Code<error>[2010]: reason: All pools disabled for 179s, please check the network or pools configure.
+01-01 09:56:48 Code<error>[2010]: reason: All pools disabled for 180s, please check the network or pools configure.
+01-01 09:56:50 Code<error>[2010]: reason: All pools disabled for 182s, please check the network or pools configure.
+01-01 09:56:51 Code<error>[2010]: reason: All pools disabled for 183s, please check the network or pools configure.
+01-01 09:56:52 Code<error>[2010]: reason: All pools disabled for 184s, please check the network or pools configure.
+01-01 09:56:53 Code<error>[2010]: reason: All pools disabled for 185s, please check the network or pools configure.
+01-01 09:56:54 Code<error>[2010]: reason: All pools disabled for 186s, please check the network or pools configure.
+01-01 09:56:55 Code<error>[2010]: reason: All pools disabled for 187s, please check the network or pools configure.
+01-01 09:56:56 Code<error>[2010]: reason: All pools disabled for 188s, please check the network or pools configure.
+01-01 09:56:57 Code<error>[2010]: reason: All pools disabled for 189s, please check the network or pools configure.
+01-01 09:56:58 Code<error>[2010]: reason: All pools disabled for 190s, please check the network or pools configure.
+01-01 09:56:59 Code<error>[2010]: reason: All pools disabled for 191s, please check the network or pools configure.
+01-01 09:57:01 Code<error>[2010]: reason: All pools disabled for 193s, please check the network or pools configure.
+01-01 09:57:02 Code<error>[2010]: reason: All pools disabled for 194s, please check the network or pools configure.
+01-01 09:57:03 Code<error>[2010]: reason: All pools disabled for 195s, please check the network or pools configure.
+01-01 09:57:04 Code<error>[2010]: reason: All pools disabled for 196s, please check the network or pools configure.
+01-01 09:57:05 Code<error>[2010]: reason: All pools disabled for 197s, please check the network or pools configure.
+57:05 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|0,0|18|31, 2,134|0,8,235
+01-01 09:57:06 Code<error>[2010]: reason: All pools disabled for 198s, please check the network or pools configure.
+01-01 09:57:07 Code<error>[2010]: reason: All pools disabled for 199s, please check the network or pools configure.
+01-01 09:57:08 Code<error>[2010]: reason: All pools disabled for 200s, please check the network or pools configure.
+01-01 09:57:09 Code<error>[2010]: reason: All pools disabled for 201s, please check the network or pools configure.
+01-01 09:57:11 Code<error>[2010]: reason: All pools disabled for 203s, please check the network or pools configure.
+01-01 09:57:12 Code<error>[2010]: reason: All pools disabled for 204s, please check the network or pools configure.
+01-01 09:57:13 Code<error>[2010]: reason: All pools disabled for 205s, please check the network or pools configure.
+01-01 09:57:14 Code<error>[2010]: reason: All pools disabled for 206s, please check the network or pools configure.
+01-01 09:57:15 Code<error>[2010]: reason: All pools disabled for 207s, please check the network or pools configure.
+01-01 09:57:16 Code<error>[2010]: reason: All pools disabled for 208s, please check the network or pools configure.
+01-01 09:57:17 Code<error>[2010]: reason: All pools disabled for 209s, please check the network or pools configure.
+01-01 09:57:18 Code<error>[2010]: reason: All pools disabled for 210s, please check the network or pools configure.
+01-01 09:57:19 Code<error>[2010]: reason: All pools disabled for 211s, please check the network or pools configure.
+01-01 09:57:21 Code<error>[2010]: reason: All pools disabled for 213s, please check the network or pools configure.
+01-01 09:57:22 Code<error>[2010]: reason: All pools disabled for 214s, please check the network or pools configure.
+01-01 09:57:23 Code<error>[2010]: reason: All pools disabled for 215s, please check the network or pools configure.
+01-01 09:57:24 Code<error>[2010]: reason: All pools disabled for 216s, please check the network or pools configure.
+01-01 09:57:25 Code<error>[2010]: reason: All pools disabled for 217s, please check the network or pools configure.
+01-01 09:57:26 Code<error>[2010]: reason: All pools disabled for 218s, please check the network or pools configure.
+01-01 09:57:27 Code<error>[2010]: reason: All pools disabled for 219s, please check the network or pools configure.
+01-01 09:57:28 Code<error>[2010]: reason: All pools disabled for 220s, please check the network or pools configure.
+01-01 09:57:29 Code<error>[2010]: reason: All pools disabled for 221s, please check the network or pools configure.
+01-01 09:57:30 Code<error>[2010]: reason: All pools disabled for 222s, please check the network or pools configure.
+01-01 09:57:33 Code<error>[2010]: reason: All pools disabled for 224s, please check the network or pools configure.
+01-01 09:57:34 Code<error>[2010]: reason: All pools disabled for 225s, please check the network or pools configure.
+01-01 09:57:35 Code<error>[2010]: reason: All pools disabled for 226s, please check the network or pools configure.
+57:35 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|1025,1025|18|32, 0,134|0,14,236
+01-01 09:57:36 Code<error>[2010]: reason: All pools disabled for 227s, please check the network or pools configure.
+01-01 09:57:37 Code<error>[2010]: reason: All pools disabled for 228s, please check the network or pools configure.
+01-01 09:57:38 Code<error>[2010]: reason: All pools disabled for 229s, please check the network or pools configure.
+01-01 09:57:39 Code<error>[2010]: reason: All pools disabled for 230s, please check the network or pools configure.
+01-01 09:57:40 Code<error>[2010]: reason: All pools disabled for 231s, please check the network or pools configure.
+01-01 09:57:41 Code<error>[2010]: reason: All pools disabled for 232s, please check the network or pools configure.
+01-01 09:57:42 Code<error>[2010]: reason: All pools disabled for 233s, please check the network or pools configure.
+01-01 09:57:43 Code<error>[2010]: reason: All pools disabled for 234s, please check the network or pools configure.
+01-01 09:57:44 Code<error>[2010]: reason: All pools disabled for 235s, please check the network or pools configure.
+01-01 09:57:46 Code<error>[2010]: reason: All pools disabled for 237s, please check the network or pools configure.
+01-01 09:57:47 Code<error>[2010]: reason: All pools disabled for 238s, please check the network or pools configure.
+01-01 09:57:48 Code<error>[2010]: reason: All pools disabled for 239s, please check the network or pools configure.
+01-01 09:57:49 Code<error>[2010]: reason: All pools disabled for 240s, please check the network or pools configure.
+01-01 09:57:50 Code<error>[2010]: reason: All pools disabled for 241s, please check the network or pools configure.
+01-01 09:57:51 Code<error>[2010]: reason: All pools disabled for 242s, please check the network or pools configure.
+01-01 09:57:52 Code<error>[2010]: reason: All pools disabled for 243s, please check the network or pools configure.
+01-01 09:57:53 Code<error>[2010]: reason: All pools disabled for 244s, please check the network or pools configure.
+01-01 09:57:55 Code<error>[2010]: reason: All pools disabled for 246s, please check the network or pools configure.
+01-01 09:57:56 Code<error>[2010]: reason: All pools disabled for 247s, please check the network or pools configure.
+01-01 09:57:57 Code<error>[2010]: reason: All pools disabled for 248s, please check the network or pools configure.
+01-01 09:57:58 Code<error>[2010]: reason: All pools disabled for 249s, please check the network or pools configure.
+01-01 09:57:59 Code<error>[2010]: reason: All pools disabled for 250s, please check the network or pools configure.
+01-01 09:58:00 Code<error>[2010]: reason: All pools disabled for 251s, please check the network or pools configure.
+01-01 09:58:01 Code<error>[2010]: reason: All pools disabled for 252s, please check the network or pools configure.
+01-01 09:58:02 Code<error>[2010]: reason: All pools disabled for 253s, please check the network or pools configure.
+01-01 09:58:03 Code<error>[2010]: reason: All pools disabled for 254s, please check the network or pools configure.
+01-01 09:58:05 Code<error>[2010]: reason: All pools disabled for 256s, please check the network or pools configure.
+58:05 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|146,117|18|34, 2,134|0,8,236
+01-01 09:58:06 Code<error>[2010]: reason: All pools disabled for 257s, please check the network or pools configure.
+01-01 09:58:07 Code<error>[2010]: reason: All pools disabled for 258s, please check the network or pools configure.
+01-01 09:58:08 Code<error>[2010]: reason: All pools disabled for 259s, please check the network or pools configure.
+01-01 09:58:09 Code<error>[2010]: reason: All pools disabled for 260s, please check the network or pools configure.
+01-01 09:58:10 Code<error>[2010]: reason: All pools disabled for 261s, please check the network or pools configure.
+01-01 09:58:11 Code<error>[2010]: reason: All pools disabled for 262s, please check the network or pools configure.
+01-01 09:58:12 Code<error>[2010]: reason: All pools disabled for 263s, please check the network or pools configure.
+01-01 09:58:13 Code<error>[2010]: reason: All pools disabled for 264s, please check the network or pools configure.
+01-01 09:58:14 Code<error>[2010]: reason: All pools disabled for 265s, please check the network or pools configure.
+01-01 09:58:15 Code<error>[2010]: reason: All pools disabled for 266s, please check the network or pools configure.
+01-01 09:58:17 Code<error>[2010]: reason: All pools disabled for 268s, please check the network or pools configure.
+01-01 09:58:18 Code<error>[2010]: reason: All pools disabled for 269s, please check the network or pools configure.
+01-01 09:58:19 Code<error>[2010]: reason: All pools disabled for 270s, please check the network or pools configure.
+01-01 09:58:20 Code<error>[2010]: reason: All pools disabled for 271s, please check the network or pools configure.
+01-01 09:58:21 Code<error>[2010]: reason: All pools disabled for 272s, please check the network or pools configure.
+01-01 09:58:22 Code<error>[2010]: reason: All pools disabled for 273s, please check the network or pools configure.
+01-01 09:58:24 Code<error>[2010]: reason: All pools disabled for 275s, please check the network or pools configure.
+01-01 09:58:25 Code<error>[2010]: reason: All pools disabled for 276s, please check the network or pools configure.
+01-01 09:58:27 Code<error>[2010]: reason: All pools disabled for 277s, please check the network or pools configure.
+01-01 09:58:28 Code<error>[2010]: reason: All pools disabled for 278s, please check the network or pools configure.
+01-01 09:58:29 Code<error>[2010]: reason: All pools disabled for 279s, please check the network or pools configure.
+01-01 09:58:30 Code<error>[2010]: reason: All pools disabled for 280s, please check the network or pools configure.
+01-01 09:58:31 Code<error>[2010]: reason: All pools disabled for 281s, please check the network or pools configure.
+01-01 09:58:32 Code<error>[2010]: reason: All pools disabled for 282s, please check the network or pools configure.
+01-01 09:58:33 Code<error>[2010]: reason: All pools disabled for 283s, please check the network or pools configure.
+01-01 09:58:34 Code<error>[2010]: reason: All pools disabled for 284s, please check the network or pools configure.
+01-01 09:58:35 Code<error>[2010]: reason: All pools disabled for 285s, please check the network or pools configure.
+58:36 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|87,87|18|32, 2,134|0,8,235
+01-01 09:58:37 Code<error>[2010]: reason: All pools disabled for 287s, please check the network or pools configure.
+01-01 09:58:38 Code<error>[2010]: reason: All pools disabled for 288s, please check the network or pools configure.
+01-01 09:58:39 Code<error>[2010]: reason: All pools disabled for 289s, please check the network or pools configure.
+01-01 09:58:40 Code<error>[2010]: reason: All pools disabled for 290s, please check the network or pools configure.
+01-01 09:58:41 Code<error>[2010]: reason: All pools disabled for 291s, please check the network or pools configure.
+01-01 09:58:42 Code<error>[2010]: reason: All pools disabled for 292s, please check the network or pools configure.
+01-01 09:58:43 Code<error>[2010]: reason: All pools disabled for 293s, please check the network or pools configure.
+01-01 09:58:44 Code<error>[2010]: reason: All pools disabled for 294s, please check the network or pools configure.
+59:06 0.0,0,14,0|0.0,0,14,0|0.0,0,14,0|1026,1026|18|29, 0,143|0,7,234
+59:16 0.0,0,14,0|0.0,0,14,0|0.0,0,14,0|0,0|18|29, 6,141|0,8,234
+01-01 09:59:16 Restart btminer as as No btminer
+01-01 09:59:20 Code<error>[2010]: reason: All pools disabled for 2s, please check the network or pools configure.
+01-01 09:59:21 Code<error>[2010]: reason: All pools disabled for 3s, please check the network or pools configure.
+01-01 09:59:22 Code<error>[2010]: reason: All pools disabled for 4s, please check the network or pools configure.
+01-01 09:59:23 Code<error>[2010]: reason: All pools disabled for 5s, please check the network or pools configure.
+01-01 09:59:25 Code<error>[2010]: reason: All pools disabled for 7s, please check the network or pools configure.
+01-01 09:59:26 Code<error>[2010]: reason: All pools disabled for 8s, please check the network or pools configure.
+01-01 09:59:27 Code<error>[2010]: reason: All pools disabled for 9s, please check the network or pools configure.
+01-01 09:59:29 Code<error>[2010]: reason: All pools disabled for 10s, please check the network or pools configure.
+01-01 09:59:30 Code<error>[2010]: reason: All pools disabled for 11s, please check the network or pools configure.
+01-01 09:59:31 Code<error>[2010]: reason: All pools disabled for 12s, please check the network or pools configure.
+01-01 09:59:32 Code<error>[2010]: reason: All pools disabled for 13s, please check the network or pools configure.
+01-01 09:59:33 Code<error>[2010]: reason: All pools disabled for 14s, please check the network or pools configure.
+01-01 09:59:34 Code<error>[2010]: reason: All pools disabled for 15s, please check the network or pools configure.
+01-01 09:59:36 Code<error>[2010]: reason: All pools disabled for 17s, please check the network or pools configure.
+59:36 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|0,0|18|34, 9,132|0,8,236
+01-01 09:59:37 Code<error>[2010]: reason: All pools disabled for 18s, please check the network or pools configure.
+01-01 09:59:38 Code<error>[2010]: reason: All pools disabled for 19s, please check the network or pools configure.
+01-01 09:59:39 Code<error>[2010]: reason: All pools disabled for 20s, please check the network or pools configure.
+01-01 09:59:40 Code<error>[2010]: reason: All pools disabled for 21s, please check the network or pools configure.
+01-01 09:59:41 Code<error>[2010]: reason: All pools disabled for 22s, please check the network or pools configure.
+01-01 09:59:42 Code<error>[2010]: reason: All pools disabled for 23s, please check the network or pools configure.
+01-01 09:59:43 Code<error>[2010]: reason: All pools disabled for 24s, please check the network or pools configure.
+01-01 09:59:44 Code<error>[2010]: reason: All pools disabled for 25s, please check the network or pools configure.
+01-01 09:59:45 Code<error>[2010]: reason: All pools disabled for 26s, please check the network or pools configure.
+01-01 09:59:47 Code<error>[2010]: reason: All pools disabled for 28s, please check the network or pools configure.
+01-01 09:59:48 Code<error>[2010]: reason: All pools disabled for 29s, please check the network or pools configure.
+01-01 09:59:49 Code<error>[2010]: reason: All pools disabled for 30s, please check the network or pools configure.
+01-01 09:59:50 Code<error>[2010]: reason: All pools disabled for 31s, please check the network or pools configure.
+01-01 09:59:51 Code<error>[2010]: reason: All pools disabled for 32s, please check the network or pools configure.
+01-01 09:59:52 Code<error>[2010]: reason: All pools disabled for 33s, please check the network or pools configure.
+01-01 09:59:53 Code<error>[2010]: reason: All pools disabled for 34s, please check the network or pools configure.
+01-01 09:59:54 Code<error>[2010]: reason: All pools disabled for 35s, please check the network or pools configure.
+01-01 09:59:56 Code<error>[2010]: reason: All pools disabled for 37s, please check the network or pools configure.
+01-01 09:59:57 Code<error>[2010]: reason: All pools disabled for 38s, please check the network or pools configure.
+01-01 09:59:58 Code<error>[2010]: reason: All pools disabled for 39s, please check the network or pools configure.
+01-01 09:59:59 Code<error>[2010]: reason: All pools disabled for 40s, please check the network or pools configure.
+01-01 10:00:00 Code<error>[2010]: reason: All pools disabled for 41s, please check the network or pools configure.
+01-01 10:00:01 Code<error>[2010]: reason: All pools disabled for 42s, please check the network or pools configure.
+01-01 10:00:02 Code<error>[2010]: reason: All pools disabled for 43s, please check the network or pools configure.
+01-01 10:00:03 Code<error>[2010]: reason: All pools disabled for 44s, please check the network or pools configure.
+01-01 10:00:04 Code<error>[2010]: reason: All pools disabled for 45s, please check the network or pools configure.
+01-01 10:00:05 Code<error>[2010]: reason: All pools disabled for 46s, please check the network or pools configure.
+01-01-10 hs0,freq0,bt0,ct0|hs1,freq1,bt1,ct1|...|fan0,fan1|env temp|cpu temp,cpu rate,mem|vout,pin,vin
+00:06 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|87,58|18|31, 0,134|0,9,235
+01-01 10:00:07 Code<error>[2010]: reason: All pools disabled for 48s, please check the network or pools configure.
+01-01 10:00:08 Code<error>[2010]: reason: All pools disabled for 49s, please check the network or pools configure.
+01-01 10:00:09 Code<error>[2010]: reason: All pools disabled for 50s, please check the network or pools configure.
+01-01 10:00:10 Code<error>[2010]: reason: All pools disabled for 51s, please check the network or pools configure.
+01-01 10:00:11 Code<error>[2010]: reason: All pools disabled for 52s, please check the network or pools configure.
+01-01 10:00:12 Code<error>[2010]: reason: All pools disabled for 53s, please check the network or pools configure.
+01-01 10:00:13 Code<error>[2010]: reason: All pools disabled for 54s, please check the network or pools configure.
+01-01 10:00:15 Code<error>[2010]: reason: All pools disabled for 56s, please check the network or pools configure.
+01-01 10:00:16 Code<error>[2010]: reason: All pools disabled for 57s, please check the network or pools configure.
+01-01 10:00:17 Code<error>[2010]: reason: All pools disabled for 58s, please check the network or pools configure.
+01-01 10:00:18 Code<error>[2010]: reason: All pools disabled for 59s, please check the network or pools configure.
+01-01 10:00:19 Code<error>[2010]: reason: All pools disabled for 60s, please check the network or pools configure.
+01-01 10:00:20 Code<error>[2010]: reason: All pools disabled for 61s, please check the network or pools configure.
+01-01 10:00:21 Code<error>[2010]: reason: All pools disabled for 62s, please check the network or pools configure.
+01-01 10:00:22 Code<error>[2010]: reason: All pools disabled for 63s, please check the network or pools configure.
+01-01 10:00:24 Code<error>[2010]: reason: All pools disabled for 64s, please check the network or pools configure.
+01-01 10:00:25 Code<error>[2010]: reason: All pools disabled for 65s, please check the network or pools configure.
+01-01 10:00:26 Code<error>[2010]: reason: All pools disabled for 66s, please check the network or pools configure.
+01-01 10:00:27 Code<error>[2010]: reason: All pools disabled for 67s, please check the network or pools configure.
+01-01 10:00:29 Code<error>[2010]: reason: All pools disabled for 69s, please check the network or pools configure.
+01-01 10:00:30 Code<error>[2010]: reason: All pools disabled for 70s, please check the network or pools configure.
+01-01 10:00:31 Code<error>[2010]: reason: All pools disabled for 71s, please check the network or pools configure.
+01-01 10:00:32 Code<error>[2010]: reason: All pools disabled for 72s, please check the network or pools configure.
+01-01 10:00:33 Code<error>[2010]: reason: All pools disabled for 73s, please check the network or pools configure.
+01-01 10:00:34 Code<error>[2010]: reason: All pools disabled for 74s, please check the network or pools configure.
+01-01 10:00:35 Code<error>[2010]: reason: All pools disabled for 75s, please check the network or pools configure.
+01-01 10:00:36 Code<error>[2010]: reason: All pools disabled for 76s, please check the network or pools configure.
+00:36 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|1025,1025|18|31, 2,134|0,9,234
+01-01 10:00:38 Code<error>[2010]: reason: All pools disabled for 78s, please check the network or pools configure.
+01-01 10:00:39 Code<error>[2010]: reason: All pools disabled for 79s, please check the network or pools configure.
+01-01 10:00:40 Code<error>[2010]: reason: All pools disabled for 80s, please check the network or pools configure.
+01-01 10:00:41 Code<error>[2010]: reason: All pools disabled for 81s, please check the network or pools configure.
+01-01 10:00:42 Code<error>[2010]: reason: All pools disabled for 82s, please check the network or pools configure.
+01-01 10:00:43 Code<error>[2010]: reason: All pools disabled for 83s, please check the network or pools configure.
+01-01 10:00:44 Code<error>[2010]: reason: All pools disabled for 84s, please check the network or pools configure.
+01-01 10:00:45 Code<error>[2010]: reason: All pools disabled for 85s, please check the network or pools configure.
+01-01 10:00:47 Code<error>[2010]: reason: All pools disabled for 87s, please check the network or pools configure.
+01-01 10:00:48 Code<error>[2010]: reason: All pools disabled for 88s, please check the network or pools configure.
+01-01 10:00:49 Code<error>[2010]: reason: All pools disabled for 89s, please check the network or pools configure.
+01-01 10:00:50 Code<error>[2010]: reason: All pools disabled for 90s, please check the network or pools configure.
+01-01 10:00:51 Code<error>[2010]: reason: All pools disabled for 91s, please check the network or pools configure.
+01-01 10:00:52 Code<error>[2010]: reason: All pools disabled for 92s, please check the network or pools configure.
+01-01 10:00:55 Code<error>[2010]: reason: All pools disabled for 95s, please check the network or pools configure.
+01-01 10:00:56 Code<error>[2010]: reason: All pools disabled for 96s, please check the network or pools configure.
+01-01 10:00:57 Code<error>[2010]: reason: All pools disabled for 97s, please check the network or pools configure.
+01-01 10:00:58 Code<error>[2010]: reason: All pools disabled for 98s, please check the network or pools configure.
+01-01 10:00:59 Code<error>[2010]: reason: All pools disabled for 99s, please check the network or pools configure.
+01-01 10:01:00 Code<error>[2010]: reason: All pools disabled for 100s, please check the network or pools configure.
+01-01 10:01:01 Code<error>[2010]: reason: All pools disabled for 101s, please check the network or pools configure.
+01-01 10:01:02 Code<error>[2010]: reason: All pools disabled for 102s, please check the network or pools configure.
+01-01 10:01:03 Code<error>[2010]: reason: All pools disabled for 103s, please check the network or pools configure.
+01-01 10:01:04 Code<error>[2010]: reason: All pools disabled for 104s, please check the network or pools configure.
+01-01 10:01:06 Code<error>[2010]: reason: All pools disabled for 106s, please check the network or pools configure.
+01:07 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|58,58|18|34,11,131|0,8,238
+01-01 10:01:07 Code<error>[2010]: reason: All pools disabled for 107s, please check the network or pools configure.
+01-01 10:01:08 Code<error>[2010]: reason: All pools disabled for 108s, please check the network or pools configure.
+01-01 10:01:09 Code<error>[2010]: reason: All pools disabled for 109s, please check the network or pools configure.
+01-01 10:01:10 Code<error>[2010]: reason: All pools disabled for 110s, please check the network or pools configure.
+01-01 10:01:11 Code<error>[2010]: reason: All pools disabled for 111s, please check the network or pools configure.
+01-01 10:01:12 Code<error>[2010]: reason: All pools disabled for 112s, please check the network or pools configure.
+01-01 10:01:14 Code<error>[2010]: reason: All pools disabled for 113s, please check the network or pools configure.
+01-01 10:01:15 Code<error>[2010]: reason: All pools disabled for 114s, please check the network or pools configure.
+01-01 10:01:17 Code<error>[2010]: reason: All pools disabled for 116s, please check the network or pools configure.
+01-01 10:01:18 Code<error>[2010]: reason: All pools disabled for 117s, please check the network or pools configure.
+01-01 10:01:19 Code<error>[2010]: reason: All pools disabled for 118s, please check the network or pools configure.
+01-01 10:01:20 Code<error>[2010]: reason: All pools disabled for 119s, please check the network or pools configure.
+01-01 10:01:21 Code<error>[2010]: reason: All pools disabled for 120s, please check the network or pools configure.
+01-01 10:01:22 Code<error>[2010]: reason: All pools disabled for 121s, please check the network or pools configure.
+01-01 10:01:23 Code<error>[2010]: reason: All pools disabled for 122s, please check the network or pools configure.
+01-01 10:01:24 Code<error>[2010]: reason: All pools disabled for 123s, please check the network or pools configure.
+01-01 10:01:26 Code<error>[2010]: reason: All pools disabled for 125s, please check the network or pools configure.
+01-01 10:01:27 Code<error>[2010]: reason: All pools disabled for 126s, please check the network or pools configure.
+01-01 10:01:28 Code<error>[2010]: reason: All pools disabled for 127s, please check the network or pools configure.
+01-01 10:01:29 Code<error>[2010]: reason: All pools disabled for 128s, please check the network or pools configure.
+01-01 10:01:30 Code<error>[2010]: reason: All pools disabled for 129s, please check the network or pools configure.
+00:03 0.0,150,14,0|0.0,150,14,0|0.0,150,14,0|2138,2109|18|30, 0,133|0,16,238
+00:34 0.0,150,14,0|0.0,150,14,0|0.0,150,15,0|7624,7478|17|30, 4,133|0,132,236
+01:04 0.0,150,15,0|0.0,150,15,0|0.0,150,16,0|0,0|18|33,45,128|1515,883,236
+01:34 1.6,414,24,35|1.6,414,25,36|1.4,414,25,36|469,439|18|33, 4,128|1518,2684,234
+02:04 2.6,522,39,54|3.7,522,41,56|2.7,522,41,55|849,761|18|35, 7,127|1548,3544,230
+02:35 3.7,527,59,76|4.7,527,62,79|3.8,527,61,77|1583,1612|19|35, 8,124|1574,3932,232
+03:05 9.4,562,69,84|10.3,562,73,87|9.5,562,71,87|3049,3049|19|34, 6,126|1571,4208,231
+03:35 14.1,569,78,92|15.1,569,81,96|14.2,569,80,96|3489,3460|20|36, 3,125|1544,4216,226
+04:06 18.9,578,80,95|19.8,592,83,98|18.8,561,83,99|3724,3636|20|36,10,122|1532,4208,226
+04:36 23.6,577,80,95|24.7,598,83,98|23.0,566,83,99|3691,3632|21|37, 2,122|1526,4184,226
+05:06 28.0,575,81,96|29.4,597,84,99|27.4,579,84,99|4105,4046|21|36,31,121|1520,4192,227
+05:36 31.4,575,80,95|32.9,596,83,99|30.8,578,83,100|3837,3837|21|39,13,119|1520,4168,225
+06:07 33.3,568,80,95|35.0,592,83,99|32.7,579,84,100|3812,3841|21|36,10,116|1516,4136,227
+06:37 33.6,573,79,95|35.3,596,83,98|33.0,585,83,100|3984,3896|21|36, 7,115|1516,4160,228
+07:07 34.7,569,79,94|35.5,593,82,97|33.9,584,83,100|3841,3870|21|37, 9,128|1513,4112,226
+07:37 34.2,571,79,94|35.2,596,82,97|33.5,588,84,100|3812,3870|21|37,11,126|1513,4136,229
+08:07 30.1,570,79,94|31.0,600,82,97|29.2,590,84,100|3958,3958|21|35,11,124|1513,4144,230
+08:38 26.8,572,78,93|28.0,602,81,97|26.0,592,83,100|3925,3867|21|38,10,121|1513,4152,228
+09:08 23.8,573,79,94|25.1,605,82,97|23.2,594,84,100|3841,3841|21|35,50,119|1509,4152,229
+05-13 12:09:11 Reboot as whatsminer tool reboot request (cpu rate: 15%, free ram: 119832)
+05-13 12:09:11 Code<warn>[562]: reason: Slot2 loss balance
+05-13 12:09:11 Code<warn>[561]: reason: Slot1 loss balance
+05-13 12:09:11 Code<warn>[560]: reason: Slot0 loss balance
+01-01 08:00:23 Miner M61VL30(V727-4G), MAC:CE:0B:16:00:50:09, version:20250314.15.REL, PowerHw:HA3000000, PowerSw:5753.1111, PowerSn:2E250105396 PCB0:HLM3DX8D305111X60490 PCB1:HLM3DX8D305111X60496 PCB2:HLM3DX8D305111X60493
+07-08 01:02:09 Restore factory settings by keyd
+07-08 01:02:09 Reboot  (cpu rate: 0%, free ram: 158492)
+01-01 08:00:23 Miner M61VL30(V727-4G), MAC:CE:0B:16:00:50:09, version:20250314.15.REL, PowerHw:HA3000000, PowerSw:5753.1111, PowerSn:2E250105396 PCB0:HLM3DX8D305111X60490 PCB1:HLM3DX8D305111X60496 PCB2:HLM3DX8D305111X60493
+07-08 01:02:09 Restore factory settings by keyd
+07-08 01:02:09 Reboot  (cpu rate: 0%, free ram: 158492)
+07-08 01:02:10 Reboot as reset key (cpu rate: 11%, free ram: 157968)
+01-01 03:00:23 Miner M61VL30(V727-4G), MAC:CE:0B:16:00:50:09, version:20250314.15.REL, PowerHw:HA3000000, PowerSw:5753.1111, PowerSn:2E250105396 PCB0:HLM3DX8D305111X60490 PCB1:HLM3DX8D305111X60496 PCB2:HLM3DX8D305111X60493
+01-01 03:00:25 Code<warn>[7100]: reason: btrom connect to server err
+01-01-03 hs0,freq0,bt0,ct0|hs1,freq1,bt1,ct1|...|fan0,fan1|env temp|cpu temp,cpu rate,mem|vout,pin,vin
+00:51 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|25|36, 0,149|0,7,242
+01:21 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|674,674|26|38, 0,139|0,11,243
+01:51 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|469,469|26|38, 2,139|0,7,243
+02:21 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|26|38, 0,139|0,7,242
+02:51 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|674,645|26|39, 2,139|0,11,243
+03:21 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|39, 0,139|0,8,243
+03:52 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|39, 0,139|0,9,243
+04:22 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|674,645|27|39, 4,139|0,8,243
+04:52 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|40, 2,139|0,7,243
+05:22 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|40, 2,139|0,9,242
+01-01 03:05:24 Code<error>[2010]: reason: All pools disabled for 300s, please check the network or pools configure.
+05:52 0.0,0,24,0|0.0,0,24,0|0.0,0,24,0|673,673|27|37, 0,147|0,10,243
+05:57 0.0,0,24,0|0.0,0,24,0|0.0,0,24,0|469,469|27|36, 0,147|0,7,243
+01-01 03:05:57 Restart btminer as as No btminer
+01-01 03:05:57 Code<warn>[7100]: reason: btrom connect to server err
+06:22 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|40, 2,139|0,7,242
+06:52 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|791,791|27|40, 0,139|0,8,242
+07:23 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|351,381|27|40, 4,139|0,7,242
+07:53 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|39, 5,139|0,7,242
+08:23 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|791,791|27|40, 0,139|0,13,242
+08:53 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|351,351|27|40, 0,139|0,7,243
+09:23 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|40, 0,139|0,7,242
+09:53 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|468,468|27|41, 0,139|0,13,242
+10:24 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|40, 0,139|0,8,242
+10:54 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|40, 2,139|0,9,242
+01-01 03:10:58 Code<error>[2010]: reason: All pools disabled for 300s, please check the network or pools configure.
+11:24 0.0,0,24,0|0.0,0,24,0|0.0,0,24,0|469,469|27|37, 0,147|0,9,242
+11:29 0.0,0,24,0|0.0,0,24,0|0.0,0,24,0|0,0|27|36, 0,147|0,7,242
+01-01 03:11:29 Restart btminer as as No btminer
+01-01 03:11:30 Code<warn>[7100]: reason: btrom connect to server err
+11:54 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|40, 4,139|0,7,242
+12:24 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|40, 2,139|0,8,242
+12:54 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|791,791|27|40, 0,139|0,10,242
+13:24 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|40, 2,139|0,7,242
+13:55 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|674,645|27|40, 2,139|0,9,242
+14:25 0.0,150,24,0|0.0,150,24,0|0.0,150,23,0|468,468|27|40, 2,139|0,8,242
+14:55 0.0,150,24,0|0.0,150,24,0|0.0,150,23,0|0,0|27|40, 2,139|0,7,242
+15:25 0.0,150,24,0|0.0,150,24,0|0.0,150,23,0|674,645|27|40, 0,139|0,11,242
+15:55 0.0,150,24,0|0.0,150,24,0|0.0,150,23,0|468,468|27|40, 4,139|0,7,242
+16:25 0.0,150,24,0|0.0,150,24,0|0.0,150,23,0|0,0|27|40, 4,139|0,7,242
+01-01 03:16:30 Code<error>[2010]: reason: All pools disabled for 300s, please check the network or pools configure.
+16:55 0.0,0,24,0|0.0,0,24,0|0.0,0,23,0|351,351|27|37, 0,147|0,10,240
+17:02 0.0,0,24,0|0.0,0,24,0|0.0,0,23,0|0,0|27|37, 0,147|0,7,240
+01-01 03:17:02 Restart btminer as as No btminer
+01-01 03:17:03 Code<warn>[7100]: reason: btrom connect to server err
+17:26 0.0,150,24,0|0.0,150,24,0|0.0,150,23,0|0,0|27|40, 2,139|0,7,240
+17:56 0.0,150,24,0|0.0,150,24,0|0.0,150,23,0|0,0|27|40, 2,139|0,13,240
+18:26 0.0,150,24,0|0.0,150,24,0|0.0,150,23,0|381,351|27|40, 2,139|0,8,241
+18:56 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|41, 2,139|0,7,241
+19:26 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|40, 4,139|0,13,240
+19:56 0.0,150,24,0|0.0,150,24,0|0.0,150,24,0|0,0|27|40, 0,139|0,9,240
+20:27 0.9,360,29,39|0.9,360,30,39|0.8,360,29,39|0,0|27|42, 9,133|1502,2260,235
+20:57 3.4,522,43,58|4.1,522,44,59|3.3,522,44,58|791,791|28|43, 6,131|1507,3240,232
+21:27 3.9,527,62,80|4.7,527,64,81|3.7,527,63,80|2197,2197|28|42, 6,131|1548,3860,232
+21:57 9.4,567,72,87|10.0,568,74,88|9.2,567,73,88|3281,3222|29|43,10,129|1554,4176,228
+22:27 14.1,574,80,96|14.8,575,82,97|14.0,574,82,98|4897,4868|30|44, 3,128|1526,4192,228
+22:58 18.6,571,80,96|19.4,585,81,96|18.5,573,83,99|5190,5131|31|45, 9,127|1516,4160,229
+23:28 23.4,573,80,95|24.4,589,81,95|23.2,577,84,100|4863,4804|31|47,14,125|1516,4176,228
+23:58 0.0,150,62,0|0.0,150,61,0|0.0,150,65,0|7448,7478|32|44, 2,134|0,133,240
+24:28 0.0,150,45,0|0.0,150,42,0|0.0,150,46,0|7536,7507|32|45, 2,134|0,135,240
+24:59 0.0,150,35,0|0.0,150,33,0|0.0,150,36,0|7500,7470|32|44, 4,134|0,137,240
+25:29 1.0,342,37,44|1.0,342,35,42|1.1,342,38,45|58,58|32|45, 5,130|1502,2256,234
+25:59 6.8,516,51,63|7.1,516,49,63|6.5,516,51,64|821,1085|32|45,10,128|1505,3376,230
+26:29 8.0,527,67,83|8.5,527,67,83|7.7,527,68,84|3929,3900|32|45, 6,129|1543,3868,230
+26:59 15.2,567,77,92|15.6,567,77,92|14.7,567,78,94|4134,4105|32|46,53,129|1540,4200,228
