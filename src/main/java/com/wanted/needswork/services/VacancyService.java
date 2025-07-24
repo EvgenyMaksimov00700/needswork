@@ -138,14 +138,16 @@ public class VacancyService {
             requestBody.append(String.format("{\"id\":%d,\"vacancy_title\":\"%s\",\"vacancy_description\":\"%s\"}",
                     vacancy.getId(),
                     vacancy.getPosition(),
-                    vacancy.getResponsibility().replaceAll(regex," ")));
+                    vacancy.getResponsibility().replaceAll(regex," ")
+                            .replaceAll("\\\\", "\\\\\\\\")
+                            .replaceAll("\"", "\\\\\"")));
             if (i < vacancies.size() - 1) {
                 requestBody.append(",");
             }
         }
         requestBody.append("]}");
 
-        System.out.println("Отправляем запрос на Telegram: " + requestBody);
+        System.out.println("Отправляем запрос в модель: " + requestBody);
         
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://212.34.133.246:5000/similarity"))
