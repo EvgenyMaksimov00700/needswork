@@ -1,11 +1,11 @@
 let clientID;
 try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
-if (window.history.length > 1) {
-        window.Telegram.WebApp.BackButton.show();
-        window.Telegram.WebApp.BackButton.onClick(() => {
-            window.history.back();
-        });
-    }
+//if (window.history.length > 1) {
+//        window.Telegram.WebApp.BackButton.show();
+//        window.Telegram.WebApp.BackButton.onClick(() => {
+//            window.history.back();
+//        });
+//    }
 window.Telegram.WebApp.expand();
   function isDesktop() {
         const userAgent = navigator.userAgent.toLowerCase();
@@ -21,6 +21,19 @@ window.Telegram.WebApp.expand();
 
 catch(error) {clientID = 159619887}
 console.log(clientID)
+function addNewVideoCV(){
+    data = {userId: clientID, message:"Перед тем как выбрать вакансию, запишите видео-резюме (в формате видео сообщения кружка telegram) с вашей презентацией. Видео будет доступно только работодателям, которым вы отправите отклик. Следуйте инструкции по записи видео - резюме: https://drive.google.com/file/d/1CZz-rHORxlP_HcacAtY5jyQ56I5UpIV5/view"}
+    const response = fetch("/message/send", {
+         method: 'POST', // Метод запроса
+         headers: {
+             'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
+         },
+         body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
+     });
+
+
+    window.Telegram.WebApp.close();
+}
 
 let employerId;
 function support(){
@@ -39,7 +52,7 @@ data = {videoCvMessage:  videoCvMessage, userId: clientID, vacancyId: -1}
               });
 
 
-                window.Telegram.WebApp.close();
+//                window.Telegram.WebApp.close();
                 }
 
 document.addEventListener('DOMContentLoaded', function() {

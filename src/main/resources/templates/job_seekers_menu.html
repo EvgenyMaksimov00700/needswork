@@ -11,6 +11,7 @@
 <div class="phone" id="phone">
     <div class="screen">
         <h2 class="header">Личный кабинет</h2>
+        <h4 class="headerh4">Список видеорезюме</h4>
 
         <div class="resume-buttons" id="resume-buttons">
             <!-- Место для подгрузки резюме -->
@@ -18,6 +19,12 @@
 
         <!-- Все кнопки внизу -->
         <div class="bottom-buttons">
+            <div
+                    class="button"
+                    onclick="addNewVideoCV()"
+            >
+                Добавить видеорезюме
+            </div>
             <button class="button large-button" onclick="triggerFileUpload()" id="resume-not-uploaded"> Загрузить текстовое резюме</button>
             <div id="resume-uploaded" class="update-show-resume">
                 <button class="button update-resume" onclick="triggerFileUpload()">Обновить</button>

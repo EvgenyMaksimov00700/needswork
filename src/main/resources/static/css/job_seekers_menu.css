@@ -50,7 +50,13 @@ body {
 .header {
     font-size: 24px;
     color: #E0E0E0;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+.headerh4 {
+    font-size: 18px;
+    color: #E0E0E0;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 /* Кнопки */

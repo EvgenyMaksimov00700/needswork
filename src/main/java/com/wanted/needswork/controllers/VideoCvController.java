@@ -52,6 +52,17 @@ public class VideoCvController {
         return new ResponseEntity<>(videoCvService.getVideoCv(videoCvId).toResponseDTO(), HttpStatus.OK);
     }
 
+    @PostMapping("/videoCv/send")
+    public ResponseEntity<VideoCv> VideoCvSend (@RequestBody VideoCvSendDTO videoCvSendDTO) {
+        User user = userService.getUser(videoCvSendDTO.getUserId());
+        Vacancy vacancy = vacancyService.getVacancy(videoCvSendDTO.getVacancyId());
+        if (vacancy==null) {
+            vacancy = hhService.fetchVacancy(videoCvSendDTO.getVacancyId());
+        }
+        
+        videoCvService.sendVideoNote(user, videoCvSendDTO.getVideoCvMessage(), vacancy, videoCvSendDTO.getTextResume());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
     @PostMapping("/videoCv")
     public ResponseEntity<VideoCv> addVideoCv(@RequestBody VideoCvDTO videoCvDTO) {
         JobSeeker jobSeeker = jobSeekerService.getJobSeeker(videoCvDTO.getJob_seeker_id());
@@ -89,18 +100,6 @@ public class VideoCvController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/videoCv/send")
-    public ResponseEntity<VideoCv> VideoCvSend (@RequestBody VideoCvSendDTO videoCvSendDTO) {
-        User user = userService.getUser(videoCvSendDTO.getUserId());
-        Vacancy vacancy = vacancyService.getVacancy(videoCvSendDTO.getVacancyId());
-        if (vacancy==null) {
-            vacancy = hhService.fetchVacancy(videoCvSendDTO.getVacancyId());
-        }
-        if (vacancy == null){
-            return new ResponseEntity<>( HttpStatus.NOT_FOUND);
-        }
-        videoCvService.sendVideoNote(user, videoCvSendDTO.getVideoCvMessage(), vacancy, videoCvSendDTO.getTextResume());
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+
 
 }
