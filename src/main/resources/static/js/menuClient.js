@@ -100,9 +100,9 @@ document.addEventListener('DOMContentLoaded', function(){
         const startParam = webApp.initDataUnsafe.start_param;
         const visitedKey = 'vacancyRedirectDone';
 
-        if (!localStorage.getItem(visitedKey) && startParam && startParam.startsWith('vacancy_')) {
+        if (!sessionStorage.getItem(visitedKey) && startParam && startParam.startsWith('vacancy_')) {
             const vacancyId = startParam.split('_')[1];
-            localStorage.setItem(visitedKey, 'true');
+            sessionStorage.setItem(visitedKey, 'true');
             window.location.href = `/vacancy/description?id=${vacancyId}`;
             return;
         }
