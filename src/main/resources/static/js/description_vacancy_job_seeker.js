@@ -330,22 +330,22 @@ document.addEventListener('DOMContentLoaded', function(){
                 document.getElementById("workSchedule").innerHTML = "<b>График работы: </b>" + data.workSchedule;
                 if (data.distantWork==true) {
                 document.getElementById("workSchedule").innerHTML += ", возможно удаленно";}
-               const paragraphs = data.responsibility.split(/\n\s*\n/);
-                               const outputDiv = document.getElementById("responsibility");
-                               if (!data.from_hh) {
-               paragraphs.forEach(paragraph => {
-                                              if (paragraph.trim() !== "") {
-                                                  const p = document.createElement('p');
-                                                  p.classList.add('paragraph');
-                                                  p.textContent = paragraph.trim();
-                                                  outputDiv.appendChild(p);
-                                              }
-                                                          });
-
-                               }
-                               else {
-                               outputDiv.innerHTML=data.responsibility
-                               }
+                const paragraphs = data.responsibility.split(/\n\s*\n/);
+                const outputDiv = document.getElementById("responsibility");
+                console.log(data.from_hh)
+                if (!data.from_hh) {
+                  paragraphs.forEach(paragraph => {
+                      if (paragraph.trim() !== "") {
+                          const p = document.createElement('p');
+                          p.classList.add('paragraph');
+                          p.textContent = paragraph.trim();
+                          outputDiv.appendChild(p);
+                      }
+                  });
+                  console.log(paragraphs);
+                } else {
+                   outputDiv.innerHTML=data.responsibility
+                }
                 document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + formatDateTime(data.createdDateTime);
                 document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id, data.from_hh, data.employer.email, employerUserId, user.phone === null)};
                 document.getElementById("no-resume").onclick = () => {vacancy_no_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId, user.phone === null)};

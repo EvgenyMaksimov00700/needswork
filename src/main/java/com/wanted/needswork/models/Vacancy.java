@@ -132,7 +132,7 @@ public class Vacancy {
         if(industry!=null) {
             industryResponseDTO = industry.toResponseDTO();
         }
-        return new VacancyResponseDTO(id, employerResponseDTO, industryResponseDTO, position, city, fromSalary, toSalary,  workSchedule, distantWork, address, exp, responsibility, createdDateTime, lastModifiedDateTime, true);
+        return new VacancyResponseDTO(id, employerResponseDTO, industryResponseDTO, position, city, fromSalary, toSalary,  workSchedule, distantWork, address, exp, responsibility, createdDateTime, lastModifiedDateTime, from_hh);
     }
 }
 
