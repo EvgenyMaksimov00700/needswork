@@ -52,7 +52,7 @@ data = {videoCvMessage:  videoCvMessage, userId: clientID, vacancyId: -1}
               });
 
 
-//                window.Telegram.WebApp.close();
+                  window.Telegram.WebApp.close();
                 }
 
 document.addEventListener('DOMContentLoaded', function() {
