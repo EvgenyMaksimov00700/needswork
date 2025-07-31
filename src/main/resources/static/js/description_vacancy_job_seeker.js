@@ -269,8 +269,18 @@ document.addEventListener('DOMContentLoaded', function(){
         button.disabled = !this.checked;
     });
 
-    const url = `/user/${clientID}`;
+    fetch('/view/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userId:    clientID,
+          vacancyId: vacancyId
+        })
+      });
 
+    const url = `/user/${clientID}`;
    fetch(url)
      .then(response => {
        if (!response.ok) {
@@ -285,6 +295,7 @@ document.addEventListener('DOMContentLoaded', function(){
      .catch(error => {
        console.error('Ошибка при получении пользователя:', error);
      });
+
      fetch( `/vacancy/${vacancyId}`, {
                 method: 'GET',
                 headers: {

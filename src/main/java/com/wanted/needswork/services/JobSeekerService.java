@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 
@@ -21,7 +22,8 @@ public class JobSeekerService {
         return jobSeekerRepository.findById(id).orElse(null);
     }
     public List<JobSeeker> getJobSeekers() {
-        return jobSeekerRepository.findAll();
+        return jobSeekerRepository.findAll().stream()
+                .sorted((j1, j2) -> j2.getId().compareTo(j1.getId())).collect(Collectors.toList());
 
     }
     public JobSeeker addJobSeeker(User user, Double latitude, Double longitude){
