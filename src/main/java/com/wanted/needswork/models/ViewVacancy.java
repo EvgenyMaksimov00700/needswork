@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 
-public class ViewVacancy  {
+public class ViewVacancy {
     @Id
     @Getter
     @Setter
@@ -39,15 +39,18 @@ public class ViewVacancy  {
     private LocalDateTime viewDateTime;
 
 
-
-    public ViewVacancy (User user, BigInteger vacancyId){
+    public ViewVacancy(User user, BigInteger vacancyId) {
         this.user = user;
         this.vacancyId = vacancyId;
     }
 
     public ViewVacancyResponseDTO toResponseDTO(Vacancy vacancy) {
-        return new ViewVacancyResponseDTO(id, user.toResponseDTO(), vacancy.toResponseDTO(), viewDateTime);
+        if (vacancy != null) {
+
+
+            return new ViewVacancyResponseDTO(id, user.toResponseDTO(), vacancy.toResponseDTO(), viewDateTime);
+        } else {
+            return new ViewVacancyResponseDTO(id, user.toResponseDTO(), null, viewDateTime);
+        }
     }
-
-
 }
