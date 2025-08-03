@@ -41,7 +41,14 @@ public class ViewVacancyController {
     ) {
         List<ViewVacancy> viewVacancies = viewVacancyService.getViewVacancies(limit, userId, vacancyId);
         List<ViewVacancyResponseDTO> viewVacancyResponseDTOs = viewVacancies.stream()
-                .map(viewVacancy -> viewVacancy.toResponseDTO(vacancyService.getVacancy(viewVacancy.getVacancyId())))
+                .map(viewVacancy -> {
+                    BigInteger vacId = viewVacancy.getVacancyId();
+                    Vacancy vacancy = vacancyService.getVacancy(vacId);
+                    if (vacancy == null) {
+                        vacancy = hhService.fetchVacancy(vacId);
+                    }
+                    return viewVacancy.toResponseDTO(vacancy);
+                })
                 .collect(Collectors.toList());
 
         return new ResponseEntity<>(viewVacancyResponseDTOs, HttpStatus.OK);

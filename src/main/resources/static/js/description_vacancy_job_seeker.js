@@ -358,6 +358,8 @@ document.addEventListener('DOMContentLoaded', function(){
                    outputDiv.innerHTML=data.responsibility
                 }
                 document.getElementById("create_date").innerHTML = "<b>Дата публикации: </b>" + formatDateTime(data.createdDateTime);
+                if (data.views!=0) {
+                document.getElementById("views").innerHTML = "👁 " + data.views;}
                 document.getElementById("response").onclick = () => {vacancy_responses(data.position, data.id, data.from_hh, data.employer.email, employerUserId, user.phone === null)};
                 document.getElementById("no-resume").onclick = () => {vacancy_no_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId, user.phone === null)};
                 document.getElementById("text-resume").onclick = () => {vacancy_text_resume(data.position, data.id, data.from_hh, data.employer.email, employerUserId, user.phone === null)};

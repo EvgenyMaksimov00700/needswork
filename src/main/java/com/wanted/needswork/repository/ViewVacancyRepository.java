@@ -11,6 +11,8 @@ public interface ViewVacancyRepository extends JpaRepository <ViewVacancy, Integ
     List<ViewVacancy> findByUserId (BigInteger userId);
     List<ViewVacancy> findByUserIdAndVacancyId (BigInteger userId, BigInteger vacancyId);
 
+    Integer countByVacancyId(BigInteger vacancyId);
 }
+
 
 

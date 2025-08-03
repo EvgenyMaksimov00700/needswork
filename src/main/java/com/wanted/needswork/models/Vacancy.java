@@ -132,7 +132,19 @@ public class Vacancy {
         if(industry!=null) {
             industryResponseDTO = industry.toResponseDTO();
         }
-        return new VacancyResponseDTO(id, employerResponseDTO, industryResponseDTO, position, city, fromSalary, toSalary,  workSchedule, distantWork, address, exp, responsibility, createdDateTime, lastModifiedDateTime, from_hh);
+        return new VacancyResponseDTO(id, employerResponseDTO, industryResponseDTO, position, city, fromSalary, toSalary,  workSchedule, distantWork, address, exp, responsibility, createdDateTime, lastModifiedDateTime, from_hh, null);
     }
+    public VacancyResponseDTO toResponseDTO(Integer views) {
+        EmployerResponseDTO employerResponseDTO = null;
+        if(employer!=null) {
+            employerResponseDTO = employer.toResponseDTO();
+        }
+        IndustryResponseDTO industryResponseDTO = null;
+        if(industry!=null) {
+            industryResponseDTO = industry.toResponseDTO();
+        }
+        return new VacancyResponseDTO(id, employerResponseDTO, industryResponseDTO, position, city, fromSalary, toSalary,  workSchedule, distantWork, address, exp, responsibility, createdDateTime, lastModifiedDateTime, from_hh, views);
+    }
+
 }
 

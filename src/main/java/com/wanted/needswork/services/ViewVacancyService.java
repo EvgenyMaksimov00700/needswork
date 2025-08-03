@@ -59,5 +59,8 @@ public class ViewVacancyService {
                 )
                 .collect(Collectors.toList());
     }
+    public Integer getViewsForVacancy (BigInteger vacancyId) {
+        return viewVacancyRepository.countByVacancyId(vacancyId);
+    }
 }
 

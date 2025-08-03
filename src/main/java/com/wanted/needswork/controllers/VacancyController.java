@@ -34,6 +34,8 @@ public class VacancyController {
     HHService hhService;
     @Autowired
     CityService cityService;
+    @Autowired
+    ViewVacancyService viewVacancyService;
 
     @GetMapping("/vacancy/showall")
     public ResponseEntity<List<VacancyResponseDTO>> showall() {
@@ -56,7 +58,8 @@ public class VacancyController {
         if (vacancy == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(vacancy.toResponseDTO(), HttpStatus.OK);
+        Integer views = viewVacancyService.getViewsForVacancy (vacancy.getId());
+        return new ResponseEntity<>(vacancy.toResponseDTO(views), HttpStatus.OK);
 
     }
 

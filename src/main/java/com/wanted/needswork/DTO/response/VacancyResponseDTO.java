@@ -38,5 +38,7 @@ public class VacancyResponseDTO {
     private LocalDateTime lastModifiedDateTime;
     @Getter
     private Boolean from_hh=false;
+    @Getter
+    private Integer views;
 
 }
