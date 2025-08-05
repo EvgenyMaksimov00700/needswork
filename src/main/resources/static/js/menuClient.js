@@ -1,5 +1,6 @@
 let clientID;
-try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
+//try {
+clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
 window.Telegram.WebApp.BackButton
   .show()
   .setText('Закрыть')
@@ -15,9 +16,10 @@ window.Telegram.WebApp.BackButton
     }
 
 window.Telegram.WebApp.expand();
-}
-catch(error) {clientID = 159619887}
+/*}
+catch(error) {clientID = 159619887}*/
 console.log(clientID)
+
 
 const currentUrl = window.location.href;
 const url = new URL(currentUrl);
