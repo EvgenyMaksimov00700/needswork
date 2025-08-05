@@ -1,10 +1,11 @@
 let clientID;
 //try {
 clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
-window.Telegram.WebApp.BackButton
-  .show()
+const tg = window.Telegram.WebApp;
+tg.MainButton
   .setText('Закрыть')
-  .onClick(() => window.Telegram.WebApp.close());
+  .show();
+tg.MainButton.onClick(() => tg.close());
     function isDesktop() {
         const userAgent = navigator.userAgent.toLowerCase();
         return userAgent.includes("windows") || userAgent.includes("macintosh") || userAgent.includes("linux");
