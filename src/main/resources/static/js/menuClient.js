@@ -1,11 +1,6 @@
 let clientID;
-//try {
+try {
 clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
-const tg = window.Telegram.WebApp;
-tg.MainButton
-  .setText('Закрыть')
-  .show();
-tg.MainButton.onClick(() => tg.close());
     function isDesktop() {
         const userAgent = navigator.userAgent.toLowerCase();
         return userAgent.includes("windows") || userAgent.includes("macintosh") || userAgent.includes("linux");
@@ -17,8 +12,8 @@ tg.MainButton.onClick(() => tg.close());
     }
 
 window.Telegram.WebApp.expand();
-/*}
-catch(error) {clientID = 159619887}*/
+}
+catch(error) {clientID = 159619887}
 console.log(clientID)
 
 
