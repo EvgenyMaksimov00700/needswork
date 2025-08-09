@@ -25,7 +25,15 @@ if (window.history.length > 1) {
 catch(error) {clientID = 159619887}
 console.log(clientID)
 let employer ;
-
+document.getElementById('logo')
+  .addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    const img = document.getElementById('logoPreview');
+    img.src = url;
+    img.style.display = 'block';
+  });
 document.getElementById('phone').addEventListener('input', function (e) {
     let digits = e.target.value.replace(/\D/g, '');
 
@@ -96,10 +104,13 @@ async function fetchAndDisplayData() {
         document.getElementById("inn").value = data.inn || '';
         document.getElementById("ogrn").value = data.ogrn || '';
         document.getElementById("nameCompany").value = data.name || '';
-        document.getElementById("logo").value = data.logo || '';
         document.getElementById("description").value = data.description || '';
         document.getElementById("email").value = data.email || '';
         document.getElementById("phone").value = data.phone || '';
+        if (data.logo!=null) {
+        document.getElementById("logoPreview").src = data.logo;
+
+        }
     } catch (error) {
         console.error('Ошибка:', error); // Обрабатываем ошибку
     }
@@ -107,51 +118,48 @@ async function fetchAndDisplayData() {
 
 // Функция для обработки события нажатия на кнопку "next"
 document.getElementById("next").addEventListener("click", async function(event) {
-    event.preventDefault();
-    
-    // Сбор данных из формы
-    const inn = document.getElementById("inn").value;
-    const ogrn = document.getElementById("ogrn").value;
-    const name = document.getElementById("nameCompany").value;
-    const logo = document.getElementById("logo").value;
-    const description = document.getElementById("description").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
+  event.preventDefault();
 
-    // Данные для отправки на сервер
-    const url ="/employer/" + employer.employer_id; // Замените на свой URL API
-    const data = {
-        inn: inn,
-        ogrn: ogrn,
-        name: name,
-        logo: logo,
-        description: description,
-        user_id: clientID,
-        email: email,
-        phone: phone
-    };
+  // берём DOM-элемент <input type="file" id="logo">
+  const logoInput = document.getElementById("logo");
 
-    try {
-        const response = await fetch(url, {
-            method: 'PUT', // Метод запроса
-            headers: {
-                'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
-            },
-            body: JSON.stringify(data) // Данные, отправляемые в теле запроса, преобразованные в JSON
-        });
+  // собираем FormData
+  const formData = new FormData();
+  formData.append("inn", document.getElementById("inn").value);
+  formData.append("ogrn", document.getElementById("ogrn").value);
+  formData.append("name", document.getElementById("nameCompany").value);
+  formData.append("description", document.getElementById("description").value);
+  formData.append("email", document.getElementById("email").value);
+  formData.append("phone", document.getElementById("phone").value);
+  formData.append("user_id", clientID);
 
-        if (!response.ok) {
-            throw new Error(`Ошибка HTTP: ${response.status}`); // Бросаем ошибку, если ответ не в порядке
-        }
+  // если файл выбран — добавляем его
+  if (logoInput.files && logoInput.files[0]) {
+    formData.append("logo", logoInput.files[0]);
+  }
 
-        const jsonData = await response.json(); // Парсим и возвращаем ответ как JSON
-        console.log(jsonData); // Обрабатываем данные ответа
+  const url = "/employer/" + employer.employer_id; // ваш API
+  console.log(formData)
 
-        // Закрываем Telegram Web App
-        window.location.href='/employer/lk/';
-    } catch (error) {
-        console.error('Ошибка:', error); // Обрабатываем ошибку
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      body: formData
+      // НЕ указываем headers: {'Content-Type': ...}
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
     }
+
+    const jsonData = await response.json();
+    console.log("Ответ сервера:", jsonData);
+
+    // после успешного апдейта переходим в лк
+    window.location.href = "/employer/lk/";
+  } catch (error) {
+    console.error("Ошибка при обновлении:", error);
+  }
 });
 
 // Вызов функции для получения и отображения данных при загрузке страницы

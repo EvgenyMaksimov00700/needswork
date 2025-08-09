@@ -5,12 +5,15 @@ import com.wanted.needswork.DTO.response.EmployerResponseDTO;
 import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.User;
 import com.wanted.needswork.services.EmployerService;
+import com.wanted.needswork.services.FileStorageService;
 import com.wanted.needswork.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -20,6 +23,8 @@ public class EmployerController {
     EmployerService employerService;
     @Autowired
     UserService userService;
+    @Autowired
+    FileStorageService fileStorageService;
 
     @GetMapping("/employer/showall")
     public ResponseEntity<List<EmployerResponseDTO>> showall() {
@@ -52,25 +57,42 @@ public class EmployerController {
 
     }
 
-    @PostMapping("/employer/create")
-    public ResponseEntity<Employer> addEmployer(@RequestBody EmployerDTO employerDTO) {
+    @PostMapping(value="/employer/create", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Employer> addEmployer(@ModelAttribute EmployerDTO employerDTO) throws IOException {
         User user = userService.getUser(employerDTO.getUser_id());
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        String logoFileName;
+        if (employerDTO.getLogo() != null) {
+        logoFileName= "/logo/" + fileStorageService.storeLogo(employerDTO.getLogo());}
+        else {
+            logoFileName = null;
+        }
         return new ResponseEntity<>(employerService.addEmployer(user, employerDTO.getInn(), employerDTO.getOgrn(),
-                employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription(), employerDTO.getEmail(), employerDTO.getPhone()),  HttpStatus.OK);
+                employerDTO.getName(), logoFileName, employerDTO.getDescription(), employerDTO.getEmail(), employerDTO.getPhone()),  HttpStatus.OK);
     }
 
-    @PutMapping("/employer/{employerId}")
-    public ResponseEntity<Employer> updateEmployer(@RequestBody EmployerDTO employerDTO, @PathVariable BigInteger employerId) {
+    @PutMapping(value = "/employer/{employerId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> updateEmployer(
+            @ModelAttribute EmployerDTO employerDTO,
+            @PathVariable BigInteger employerId) throws IOException {
+        System.out.println(employerId);
         Employer employer = employerService.getEmployer(employerId);
+        System.out.println(employerDTO.getUser_id());
         User user = userService.getUser(employerDTO.getUser_id());
         if (employer == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        String logoFileName;
+        if (employerDTO.getLogo() != null) {
+            logoFileName= "/logo/" + fileStorageService.storeLogo(employerDTO.getLogo());}
+        else {
+            logoFileName = null;
+        }
+
         return new ResponseEntity<>(employerService.updateEmployer(employer, user, employerDTO.getInn(), employerDTO.getOgrn(),
-                employerDTO.getName(), employerDTO.getLogo(), employerDTO.getDescription(), employerDTO.getEmail(), employerDTO.getPhone()),
+                employerDTO.getName(), logoFileName, employerDTO.getDescription(), employerDTO.getEmail(), employerDTO.getPhone()),
                 HttpStatus.OK);
     }
     @DeleteMapping("/employer/{employerId}")

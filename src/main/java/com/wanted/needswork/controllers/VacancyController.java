@@ -181,13 +181,13 @@ public class VacancyController {
         }
         if (page == 1) {
             vacancyResponseDTOs.addAll(
-                    hhService.fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, page)
+                    hhService.fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, 0)
                             .stream().map(Vacancy::toResponseDTO).toList()
             );
         }
         else
         {
-            vacancyResponseDTOs= hhService.fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, page)
+            vacancyResponseDTOs= hhService.fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, page-1)
                     .stream().map(Vacancy::toResponseDTO).toList();
         }
         return new ResponseEntity<>(vacancyResponseDTOs, HttpStatus.OK);
