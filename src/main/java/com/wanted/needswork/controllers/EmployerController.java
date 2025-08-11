@@ -47,8 +47,7 @@ public class EmployerController {
     }
 
     @GetMapping("/employer/logo/{employerId}")
-    public ResponseEntity<Resource> getTextResume(@PathVariable BigInteger employerId) throws MalformedURLException {
-        // допустим, у вас в БД лежит имя файла или вы формируете его по шаблону:
+    public ResponseEntity<Resource> getEmployerLogo(@PathVariable BigInteger employerId) throws MalformedURLException {
         String fileName = employerService.getEmployer(employerId).getLogo();
         Path file = Paths.get(logoBasePath).resolve(fileName);
 
@@ -57,11 +56,19 @@ public class EmployerController {
         }
 
         Resource resource = new UrlResource(file.toUri());
+
+        String contentType;
+        try {
+            contentType = Files.probeContentType(file);
+        } catch (IOException e) {
+            contentType = "application/octet-stream"; // fallback
+        }
+
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION,
-                        "inline; filename=\"" + file.getFileName().toString() + "\"")
+                .contentType(MediaType.parseMediaType(contentType))
                 .body(resource);
     }
+
 
 
 
