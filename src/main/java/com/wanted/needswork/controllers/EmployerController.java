@@ -47,27 +47,19 @@ public class EmployerController {
     }
 
     @GetMapping("/employer/logo/{employerId}")
-    public ResponseEntity<Resource> getEmployerLogo(@PathVariable BigInteger employerId) throws MalformedURLException {
+    public ResponseEntity<Resource> getEmployerLogo(@PathVariable BigInteger employerId) throws IOException {
         String fileName = employerService.getEmployer(employerId).getLogo();
         Path file = Paths.get(logoBasePath).resolve(fileName);
+        if (!Files.exists(file)) return ResponseEntity.notFound().build();
 
-        if (!Files.exists(file)) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Resource resource = new UrlResource(file.toUri());
-
-        String contentType;
-        try {
-            contentType = Files.probeContentType(file);
-        } catch (IOException e) {
-            contentType = "application/octet-stream"; // fallback
-        }
+        String ct = Files.probeContentType(file); // например, image/png
+        if (ct == null) ct = "application/octet-stream";
 
         return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .body(resource);
+                .contentType(MediaType.parseMediaType(ct))
+                .body(new UrlResource(file.toUri()));
     }
+
 
 
 
