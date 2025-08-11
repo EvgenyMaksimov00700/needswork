@@ -108,6 +108,7 @@ async function fetchAndDisplayData() {
         document.getElementById("email").value = data.email || '';
         document.getElementById("phone").value = data.phone || '';
         if (data.logo) {
+          document.getElementById('logoPreview').display = "block";
           document.getElementById('logoPreview').src = `https://tworker.ru/employer/logo/${data.employer_id}`;
         }
 
