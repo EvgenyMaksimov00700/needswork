@@ -58,7 +58,7 @@ public class EmployerController {
 
         Resource resource = new UrlResource(file.toUri());
         return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_PDF)
+
                 .header(HttpHeaders.CONTENT_DISPOSITION,
                         "inline; filename=\"" + file.getFileName().toString() + "\"")
                 .body(resource);
