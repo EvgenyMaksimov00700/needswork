@@ -8,6 +8,10 @@ import com.wanted.needswork.services.EmployerService;
 import com.wanted.needswork.services.FileStorageService;
 import com.wanted.needswork.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +19,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -25,6 +33,8 @@ public class EmployerController {
     UserService userService;
     @Autowired
     FileStorageService fileStorageService;
+    @Value("${app.logo.base-path}")
+    private String logoBasePath;
 
     @GetMapping("/employer/showall")
     public ResponseEntity<List<EmployerResponseDTO>> showall() {
@@ -35,6 +45,25 @@ public class EmployerController {
         }
         return new ResponseEntity<>(employerResponseDTOs, HttpStatus.OK);
     }
+
+    @GetMapping("/employer/logo/{employerId}")
+    public ResponseEntity<Resource> getTextResume(@PathVariable BigInteger employerId) throws MalformedURLException {
+        // допустим, у вас в БД лежит имя файла или вы формируете его по шаблону:
+        String fileName = employerService.getEmployer(employerId).getLogo();
+        Path file = Paths.get(logoBasePath).resolve(fileName);
+
+        if (!Files.exists(file)) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Resource resource = new UrlResource(file.toUri());
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_PDF)
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "inline; filename=\"" + file.getFileName().toString() + "\"")
+                .body(resource);
+    }
+
 
 
     @GetMapping("/employer/get/{employerId}")
@@ -65,7 +94,7 @@ public class EmployerController {
         }
         String logoFileName;
         if (employerDTO.getLogo() != null) {
-        logoFileName= "/logo/" + fileStorageService.storeLogo(employerDTO.getLogo());}
+        logoFileName= fileStorageService.storeLogo(employerDTO.getLogo());}
         else {
             logoFileName = null;
         }
@@ -86,7 +115,7 @@ public class EmployerController {
         }
         String logoFileName;
         if (employerDTO.getLogo() != null) {
-            logoFileName= "/logo/" + fileStorageService.storeLogo(employerDTO.getLogo());}
+            logoFileName= fileStorageService.storeLogo(employerDTO.getLogo());}
         else {
             logoFileName = null;
         }

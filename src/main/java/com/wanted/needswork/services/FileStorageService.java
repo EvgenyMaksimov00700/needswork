@@ -20,13 +20,18 @@ public class FileStorageService {
             return null;
         }
         // создаём папку, если нет
-        String uploadDir = "/src/main/resources/static/logo";
-        Path uploadPath = Paths.get(uploadDir).toAbsolutePath().normalize();
+        Path uploadPath = Paths.get(
+                System.getProperty("user.dir"),
+                "src", "main", "resources", "static", "logo"
+        ).toAbsolutePath().normalize();
+
         Files.createDirectories(uploadPath);
 
         // уникальное имя
         String filename = UUID.randomUUID() + "-" + StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
         Path target = uploadPath.resolve(filename);
+        System.out.println(target);
+
         // сохраняем
         Files.copy(file.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
         return filename;
