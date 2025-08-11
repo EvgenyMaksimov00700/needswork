@@ -107,8 +107,8 @@ async function fetchAndDisplayData() {
         document.getElementById("description").value = data.description || '';
         document.getElementById("email").value = data.email || '';
         document.getElementById("phone").value = data.phone || '';
-        if (data.logo!=null) {
-            document.getElementById("logoPreview").src = '/employer/logo/' + data.id;
+        if (data.logo!=null && data.logo) {
+            document.getElementById("logoPreview").src = '/employer/logo/' + data.employer_id;
 
         }
     } catch (error) {
