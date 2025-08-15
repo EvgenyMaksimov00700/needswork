@@ -1,330 +1,642 @@
-body {
+/* ===== TELEGRAM NIGHT THEME ===== */
+:root {
+    /* Telegram Night Colors */
+    --tg-bg-primary: #0f0f0f;
+    --tg-bg-secondary: #1a1a1a;
+    --tg-bg-tertiary: #2a2a2a;
+    --tg-bg-elevated: #323232;
+    --tg-bg-overlay: rgba(0, 0, 0, 0.8);
+    
+    /* Text Colors */
+    --tg-text-primary: #ffffff;
+    --tg-text-secondary: #b0b0b0;
+    --tg-text-tertiary: #8e8e8e;
+    --tg-text-accent: #0088cc;
+    
+    /* Accent Colors */
+    --tg-accent-primary: #0088cc;
+    --tg-accent-secondary: #007ab8;
+    --tg-accent-success: #4caf50;
+    --tg-accent-warning: #ff9800;
+    --tg-accent-error: #f44336;
+    
+    /* Borders & Shadows */
+    --tg-border-light: #3a3a3a;
+    --tg-border-medium: #4a4a4a;
+    --tg-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --tg-shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --tg-shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.5);
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ===== GLOBAL STYLES ===== */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #2a2f33; /* Фон ночной темы Telegram */
-    color: #d1d1d1; /* Светлый текст */
 }
 
-.header {
-    font-weight: bold;
-    margin-top: 20px;
-    color: #ffffff; /* Белый текст для заголовков */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--tg-bg-primary) 0%, var(--tg-bg-secondary) 100%);
+    color: var(--tg-text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-.container {
-
-    width: 100%;
-    max-width: 390px;
+/* ===== APP CONTAINER ===== */
+.app-container {
+    max-width: 480px;
     margin: 0 auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #23272a; /* Контрастный фон контейнера */
-    border-radius: 40px; /* Округлённые углы */
-    border: 1px solid #3c4043; /* Тонкая обводка */
+    min-height: 100vh;
+    background: var(--tg-bg-primary);
+    position: relative;
 }
 
-h1 {
-    text-align: center;
+/* ===== HEADER ===== */
+.app-header {
+    background: var(--tg-bg-secondary);
+    border-bottom: 1px solid var(--tg-border-light);
+    padding: var(--spacing-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+}
+
+.page-title {
     font-size: 18px;
-    margin-bottom: 20px;
-    color: #ffffff; /* Белый текст заголовков */
+    font-weight: 600;
+    color: var(--tg-text-primary);
+    flex: 1;
+    text-align: center;
 }
 
+.back-button,
+.share-button {
+    background: var(--tg-bg-tertiary);
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-md);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--tg-text-primary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: 16px;
+}
+
+.back-button:hover,
+.share-button:hover {
+    background: var(--tg-bg-elevated);
+    border-color: var(--tg-border-medium);
+    transform: translateY(-1px);
+    box-shadow: var(--tg-shadow-light);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    padding: var(--spacing-md);
+    padding-bottom: var(--spacing-xl);
+}
+
+/* ===== VACANCY CARD ===== */
+.vacancy-card {
+    background: var(--tg-bg-secondary);
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--tg-shadow-medium);
+    transition: all var(--transition-normal);
+}
+
+.vacancy-card:hover {
+    box-shadow: var(--tg-shadow-heavy);
+    transform: translateY(-2px);
+}
+
+.vacancy-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.vacancy-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--tg-text-primary);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.3;
+}
+
+.company-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--tg-text-secondary);
+    font-size: 16px;
+}
+
+.company-info i {
+    color: var(--tg-accent-primary);
+    font-size: 18px;
+}
+
+.company-name {
+    font-weight: 500;
+}
+
+/* ===== VACANCY DETAILS ===== */
 .vacancy-details {
-    background-color: #2f343a; /* Тёмный фон блока деталей */
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    color: #d1d1d1; /* Светлый текст */
-}
-
-.vacancy-details ul {
-    padding-left: 20px;
-    margin: 10px 0;
-    color: #d1d1d1; /* Светлый текст списка */
-}
-
-.vacancy-details ul li {
-    list-style-type: disc;
-    margin-bottom: 10px;
-}
-
-.vacancy-details p {
-    margin: 10px 0;
-}
-
-.button-group {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--tg-bg-tertiary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--tg-border-light);
 }
 
-.button {
-    padding: 15px;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid #3c4043; /* Тонкая обводка */
-    font-size: 16px;
-    cursor: pointer;
-    color: white; /* Светлый текст */
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-.resume-buttons-two {
+.detail-item {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 5px;
-
-
-
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+    color: var(--tg-text-secondary);
+    font-size: 15px;
 }
 
-.button.green {
-    background-color: #0088cc; /* Telegram-синий */
-    width: 100%;
+.detail-item i {
+    width: 20px;
+    color: var(--tg-accent-primary);
+    font-size: 16px;
+    text-align: center;
 }
 
-.button.green:hover {
-    background-color: #007ab8; /* Светлее при наведении */
-    transform: scale(1.02); /* Лёгкое увеличение */
-
+.detail-item.salary {
+    color: var(--tg-text-primary);
+    font-weight: 600;
 }
 
-.button.red {
-    background-color: #f44336; /* Красный для кнопок отмены */
+.salary-text {
+    color: var(--tg-accent-success);
+    font-weight: 700;
 }
 
-.button.red:hover {
-    background-color: #d7372f; /* Темнее при наведении */
-    transform: scale(1.02); /* Лёгкое увеличение */
+/* ===== VACANCY DESCRIPTION ===== */
+.vacancy-description {
+    margin-bottom: var(--spacing-lg);
 }
 
-/* Стили модального окна */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--tg-text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.section-title i {
+    color: var(--tg-accent-primary);
+    font-size: 20px;
+}
+
+.description-content {
+    background: var(--tg-bg-tertiary);
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    color: var(--tg-text-secondary);
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+.description-content ul {
+    padding-left: var(--spacing-lg);
+    margin: var(--spacing-md) 0;
+}
+
+.description-content li {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ===== VACANCY STATS ===== */
+.vacancy-stats {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--tg-bg-tertiary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--tg-border-light);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--tg-text-tertiary);
+    font-size: 14px;
+}
+
+.stat-item i {
+    color: var(--tg-accent-primary);
+    font-size: 16px;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+    min-height: 52px;
+}
+
+.action-btn.primary {
+    background: linear-gradient(135deg, var(--tg-accent-primary) 0%, var(--tg-accent-secondary) 100%);
+    color: white;
+    box-shadow: var(--tg-shadow-light);
+}
+
+.action-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--tg-shadow-medium);
+    filter: brightness(1.1);
+}
+
+.action-btn.primary:active {
+    transform: translateY(0);
+}
+
+.action-btn.secondary {
+    background: var(--tg-bg-tertiary);
+    color: var(--tg-text-primary);
+    border: 1px solid var(--tg-border-light);
+}
+
+.action-btn.secondary:hover {
+    background: var(--tg-bg-elevated);
+    border-color: var(--tg-border-medium);
+    transform: translateY(-1px);
+    box-shadow: var(--tg-shadow-light);
+}
+
+.action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.resume-options {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.resume-options .action-btn {
+    flex: 1;
+}
+
+/* ===== MODALS ===== */
 .modal {
-    display: none; /* Скрыто по умолчанию */
+    display: none;
     position: fixed;
-    z-index: 1;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* Полупрозрачный фон */
+    background: var(--tg-bg-overlay);
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: fadeIn var(--transition-normal);
 }
 
 .modal-content {
-    background-color: #23272a; /* Фон модального окна */
-    margin-top: 130px;
+    background: var(--tg-bg-secondary);
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-lg);
     margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #3c4043; /* Тонкая обводка */
-    width: 80%;
-    max-width: 500px;
-    position: relative;
-    border-radius: 8px; /* Округлённые углы */
-    color: #d1d1d1; /* Светлый текст */
+    max-width: 90%;
+    width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: var(--tg-shadow-heavy);
+    animation: slideUp var(--transition-normal);
 }
 
-.close {
-    color: #d1d1d1; /* Светлый крестик */
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--tg-border-light);
+}
+
+.modal-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--tg-text-primary);
+}
+
+.close-btn {
+    background: var(--tg-bg-tertiary);
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-md);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--tg-text-secondary);
     cursor: pointer;
+    transition: all var(--transition-fast);
+    font-size: 14px;
 }
 
-.close:hover,
-.close:focus {
-    color: #ffffff; /* Белый при наведении */
-    text-decoration: none;
+.close-btn:hover {
+    background: var(--tg-bg-elevated);
+    color: var(--tg-text-primary);
+    transform: scale(1.1);
 }
 
-.resume-buttons {
+.modal-body {
+    padding: var(--spacing-lg);
+}
+
+.modal-text {
+    color: var(--tg-text-secondary);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+}
+
+/* ===== RESUME LIST ===== */
+.resume-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--spacing-sm);
 }
 
 .resume-button {
-    color: white; /* Светлый текст кнопок */
-    padding: 10px;
-    border: 1px solid #3c4043; /* Тонкая обводка */
-    border-radius: 5px;
+    background: var(--tg-bg-tertiary);
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    color: var(--tg-text-primary);
     cursor: pointer;
-    background-color: #0088cc; /* Telegram-синий */
-    transition: background-color 0.3s ease, transform 0.3s ease;
-
+    transition: all var(--transition-fast);
+    text-align: left;
+    font-size: 15px;
 }
 
 .resume-button:hover {
-    background-color: #007ab8; /* Светлее при наведении */
-    transform: scale(1.02); /* Лёгкое увеличение */
-}
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #2a2f33; /* Semi-transparent white background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* Ensure it appears on top of other elements */
+    background: var(--tg-bg-elevated);
+    border-color: var(--tg-border-medium);
+    transform: translateX(4px);
 }
 
-.loading-overlay img {
-  width: 200px; /* Adjust the width as needed */
-  height: 200px; /* Adjust the height as needed */
-}
-/* Обёртка для заголовка и кнопки */
-.header-group {
-    position: relative;      /* для абсолютного позиционирования кнопки */
-    text-align: center;      /* центрируем заголовок */
-    margin-bottom: 20px;
+/* ===== CHECKBOX WRAPPER ===== */
+.checkbox-wrapper {
+    margin-bottom: var(--spacing-lg);
 }
 
-/* Заголовок */
-.header-group h1 {
-    display: inline-block;   /* чтобы text-align сработал по центру */
-    margin: 0;
-    font-size: 18px;
-    color: #ffffff;
+.checkbox-wrapper input[type="checkbox"] {
+    margin-right: var(--spacing-sm);
+    width: 18px;
+    height: 18px;
+    accent-color: var(--tg-accent-primary);
 }
 
-/* Кнопка «Поделиться» */
-.share-button {
-    position: absolute;
-    right: 10px;             /* отступ от правого края контейнера */
-    top: 50%;                /* вертикально по центру */
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #d1d1d1;
-    font-size: 20px;
-    padding: 8px;
-    border-radius: 8px;
-    transition: color 0.2s ease, transform 0.2s ease;
-    cursor: pointer;
-}
-
-/* Эффект при наведении */
-.share-button:hover {
-    color: #ffffff;
-    transform: translateY(-50%) scale(1.1);
-}
-
-/* Контактное модальное окно */
-#contactModal {
-    display: none; /* по умолчанию скрыто */
-    position: fixed;
-    z-index: 10000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-#contactModal .modal-content {
-    background-color: #23272a;
-    margin: 60% 4%;
-    padding: 20px;
-    border: 1px solid #3c4043;
-    width: 82%;
-    max-width: 400px;
-    border-radius: 8px;
-    color: #d1d1d1;
-    position: relative;
-}
-
-#contactModal .close {
-    color: #d1d1d1;
-    position: absolute;
-    right: 15px;
-    top: 10px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#contactModal .close:hover {
-    color: #ffffff;
-}
-
-#contactModal p {
+.checkbox-wrapper label {
+    color: var(--tg-text-secondary);
     font-size: 14px;
-    line-height: 1.4;
-    margin-bottom: 20px;
+    line-height: 1.5;
 }
 
-#contactModal input[type="checkbox"] {
-    vertical-align: middle;
-    margin: 0 8px 0 0;
-    width: 16px;
-    height: 16px;
-    accent-color: #0088cc; /* цвет чекбокса */
+.checkbox-wrapper a {
+    color: var(--tg-accent-primary);
+    text-decoration: none;
 }
 
-#contactModal a {
-    color: #0088cc;
+.checkbox-wrapper a:hover {
     text-decoration: underline;
 }
 
-#contactModal a:hover {
-    color: #007ab8;
+/* ===== UPLOAD SECTION ===== */
+.upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
 }
 
-#shareContactBtn {
-    display: block;
+.upload-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.resume-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    background: var(--tg-accent-success);
+    color: white;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+}
+
+.resume-link:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+    box-shadow: var(--tg-shadow-light);
+}
+
+/* ===== LOADING OVERLAY ===== */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 12px;
+    height: 100%;
+    background: var(--tg-bg-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+    background: var(--tg-bg-secondary);
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    box-shadow: var(--tg-shadow-heavy);
+}
+
+.loading-gif {
+    width: 120px;
+    height: 120px;
+    border-radius: var(--radius-md);
+}
+
+.loading-text {
+    color: var(--tg-text-secondary);
     font-size: 16px;
-    text-align: center;
-    border-radius: 8px;
-    border: 1px solid #3c4043;
-    background-color: #0088cc;
-    color: #ffffff;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: 500;
 }
 
-#shareContactBtn:hover {
-    background-color: #007ab8;
-    transform: scale(1.02);
-}
-#shareContactBtn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-/* Обёртка кнопок */
-.buttons {
-  display: flex;
-  align-items: center;
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-/* Стили для ссылки с резюме */
-#resume-text {
-  /* помещаем перед кнопкой через flex-order */
-  order: -1;
-
-  display: inline-block;
-  background-color: #f2f2f2;    /* светло-серый фон */
-  color: #333;                  /* тёмный текст */
-  padding: 6px 10px;            /* отступы */
-  border-radius: 4px;           /* скругление углов */
-  text-decoration: none;        /* без подчёркивания */
-  font-size: 14px;              /* размер текста */
-  margin-right: 12px;           /* отступ от кнопки */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* При наведении чуть затемняем фон */
-#resume-text:hover {
-  background-color: #e0e0e0;
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 480px) {
+    .app-container {
+        max-width: 100%;
+    }
+    
+    .main-content {
+        padding: var(--spacing-sm);
+    }
+    
+    .vacancy-card {
+        padding: var(--spacing-md);
+    }
+    
+    .vacancy-title {
+        font-size: 20px;
+    }
+    
+    .resume-options {
+        flex-direction: column;
+    }
+    
+    .modal-content {
+        margin: 5% auto;
+        width: 95%;
+    }
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--tg-bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--tg-border-medium);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--tg-accent-primary);
+}
+
+/* ===== FOCUS STATES ===== */
+.action-btn:focus,
+.back-button:focus,
+.share-button:focus,
+.close-btn:focus {
+    outline: 2px solid var(--tg-accent-primary);
+    outline-offset: 2px;
+}
+
+/* ===== SELECTION ===== */
+::selection {
+    background: var(--tg-accent-primary);
+    color: white;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .app-header,
+    .action-buttons,
+    .modal {
+        display: none !important;
+    }
+    
+    .app-container {
+        max-width: none;
+        background: white;
+    }
+    
+    .vacancy-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
 }

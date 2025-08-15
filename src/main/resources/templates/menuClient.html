@@ -2,32 +2,61 @@
 <html lang="ru">
 <head>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мои Вакансии</title>
+    <title>Список вакансий</title>
     <link rel="stylesheet" href="/css/menuClient.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6O1o6+K5W+SzN+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<div class="container">
-    <div id="loading" class="loading-overlay">
-        <img src="/imag/DuckThink.gif" alt="Loading">
-    </div>
-    <div class="header">
-        <h2>Список доступных вакансий</h2>
-        <a href = "/vacancy/filter/page" id = "filter_button">
-            <img src="/imag/filter.png" alt="Фильтр" class="filterImg">
-        </a>
-    </div>
-    <div id="vacancies"></div>
-    <div class="pagination">
-        <div class="pagination-container">
-            <button class="pagination-button" onclick="prevPage()">Предыдущая</button>
-            <span id="page-number">1</span>
-            <button class="pagination-button" onclick="nextPage()">Следующая</button>
-        </div>
-</div>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="page-title">
+                    <i class="fas fa-briefcase"></i>
+                    Список вакансий
+                </h1>
+                <a href="/vacancy/filter/page" id="filter_button" class="filter-button">
+                    <i class="fas fa-filter"></i>
+                </a>
+            </div>
+        </header>
 
-<script src="/js/menuClient.js"></script>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Vacancies List -->
+            <div class="vacancies-container">
+                <div id="vacancies" class="vacancies-list"></div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <div class="pagination-container">
+                    <button class="pagination-btn prev" onclick="prevPage()">
+                        <i class="fas fa-chevron-left"></i>
+                        <span>Предыдущая</span>
+                    </button>
+                    <div class="page-indicator">
+                        <span class="page-number" id="page-number">1</span>
+                    </div>
+                    <button class="pagination-btn next" onclick="nextPage()">
+                        <span>Следующая</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay">
+        <div class="loading-content">
+            <img src="/imag/DuckThink.gif" alt="Loading" class="loading-gif">
+            <p class="loading-text">Загрузка вакансий...</p>
+        </div>
+    </div>
+
+    <script src="/js/menuClient.js"></script>
 </body>
 </html>

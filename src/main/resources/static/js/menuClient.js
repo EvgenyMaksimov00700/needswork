@@ -7,7 +7,7 @@ clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
     }
     console.log(isDesktop());
     if (!isDesktop()) {
-    document.querySelector(".container").style.marginTop = "90px";
+    document.querySelector(".app-container").style.marginTop = "90px";
         window.Telegram.WebApp.requestFullscreen();
     }
 
@@ -90,6 +90,48 @@ const currentPage = getCurrentPage();
 goToPage(currentPage + 1);
 }
 
+// Функция для форматирования зарплаты
+function formatSalary(fromSalary, toSalary) {
+    let salary = "";
+    if (fromSalary != null) {
+        salary += `от ${fromSalary}`;
+    }
+    if (toSalary != null) {
+        salary += ` до ${toSalary}`;
+    }
+    if (salary == "") {
+        salary = "Не указано";
+    }
+    return salary;
+}
+
+// Функция для создания современной карточки вакансии
+function createVacancyCard(vacancy, vacancyUrl) {
+    const salary = formatSalary(vacancy.fromSalary, vacancy.toSalary);
+    
+    return `
+        <div class="vacancy" onclick="window.location.href='${vacancyUrl}'">
+            <div class="vacancy-header">
+                <h3 class="vacancy-title">${vacancy.position}</h3>
+            </div>
+            <div class="vacancy-details">
+                <div class="vacancy-salary">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>${salary}</span>
+                </div>
+                <div class="vacancy-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>${vacancy.city}</span>
+                </div>
+                <div class="vacancy-company">
+                    <i class="fas fa-building"></i>
+                    <span>${vacancy.employer.name}</span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
 document.addEventListener('DOMContentLoaded', function(){
     try {
         const webApp = window.Telegram.WebApp;
@@ -105,47 +147,59 @@ document.addEventListener('DOMContentLoaded', function(){
     } catch (e) {
          console.warn('Telegram WebApp init error', e);
     }
-    const filter_button=document.getElementById('filter_button');
-    filter_button.href=`/vacancy/filter/page?${existParams.toString()}`;
+    
+    const filter_button = document.getElementById('filter_button');
+    filter_button.href = `/vacancy/filter/page?${existParams.toString()}`;
+    
     const currentPage = getCurrentPage();
     updatePageNumberDisplay(currentPage);
 
     const url = `/vacancy/filter?page=${currentPage}&${existParams.toString()}`;
     console.log(url);
-     fetch( url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => {
-                if (!response.ok) {
-
-                    throw new Error(`Ошибка HTTP: ${response.status}`); // Бросаем ошибку, если ответ не в порядке
-                }
-                return response.json();
-
-            }).then(data => {
-            console.log(data);
-            const vacancies=document.getElementById("vacancies")
-            data.forEach (vacancy => {
-                let salary="";
-                if (vacancy.fromSalary!=null) {
-                    salary+=`от ${vacancy.fromSalary}`;
-                }
-                if (vacancy.toSalary!=null) {
-                    salary+=` до ${vacancy.toSalary}`;
-                }
-                if (salary=="") {
-                    salary="Не указано";
-                }
-               const vacancy_url = `/vacancy/description?id=${vacancy.id}&${existParams.toString()}`;
-               const element = `<button class="vacancy" onclick="window.location.href='${vacancy_url}'">
-                                   <b>${vacancy.position}</b><br>${salary}<br>${vacancy.city}<br>${vacancy.employer.name}
-                               </button>`;
-               vacancies.innerHTML += element;
-            })
-            }).then(() => {
-            const loadingOverlay = document.getElementById("loading");
-            loadingOverlay.style.display = "none";
+    
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error(`Ошибка HTTP: ${response.status}`);
+        }
+        return response.json();
+    }).then(data => {
+        console.log(data);
+        const vacancies = document.getElementById("vacancies");
+        
+        if (data.length === 0) {
+            vacancies.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-search"></i>
+                    <h3>Вакансии не найдены</h3>
+                    <p>Попробуйте изменить параметры поиска</p>
+                </div>
+            `;
+        } else {
+            data.forEach(vacancy => {
+                const vacancy_url = `/vacancy/description?id=${vacancy.id}&${existParams.toString()}`;
+                const vacancyCard = createVacancyCard(vacancy, vacancy_url);
+                vacancies.innerHTML += vacancyCard;
             });
+        }
+    }).then(() => {
+        const loadingOverlay = document.getElementById("loading");
+        loadingOverlay.style.display = "none";
+    }).catch(error => {
+        console.error('Ошибка загрузки вакансий:', error);
+        const vacancies = document.getElementById("vacancies");
+        vacancies.innerHTML = `
+            <div class="error-state">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>Ошибка загрузки</h3>
+                <p>Не удалось загрузить вакансии. Попробуйте позже.</p>
+            </div>
+        `;
+        const loadingOverlay = document.getElementById("loading");
+        loadingOverlay.style.display = "none";
+    });
 });

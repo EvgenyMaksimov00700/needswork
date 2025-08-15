@@ -4,133 +4,203 @@
     <meta charset="UTF-8">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мои Вакансии</title>
+    <title>Описание вакансии</title>
     <link rel="stylesheet" href="/css/description_vacancy_job_seeker.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6O1o6+K5W+SzN+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<div class="container">
-    <div class="header-group">
-        <h1>О вакансии</h1>
-        <!-- Кнопка поделиться -->
-        <button class="button share-button" onclick="shareVacancy()">
-            <i class="fas fa-share-alt"></i>
-        </button>
-    </div>
-    <div class="vacancy-details">
-        <h3 id="position" class="header"></h3>
-        <p id="employer_name"></p>
-        <p id="employer_phone"></p>
-        <p id="city"></p>
-        <p id="address"></p>
-        <p id="salary"></p>
-        <p id="exp"></p>
-        <p id="workSchedule"></p>
-        <p class="header">Страница вакансии</p>
-        <div id="responsibility"></div>
-        <p id="create_date"></p>
-        <p id="views" ></p>
-    </div>
-    <div class="button-group">
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <button class="back-button" onclick="vacancy_back()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1 class="page-title">Описание вакансии</h1>
+                <button class="share-button" onclick="shareVacancy()">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+            </div>
+        </header>
 
-        <button class="button green" onclick="vacancy_text_resume()" id="text-resume">Откликнуться с текстовым резюме
-        </button>
-        <div class="resume-buttons-two">
-            <button class="button green" onclick="vacancy_response()" id="response">Видео резюме</button>
-            <button class="button green" onclick="vacancy_no_resume()" id="no-resume">Без резюме</button>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Vacancy Card -->
+            <div class="vacancy-card">
+                <div class="vacancy-header">
+                    <h2 id="position" class="vacancy-title"></h2>
+                    <div class="company-info">
+                        <i class="fas fa-building"></i>
+                        <span id="employer_name" class="company-name"></span>
+                    </div>
+                </div>
+
+                <!-- Vacancy Details -->
+                <div class="vacancy-details">
+                    <div class="detail-item">
+                        <i class="fas fa-phone"></i>
+                        <span id="employer_phone"></span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="city"></span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span id="address"></span>
+                    </div>
+                    <div class="detail-item salary">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span id="salary" class="salary-text"></span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span id="exp"></span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="workSchedule"></span>
+                    </div>
+                </div>
+
+                <!-- Vacancy Description -->
+                <div class="vacancy-description">
+                    <h3 class="section-title">
+                        <i class="fas fa-file-text"></i>
+                        Описание вакансии
+                    </h3>
+                    <div id="responsibility" class="description-content"></div>
+                </div>
+
+                <!-- Vacancy Stats -->
+                <div class="vacancy-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>Опубликовано: <span id="create_date"></span></span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-eye"></i>
+                        <span>Просмотров: <span id="views"></span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="action-btn primary" onclick="vacancy_text_resume()" id="text-resume">
+                    <i class="fas fa-file-text"></i>
+                    <span>Откликнуться с текстовым резюме</span>
+                </button>
+                
+                <div class="resume-options">
+                    <button class="action-btn secondary" onclick="vacancy_response()" id="response">
+                        <i class="fas fa-video"></i>
+                        <span>Видео резюме</span>
+                    </button>
+                    <button class="action-btn secondary" onclick="vacancy_no_resume()" id="no-resume">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Без резюме</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Resume Selection Modal -->
+    <div id="resumeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Выберите резюме</h2>
+                <button class="close-btn" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="resume-buttons" class="resume-list"></div>
+            </div>
         </div>
-
-
-        <button class="button green" id="back-btn" onclick="vacancy_back()">Назад</button>
     </div>
-</div>
 
-<!-- Popup Modal -->
-<div id="resumeModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>Список резюме</h2>
-        <div id="resume-buttons" class="resume-buttons"></div>
-
-    </div>
-</div>
-<div id="contactModal" class="modal">
-    <div class="modal-content">
-        <span class="close" id="closeContactModal">&times;</span>
-        <p>
-            <input type="checkbox" id="offerCheckbox">
-            <label for="offerCheckbox">
-                Нажимая на кнопку «Поделиться номером телефона» вы подтверждаете
-                <a href="https://tworker.ru/legal/сontract_offer.pdf" target="_blank" rel="noopener noreferrer">
-                    договор-оферты
-                </a>
-            </label>
-        </p>
-        <button class="button green" id="shareContactBtn" disabled>Поделиться номером телефона</button>
-    </div>
-</div>
-<!-- Модал -->
-<div id="noResumeModal" class="modal">
-    <div class="modal-content">
-        <span class="close" id="closeNoResumeModal">&times;</span>
-
-        <p class="modal-text">
-            Загрузите своё резюме, прежде чем откликаться на вакансию.<br>
-            Или откликнитесь без резюме.
-        </p>
-
-        <div class="buttons">
-            <!-- Загрузить/Обновить резюме -->
-            <button
-                    class="button green"
-                    id="uploadResumeBtn"
-                    onclick="triggerFileUpload()"
-            >
-                Загрузить резюме
-            </button>
-
-            <!-- Показ имени загруженного файла -->
-            <a
-                    id="resume-text"
-                    class="show-resume"
-                    href="#"
-                    target="_blank"
-                    style="display: none; margin-left: 12px;"
-            ></a>
+    <!-- Contact Sharing Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Поделиться контактом</h2>
+                <button class="close-btn" id="closeContactModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="offerCheckbox">
+                    <label for="offerCheckbox">
+                        Нажимая на кнопку «Поделиться номером телефона» вы подтверждаете
+                        <a href="https://tworker.ru/legal/сontract_offer.pdf" target="_blank" rel="noopener noreferrer">
+                            договор-оферты
+                        </a>
+                    </label>
+                </div>
+                <button class="action-btn primary" id="shareContactBtn" disabled>
+                    <i class="fas fa-phone"></i>
+                    <span>Поделиться номером телефона</span>
+                </button>
+            </div>
         </div>
-
-        <!-- Появится после загрузки -->
-        <button
-                class="button green"
-                id="respondWithResumeBtn"
-
-                style="display: none; margin-top: 10px;"
-        >
-            Откликнуться с резюме
-        </button>
-
-        <!-- Отклик без резюме -->
-        <button
-                class="button green"
-                id="noResumeBtn"
-
-                style="margin-top: 10px;"
-        >
-            Откликнуться без резюме
-        </button>
     </div>
-</div>
 
-<!-- Скрытый инпут для файлов -->
-<input
-        id="text-resume-upload"
-        type="file"
-        accept=".txt,.doc,.docx,.pdf"
-        style="display: none;"
-/>
-<div id="loading" class="loading-overlay">
-    <img src="/imag/DuckCounting.gif" alt="Loading">
-</div>
-<script src="/js/description_vacancy_job_seeker.js"></script>
+    <!-- No Resume Modal -->
+    <div id="noResumeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Загрузка резюме</h2>
+                <button class="close-btn" id="closeNoResumeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-section">
+                    <p class="modal-text">
+                        Загрузите своё резюме, прежде чем откликаться на вакансию.<br>
+                        Или откликнитесь без резюме.
+                    </p>
+
+                    <div class="upload-actions">
+                        <button class="action-btn secondary" id="uploadResumeBtn" onclick="triggerFileUpload()">
+                            <i class="fas fa-upload"></i>
+                            <span>Загрузить резюме</span>
+                        </button>
+                        
+                        <a id="resume-text" class="resume-link" href="#" target="_blank" style="display: none;">
+                            <i class="fas fa-file"></i>
+                            <span>Просмотреть резюме</span>
+                        </a>
+                    </div>
+
+                    <button class="action-btn primary" id="respondWithResumeBtn" style="display: none;">
+                        <i class="fas fa-check"></i>
+                        <span>Откликнуться с резюме</span>
+                    </button>
+
+                    <button class="action-btn secondary" id="noResumeBtn">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Откликнуться без резюме</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden file input -->
+    <input id="text-resume-upload" type="file" accept=".txt,.doc,.docx,.pdf" style="display: none;" />
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay">
+        <div class="loading-content">
+            <img src="/imag/DuckCounting.gif" alt="Loading" class="loading-gif">
+            <p class="loading-text">Загрузка...</p>
+        </div>
+    </div>
+
+    <script src="/js/description_vacancy_job_seeker.js"></script>
 </body>
 </html>
