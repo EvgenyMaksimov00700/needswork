@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>Описание вакансии</title>
     <link rel="stylesheet" href="/css/description_vacancy_job_seeker.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6O1o6+K5W+SzN+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -13,12 +17,12 @@
         <!-- Header -->
         <header class="app-header">
             <div class="header-content">
-                <button class="back-button" onclick="vacancy_back()">
-                    <i class="fas fa-arrow-left"></i>
+                <button class="back-button" onclick="vacancy_back()" aria-label="Назад">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
                 </button>
                 <h1 class="page-title">Описание вакансии</h1>
-                <button class="share-button" onclick="shareVacancy()">
-                    <i class="fas fa-share-alt"></i>
+                <button class="share-button" onclick="shareVacancy()" aria-label="Поделиться">
+                    <i class="fas fa-share-alt" aria-hidden="true"></i>
                 </button>
             </div>
         </header>
@@ -30,7 +34,7 @@
                 <div class="vacancy-header">
                     <h2 id="position" class="vacancy-title"></h2>
                     <div class="company-info">
-                        <i class="fas fa-building"></i>
+                        <i class="fas fa-building" aria-hidden="true"></i>
                         <span id="employer_name" class="company-name"></span>
                     </div>
                 </div>
@@ -38,27 +42,27 @@
                 <!-- Vacancy Details -->
                 <div class="vacancy-details">
                     <div class="detail-item">
-                        <i class="fas fa-phone"></i>
+                        <i class="fas fa-phone" aria-hidden="true"></i>
                         <span id="employer_phone"></span>
                     </div>
                     <div class="detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         <span id="city"></span>
                     </div>
                     <div class="detail-item">
-                        <i class="fas fa-location-dot"></i>
+                        <i class="fas fa-location-dot" aria-hidden="true"></i>
                         <span id="address"></span>
                     </div>
                     <div class="detail-item salary">
-                        <i class="fas fa-money-bill-wave"></i>
+                        <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
                         <span id="salary" class="salary-text"></span>
                     </div>
                     <div class="detail-item">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-briefcase" aria-hidden="true"></i>
                         <span id="exp"></span>
                     </div>
                     <div class="detail-item">
-                        <i class="fas fa-clock"></i>
+                        <i class="fas fa-clock" aria-hidden="true"></i>
                         <span id="workSchedule"></span>
                     </div>
                 </div>
@@ -66,8 +70,8 @@
                 <!-- Vacancy Description -->
                 <div class="vacancy-description">
                     <h3 class="section-title">
-                        <i class="fas fa-file-text"></i>
-                        Описание вакансии
+                        <i class="fas fa-file-text" aria-hidden="true"></i>
+                        <span>Описание вакансии</span>
                     </h3>
                     <div id="responsibility" class="description-content"></div>
                 </div>
@@ -75,11 +79,11 @@
                 <!-- Vacancy Stats -->
                 <div class="vacancy-stats">
                     <div class="stat-item">
-                        <i class="fas fa-calendar"></i>
+                        <i class="fas fa-calendar" aria-hidden="true"></i>
                         <span>Опубликовано: <span id="create_date"></span></span>
                     </div>
                     <div class="stat-item">
-                        <i class="fas fa-eye"></i>
+                        <i class="fas fa-eye" aria-hidden="true"></i>
                         <span>Просмотров: <span id="views"></span></span>
                     </div>
                 </div>
@@ -88,17 +92,17 @@
             <!-- Action Buttons -->
             <div class="action-buttons">
                 <button class="action-btn primary" onclick="vacancy_text_resume()" id="text-resume">
-                    <i class="fas fa-file-text"></i>
+                    <i class="fas fa-file-text" aria-hidden="true"></i>
                     <span>Откликнуться с текстовым резюме</span>
                 </button>
                 
                 <div class="resume-options">
                     <button class="action-btn secondary" onclick="vacancy_response()" id="response">
-                        <i class="fas fa-video"></i>
+                        <i class="fas fa-video" aria-hidden="true"></i>
                         <span>Видео резюме</span>
                     </button>
                     <button class="action-btn secondary" onclick="vacancy_no_resume()" id="no-resume">
-                        <i class="fas fa-paper-plane"></i>
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
                         <span>Без резюме</span>
                     </button>
                 </div>
@@ -107,33 +111,33 @@
     </div>
 
     <!-- Resume Selection Modal -->
-    <div id="resumeModal" class="modal">
+    <div id="resumeModal" class="modal" role="dialog" aria-labelledby="resumeModalTitle">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Выберите резюме</h2>
-                <button class="close-btn" onclick="closeModal()">
-                    <i class="fas fa-times"></i>
+                <h2 id="resumeModalTitle">Выберите резюме</h2>
+                <button class="close-btn" onclick="closeModal()" aria-label="Закрыть">
+                    <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <div id="resume-buttons" class="resume-list"></div>
+                <div id="resume-buttons" class="resume-list" role="list" aria-label="Список резюме"></div>
             </div>
         </div>
     </div>
 
     <!-- Contact Sharing Modal -->
-    <div id="contactModal" class="modal">
+    <div id="contactModal" class="modal" role="dialog" aria-labelledby="contactModalTitle">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Поделиться контактом</h2>
-                <button class="close-btn" id="closeContactModal">
-                    <i class="fas fa-times"></i>
+                <h2 id="contactModalTitle">Поделиться контактом</h2>
+                <button class="close-btn" id="closeContactModal" aria-label="Закрыть">
+                    <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="checkbox-wrapper">
-                    <input type="checkbox" id="offerCheckbox">
-                    <label for="offerCheckbox">
+                    <input type="checkbox" id="offerCheckbox" aria-describedby="offerDescription">
+                    <label for="offerCheckbox" id="offerDescription">
                         Нажимая на кнопку «Поделиться номером телефона» вы подтверждаете
                         <a href="https://tworker.ru/legal/сontract_offer.pdf" target="_blank" rel="noopener noreferrer">
                             договор-оферты
@@ -141,7 +145,7 @@
                     </label>
                 </div>
                 <button class="action-btn primary" id="shareContactBtn" disabled>
-                    <i class="fas fa-phone"></i>
+                    <i class="fas fa-phone" aria-hidden="true"></i>
                     <span>Поделиться номером телефона</span>
                 </button>
             </div>
@@ -149,12 +153,12 @@
     </div>
 
     <!-- No Resume Modal -->
-    <div id="noResumeModal" class="modal">
+    <div id="noResumeModal" class="modal" role="dialog" aria-labelledby="noResumeModalTitle">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Загрузка резюме</h2>
-                <button class="close-btn" id="closeNoResumeModal">
-                    <i class="fas fa-times"></i>
+                <h2 id="noResumeModalTitle">Загрузка резюме</h2>
+                <button class="close-btn" id="closeNoResumeModal" aria-label="Закрыть">
+                    <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
             <div class="modal-body">
@@ -166,23 +170,23 @@
 
                     <div class="upload-actions">
                         <button class="action-btn secondary" id="uploadResumeBtn" onclick="triggerFileUpload()">
-                            <i class="fas fa-upload"></i>
+                            <i class="fas fa-upload" aria-hidden="true"></i>
                             <span>Загрузить резюме</span>
                         </button>
                         
                         <a id="resume-text" class="resume-link" href="#" target="_blank" style="display: none;">
-                            <i class="fas fa-file"></i>
+                            <i class="fas fa-file" aria-hidden="true"></i>
                             <span>Просмотреть резюме</span>
                         </a>
                     </div>
 
                     <button class="action-btn primary" id="respondWithResumeBtn" style="display: none;">
-                        <i class="fas fa-check"></i>
+                        <i class="fas fa-check" aria-hidden="true"></i>
                         <span>Откликнуться с резюме</span>
                     </button>
 
                     <button class="action-btn secondary" id="noResumeBtn">
-                        <i class="fas fa-paper-plane"></i>
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
                         <span>Откликнуться без резюме</span>
                     </button>
                 </div>
@@ -194,9 +198,9 @@
     <input id="text-resume-upload" type="file" accept=".txt,.doc,.docx,.pdf" style="display: none;" />
 
     <!-- Loading Overlay -->
-    <div id="loading" class="loading-overlay">
+    <div id="loading" class="loading-overlay" role="status" aria-label="Загрузка">
         <div class="loading-content">
-            <img src="/imag/DuckCounting.gif" alt="Loading" class="loading-gif">
+            <img src="/imag/DuckCounting.gif" alt="Загрузка" class="loading-gif">
             <p class="loading-text">Загрузка...</p>
         </div>
     </div>

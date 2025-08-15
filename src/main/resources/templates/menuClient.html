@@ -3,7 +3,11 @@
 <head>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>Список вакансий</title>
     <link rel="stylesheet" href="/css/menuClient.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6O1o6+K5W+SzN+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,11 +18,11 @@
         <header class="app-header">
             <div class="header-content">
                 <h1 class="page-title">
-                    <i class="fas fa-briefcase"></i>
-                    Список вакансий
+                    <i class="fas fa-briefcase" aria-hidden="true"></i>
+                    <span>Список вакансий</span>
                 </h1>
-                <a href="/vacancy/filter/page" id="filter_button" class="filter-button">
-                    <i class="fas fa-filter"></i>
+                <a href="/vacancy/filter/page" id="filter_button" class="filter-button" aria-label="Фильтр вакансий">
+                    <i class="fas fa-filter" aria-hidden="true"></i>
                 </a>
             </div>
         </header>
@@ -27,32 +31,32 @@
         <main class="main-content">
             <!-- Vacancies List -->
             <div class="vacancies-container">
-                <div id="vacancies" class="vacancies-list"></div>
+                <div id="vacancies" class="vacancies-list" role="list" aria-label="Список вакансий"></div>
             </div>
 
             <!-- Pagination -->
-            <div class="pagination">
+            <nav class="pagination" role="navigation" aria-label="Навигация по страницам">
                 <div class="pagination-container">
-                    <button class="pagination-btn prev" onclick="prevPage()">
-                        <i class="fas fa-chevron-left"></i>
+                    <button class="pagination-btn prev" onclick="prevPage()" aria-label="Предыдущая страница">
+                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
                         <span>Предыдущая</span>
                     </button>
-                    <div class="page-indicator">
-                        <span class="page-number" id="page-number">1</span>
+                    <div class="page-indicator" aria-label="Текущая страница">
+                        <span class="page-number" id="page-number" aria-current="page">1</span>
                     </div>
-                    <button class="pagination-btn next" onclick="nextPage()">
+                    <button class="pagination-btn next" onclick="nextPage()" aria-label="Следующая страница">
                         <span>Следующая</span>
-                        <i class="fas fa-chevron-right"></i>
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
                     </button>
                 </div>
-            </div>
+            </nav>
         </main>
     </div>
 
     <!-- Loading Overlay -->
-    <div id="loading" class="loading-overlay">
+    <div id="loading" class="loading-overlay" role="status" aria-label="Загрузка">
         <div class="loading-content">
-            <img src="/imag/DuckThink.gif" alt="Loading" class="loading-gif">
+            <img src="/imag/DuckThink.gif" alt="Загрузка" class="loading-gif">
             <p class="loading-text">Загрузка вакансий...</p>
         </div>
     </div>

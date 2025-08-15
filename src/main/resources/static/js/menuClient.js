@@ -110,27 +110,138 @@ function createVacancyCard(vacancy, vacancyUrl) {
     const salary = formatSalary(vacancy.fromSalary, vacancy.toSalary);
     
     return `
-        <div class="vacancy" onclick="window.location.href='${vacancyUrl}'">
+        <div class="vacancy" onclick="window.location.href='${vacancyUrl}'" role="listitem" tabindex="0" onkeypress="handleVacancyKeyPress(event, '${vacancyUrl}')">
             <div class="vacancy-header">
-                <h3 class="vacancy-title">${vacancy.position}</h3>
+                <h3 class="vacancy-title">${escapeHtml(vacancy.position)}</h3>
             </div>
             <div class="vacancy-details">
                 <div class="vacancy-salary">
-                    <i class="fas fa-money-bill-wave"></i>
-                    <span>${salary}</span>
+                    <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
+                    <span>${escapeHtml(salary)}</span>
                 </div>
                 <div class="vacancy-location">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>${vacancy.city}</span>
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    <span>${escapeHtml(vacancy.city)}</span>
                 </div>
                 <div class="vacancy-company">
-                    <i class="fas fa-building"></i>
-                    <span>${vacancy.employer.name}</span>
+                    <i class="fas fa-building" aria-hidden="true"></i>
+                    <span>${escapeHtml(vacancy.employer.name)}</span>
                 </div>
             </div>
         </div>
     `;
 }
+
+// Функция для экранирования HTML
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Обработка нажатия клавиш для карточек вакансий
+function handleVacancyKeyPress(event, url) {
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        window.location.href = url;
+    }
+}
+
+// Функция для показа состояния загрузки
+function showLoading() {
+    const loadingOverlay = document.getElementById("loading");
+    loadingOverlay.style.display = "flex";
+}
+
+// Функция для скрытия состояния загрузки
+function hideLoading() {
+    const loadingOverlay = document.getElementById("loading");
+    loadingOverlay.style.display = "none";
+}
+
+// Функция для показа ошибки
+function showError(message) {
+    const vacancies = document.getElementById("vacancies");
+    vacancies.innerHTML = `
+        <div class="error-state">
+            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+            <h3>Ошибка загрузки</h3>
+            <p>${escapeHtml(message)}</p>
+        </div>
+    `;
+}
+
+// Функция для показа пустого состояния
+function showEmptyState() {
+    const vacancies = document.getElementById("vacancies");
+    vacancies.innerHTML = `
+        <div class="empty-state">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <h3>Вакансии не найдены</h3>
+            <p>Попробуйте изменить параметры поиска</p>
+        </div>
+    `;
+}
+
+// Функция для загрузки вакансий с обработкой ошибок
+async function loadVacancies() {
+    try {
+        showLoading();
+        
+        const currentPage = getCurrentPage();
+        updatePageNumberDisplay(currentPage);
+        
+        const url = `/vacancy/filter?page=${currentPage}&${existParams.toString()}`;
+        console.log('Loading vacancies from:', url);
+        
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        console.log('Vacancies loaded:', data);
+        
+        const vacancies = document.getElementById("vacancies");
+        
+        if (!Array.isArray(data) || data.length === 0) {
+            showEmptyState();
+        } else {
+            vacancies.innerHTML = data.map(vacancy => {
+                const vacancy_url = `/vacancy/description?id=${vacancy.id}&${existParams.toString()}`;
+                return createVacancyCard(vacancy, vacancy_url);
+            }).join('');
+        }
+        
+    } catch (error) {
+        console.error('Error loading vacancies:', error);
+        showError('Не удалось загрузить вакансии. Проверьте подключение к интернету и попробуйте снова.');
+    } finally {
+        hideLoading();
+    }
+}
+
+// Обработчик для повторной попытки загрузки при ошибке сети
+function retryLoad() {
+    loadVacancies();
+}
+
+// Добавляем обработчик для офлайн/онлайн событий
+window.addEventListener('online', () => {
+    console.log('Connection restored');
+    loadVacancies();
+});
+
+window.addEventListener('offline', () => {
+    console.log('Connection lost');
+    showError('Нет подключения к интернету. Проверьте соединение и попробуйте снова.');
+});
 
 document.addEventListener('DOMContentLoaded', function(){
     try {
@@ -148,58 +259,43 @@ document.addEventListener('DOMContentLoaded', function(){
          console.warn('Telegram WebApp init error', e);
     }
     
+    // Настройка ссылки фильтра
     const filter_button = document.getElementById('filter_button');
     filter_button.href = `/vacancy/filter/page?${existParams.toString()}`;
     
-    const currentPage = getCurrentPage();
-    updatePageNumberDisplay(currentPage);
-
-    const url = `/vacancy/filter?page=${currentPage}&${existParams.toString()}`;
-    console.log(url);
+    // Загрузка вакансий
+    loadVacancies();
     
-    fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error(`Ошибка HTTP: ${response.status}`);
-        }
-        return response.json();
-    }).then(data => {
-        console.log(data);
-        const vacancies = document.getElementById("vacancies");
+    // Добавляем обработчик для свайпа (опционально)
+    let startX = 0;
+    let startY = 0;
+    
+    document.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+    });
+    
+    document.addEventListener('touchend', (e) => {
+        if (!startX || !startY) return;
         
-        if (data.length === 0) {
-            vacancies.innerHTML = `
-                <div class="empty-state">
-                    <i class="fas fa-search"></i>
-                    <h3>Вакансии не найдены</h3>
-                    <p>Попробуйте изменить параметры поиска</p>
-                </div>
-            `;
-        } else {
-            data.forEach(vacancy => {
-                const vacancy_url = `/vacancy/description?id=${vacancy.id}&${existParams.toString()}`;
-                const vacancyCard = createVacancyCard(vacancy, vacancy_url);
-                vacancies.innerHTML += vacancyCard;
-            });
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+        
+        const diffX = startX - endX;
+        const diffY = startY - endY;
+        
+        // Минимальное расстояние для свайпа
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+            if (diffX > 0) {
+                // Свайп влево - следующая страница
+                nextPage();
+            } else {
+                // Свайп вправо - предыдущая страница
+                prevPage();
+            }
         }
-    }).then(() => {
-        const loadingOverlay = document.getElementById("loading");
-        loadingOverlay.style.display = "none";
-    }).catch(error => {
-        console.error('Ошибка загрузки вакансий:', error);
-        const vacancies = document.getElementById("vacancies");
-        vacancies.innerHTML = `
-            <div class="error-state">
-                <i class="fas fa-exclamation-triangle"></i>
-                <h3>Ошибка загрузки</h3>
-                <p>Не удалось загрузить вакансии. Попробуйте позже.</p>
-            </div>
-        `;
-        const loadingOverlay = document.getElementById("loading");
-        loadingOverlay.style.display = "none";
+        
+        startX = 0;
+        startY = 0;
     });
 });
