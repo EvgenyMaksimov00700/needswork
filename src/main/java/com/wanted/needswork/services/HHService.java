@@ -263,7 +263,16 @@ public class HHService {
         }
         if (!text.isEmpty()){
             url += "&text=" + text;
-            url += "&search_field=name";
+            if (!Objects.equals(position, ""))
+            {
+                url += "&search_field=name";
+            }
+            if (!Objects.equals(company, ""))
+            {
+                url += "&search_field=company_name";
+            }
+
+
 
         }
 
