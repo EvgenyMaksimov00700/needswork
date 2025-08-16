@@ -3,166 +3,256 @@
 <head>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>Фильтры</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/filtress.css">
 </head>
 <body>
-
-
-<div class="container">
-    <h2>Фильтры</h2>
-
-
-    <!-- Верхнее поле с выбором должности -->
-    <div class="form-group">
-        <label for="position">Должность</label>
-        <input list="position-list" id="position" placeholder="Желаемая должность" type="text">
-        <datalist id="position-list">
-            <option value="Разработчик">Разработчик</option>
-            <option value="Менеджер">Менеджер</option>
-            <option value="Дизайнер">Дизайнер</option>
-            <option value="Аналитик">Аналитик</option>
-            <option value="Бухгалтер">Бухгалтер</option>
-            <option value="Сотрудник магазина">Сотрудник магазина</option>
-            <option value="Курьер с личным а/м">Курьер с личным а/м</option>
-            <option value="Пеший Курьер">Пеший Курьер</option>
-            <option value="Упаковщик">Упаковщик</option>
-            <option value="Повар-пиццамейкер">Повар-пиццамейкер</option>
-            <option value="Фасовщик">Фасовщик</option>
-            <option value="Помощник повара">Помощник повара</option>
-            <option value="Сотрудник пунка выдачи заказов">Сотрудник пунка выдачи заказов</option>
-            <option value="Разнорабочий">Разнорабочий</option>
-            <option value="Пикер штрих-кодов малогабаритных интернет-заказов в пунк выдачи">Пикер штрих-кодов
-                малогабаритных интернет-заказов в пунк выдачи
-            </option>
-            <option value="Ночной клинер/уборщица">Ночной клинер/уборщица</option>
-            <option value="Охранник">Охранник</option>
-            <option value="Массажист">Массажист</option>
-            <option value="Кладовщик на склад">Кладовщик на склад</option>
-            <option value="Санитар/санитарки в частную клинику">Санитар/санитарки в частную клинику</option>
-            <option value="Python разработчик, middle">Python разработчик, middle</option>
-            <option value="Frontend-разработчик (Angular)">Frontend-разработчик (Angular)</option>
-            <option value="Junior Backend Developer">Junior Backend Developer</option>
-            <option value="Flutter Разработчик (Стажер)">Flutter Разработчик (Стажер)</option>
-            <option value="Java/Flutter разработчик">Java/Flutter разработчик</option>
-            <option value="Стажер-разработчик React">Стажер-разработчик React</option>
-            <option value="Backend разработчик (стажер)">Backend разработчик (стажер)</option>
-            <option value="Разработчик No Code">Разработчик No Code</option>
-            <option value="Rust-разработчик">Rust-разработчик</option>
-            <option value="Java разработчик/Java Developer">Java разработчик/Java Developer</option>
-            <option value="Java разработчик/Java Developer (Стажер)">Java разработчик/Java Developer (Стажер)</option>
-            <option value="Начинающий разработчик (программист) 1С">Начинающий разработчик (программист) 1С</option>
-            <option value="C# Продакт Разработчик Трейдинг">C# Продакт Разработчик Трейдинг</option>
-            <option value="Программист-разработчик JavaScript">Программист-разработчик JavaScript</option>
-            <option value="DL-разработчик">DL-разработчик</option>
-            <option value="Elixir-разработчик">Elixir-разработчик</option>
-            <option value="Web-разработчик (Backend-разработчик)">Web-разработчик (Backend-разработчик)</option>
-            <option value="Разработчик (GreenData)">Разработчик (GreenData)</option>
-            <option value="Разработчик операций AL, Python/React">Разработчик операций AL, Python/React</option>
-            <option value="Fullstack-разработчик в онлайн школу">Fullstack-разработчик в онлайн школу</option>
-            <option value="Junior Fullstack разработчик (удаленно)">Junior Fullstack разработчик (удаленно)</option>
-            <option value="Менеджер контроля качества">Менеджер контроля качества</option>
-            <option value="Менеджер по продажам">Менеджер по продажам</option>
-            <option value="Менеджер по персоналу">Менеджер по персоналу</option>
-            <option value="Менеджер по закупкам">Менеджер по закупкам</option>
-            <option value="Менеджер по туризму">Менеджер по туризму</option>
-            <option value="Менеджер проектов">Менеджер проектов</option>
-            <option value="Менеджер интернет магазина">Менеджер интернет магазина</option>
-            <option value="Менеджер по продажам рекламы">Менеджер по продажам рекламы</option>
-            <option value="БМаркетолог">Маркетолог</option>
-            <option value="Монтажник рекламных конструкций">Монтажник рекламных конструкций</option>
-            <option value="Юрист">Юрист</option>
-            <option value="помощник Юриста">помощник Юриста</option>
-        </datalist>
-    </div>
-    <!-- Выбор отрасли -->
-    <div class="form-group">
-        <label for="industry">Отрасль</label>
-        <div class="searchable-select" data-target="industry">
-            <select id="industry">
-                <option value="">Все отрасли</option>
-            </select>
-            <input type="text" id="industry-search" placeholder="Введите отрасль" autocomplete="off">
-            <div class="options-container"></div>
-        </div>
-    </div>
-    <!-- Список компаний -->
-    <div class="form-group">
-        <label for="company">Компания</label>
-        <input id="company" placeholder="Желаемая компания" type="text">
-    </div>
-
-    <!-- Уровень дохода -->
-    <div class="form-group">
-        <label for="income">Уровень дохода, от (руб)</label>
-        <input type="number" id="income" placeholder="Укажите сумму">
-    </div>
-
-    <!-- Страна
-    <div class="form-group">
-        <label for="country">Страна</label>
-        <input list="country-list" id="country" placeholder="Выберите страну" type="text">
-        <datalist id="country-list">
-            <option value="Россия"></option>
-            <option value="США"></option>
-            <option value="Канада"></option>
-            <option value="Германия"></option>
-        </datalist>
-    </div>
--->
-    <!-- Город -->
-    <div class="form-group">
-        <label for="city">Город</label>
-        <div class="searchable-select" data-target="city">
-
-
-            <select id="city">
-                <option value="">Все города</option>
-            </select>
-            <input type="text" id="city-search" placeholder="Введите город" autocomplete="off">
-            <div class="options-container"></div>
-        </div>
-
-
-        <!-- Требуемый опыт -->
-        <div class="form-group">
-            <label>Требуемый опыт</label>
-            <div class="button-group">
-                <button type="button" class="exp" onclick="chooseWorkExperience(this)">Нет опыта</button>
-                <button type="button" class="exp" onclick="chooseWorkExperience(this)">от 1 года до 3 лет</button>
-                <button type="button" class="exp" onclick="chooseWorkExperience(this)">от 3 до 6 лет</button>
-                <button type="button" class="exp" onclick="chooseWorkExperience(this)">Более 6 лет</button>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <button class="back-button" onclick="vacancy_back()" aria-label="Назад">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                </button>
+                <h1 class="page-title">
+                    <i class="fas fa-filter" aria-hidden="true"></i>
+                    <span>Фильтры</span>
+                </h1>
+                <button class="clear-button" onclick="clearFilters()" aria-label="Очистить фильтры">
+                    <i class="fas fa-broom" aria-hidden="true"></i>
+                </button>
             </div>
-        </div>
+        </header>
 
-        <!-- Тип занятости -->
-        <div class="form-group">
-            <label>Тип занятости</label>
-            <div class="button-group">
-                <button type="button" class="bus" onclick="chooseWorkExperience(this)">Полная занятость</button>
-                <button type="button" class="bus" onclick="chooseWorkExperience(this)">Удаленка</button>
-                <button type="button" class="bus" onclick="chooseWorkExperience(this)">Частичная занятость</button>
-                <button type="button" class="bus" onclick="chooseWorkExperience(this)">Гибкий график</button>
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="filters-container">
+                <!-- Должность -->
+                <div class="filter-group">
+                    <label for="position" class="filter-label">
+                        <i class="fas fa-briefcase" aria-hidden="true"></i>
+                        Должность
+                    </label>
+                    <div class="input-wrapper">
+                        <input list="position-list" id="position" placeholder="Желаемая должность" type="text" class="filter-input">
+                        <i class="fas fa-search input-icon" aria-hidden="true"></i>
+                    </div>
+                    <datalist id="position-list">
+                        <option value="Разработчик">Разработчик</option>
+                        <option value="Менеджер">Менеджер</option>
+                        <option value="Дизайнер">Дизайнер</option>
+                        <option value="Аналитик">Аналитик</option>
+                        <option value="Бухгалтер">Бухгалтер</option>
+                        <option value="Сотрудник магазина">Сотрудник магазина</option>
+                        <option value="Курьер с личным а/м">Курьер с личным а/м</option>
+                        <option value="Пеший Курьер">Пеший Курьер</option>
+                        <option value="Упаковщик">Упаковщик</option>
+                        <option value="Повар-пиццамейкер">Повар-пиццамейкер</option>
+                        <option value="Фасовщик">Фасовщик</option>
+                        <option value="Помощник повара">Помощник повара</option>
+                        <option value="Сотрудник пунка выдачи заказов">Сотрудник пунка выдачи заказов</option>
+                        <option value="Разнорабочий">Разнорабочий</option>
+                        <option value="Пикер штрих-кодов малогабаритных интернет-заказов в пунк выдачи">Пикер штрих-кодов малогабаритных интернет-заказов в пунк выдачи</option>
+                        <option value="Ночной клинер/уборщица">Ночной клинер/уборщица</option>
+                        <option value="Охранник">Охранник</option>
+                        <option value="Массажист">Массажист</option>
+                        <option value="Кладовщик на склад">Кладовщик на склад</option>
+                        <option value="Санитар/санитарки в частную клинику">Санитар/санитарки в частную клинику</option>
+                        <option value="Python разработчик, middle">Python разработчик, middle</option>
+                        <option value="Frontend-разработчик (Angular)">Frontend-разработчик (Angular)</option>
+                        <option value="Junior Backend Developer">Junior Backend Developer</option>
+                        <option value="Flutter Разработчик (Стажер)">Flutter Разработчик (Стажер)</option>
+                        <option value="Java/Flutter разработчик">Java/Flutter разработчик</option>
+                        <option value="Стажер-разработчик React">Стажер-разработчик React</option>
+                        <option value="Backend разработчик (стажер)">Backend разработчик (стажер)</option>
+                        <option value="Разработчик No Code">Разработчик No Code</option>
+                        <option value="Rust-разработчик">Rust-разработчик</option>
+                        <option value="Java разработчик/Java Developer">Java разработчик/Java Developer</option>
+                        <option value="Java разработчик/Java Developer (Стажер)">Java разработчик/Java Developer (Стажер)</option>
+                        <option value="Начинающий разработчик (программист) 1С">Начинающий разработчик (программист) 1С</option>
+                        <option value="C# Продакт Разработчик Трейдинг">C# Продакт Разработчик Трейдинг</option>
+                        <option value="Программист-разработчик JavaScript">Программист-разработчик JavaScript</option>
+                        <option value="DL-разработчик">DL-разработчик</option>
+                        <option value="Elixir-разработчик">Elixir-разработчик</option>
+                        <option value="Web-разработчик (Backend-разработчик)">Web-разработчик (Backend-разработчик)</option>
+                        <option value="Разработчик (GreenData)">Разработчик (GreenData)</option>
+                        <option value="Разработчик операций AL, Python/React">Разработчик операций AL, Python/React</option>
+                        <option value="Fullstack-разработчик в онлайн школу">Fullstack-разработчик в онлайн школу</option>
+                        <option value="Junior Fullstack разработчик (удаленно)">Junior Fullstack разработчик (удаленно)</option>
+                        <option value="Менеджер контроля качества">Менеджер контроля качества</option>
+                        <option value="Менеджер по продажам">Менеджер по продажам</option>
+                        <option value="Менеджер по персоналу">Менеджер по персоналу</option>
+                        <option value="Менеджер по закупкам">Менеджер по закупкам</option>
+                        <option value="Менеджер по туризму">Менеджер по туризму</option>
+                        <option value="Менеджер проектов">Менеджер проектов</option>
+                        <option value="Менеджер интернет магазина">Менеджер интернет магазина</option>
+                        <option value="Менеджер по продажам рекламы">Менеджер по продажам рекламы</option>
+                        <option value="Маркетолог">Маркетолог</option>
+                        <option value="Монтажник рекламных конструкций">Монтажник рекламных конструкций</option>
+                        <option value="Юрист">Юрист</option>
+                        <option value="помощник Юриста">помощник Юриста</option>
+                    </datalist>
+                </div>
+
+                <!-- Отрасль -->
+                <div class="filter-group">
+                    <label for="industry" class="filter-label">
+                        <i class="fas fa-industry" aria-hidden="true"></i>
+                        Отрасль
+                    </label>
+                    <div class="searchable-select" data-target="industry">
+                        <div class="input-wrapper">
+                            <select id="industry" class="filter-select">
+                                <option value="">Все отрасли</option>
+                            </select>
+                            <input type="text" id="industry-search" placeholder="Введите отрасль" autocomplete="off" class="filter-input">
+                            <i class="fas fa-chevron-down input-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="options-container" role="listbox" aria-label="Список отраслей"></div>
+                    </div>
+                </div>
+
+                <!-- Компания -->
+                <div class="filter-group">
+                    <label for="company" class="filter-label">
+                        <i class="fas fa-building" aria-hidden="true"></i>
+                        Компания
+                    </label>
+                    <div class="input-wrapper">
+                        <input id="company" placeholder="Желаемая компания" type="text" class="filter-input">
+                        <i class="fas fa-search input-icon" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <!-- Уровень дохода -->
+                <div class="filter-group">
+                    <label for="income" class="filter-label">
+                        <i class="fas fa-ruble-sign" aria-hidden="true"></i>
+                        Уровень дохода, от (руб)
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="number" id="income" placeholder="Укажите сумму" class="filter-input">
+                        <i class="fas fa-money-bill-wave input-icon" aria-hidden="true"></i>
+                    </div>
+                </div>
+
+                <!-- Город -->
+                <div class="filter-group">
+                    <label for="city" class="filter-label">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        Город
+                    </label>
+                    <div class="searchable-select" data-target="city">
+                        <div class="input-wrapper">
+                            <select id="city" class="filter-select">
+                                <option value="">Все города</option>
+                            </select>
+                            <input type="text" id="city-search" placeholder="Введите город" autocomplete="off" class="filter-input">
+                            <i class="fas fa-chevron-down input-icon" aria-hidden="true"></i>
+                        </div>
+                        <div class="options-container" role="listbox" aria-label="Список городов"></div>
+                    </div>
+                </div>
+
+                <!-- Требуемый опыт -->
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                        Требуемый опыт
+                    </label>
+                    <div class="button-group" role="group" aria-label="Выбор опыта работы">
+                        <button type="button" class="filter-btn exp" onclick="chooseWorkExperience(this)" data-value="no-experience">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            Нет опыта
+                        </button>
+                        <button type="button" class="filter-btn exp" onclick="chooseWorkExperience(this)" data-value="1-3">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            от 1 года до 3 лет
+                        </button>
+                        <button type="button" class="filter-btn exp" onclick="chooseWorkExperience(this)" data-value="3-6">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            от 3 до 6 лет
+                        </button>
+                        <button type="button" class="filter-btn exp" onclick="chooseWorkExperience(this)" data-value="6+">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            Более 6 лет
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Тип занятости -->
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <i class="fas fa-briefcase" aria-hidden="true"></i>
+                        Тип занятости
+                    </label>
+                    <div class="button-group" role="group" aria-label="Выбор типа занятости">
+                        <button type="button" class="filter-btn bus" onclick="chooseWorkExperience(this)" data-value="full-time">
+                            <i class="fas fa-clock" aria-hidden="true"></i>
+                            Полная занятость
+                        </button>
+                        <button type="button" class="filter-btn bus" onclick="chooseWorkExperience(this)" data-value="remote">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                            Удаленка
+                        </button>
+                        <button type="button" class="filter-btn bus" onclick="chooseWorkExperience(this)" data-value="part-time">
+                            <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                            Частичная занятость
+                        </button>
+                        <button type="button" class="filter-btn bus" onclick="chooseWorkExperience(this)" data-value="flexible">
+                            <i class="fas fa-sliders-h" aria-hidden="true"></i>
+                            Гибкий график
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Время публикации -->
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <i class="fas fa-calendar" aria-hidden="true"></i>
+                        Время публикации
+                    </label>
+                    <div class="button-group" role="group" aria-label="Выбор времени публикации">
+                        <button type="button" class="filter-btn time" onclick="chooseTime(this)" data-value="month">
+                            <i class="fas fa-calendar-month" aria-hidden="true"></i>
+                            За месяц
+                        </button>
+                        <button type="button" class="filter-btn time" onclick="chooseTime(this)" data-value="week">
+                            <i class="fas fa-calendar-week" aria-hidden="true"></i>
+                            За неделю
+                        </button>
+                        <button type="button" class="filter-btn time" onclick="chooseTime(this)" data-value="3days">
+                            <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                            За 3 дня
+                        </button>
+                        <button type="button" class="filter-btn time" onclick="chooseTime(this)" data-value="day">
+                            <i class="fas fa-calendar-day" aria-hidden="true"></i>
+                            Сутки
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
 
-
-        <!-- Время публикации -->
-        <div class="form-group">
-            <label>Время публикации</label>
-            <div class="button-group">
-                <button type="button" class="time" onclick="chooseTime(this)">За месяц</button>
-                <button type="button" class="time" onclick="chooseTime(this)">За неделю</button>
-                <button type="button" class="time" onclick="chooseTime(this)">За 3 дня</button>
-                <button type="button" class="time" onclick="chooseTime(this)">Сутки</button>
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button type="submit" class="action-btn primary" onclick="apply()">
+                    <i class="fas fa-check" aria-hidden="true"></i>
+                    Применить фильтры
+                </button>
+                <button type="button" class="action-btn secondary" onclick="vacancy_back()">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                    Назад
+                </button>
             </div>
-        </div>
-
-        <!-- Кнопка отправки -->
-        <button type="submit" class="apply" onclick="apply()">Применить</button>
-        <button type="button" onclick="vacancy_back()" class="back">Назад</button>
+        </main>
     </div>
+
     <script src="/js/filtres.js"></script>
 </body>
 </html>

@@ -2,24 +2,23 @@ let clientID;
 try {
     clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
     if (window.history.length > 1) {
-            window.Telegram.WebApp.BackButton.show();
-            window.Telegram.WebApp.BackButton.onClick(() => {
-                window.history.back();
-            });
-        }
-    function isDesktop() {
-            const userAgent = navigator.userAgent.toLowerCase();
-            return userAgent.includes("windows") || userAgent.includes("macintosh") || userAgent.includes("linux");
-        }
-        console.log(isDesktop());
-        if (!isDesktop()) {
-        document.querySelector(".container").style.marginTop = "90px";
-            window.Telegram.WebApp.requestFullscreen();
-        }
+        window.Telegram.WebApp.BackButton.show();
+        window.Telegram.WebApp.BackButton.onClick(() => {
+            window.history.back();
+        });
     }
-
-
- catch (error) {
+    
+    function isDesktop() {
+        const userAgent = navigator.userAgent.toLowerCase();
+        return userAgent.includes("windows") || userAgent.includes("macintosh") || userAgent.includes("linux");
+    }
+    
+    console.log(isDesktop());
+    if (!isDesktop()) {
+        document.querySelector(".app-container").style.marginTop = "90px";
+        window.Telegram.WebApp.requestFullscreen();
+    }
+} catch (error) {
     clientID = 159619887;
 }
  window.Telegram.WebApp.expand();
@@ -76,11 +75,12 @@ if (time) {
 
 document.addEventListener('DOMContentLoaded', function () {
     windowsLoad();
+    setupEventListeners();
 
     if (city != null) {
         document.getElementById('city-search').value = city;
     }
-    if (industry  != null) {
+    if (industry != null) {
         document.getElementById('industry').value = industry;
         fetch(`/industry/${industry}`)
             .then(response => {
@@ -98,43 +98,41 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Ошибка:', error);
             });
     }
-    if (company!=null) {
-    document.getElementById('company').value = company;
+    if (company != null) {
+        document.getElementById('company').value = company;
     }
     if (position != null) {
-    document.getElementById('position').value = position;
+        document.getElementById('position').value = position;
     }
-    if (salary!= null) {
-    document.getElementById('income').value = salary;
+    if (salary != null) {
+        document.getElementById('income').value = salary;
     }
-    if (exp!= null) {
-    let expsButton = document.querySelectorAll('.exp');
-    const exps = exp.split(',');
-    expsButton.forEach(button => {
-        if (exps.includes(button.textContent)) {
-            button.style.backgroundColor = '#333333';
-        }
-    });
+    if (exp != null) {
+        let expsButton = document.querySelectorAll('.exp');
+        const exps = exp.split(',');
+        expsButton.forEach(button => {
+            if (exps.includes(button.textContent.trim())) {
+                button.classList.add('selected');
+            }
+        });
     }
-    if (bus!= null) {
-    let workScheduleButton = document.querySelectorAll('.bus');
+    if (bus != null) {
+        let workScheduleButton = document.querySelectorAll('.bus');
         const buss = bus.split(',');
         workScheduleButton.forEach(button => {
-            if (buss.includes(button.textContent)) {
-                button.style.backgroundColor = '#333333';
+            if (buss.includes(button.textContent.trim())) {
+                button.classList.add('selected');
             }
         });
-
     }
-    if (time!= null) {
-    let timeButton = document.querySelectorAll('.time');
+    if (time != null) {
+        let timeButton = document.querySelectorAll('.time');
         const times = time.split(',');
         timeButton.forEach(button => {
-            if (times.includes(button.textContent)) {
-                button.style.backgroundColor = '#333333';
+            if (times.includes(button.textContent.trim())) {
+                button.classList.add('selected');
             }
         });
-
     }
 });
 
@@ -143,80 +141,73 @@ function vacancy_back() {
 }
 
 function apply() {
-const currentParams = new URLSearchParams();
-const currentCity = document.getElementById("city-search").value;
-const currentCompany = document.getElementById("company").value;
-const currentIndustry = document.getElementById("industry").value;
-const currentPosition = document.getElementById("position").value;
-const currentSalary = document.getElementById("income").value;
-if (currentCity) {
-    currentParams.append('city', currentCity);
-}
-if (currentPosition) {
-    currentParams.append('position', currentPosition);
-}
-if (currentIndustry) {
-    currentParams.append('industry', currentIndustry);
-
-}
-if (currentCompany) {
-    currentParams.append('company', currentCompany);
-
-   }
-if (currentSalary) {
-    currentParams.append('salary', currentSalary);
-        }
+    const currentParams = new URLSearchParams();
+    const currentCity = document.getElementById("city-search").value;
+    const currentCompany = document.getElementById("company").value;
+    const currentIndustry = document.getElementById("industry").value;
+    const currentPosition = document.getElementById("position").value;
+    const currentSalary = document.getElementById("income").value;
+    
+    if (currentCity) {
+        currentParams.append('city', currentCity);
+    }
+    if (currentPosition) {
+        currentParams.append('position', currentPosition);
+    }
+    if (currentIndustry) {
+        currentParams.append('industry', currentIndustry);
+    }
+    if (currentCompany) {
+        currentParams.append('company', currentCompany);
+    }
+    if (currentSalary) {
+        currentParams.append('salary', currentSalary);
+    }
+    
     let currentExps = "";
     const exps = document.querySelectorAll(".exp");
-    exps.forEach(button =>{
-    if (button.style.backgroundColor != "rgb(0, 136, 204)" && button.style.backgroundColor != "") {
-    currentExps += button.textContent +",";
-    }
-    })
-    if (currentExps) {
-        currentParams.append('exp', currentExps.slice(0,-1));
+    exps.forEach(button => {
+        if (button.classList.contains('selected')) {
+            currentExps += button.textContent.trim() + ",";
         }
+    });
+    if (currentExps) {
+        currentParams.append('exp', currentExps.slice(0, -1));
+    }
 
     let currentBuss = "";
     const buss = document.querySelectorAll(".bus");
-    buss.forEach(button =>{
-    if (button.style.backgroundColor != "rgb(0, 136, 204)" && button.style.backgroundColor != "") {
-    currentBuss += button.textContent +",";
-    }
-    })
-
-    if (currentBuss) {
-        currentParams.append('bus', currentBuss.slice(0,-1));
+    buss.forEach(button => {
+        if (button.classList.contains('selected')) {
+            currentBuss += button.textContent.trim() + ",";
         }
-
+    });
+    if (currentBuss) {
+        currentParams.append('bus', currentBuss.slice(0, -1));
+    }
 
     let currentTime = "";
     const time = document.querySelectorAll(".time");
-    time.forEach(button =>{
-    if (button.style.backgroundColor != "rgb(0, 136, 204)" && button.style.backgroundColor != "") {
-    currentTime += button.textContent +",";
-    }
-    })
-    if (currentTime) {
-        currentParams.append('time', currentTime.slice(0,-1));
+    time.forEach(button => {
+        if (button.classList.contains('selected')) {
+            currentTime += button.textContent.trim() + ",";
         }
-
-
-
+    });
+    if (currentTime) {
+        currentParams.append('time', currentTime.slice(0, -1));
+    }
 
     window.location.href = `/vacancy/menu?${currentParams.toString()}`;
 }
 
-function chooseTime(button){
-
-  const time = document.querySelectorAll(".time");
-  if (button.style.backgroundColor == "rgb(0, 136, 204)" || button.style.backgroundColor == "")  {
-  time.forEach(b =>{ b.style.backgroundColor = "#0088cc"});
-  button.style.backgroundColor='#333333';
-  }
-  else {
-  time.forEach(b =>{ b.style.backgroundColor = "#0088cc"});
-  }
+function chooseTime(button) {
+    const time = document.querySelectorAll(".time");
+    if (button.classList.contains('selected')) {
+        time.forEach(b => b.classList.remove('selected'));
+    } else {
+        time.forEach(b => b.classList.remove('selected'));
+        button.classList.add('selected');
+    }
 }
 
 document.addEventListener('touchstart', function (event) {
@@ -343,58 +334,58 @@ function initSearchableSelect(wrapper) {
     }));
   }
 
-  // Рендерим отфильтрованные варианты
-  function showOptions(event) {
-    const raw = input.value.trim();
-    const term = raw.toLowerCase();
-    const opts = getOpts();
-    list.innerHTML = '';
+      // Рендерим отфильтрованные варианты
+    function showOptions(event) {
+        const raw = input.value.trim();
+        const term = raw.toLowerCase();
+        const opts = getOpts();
+        list.innerHTML = '';
 
-    // Ищем точные совпадения
-    const exactMatches = opts.filter(o => o.label.toLowerCase() === term);
+        // Ищем точные совпадения
+        const exactMatches = opts.filter(o => o.label.toLowerCase() === term);
 
-    // Если есть точное совпадение:
-    if (exactMatches.length > 0) {
-      if (typed) {
-        // Пользователь вводил текст, показываем только точное совпадение
-        exactMatches.forEach(o => {
-          const div = document.createElement('div');
-          div.className = 'option';
-          div.textContent = o.label;
-          div.dataset.value = o.value;
-          list.appendChild(div);
-        });
-      } else {
-        // Пользователь просто кликнул (без нового ввода), показываем все
-        opts.forEach(o => {
-          const div = document.createElement('div');
-          div.className = 'option';
-          div.textContent = o.label;
-          div.dataset.value = o.value;
-          list.appendChild(div);
-        });
-      }
-      list.style.display = 'block';
-      return;
+        // Если есть точное совпадение:
+        if (exactMatches.length > 0) {
+            if (typed) {
+                // Пользователь вводил текст, показываем только точное совпадение
+                exactMatches.forEach(o => {
+                    const div = document.createElement('div');
+                    div.className = 'option';
+                    div.textContent = o.label;
+                    div.dataset.value = o.value;
+                    list.appendChild(div);
+                });
+            } else {
+                // Пользователь просто кликнул (без нового ввода), показываем все
+                opts.forEach(o => {
+                    const div = document.createElement('div');
+                    div.className = 'option';
+                    div.textContent = o.label;
+                    div.dataset.value = o.value;
+                    list.appendChild(div);
+                });
+            }
+            list.classList.add('show');
+            return;
+        }
+
+        // Если точных совпадений нет, фильтруем по подстроке
+        if (term.length > 0) {
+            opts
+                .filter(o => o.label.toLowerCase().includes(term))
+                .forEach(o => {
+                    const div = document.createElement('div');
+                    div.className = 'option';
+                    div.textContent = o.label;
+                    div.dataset.value = o.value;
+                    list.appendChild(div);
+                });
+            list.classList.toggle('show', list.children.length > 0);
+        } else {
+            // Если поле пустое (никакого ввода), скрываем список
+            list.classList.remove('show');
+        }
     }
-
-    // Если точных совпадений нет, фильтруем по подстроке
-    if (term.length > 0) {
-      opts
-        .filter(o => o.label.toLowerCase().includes(term))
-        .forEach(o => {
-          const div = document.createElement('div');
-          div.className = 'option';
-          div.textContent = o.label;
-          div.dataset.value = o.value;
-          list.appendChild(div);
-        });
-      list.style.display = list.children.length ? 'block' : 'none';
-    } else {
-      // Если поле пустое (никакого ввода), скрываем список
-      list.style.display = 'none';
-    }
-  }
 
   // События
   input.addEventListener('input', () => {
@@ -407,24 +398,24 @@ function initSearchableSelect(wrapper) {
     showOptions(event);
   });
 
-  // При клике на вариант: установить select и input, скрыть список
-  list.addEventListener('click', e => {
-    if (!e.target.classList.contains('option')) return;
-    const { value } = e.target.dataset;
-    const { label } = getOpts().find(o => o.value === value);
-    select.value = value;
-    input.value = label;
-    // После выбора сбрасываем флаг typed, потому что это не ввод, а выбор
-    typed = false;
-    list.style.display = 'none';
-  });
+      // При клике на вариант: установить select и input, скрыть список
+    list.addEventListener('click', e => {
+        if (!e.target.classList.contains('option')) return;
+        const { value } = e.target.dataset;
+        const { label } = getOpts().find(o => o.value === value);
+        select.value = value;
+        input.value = label;
+        // После выбора сбрасываем флаг typed, потому что это не ввод, а выбор
+        typed = false;
+        list.classList.remove('show');
+    });
 
-  // Клик вне компонента — скрыть список
-  document.addEventListener('click', e => {
-    if (!wrapper.contains(e.target)) {
-      list.style.display = 'none';
-    }
-  });
+    // Клик вне компонента — скрыть список
+    document.addEventListener('click', e => {
+        if (!wrapper.contains(e.target)) {
+            list.classList.remove('show');
+        }
+    });
 
   // Если в URL (или при загрузке) был уже выбран город — показать его в поле поиска
   const pre = select.value;
@@ -449,11 +440,116 @@ function windowsLoad() {
      }, 300);
 }
 
+function setupEventListeners() {
+    // Добавляем поддержку клавиатуры для кнопок
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (this.classList.contains('exp') || this.classList.contains('bus')) {
+                    chooseWorkExperience(this);
+                } else if (this.classList.contains('time')) {
+                    chooseTime(this);
+                }
+            }
+        });
+    });
+
+    // Добавляем поддержку клавиатуры для action кнопок
+    document.querySelectorAll('.action-btn').forEach(button => {
+        button.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (this.classList.contains('primary')) {
+                    apply();
+                } else if (this.classList.contains('secondary')) {
+                    vacancy_back();
+                }
+            }
+        });
+    });
+
+    // Добавляем поддержку клавиатуры для header кнопок
+    document.querySelectorAll('.back-button, .clear-button').forEach(button => {
+        button.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (this.classList.contains('back-button')) {
+                    vacancy_back();
+                } else if (this.classList.contains('clear-button')) {
+                    clearFilters();
+                }
+            }
+        });
+    });
+}
+
+function clearFilters() {
+    // Очищаем все поля ввода
+    document.getElementById('position').value = '';
+    document.getElementById('industry-search').value = '';
+    document.getElementById('company').value = '';
+    document.getElementById('income').value = '';
+    document.getElementById('city-search').value = '';
+    
+    // Сбрасываем все кнопки
+    document.querySelectorAll('.filter-btn').forEach(button => {
+        button.classList.remove('selected');
+    });
+    
+    // Показываем уведомление
+    showNotification('Фильтры очищены', 'success');
+}
+
+function showNotification(message, type = 'info') {
+    // Создаем уведомление
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}" aria-hidden="true"></i>
+        <span>${message}</span>
+    `;
+    
+    // Добавляем стили
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--tg-bg-elevated);
+        border: 1px solid var(--tg-border-medium);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-md) var(--spacing-lg);
+        color: var(--tg-text-primary);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        box-shadow: var(--tg-shadow-heavy);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        max-width: 300px;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Анимация появления
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Автоматическое скрытие через 3 секунды
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 3000);
+}
+
 function chooseWorkExperience(button) {
-    console.log(button.style.backgroundColor);
-    if (button.style.backgroundColor == "rgb(0, 136, 204)" || button.style.backgroundColor == "") {
-        button.style.backgroundColor = '#333333';
+    if (button.classList.contains('selected')) {
+        button.classList.remove('selected');
     } else {
-        button.style.backgroundColor = '#0088cc';
+        button.classList.add('selected');
     }
 }
