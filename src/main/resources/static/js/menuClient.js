@@ -31,6 +31,12 @@ const time = params.get('time');
 const existParams = new URLSearchParams();
 const encodeExistParams = new URLSearchParams();
 
+function support(){
+    window.Telegram.WebApp.openTelegramLink(`https://t.me/Cherchent`); // URL с ID чата
+    window.Telegram.WebApp.close();
+}
+
+
 if (city) {
     existParams.append('city', city);
     encodeExistParams.append('city', encodeURIComponent(city));

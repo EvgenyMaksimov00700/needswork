@@ -125,7 +125,7 @@ body {
     font-size: 22px;
 }
 
-.filter-button {
+.header-button {
     background: var(--tg-bg-tertiary);
     border: 1px solid var(--tg-border-light);
     border-radius: var(--radius-md);
@@ -141,8 +141,8 @@ body {
     font-size: 18px;
 }
 
-.filter-button:hover,
-.filter-button:active {
+.header-button:hover,
+.header-button:active {
     background: var(--tg-bg-elevated);
     border-color: var(--tg-border-medium);
     transform: translateY(-1px);
