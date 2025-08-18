@@ -784,6 +784,8 @@ body {
     .app-header {
         height: var(--mobile-header-height);
         padding: var(--spacing-md);
+        /* Смещаем содержимое хедера вниз ~1 см для мобильных устройств */
+        margin-top: 10mm;
     }
     
     .page-title {
