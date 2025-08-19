@@ -1,5 +1,58 @@
+/* ===== TELEGRAM NIGHT THEME ===== */
+:root {
+    /* Telegram Night Colors */
+    --tg-bg-primary: #0f0f0f;
+    --tg-bg-secondary: #1a1a1a;
+    --tg-bg-tertiary: #2a2a2a;
+    --tg-bg-elevated: #323232;
+    --tg-bg-overlay: rgba(0, 0, 0, 0.75);
+
+    /* Text Colors */
+    --tg-text-primary: #ffffff;
+    --tg-text-secondary: #b0b0b0;
+    --tg-text-tertiary: #8e8e8e;
+    --tg-text-accent: #0088cc;
+
+    /* Accent Colors */
+    --tg-accent-primary: #0088cc;
+    --tg-accent-secondary: #007ab8;
+    --tg-accent-success: #4caf50;
+    --tg-accent-warning: #ff9800;
+    --tg-accent-error: #f44336;
+
+    /* Borders & Shadows */
+    --tg-border-light: #3a3a3a;
+    --tg-border-medium: #4a4a4a;
+    --tg-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.25);
+    --tg-shadow-medium: 0 6px 18px rgba(0, 0, 0, 0.35);
+    --tg-shadow-heavy: 0 12px 40px rgba(0, 0, 0, 0.5);
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+
+    /* Typography */
+    --font-size-base: 16px;
+    --font-size-sm: 14px;
+    --font-size-lg: 18px;
+    --font-size-xl: 22px;
+
+    /* Layout */
+    --desktop-max-width: 820px;
+    --mobile-touch-target: 44px;
+}
+
 * {
-    margin: 20;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -7,101 +60,127 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: #1C1E22;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-
+    align-items: stretch;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--tg-bg-primary) 0%, var(--tg-bg-secondary) 100%);
+    color: var(--tg-text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Контейнер iPhone 14 */
+/* App container */
 .phone {
     position: relative;
-    width: 390px;
-    height: 844px;
-    border-radius: 40px;
-    background-color: #1C1E22;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: var(--desktop-max-width);
+    min-height: 100vh;
+    margin: 0 auto;
+    border-radius: 16px;
+    background: var(--tg-bg-primary);
+    box-shadow: var(--tg-shadow-heavy);
     overflow: hidden;
-    border: 2px solid #2C2F36;
+    border: 1px solid var(--tg-border-light);
 }
 
-/* Экран приложения */
+/* Screen */
 .screen {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
-    background-color: #20232A;
-    border-radius: 40px;
+    min-height: 100vh;
+    background: var(--tg-bg-primary);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 20px 10px;
-    box-sizing: border-box;
-    overflow-y: scroll;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    overflow-y: auto;
 }
 
 .screen::-webkit-scrollbar {
-    width: 0;
+    width: 6px;
 }
+.screen::-webkit-scrollbar-track { background: var(--tg-bg-tertiary); }
+.screen::-webkit-scrollbar-thumb { background: var(--tg-border-medium); border-radius: 4px; }
+.screen::-webkit-scrollbar-thumb:hover { background: var(--tg-accent-primary); }
 
-/* Заголовок */
+/* Header */
 .header {
-    font-size: 24px;
-    color: #E0E0E0;
-    margin-bottom: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    margin: calc(var(--spacing-md) * -1) calc(var(--spacing-lg) * -1) 0;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-bottom: 1px solid var(--tg-border-light);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--tg-text-primary);
 }
 .headerh4 {
-    font-size: 18px;
-    color: #E0E0E0;
-    margin-bottom: 10px;
-    margin-top: 5px;
+    font-size: var(--font-size-lg);
+    color: var(--tg-text-secondary);
+    margin: 0 0 var(--spacing-sm) 0;
 }
 
-/* Кнопки */
+/* Buttons */
 .button {
     width: 100%;
-    background-color: #0088cc;
-    color: white;
+    background: linear-gradient(180deg, var(--tg-accent-primary) 0%, var(--tg-accent-secondary) 100%);
+    color: #ffffff;
     text-align: center;
     padding: 12px 0;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--tg-shadow-light);
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: 1px solid var(--tg-border-light);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 .button:hover {
-    background-color: #357CBB;
-    transform: scale(1.03);
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+    box-shadow: var(--tg-shadow-medium);
+}
+.button:active {
+    transform: translateY(0);
+    filter: brightness(0.95);
 }
 
-/* Кнопки внизу экрана */
+/* Bottom action area */
 .bottom-buttons {
-    position: absolute;
-    bottom: 20px;
-    width: 90%;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: var(--spacing-md) calc(var(--spacing-lg) * -1) 0;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--tg-border-light);
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    align-items: center;
+    gap: var(--spacing-sm);
+    align-items: stretch;
 }
 
-/* Кнопка "Загрузить текстовое резюме" на весь экран */
+/* Large button */
 .large-button {
-    height: 50px; /* Делаем её такой же по высоте, как другие кнопки */
-    font-size: 18px;
+    min-height: var(--mobile-touch-target);
+    font-size: var(--font-size-lg);
 }
 
-/* Блок загрузки/обновления резюме */
+/* Upload/update pair */
 .update-show-resume {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    gap: var(--spacing-sm);
 }
 
 .update-resume {
@@ -110,47 +189,109 @@ body {
 
 .show-resume {
     width: 48%;
-    background-color: #353A43;
+    background: var(--tg-bg-tertiary);
     text-align: center;
     padding: 12px 0;
-    border-radius: 8px;
-    color: white;
+    border-radius: var(--radius-md);
+    color: var(--tg-text-primary);
     cursor: pointer;
     text-decoration: none;
+    border: 1px solid var(--tg-border-light);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .show-resume:hover {
-    background-color: #2A2E35;
+    background: var(--tg-bg-elevated);
+    box-shadow: var(--tg-shadow-light);
 }
 
+/* Resume list */
 .resume-buttons {
-    max-height: 75vh;
-    overflow-y: auto;
-    margin-bottom: 15px;
-    flex-grow: 1;
-    margin-left: 10px;
-    width:96%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    overflow: visible;
+    flex: 1;
+    margin-bottom: var(--spacing-md);
 }
 
+/* Resume card */
 .resume-button {
-    background-color: #0088cc; /* Telegram-синий для кнопок */
-    color: white;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    text-align: center;
-    border: 1px solid #3c4043; /* Лёгкая обводка */
+    position: relative;
+    background: var(--tg-bg-secondary);
+    color: var(--tg-text-primary);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    text-align: left;
+    border: 1px solid var(--tg-border-light);
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: var(--font-size-base);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    box-shadow: var(--tg-shadow-light);
+}
+
+.resume-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--tg-accent-primary) 0%, var(--tg-accent-secondary) 100%);
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
 }
 
 .resume-button:hover {
-    background-color: #007ab8; /* Светлее при наведении */
-    transform: scale(1.02); /* Лёгкое увеличение */
+    transform: translateY(-2px);
+    box-shadow: var(--tg-shadow-medium);
+    border-color: var(--tg-border-medium);
 }
 .resume-buttons::-webkit-scrollbar,
 .container::-webkit-scrollbar {
     display: none;
+}
 
+/* Close icon inside resume card */
+.resume-button span[onclick] {
+    color: var(--tg-text-tertiary) !important;
+    background: rgba(255,255,255,0.04);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.resume-button span[onclick]:hover { background: rgba(255,255,255,0.08); transform: scale(1.05); }
+.resume-button span[onclick]:active { transform: scale(0.98); }
+
+/* Safe area support */
+@supports (padding: max(0px)) {
+    .bottom-buttons {
+        padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
+    }
+}
+
+/* Desktop refinements */
+@media (min-width: 768px) {
+    .screen {
+        padding: var(--spacing-xl);
+    }
+    .header {
+        padding: var(--spacing-lg) var(--spacing-xl);
+        font-size: 26px;
+    }
+    .headerh4 { font-size: 20px; }
+    .resume-buttons { grid-template-columns: 1fr 1fr; }
+    .bottom-buttons {
+        gap: var(--spacing-md);
+        padding: var(--spacing-lg) var(--spacing-xl);
+    }
+    .button { font-size: 18px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.01ms !important; }
 }
