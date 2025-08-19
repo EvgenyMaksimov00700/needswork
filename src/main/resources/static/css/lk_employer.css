@@ -1,67 +1,166 @@
+/* ===== TELEGRAM NIGHT THEME ===== */
+:root {
+    --tg-bg-primary: #0f0f0f;
+    --tg-bg-secondary: #1a1a1a;
+    --tg-bg-tertiary: #2a2a2a;
+    --tg-bg-elevated: #323232;
+    --tg-bg-overlay: rgba(0, 0, 0, 0.75);
+
+    --tg-text-primary: #ffffff;
+    --tg-text-secondary: #b0b0b0;
+    --tg-text-tertiary: #8e8e8e;
+
+    --tg-accent-primary: #0088cc;
+    --tg-accent-secondary: #007ab8;
+    --tg-accent-error: #f44336;
+
+    --tg-border-light: #3a3a3a;
+    --tg-border-medium: #4a4a4a;
+    --tg-shadow-light: 0 2px 8px rgba(0,0,0,0.25);
+    --tg-shadow-medium: 0 6px 18px rgba(0,0,0,0.35);
+    --tg-shadow-heavy: 0 12px 40px rgba(0,0,0,0.5);
+
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 22px;
+
+    --desktop-max-width: 820px;
+    --mobile-touch-target: 44px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #2a2f33; /* Ночной фон Telegram */
-    color: #d1d1d1; /* Светлый текст */
+    min-height: 100vh;
     display: flex;
+    align-items: stretch;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background: linear-gradient(135deg, var(--tg-bg-primary) 0%, var(--tg-bg-secondary) 100%);
+    color: var(--tg-text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
-    width: 90%;
-    max-width: 400px;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #23272a; /* Контрастный фон контейнера */
-    border-radius: 40px; /* Округлённые углы */
-    border: 1px solid #3c4043; /* Лёгкая обводка */
+    width: 100%;
+    max-width: var(--desktop-max-width);
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    background: var(--tg-bg-primary);
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--tg-shadow-heavy);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
 }
 
 h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    color: #ffffff; /* Белый текст заголовка */
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    margin: calc(var(--spacing-xl) * -1) calc(var(--spacing-xl) * -1) 0;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    background: rgba(26,26,26,0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--tg-border-light);
+    text-align: left;
+    font-weight: 800;
+    font-size: 26px;
+    color: var(--tg-text-primary);
 }
 
-.form-group {
-    margin-bottom: 15px;
+.form-group { margin-bottom: var(--spacing-sm); }
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
 }
 
-input[type="button"] {
-    width: 100%;
-    padding: 15px;
-    box-sizing: border-box;
-    border: 1px solid #3c4043; /* Лёгкая обводка */
-    border-radius: 5px;
-    background-color: #0088cc; /* Telegram-синий */
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-input[type="button"]:hover {
-    background-color: #007ab8; /* Светлее при наведении */
-    transform: scale(1.02); /* Лёгкое увеличение */
-}
-
+input[type="button"],
 button.next {
     width: 100%;
-    padding: 15px;
-    border: 1px solid #3c4043; /* Лёгкая обводка */
-    border-radius: 5px;
-    font-size: 16px;
+    min-height: var(--mobile-touch-target);
+    padding: 12px 16px;
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-md);
+    background: linear-gradient(180deg, var(--tg-accent-primary) 0%, var(--tg-accent-secondary) 100%);
+    color: #ffffff;
+    font-size: var(--font-size-base);
     cursor: pointer;
-    background-color: #0088cc; /* Telegram-синий */
-    color: white;
-    margin-top: 20px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    box-shadow: var(--tg-shadow-light);
 }
 
+input[type="button"]:hover,
 button.next:hover {
-    background-color: #007ab8; /* Светлее при наведении */
-    transform: scale(1.02); /* Лёгкое увеличение */
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+    box-shadow: var(--tg-shadow-medium);
+}
+
+input[type="button"]:active,
+button.next:active {
+    transform: translateY(0);
+    filter: brightness(0.95);
+}
+
+/* Danger style for delete */
+input[type="button"][value="Удалить аккаунт"] {
+    background: linear-gradient(180deg, #ff5555 0%, #e53935 100%);
+    border-color: #6b1b1b;
+}
+
+/* Support button subtle variant */
+input[type="button"][value="Поддержка"] {
+    background: var(--tg-bg-tertiary);
+    color: var(--tg-text-primary);
+    border-color: var(--tg-border-light);
+}
+input[type="button"][value="Поддержка"]:hover {
+    background: var(--tg-bg-elevated);
+}
+
+/* Focus states */
+input[type="button"]:focus-visible,
+button.next:focus-visible {
+    outline: 2px solid var(--tg-accent-primary);
+    outline-offset: 2px;
+}
+
+/* Scrollbar */
+*::-webkit-scrollbar { width: 6px; height: 6px; }
+*::-webkit-scrollbar-track { background: var(--tg-bg-tertiary); }
+*::-webkit-scrollbar-thumb { background: var(--tg-border-medium); border-radius: 4px; }
+*::-webkit-scrollbar-thumb:hover { background: var(--tg-accent-primary); }
+
+/* Desktop refinements */
+@media (min-width: 768px) {
+    .container { padding: var(--spacing-xl) var(--spacing-xl); }
+    h2 { font-size: 28px; padding: var(--spacing-xl); }
+    input[type="button"], button.next { font-size: 18px; }
+}
+
+/* Safe area */
+@supports (padding: max(0px)) {
+    .container { padding-bottom: max(var(--spacing-xl), env(safe-area-inset-bottom)); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.01ms !important; }
 }
