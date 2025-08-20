@@ -89,18 +89,30 @@ body {
     position: relative;
 }
 
+/* Mobile padding by default */
+@media (max-width: 767px) {
+    .app-container {
+        padding-top: 120px;
+    }
+    
+    .app-header {
+        top: 120px;
+    }
+}
+
 /* ===== HEADER ===== */
 .app-header {
-    background: var(--tg-bg-secondary);
-    border-bottom: 1px solid var(--tg-border-light);
+    background: rgba(26, 26, 26, 0.7);
+    border-bottom: 1px solid rgba(58, 58, 58, 0.5);
     padding: var(--spacing-md);
     position: sticky;
-    top: 0;
+    top: 120px;
     z-index: 100;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     display: flex;
     align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .header-content {
@@ -153,6 +165,7 @@ body {
 /* ===== MAIN CONTENT ===== */
 .main-content {
     padding: var(--spacing-md);
+    padding-top: calc(var(--spacing-md) + 40px);
     padding-bottom: var(--spacing-xl);
     min-height: calc(100vh - 80px);
     display: flex;
@@ -487,6 +500,7 @@ body {
     
     .main-content {
         padding: var(--spacing-xl);
+        padding-top: calc(var(--spacing-xl) + 40px);
         padding-bottom: var(--spacing-xl);
         min-height: calc(100vh - var(--desktop-header-height));
     }
@@ -599,9 +613,19 @@ body {
         font-size: var(--mobile-font-size-base);
     }
     
+    .app-container {
+        padding-top: 120px !important;
+    }
+    
     .app-header {
         height: var(--mobile-header-height);
         padding: var(--spacing-md);
+        top: 120px;
+        background: rgba(26, 26, 26, 0.7);
+        border-bottom: 1px solid rgba(58, 58, 58, 0.5);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
     
     .page-title {
@@ -622,6 +646,7 @@ body {
     
     .main-content {
         padding: var(--spacing-md);
+        padding-top: calc(var(--spacing-md) + 49px);
         padding-bottom: calc(var(--spacing-xl) + env(safe-area-inset-bottom));
         min-height: calc(100vh - var(--mobile-header-height));
     }
@@ -730,8 +755,27 @@ body {
     
     /* Small phones */
     @media (max-width: 375px) {
+        .app-container {
+            padding-top: 120px !important;
+        }
+        
+        .app-header {
+            top: 120px;
+            background: rgba(26, 26, 26, 0.7);
+            border-bottom: 1px solid rgba(58, 58, 58, 0.5);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
         .main-content {
             padding: var(--spacing-sm);
+            padding-top: calc(var(--spacing-sm) + 30px);
+        }
+        
+        .main-content {
+            padding: var(--spacing-sm);
+            padding-top: calc(var(--spacing-sm) + 49px);
         }
         
         .vacancy {
@@ -764,8 +808,22 @@ body {
     
     /* Medium phones */
     @media (min-width: 376px) and (max-width: 480px) {
+        .app-container {
+            padding-top: 120px !important;
+        }
+        
+        .app-header {
+            top: 120px;
+            background: rgba(26, 26, 26, 0.7);
+            border-bottom: 1px solid rgba(58, 58, 58, 0.5);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
         .main-content {
             padding: var(--spacing-md);
+            padding-top: calc(var(--spacing-md));
         }
         
         .vacancy {
@@ -786,9 +844,19 @@ body {
     
     /* Landscape orientation */
     @media (orientation: landscape) and (max-height: 500px) {
+        .app-container {
+            padding-top: 120px !important;
+        }
+        
         .app-header {
             height: 50px;
             padding: var(--spacing-sm);
+            top: 120px;
+            background: rgba(26, 26, 26, 0.7);
+            border-bottom: 1px solid rgba(58, 58, 58, 0.5);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
         
         .page-title {
@@ -801,6 +869,7 @@ body {
         
         .main-content {
             padding: var(--spacing-sm);
+            padding-top: calc(var(--spacing-sm) + 49px);
         }
         
         .vacancy {
