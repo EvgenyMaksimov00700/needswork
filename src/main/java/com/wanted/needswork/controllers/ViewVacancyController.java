@@ -40,9 +40,12 @@ public class ViewVacancyController {
             @RequestParam(name = "vacancyId", required = false) BigInteger vacancyId
     ) {
         List<ViewVacancy> viewVacancies = viewVacancyService.getViewVacancies(limit, userId, vacancyId);
+
         List<ViewVacancyResponseDTO> viewVacancyResponseDTOs = viewVacancies.stream()
+                .filter(viewVacancy -> viewVacancy.getVacancyId()!=null)
                 .map(viewVacancy -> {
                     BigInteger vacId = viewVacancy.getVacancyId();
+                    System.out.println(vacId);
                     Vacancy vacancy = vacancyService.getVacancy(vacId);
                     if (vacancy == null) {
                         vacancy = hhService.fetchVacancy(vacId);

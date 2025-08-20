@@ -89,16 +89,7 @@ body {
     position: relative;
 }
 
-/* Mobile padding by default */
-@media (max-width: 767px) {
-    .app-container {
-        padding-top: 120px;
-    }
-    
-    .app-header {
-        top: 120px;
-    }
-}
+
 
 /* ===== HEADER ===== */
 .app-header {
@@ -106,7 +97,7 @@ body {
     border-bottom: 1px solid rgba(58, 58, 58, 0.5);
     padding: var(--spacing-md);
     position: sticky;
-    top: 120px;
+    top: 5px;
     z-index: 100;
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
@@ -500,7 +491,6 @@ body {
     
     .main-content {
         padding: var(--spacing-xl);
-        padding-top: calc(var(--spacing-xl) + 40px);
         padding-bottom: var(--spacing-xl);
         min-height: calc(100vh - var(--desktop-header-height));
     }
@@ -613,14 +603,13 @@ body {
         font-size: var(--mobile-font-size-base);
     }
     
-    .app-container {
-        padding-top: 120px !important;
-    }
+
     
     .app-header {
         height: var(--mobile-header-height);
         padding: var(--spacing-md);
-        top: 120px;
+        top: 5px;
+
         background: rgba(26, 26, 26, 0.7);
         border-bottom: 1px solid rgba(58, 58, 58, 0.5);
         backdrop-filter: blur(25px);
@@ -808,12 +797,11 @@ body {
     
     /* Medium phones */
     @media (min-width: 376px) and (max-width: 480px) {
-        .app-container {
-            padding-top: 120px !important;
-        }
+
+
         
         .app-header {
-            top: 120px;
+
             background: rgba(26, 26, 26, 0.7);
             border-bottom: 1px solid rgba(58, 58, 58, 0.5);
             backdrop-filter: blur(25px);
@@ -844,10 +832,7 @@ body {
     
     /* Landscape orientation */
     @media (orientation: landscape) and (max-height: 500px) {
-        .app-container {
-            padding-top: 120px !important;
-        }
-        
+
         .app-header {
             height: 50px;
             padding: var(--spacing-sm);

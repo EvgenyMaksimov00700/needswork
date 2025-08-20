@@ -7,7 +7,8 @@ clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
     }
     console.log(isDesktop());
     if (!isDesktop()) {
-        document.querySelector(".app-container").style.paddingTop = "120px";
+        document.querySelector(".app-container").style.top = "120px";
+        document.querySelector(".app-header").style.top = "120px";
         window.Telegram.WebApp.requestFullscreen();
     }
 
