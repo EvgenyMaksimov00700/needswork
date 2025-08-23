@@ -83,7 +83,6 @@ body {
 /* ===== APP CONTAINER ===== */
 .app-container {
     max-width: 100%;
-    margin: 2.5cm auto 0;
     min-height: 100vh;
     background: var(--tg-bg-primary);
     position: relative;
@@ -785,6 +784,7 @@ body {
         height: var(--mobile-header-height);
         padding: var(--spacing-md);
         margin-top: 0;
+
     }
     
     .page-title {

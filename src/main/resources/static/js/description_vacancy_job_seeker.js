@@ -243,7 +243,8 @@ document.addEventListener('DOMContentLoaded', function(){
         }
         console.log(isDesktop());
         if (!isDesktop()) {
-        document.querySelector('.container').style.marginTop="100px";
+        document.querySelector('.app-header').style.top="100px";
+        document.querySelector('.main-content').style.marginTop="100px";
             window.Telegram.WebApp.requestFullscreen();
         }
 
