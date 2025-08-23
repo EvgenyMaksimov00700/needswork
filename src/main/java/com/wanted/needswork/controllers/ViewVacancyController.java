@@ -1,9 +1,6 @@
 package com.wanted.needswork.controllers;
 
-import com.wanted.needswork.DTO.request.CurrentStateDTO;
-import com.wanted.needswork.DTO.request.StateSendRequestDTO;
 import com.wanted.needswork.DTO.request.ViewVacancyDTO;
-import com.wanted.needswork.DTO.response.CurrentStateResponseDTO;
 import com.wanted.needswork.DTO.response.ViewVacancyResponseDTO;
 import com.wanted.needswork.models.*;
 import com.wanted.needswork.services.*;
@@ -13,8 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
-import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @RestController
@@ -41,16 +38,26 @@ public class ViewVacancyController {
     ) {
         List<ViewVacancy> viewVacancies = viewVacancyService.getViewVacancies(limit, userId, vacancyId);
 
+        AtomicInteger index = new AtomicInteger();
         List<ViewVacancyResponseDTO> viewVacancyResponseDTOs = viewVacancies.stream()
-                .filter(viewVacancy -> viewVacancy.getVacancyId()!=null)
+                .filter(viewVacancy -> viewVacancy.getVacancyId() != null)
                 .map(viewVacancy -> {
                     BigInteger vacId = viewVacancy.getVacancyId();
-                    System.out.println(vacId);
-                    Vacancy vacancy = vacancyService.getVacancy(vacId);
-                    if (vacancy == null) {
-                        vacancy = hhService.fetchVacancy(vacId);
+                    try {
+                        Vacancy vacancy = vacancyService.getVacancy(vacId);
+                        if (vacancy != null){
+                            return viewVacancy.toResponseDTO(vacancy);
+                        }
+                        if (index.get() <= 9) {
+                            vacancy = hhService.fetchVacancy(vacId);
+                            index.getAndIncrement();
+                            return viewVacancy.toResponseDTO(vacancy);
+                        }
+                        return viewVacancy.toResponseDTOWithIdOnly();
+
+                    } catch (Exception e){
+                        return viewVacancy.toResponseDTOWithIdOnly();
                     }
-                    return viewVacancy.toResponseDTO(vacancy);
                 })
                 .collect(Collectors.toList());
 

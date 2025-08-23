@@ -3,6 +3,7 @@ package com.wanted.needswork.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.wanted.needswork.DTO.response.EmployerResponseDTO;
 import com.wanted.needswork.DTO.response.IndustryResponseDTO;
+import com.wanted.needswork.DTO.response.VacancyResponseDTO;
 import com.wanted.needswork.DTO.response.ViewVacancyResponseDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -52,5 +53,9 @@ public class ViewVacancy {
         } else {
             return new ViewVacancyResponseDTO(id, user.toResponseDTO(), null, viewDateTime);
         }
+    }
+
+    public ViewVacancyResponseDTO toResponseDTOWithIdOnly() {
+        return new ViewVacancyResponseDTO(id, user.toResponseDTO(), new VacancyResponseDTO(vacancyId), viewDateTime);
     }
 }

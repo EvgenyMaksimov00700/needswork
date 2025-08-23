@@ -41,4 +41,8 @@ public class VacancyResponseDTO {
     @Getter
     private Integer views;
 
+    public VacancyResponseDTO(BigInteger id){
+        this.id= id;
+    }
+
 }
