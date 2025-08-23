@@ -1,26 +1,5 @@
 let clientID;
-try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
-if (window.history.length > 1) {
-        window.Telegram.WebApp.BackButton.show();
-        window.Telegram.WebApp.BackButton.onClick(() => {
-            window.history.back();
-        });
-    }
-function isDesktop() {
-        const userAgent = navigator.userAgent.toLowerCase();
-        return userAgent.includes("windows") || userAgent.includes("macintosh") || userAgent.includes("linux");
-    }
-    console.log(isDesktop());
-    if (!isDesktop()) {
-    document.querySelector('.container').style.marginTop="100px";
-        window.Telegram.WebApp.requestFullscreen();
-    }
 
-}
-
-catch(error) {clientID = 159619887
-alert(error)
-}
 console.log(clientID)
 
 let user;
@@ -251,6 +230,28 @@ function formatDateTime(isoString) {
     return `${day}.${month}.${year} ${hours}:${minutes}`;
 }
 document.addEventListener('DOMContentLoaded', function(){
+    try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
+    if (window.history.length > 1) {
+            window.Telegram.WebApp.BackButton.show();
+            window.Telegram.WebApp.BackButton.onClick(() => {
+                window.history.back();
+            });
+        }
+    function isDesktop() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return userAgent.includes("windows") || userAgent.includes("macintosh") || userAgent.includes("linux");
+        }
+        console.log(isDesktop());
+        if (!isDesktop()) {
+        document.querySelector('.container').style.marginTop="100px";
+            window.Telegram.WebApp.requestFullscreen();
+        }
+
+    }
+
+    catch(error) {clientID = 159619887
+    alert(error)
+    }
     try {
         const webApp = window.Telegram.WebApp;
         const startParam = webApp.initDataUnsafe.start_param;
