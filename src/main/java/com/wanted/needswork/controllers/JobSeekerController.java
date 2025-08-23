@@ -98,7 +98,6 @@ public class JobSeekerController {
 
     @GetMapping("/jobSeeker/{jobSeekerId}/textResume")
     public ResponseEntity<Resource> getTextResume(@PathVariable Integer jobSeekerId) throws MalformedURLException {
-        // допустим, у вас в БД лежит имя файла или вы формируете его по шаблону:
         String fileName = jobSeekerService.getTextResumeFileName(jobSeekerId);
         Path file = Paths.get(resumesBasePath).resolve(fileName);
 
@@ -107,7 +106,16 @@ public class JobSeekerController {
         }
 
         Resource resource = new UrlResource(file.toUri());
+
+        String contentType;
+        try {
+            contentType = Files.probeContentType(file);
+        } catch (IOException ex) {
+            contentType = "application/octet-stream"; // дефолт, если не определилось
+        }
+
         return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
                 .header(HttpHeaders.CONTENT_DISPOSITION,
                         "inline; filename=\"" + file.getFileName().toString() + "\"")
                 .body(resource);
