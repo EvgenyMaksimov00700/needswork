@@ -18,7 +18,9 @@ function isDesktop() {
 
 }
 
-catch(error) {clientID = 159619887}
+catch(error) {clientID = 159619887
+alert(error)
+}
 console.log(clientID)
 
 let user;
