@@ -257,6 +257,39 @@ document.addEventListener('DOMContentLoaded', function(){
         const visitedKey = 'vacancyRedirectDone';
 
         if (!sessionStorage.getItem(visitedKey) && startParam && startParam.startsWith('vacancy_')) {
+
+            const user = webApp.initDataUnsafe.user;
+            if (!user) {
+                console.warn('Нет данных о пользователе из Telegram');
+
+            }
+            else {
+
+                // соберём DTO
+                const jobSeekerDTO = {
+                    user_id: user.id,
+                    fullName: user.first_name + (user.last_name ? ' ' + user.last_name : ''),
+                    username: user.username,
+                    latitude: 0,
+                    longitude: 0
+                };
+
+                // вызов вашей ручки
+                const response = await fetch('/jobSeeker/auth', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jobSeekerDTO)
+                });
+
+                if (!response.ok) {
+                    console.error('Ошибка при добавлении jobSeeker', response.status);
+                } else {
+                    const data = await response.json();
+                    console.log('JobSeeker создан/найден:', data);
+                }
+            }
             const vacancyId = startParam.split('_')[1];
             sessionStorage.setItem(visitedKey, 'true');
             window.location.href = `/vacancy/description?id=${vacancyId}`;

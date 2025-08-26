@@ -1,6 +1,7 @@
 package com.wanted.needswork.controllers;
 
 import com.wanted.needswork.DTO.request.JobSeekerDTO;
+import com.wanted.needswork.DTO.request.JobSeekerUserDTO;
 import com.wanted.needswork.DTO.response.EmployerResponseDTO;
 import com.wanted.needswork.DTO.response.JobSeekerResponseDTO;
 import com.wanted.needswork.models.Employer;
@@ -177,5 +178,24 @@ public class JobSeekerController {
         }
         return "";
     }
+    @PostMapping("/jobSeeker/auth")
+    public ResponseEntity<JobSeeker> addJobSeeker(@RequestBody JobSeekerUserDTO dto) {
+        // получаем или создаём пользователя через UserService
+        User user = userService.getOrCreateUser(dto.getUser_id(), dto.getFullName(), dto.getUsername());
 
+        // проверим, есть ли уже JobSeeker
+        JobSeeker jobSeeker = jobSeekerService.getJobSeekerByUserId(user.getId());
+        if (jobSeeker != null) {
+            return new ResponseEntity<>(jobSeeker, HttpStatus.CONFLICT); // уже существует
+        }
+
+        // создаём нового JobSeeker
+        jobSeeker = jobSeekerService.addJobSeeker(
+                user,
+                dto.getLatitude(),
+                dto.getLongitude()
+        );
+
+        return new ResponseEntity<>(jobSeeker, HttpStatus.CREATED);
+    }
 }

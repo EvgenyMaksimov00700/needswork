@@ -42,4 +42,15 @@ public class UserService
         }
         return userRepository.save(user);
     }
+    public User getOrCreateUser(BigInteger userId, String fullName, String username) {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
+            user = new User();
+            user.setId(userId);
+            user.setFullName(fullName);
+            user.setUsername(username);
+            user = userRepository.save(user);
+        }
+        return user;
+    }
 }
