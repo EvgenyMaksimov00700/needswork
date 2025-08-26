@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 };
 
                 // вызов вашей ручки
-                const response = await fetch('/jobSeeker/auth', {
+                const response = fetch('/jobSeeker/auth', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
