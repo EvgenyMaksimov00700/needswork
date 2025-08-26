@@ -250,7 +250,7 @@ window.addEventListener('offline', () => {
     showError('Нет подключения к интернету. Проверьте соединение и попробуйте снова.');
 });
 
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', async function(){
     try {
         const webApp = window.Telegram.WebApp;
         const startParam = webApp.initDataUnsafe.start_param;
@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 };
 
                 // вызов вашей ручки
-                const response = fetch('/jobSeeker/auth', {
+                const response = await fetch('/jobSeeker/auth', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

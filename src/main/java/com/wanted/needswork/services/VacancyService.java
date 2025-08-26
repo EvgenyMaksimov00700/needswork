@@ -48,9 +48,68 @@ public class VacancyService {
 
     public Vacancy addVacancy(Employer employer_id, Industry industry_id, String position, String city, Integer fromSalary, Integer toSalary,
                               String workShedule, Boolean distantWork, String address, String exp, String responsibility) {
-        Vacancy vacancy = new Vacancy(employer_id, industry_id, position, city, toSalary, fromSalary, exp, responsibility, workShedule, distantWork, address);
-        return vacancyRepository.save(vacancy);
+        Vacancy vacancy = new Vacancy(
+                employer_id,
+                industry_id,
+                position,
+                city,
+                toSalary,
+                fromSalary,
+                exp,
+                responsibility,
+                workShedule,
+                distantWork,
+                address
+        );
+
+        // сохраняем в БД
+        Vacancy savedVacancy = vacancyRepository.save(vacancy);
+        Dotenv dotenv = Dotenv.load();
+
+        // теперь формируем сообщение
+        String textMessage = String.format("Опубликована новая вакансия %s!", savedVacancy.getPosition());
+
+        // создаём inline-кнопки
+        String requestBody = String.format(
+                "{" +
+                        "\"chat_id\":\"%d\", " +
+                        "\"text\":\"%s\", " +
+                        "\"parse_mode\":\"HTML\", " +
+                        "\"reply_markup\":{" +
+                        "\"inline_keyboard\":[[" +
+                        "{\"text\":\"Открыть вакансию\",\"web_app\":{\"url\":\"https://tworker.ru/vacancy/description?id=%d\"}}" +
+                        "],[" +
+                        "{\"text\":\"Подтвердить\",\"callback_data\":\"approve_%d\"}," +
+                        "{\"text\":\"Отклонить\",\"callback_data\":\"reject_%d\"}" +
+                        "]]" +
+                        "}" +
+                        "}",
+                1537263486,
+                textMessage,
+                savedVacancy.getId(),
+                savedVacancy.getId(),
+                savedVacancy.getId()
+        );
+
+        System.out.println("Отправляемое тело: " + requestBody);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://api.telegram.org/bot" + dotenv.get("TOKEN") + "/sendMessage"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .build();
+
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Ответ от Telegram: " + response.body());
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return savedVacancy;
     }
+
 
     public Vacancy updateVacancy(Vacancy vacancy, Employer employer_id, Industry industry_id, String position, String city,
                                  Integer fromSalary, Integer toSalary, String workSchedule, Boolean distantWork, String address, String exp, String responsibility) {
