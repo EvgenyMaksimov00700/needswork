@@ -1,47 +1,181 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns="http://www.w3.org/1999/html">
+<html lang="ru">
 <head>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>Сведения о компании</title>
     <link rel="stylesheet" href="/css/reg_employer1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6O1o6+K5W+SzN+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<div class="container">
-    <h1>Сведения о компании</h1>
-    <div class="input-group">
-        <label for="inn">ИНН:</label>
-        <input type="number" id="inn" name="inn">
+    <div class="app-container">
+        <!-- Skip Link for Accessibility -->
+        <a href="#main-content" class="skip-link">Перейти к основному содержимому</a>
+        
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="page-title">
+                    <i class="fas fa-building" aria-hidden="true"></i>
+                    <span>Сведения о компании</span>
+                </h1>
+                <a href="#" onclick="support()" id="support_button" class="header-button" aria-label="Поддержка">
+                    <i class="fa-solid fa-headset"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <div class="form-container">
+                <!-- Company Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        Основная информация
+                    </h2>
+                    
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="inn" class="input-label">
+                                <i class="fas fa-id-card" aria-hidden="true"></i>
+                                ИНН
+                            </label>
+                            <input type="number" id="inn" name="inn" class="form-input" placeholder="Введите ИНН компании">
+                            <div class="input-icon">
+                                <i class="fas fa-building" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="ogrn" class="input-label">
+                                <i class="fas fa-file-contract" aria-hidden="true"></i>
+                                ОГРН
+                            </label>
+                            <input type="number" id="ogrn" name="ogrn" class="form-input" placeholder="Введите ОГРН">
+                            <div class="input-icon">
+                                <i class="fas fa-file-alt" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="nameCompany" class="input-label">
+                                <i class="fas fa-briefcase" aria-hidden="true"></i>
+                                Наименование компании
+                            </label>
+                            <input type="text" id="nameCompany" name="nameCompany" class="form-input" placeholder="Введите название компании">
+                            <div class="input-icon">
+                                <i class="fas fa-building" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="input-group full-width">
+                            <label for="description" class="input-label">
+                                <i class="fas fa-align-left" aria-hidden="true"></i>
+                                Описание компании
+                            </label>
+                            <textarea id="description" name="description" class="form-textarea" placeholder="Расскажите о вашей компании, миссии и ценностях" rows="4"></textarea>
+                            <div class="input-icon">
+                                <i class="fas fa-pen" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-address-book" aria-hidden="true"></i>
+                        Контактная информация
+                    </h2>
+                    
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="email" class="input-label">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                Email
+                            </label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="company@example.com">
+                            <div class="input-icon">
+                                <i class="fas fa-at" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="phone" class="input-label">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                                Телефон
+                            </label>
+                            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+7 (___) ___-__-__">
+                            <div class="input-icon">
+                                <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Company Branding Section -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-palette" aria-hidden="true"></i>
+                        Брендинг компании
+                    </h2>
+                    
+                    <div class="form-grid">
+                        <div class="input-group full-width">
+                            <label for="logo" class="input-label">
+                                <i class="fas fa-image" aria-hidden="true"></i>
+                                Логотип компании
+                            </label>
+                            <div class="file-upload-area" id="file-upload-area">
+                                <div class="file-upload-content" id="file-upload-content">
+                                    <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+                                    <p>Нажмите для выбора файла или перетащите сюда</p>
+                                    <span class="file-types">PNG, JPG, JPEG до 5MB</span>
+                                </div>
+                                <input type="file" id="logo" name="logo" accept=".png,.jpg,.jpeg" class="file-input">
+                            </div>
+                            
+                            <!-- Logo Preview -->
+                            <div class="logo-preview" id="logo-preview" style="display: none;">
+                                <img id="logoPreview" alt="Логотип компании" class="preview-image">
+                                <button type="button" class="remove-logo" onclick="removeLogo()" aria-label="Убрать логотип">
+                                    <i class="fas fa-times" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="form-actions">
+                    <button type="submit" id="next" class="btn-primary">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        <span>Сохранить информацию</span>
+                    </button>
+                    
+                    <button type="button" class="btn-secondary" onclick="window.location.href='/employer/lk/'">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>Назад в личный кабинет</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loading">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p>Сохранение...</p>
+            </div>
+        </div>
     </div>
-    <div class="input-group">
-        <label for="ogrn">ОГРН:</label>
-        <input type="number" id="ogrn" name="ogrn">
-    </div>
-    <div class="input-group">
-        <label for="nameCompany">Наименование компании:</label>
-        <input type="text" id="nameCompany" name="nameCompany">
-    </div>
-    <div class="input-group">
-        <label for="description">Описание:</label>
-        <input type="text" id="description" name="description">
-    </div>
-    <div class="input-group">
-        <label for="email">Почта:</label>
-        <input type="email" id="email" name="email">
-    </div>
-    <div class="input-group">
-        <label for="logo">Логотип компании:</label>
-        <img id="logoPreview" style="max-width:200px; display:none;" alt="Logo preview">
-        <input type="file" id="logo" name="logo" accept=".png, .jpg, .jpeg">
-    </div>
-    <div class="input-group">
-        <label for="phone"> Телефон </label>
-        <input type="tel" id="phone" name="phone"  placeholder="+7 (___) ___-__-__">
-    </div>
-    <button id = "next" type="submit">Отправить</button>
-    <button type="button" class="back" onclick="window.location.href='/employer/lk/'">Назад</button>
-</div>
-<script src = "/js/regEmployer1.js"> </script>
+
+    <script src="/js/regEmployer1.js"></script>
 </body>
 </html>
