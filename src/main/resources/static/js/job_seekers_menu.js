@@ -300,10 +300,15 @@ document.addEventListener('DOMContentLoaded', function() {
         jobSeekerId = data.id;
         
         if (data.textResume == null) {
+            // Если резюме нет - показываем только загрузку
+            document.getElementById("resume-not-uploaded").style.display = 'flex';
             document.getElementById("resume-uploaded").style.display = 'none';
             document.getElementById("resume-text").style.display = 'none';
         } else {
+            // Если резюме есть - показываем обновление и просмотр, скрываем загрузку
             document.getElementById("resume-not-uploaded").style.display = 'none';
+            document.getElementById("resume-uploaded").style.display = 'flex';
+            document.getElementById("resume-text").style.display = 'flex';
             document.getElementById("resume-text").onclick = () => {
                 window.open(data.textResumeLink, '_blank');
             };
