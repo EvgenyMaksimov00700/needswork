@@ -1,95 +1,1001 @@
-body {
+/* Telegram Night Theme Variables */
+:root {
+    /* Telegram Colors */
+    --tg-bg-primary: #0f0f0f;
+    --tg-bg-secondary: #1a1a1a;
+    --tg-bg-tertiary: #2a2a2a;
+    --tg-bg-elevated: #1e1e1e;
+    --tg-bg-floating: #2d2d2d;
+    
+    /* Text Colors */
+    --tg-text-primary: #ffffff;
+    --tg-text-secondary: #b0b0b0;
+    --tg-text-tertiary: #8e8e8e;
+    --tg-text-link: #64baf0;
+    --tg-text-muted: #6d6d6d;
+    
+    /* Accent Colors */
+    --tg-accent-primary: #2ea6ff;
+    --tg-accent-secondary: #8774e1;
+    --tg-accent-tertiary: #ff6b6b;
+    --tg-accent-success: #4caf50;
+    --tg-accent-warning: #ff9800;
+    --tg-accent-danger: #f44336;
+    --tg-accent-info: #2196f3;
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 48px;
+    
+    /* Border Radius */
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --border-radius-xl: 20px;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Typography */
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 20px;
+    --font-size-xxl: 24px;
+    --font-size-xxxl: 32px;
+    
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Layout */
+    --max-width: 1200px;
+    --header-height: 64px;
+    --vacancy-max-width: 900px;
+    
+    /* Mobile font sizes */
+    --mobile-font-size-small: 14px;
+    
+    /* Device-specific breakpoints */
+    --breakpoint-xs: 320px;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-xxl: 1400px;
+    
+    /* Safe area insets for modern devices */
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-left: env(safe-area-inset-left, 0px);
+    --safe-area-right: env(safe-area-inset-right, 0px);
+}
+
+/* Reset and Base Styles */
+* {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #121212; /* Темный фон */
-    color: #E1E1E1; /* Светлый текст */
-}
-
-.header {
-    font-weight: bold;
-    margin-top: 20px;
-    color: #FFFFFF; /* Белый текст для заголовка */
-}
-
-.container {
-    width: 100%;
-    max-width: 390px;
-    margin: 0 auto;
-    padding: 20px;
     box-sizing: border-box;
-    background-color: #1E1E1E; /* Фон контейнера */
-    border: 1px solid #2A2A2A; /* Тонкая граница */
-    border-radius: 40px;
-    margin-top: 20px;
 }
 
-h1 {
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 20px;
-    color: #FFFFFF; /* Белый текст заголовка */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
 }
 
-.vacancy-details {
-    background-color: #22252A; /* Темный фон для деталей вакансии */
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--tg-bg-primary);
+    color: var(--tg-text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
-.vacancy-details ul {
-    padding-left: 20px;
-    margin: 10px 0;
+/* App Container */
+.app-container {
+    background: var(--tg-bg-primary);
+    position: relative;
+    min-height: 100vh;
+    padding-top: var(--safe-area-top);
+    padding-bottom: var(--safe-area-bottom);
+    padding-left: var(--safe-area-left);
+    padding-right: var(--safe-area-right);
 }
 
-.vacancy-details ul li {
-    list-style-type: disc;
-    margin-bottom: 10px;
-    color: #B0B0B0; /* Светло-серый текст списка */
+/* Skip Link for Accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--tg-accent-primary);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: var(--border-radius-sm);
+    z-index: 1000;
+    transition: top var(--transition-normal);
 }
 
-.vacancy-details p {
-    margin: 10px 0;
-    color: #B0B0B0; /* Светло-серый текст */
+.skip-link:focus {
+    top: 6px;
 }
 
-.button-group {
+/* Header */
+.app-header {
+    background: var(--tg-bg-secondary);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--tg-bg-tertiary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: var(--spacing-md) 0;
+}
+
+.header-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tg-text-primary);
+}
+
+.page-title i {
+    color: var(--tg-accent-primary);
+    font-size: var(--font-size-lg);
+}
+
+.header-button {
+    background: var(--tg-bg-tertiary);
+    color: var(--tg-text-secondary);
+    border: none;
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.header-button:hover {
+    background: var(--tg-bg-elevated);
+    color: var(--tg-text-primary);
+    transform: translateY(-1px);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: var(--spacing-lg) 0;
+}
+
+.vacancy-container {
+    max-width: var(--vacancy-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Vacancy Header Section */
+.vacancy-header-section {
+    background: var(--tg-bg-secondary);
+    border: 1px solid var(--tg-bg-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+    transition: all var(--transition-normal);
+}
+
+.vacancy-header-section:hover {
+    border-color: var(--tg-accent-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.vacancy-title {
+    flex: 1;
+    min-width: 0;
+}
+
+.position-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-xxl);
+    font-weight: var(--font-weight-bold);
+    color: var(--tg-text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.position-title i {
+    color: var(--tg-accent-primary);
+    font-size: var(--font-size-xl);
+}
+
+.vacancy-meta {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--spacing-sm);
 }
 
-.button {
-    padding: 15px;
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--tg-text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.meta-item i {
+    color: var(--tg-accent-primary);
+    width: 16px;
     text-align: center;
-    border-radius: 10px;
-    border: 1px solid #2A2A2A; /* Тонкая граница кнопки */
-    font-size: 16px;
+}
+
+/* Salary Badge */
+.salary-badge {
+    background: var(--tg-accent-success);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.salary-badge i {
+    font-size: var(--font-size-md);
+}
+
+/* Section Titles */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--tg-text-primary);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--tg-bg-tertiary);
+}
+
+.section-title i {
+    color: var(--tg-accent-primary);
+}
+
+/* Vacancy Details Section */
+.vacancy-details-section {
+    background: var(--tg-bg-secondary);
+    border: 1px solid var(--tg-bg-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    transition: all var(--transition-normal);
+}
+
+.vacancy-details-section:hover {
+    border-color: var(--tg-accent-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+}
+
+.detail-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--border-radius-md);
+    background: var(--tg-accent-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: var(--font-size-md);
+    flex-shrink: 0;
+}
+
+.detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    min-width: 0;
+}
+
+.detail-label {
+    font-size: var(--font-size-xs);
+    color: var(--tg-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.detail-value {
+    font-size: var(--font-size-md);
+    color: var(--tg-text-primary);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Vacancy Description Section */
+.vacancy-description-section {
+    background: var(--tg-bg-secondary);
+    border: 1px solid var(--tg-bg-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    transition: all var(--transition-normal);
+}
+
+.vacancy-description-section:hover {
+    border-color: var(--tg-accent-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.description-content {
+    color: var(--tg-text-primary);
+    font-size: var(--font-size-md);
+    line-height: 1.7;
+}
+
+.placeholder-text {
+    color: var(--tg-text-tertiary);
+    font-style: italic;
+    text-align: center;
+    padding: var(--spacing-xl);
+}
+
+/* Vacancy Statistics Section */
+.vacancy-stats-section {
+    background: var(--tg-bg-secondary);
+    border: 1px solid var(--tg-bg-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    transition: all var(--transition-normal);
+}
+
+.vacancy-stats-section:hover {
+    border-color: var(--tg-accent-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--tg-bg-tertiary);
+    border-radius: var(--border-radius-md);
+    transition: all var(--transition-fast);
+}
+
+.stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--border-radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-lg);
+    color: var(--tg-text-primary);
+    background: var(--tg-accent-primary);
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--tg-text-primary);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: var(--font-size-xs);
+    color: var(--tg-text-secondary);
+    margin-top: var(--spacing-xs);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+}
+
+/* Button Base Styles */
+.btn-primary,
+.btn-secondary,
+.btn-danger,
+.btn-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
     cursor: pointer;
-    color: #E1E1E1; /* Цвет текста кнопки */
-    background-color: #1974d2; /* Темный фон кнопки */
-    transition: background-color 0.3s;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    min-height: 48px;
 }
 
-.button:hover {
-    background-color: #083259; /* Светлый фон кнопки при наведении */
+.btn-primary {
+    background: var(--tg-accent-primary);
+    color: white;
 }
 
-.button.blue {
-    background-color: #1974d2; /* Синий цвет кнопки */
-    color: #FFFFFF; /* Белый текст */
+.btn-primary:hover {
+    background: #1a8cd8;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
-.button.blue:hover {
-    background-color: #2D76CC; /* Темно-синий цвет при наведении */
+.btn-secondary {
+    background: var(--tg-accent-secondary);
+    color: white;
 }
 
-.button.red {
-    background-color: #E53935; /* Красная кнопка */
-    color: #FFFFFF; /* Белый текст */
+.btn-secondary:hover {
+    background: #7b68d8;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
-.button.red:hover {
-    background-color: #D32F2F; /* Темно-красная кнопка при наведении */
+.btn-danger {
+    background: var(--tg-accent-danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #d32f2f;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-back {
+    background: var(--tg-bg-tertiary);
+    color: var(--tg-text-primary);
+    border: 1px solid var(--tg-bg-elevated);
+}
+
+.btn-back:hover {
+    background: var(--tg-bg-elevated);
+    border-color: var(--tg-accent-secondary);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.btn-danger:active,
+.btn-back:active {
+    transform: translateY(0);
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.loading-overlay.show {
+    display: flex;
+}
+
+.loading-content {
+    text-align: center;
+    color: white;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--tg-bg-tertiary);
+    border-top: 3px solid var(--tg-accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--spacing-md);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.vacancy-header-section,
+.vacancy-details-section,
+.vacancy-description-section,
+.vacancy-stats-section {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Responsive Design */
+/* Extra Small Devices (phones, 320px and up) */
+@media (min-width: 320px) {
+    .app-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .header-content {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .vacancy-container {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .vacancy-header-section {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-md);
+    }
+    
+    .position-title {
+        font-size: var(--font-size-xl);
+    }
+    
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-title {
+        font-size: var(--font-size-lg);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-md);
+    }
+}
+
+/* Small Devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .app-container {
+        padding: var(--spacing-md);
+    }
+    
+    .header-content {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .vacancy-container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Medium Devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .app-container {
+        padding: var(--spacing-lg);
+    }
+    
+    .header-content {
+        padding: 0 var(--spacing-lg);
+    }
+    
+    .vacancy-container {
+        padding: 0 var(--spacing-lg);
+    }
+    
+    .vacancy-header-section {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-lg);
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .action-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .page-title {
+        font-size: var(--font-size-xl);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-lg);
+    }
+}
+
+/* Large Devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .app-container {
+        padding: var(--spacing-xl);
+    }
+    
+    .header-content {
+        padding: 0 var(--spacing-xl);
+    }
+    
+    .vacancy-container {
+        padding: 0 var(--spacing-xl);
+    }
+    
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xl);
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .action-buttons {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Extra Large Devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .app-container {
+        padding: var(--spacing-xxl);
+    }
+    
+    .header-content {
+        padding: 0 var(--spacing-xxl);
+    }
+    
+    .vacancy-container {
+        padding: 0 var(--spacing-xxl);
+    }
+    
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xxl);
+    }
+}
+
+/* Ultra Wide Devices (1400px and up) */
+@media (min-width: 1400px) {
+    .vacancy-container {
+        max-width: 1000px;
+    }
+    
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xxl);
+    }
+}
+
+/* Landscape Orientation */
+@media (orientation: landscape) and (max-height: 600px) {
+    .app-header {
+        padding: var(--spacing-sm) 0;
+    }
+    
+    .page-title {
+        font-size: var(--font-size-lg);
+    }
+    
+    .main-content {
+        padding: var(--spacing-md) 0;
+    }
+    
+    .vacancy-header-section,
+    .vacancy-details-section,
+    .vacancy-description-section,
+    .vacancy-stats-section {
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+    }
+}
+
+/* Foldable Device Support */
+@media (screen-spanning: single-fold-vertical) {
+    .vacancy-container {
+        max-width: none;
+        padding: 0 var(--spacing-lg);
+    }
+    
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (screen-spanning: single-fold-horizontal) {
+    .vacancy-container {
+        max-width: none;
+        padding: 0 var(--spacing-lg);
+    }
+}
+
+/* Notch Support */
+@supports (padding: max(0px)) {
+    .app-container {
+        padding-top: max(var(--safe-area-top), var(--spacing-md));
+        padding-bottom: max(var(--safe-area-bottom), var(--spacing-md));
+        padding-left: max(var(--safe-area-left), var(--spacing-md));
+        padding-right: max(var(--safe-area-right), var(--spacing-md));
+    }
+}
+
+/* Modern Mobile Gestures */
+@media (pointer: fine) {
+    .vacancy-header-section:hover,
+    .vacancy-details-section:hover,
+    .vacancy-description-section:hover,
+    .vacancy-stats-section:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-danger:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+    }
+}
+
+/* Accessibility Improvements */
+@media (prefers-contrast: high) {
+    .vacancy-header-section,
+    .vacancy-details-section,
+    .vacancy-description-section,
+    .vacancy-stats-section {
+        border-width: 2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .vacancy-header-section:hover,
+    .vacancy-details-section:hover,
+    .vacancy-description-section:hover,
+    .vacancy-stats-section:hover {
+        transform: none;
+    }
+    
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-danger:hover {
+        transform: none;
+    }
+}
+
+/* Focus States */
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-danger:focus-visible,
+.btn-back:focus-visible {
+    outline: 2px solid var(--tg-accent-primary);
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .app-header,
+    .loading-overlay,
+    .action-buttons {
+        display: none !important;
+    }
+    
+    .vacancy-header-section,
+    .vacancy-details-section,
+    .vacancy-description-section,
+    .vacancy-stats-section {
+        margin: 0;
+        padding: var(--spacing-md);
+        border: 1px solid #000;
+        break-inside: avoid;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--tg-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--tg-bg-tertiary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--tg-accent-primary);
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .detail-icon,
+    .stat-icon {
+        border-width: 0.5px;
+    }
+}
+
+/* Dark Mode Support (already dark by default) */
+@media (prefers-color-scheme: light) {
+    /* Keep dark theme even if system prefers light */
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .vacancy-header-section:active,
+    .vacancy-details-section:active,
+    .vacancy-description-section:active,
+    .vacancy-stats-section:active {
+        transform: scale(0.98);
+    }
+    
+    .btn-primary:active,
+    .btn-secondary:active,
+    .btn-danger:active,
+    .btn-back:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Success State */
+.vacancy-header-section.success,
+.vacancy-details-section.success,
+.vacancy-description-section.success,
+.vacancy-stats-section.success {
+    border-color: var(--tg-accent-success);
+    background: rgba(76, 175, 80, 0.05);
+}
+
+/* Error State */
+.vacancy-header-section.error,
+.vacancy-details-section.error,
+.vacancy-description-section.error,
+.vacancy-stats-section.error {
+    border-color: var(--tg-accent-danger);
+    background: rgba(244, 67, 54, 0.05);
+}
+
+/* Loading State */
+.vacancy-header-section.loading,
+.vacancy-details-section.loading,
+.vacancy-description-section.loading,
+.vacancy-stats-section.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-xxl);
+    color: var(--tg-text-tertiary);
+}
+
+.empty-state i {
+    font-size: var(--font-size-xxxl);
+    margin-bottom: var(--spacing-md);
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    color: var(--tg-text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.empty-state p {
+    color: var(--tg-text-tertiary);
+    font-size: var(--font-size-sm);
 }

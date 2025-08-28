@@ -1,36 +1,190 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мои Вакансии</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>Описание вакансии</title>
     <link rel="stylesheet" href="/css/description_vacancy.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6O1o6+K5W+SzN+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<div id = "screen" class="container">
-    <h1>Мои Вакансии</h1>
-    <div class="vacancy-details">
-        <h3 id="position" class="header"></h3>
-        <p id="employer_name"></p>
-        <p id="city"></p>
-        <p id="address"></p>
-        <p id="salary"></p>
-        <p id="exp"></p>
-        <p id="workSchedule"></p>
-        <p class="header">Описание</p>
-        <div id="responsibility"></div>
-        <p id="create_date"></p>
-        <p>👁 83</p>
-    </div>
-    <div class="button-group">
-        <button class="button green" onclick="vacancy_responses()">Отклики</button>
-        <button class="button red" onclick="delete_vacancy()">Удалить</button>
-        <button class="button green" onclick="edit_vacancy()">Редактировать</button>
-        <button class="button green" onclick="window.location.href='/employer/my_vacancy7/show'">Назад</button>
-    </div>
-</div>
+    <div class="app-container">
+        <!-- Skip Link for Accessibility -->
+        <a href="#main-content" class="skip-link">Перейти к основному содержимому</a>
+        
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="page-title">
+                    <i class="fas fa-briefcase" aria-hidden="true"></i>
+                    <span>Описание вакансии</span>
+                </h1>
+                <a href="#" onclick="support()" id="support_button" class="header-button" aria-label="Поддержка">
+                    <i class="fa-solid fa-headset"></i>
+                </a>
+            </div>
+        </header>
 
-<script src="/js/description_vacancy.js"></script>
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <div class="vacancy-container">
+                <!-- Vacancy Header Section -->
+                <div class="vacancy-header-section">
+                    <div class="vacancy-title">
+                        <h2 id="position" class="position-title">
+                            <i class="fas fa-briefcase" aria-hidden="true"></i>
+                            <span>Название вакансии</span>
+                        </h2>
+                        <div class="vacancy-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-building" aria-hidden="true"></i>
+                                <span id="employer_name">Название компании</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                <span id="city">Город</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Salary Badge -->
+                    <div class="salary-badge" id="salary">
+                        <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
+                        <span>Зарплата не указана</span>
+                    </div>
+                </div>
+
+                <!-- Vacancy Details Section -->
+                <div class="vacancy-details-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        Детали вакансии
+                    </h3>
+                    
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            </div>
+                            <div class="detail-content">
+                                <span class="detail-label">Адрес</span>
+                                <span class="detail-value" id="address">Адрес не указан</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-clock" aria-hidden="true"></i>
+                            </div>
+                            <div class="detail-content">
+                                <span class="detail-label">График работы</span>
+                                <span class="detail-value" id="workSchedule">Не указан</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-user-tie" aria-hidden="true"></i>
+                            </div>
+                            <div class="detail-content">
+                                <span class="detail-label">Опыт работы</span>
+                                <span class="detail-value" id="exp">Не указан</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                            </div>
+                            <div class="detail-content">
+                                <span class="detail-label">Дата создания</span>
+                                <span class="detail-value" id="create_date">Не указана</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vacancy Description Section -->
+                <div class="vacancy-description-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-align-left" aria-hidden="true"></i>
+                        Описание вакансии
+                    </h3>
+                    
+                    <div class="description-content" id="responsibility">
+                        <p class="placeholder-text">Описание вакансии загружается...</p>
+                    </div>
+                </div>
+
+                <!-- Vacancy Statistics Section -->
+                <div class="vacancy-stats-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                        Статистика
+                    </h3>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number">83</span>
+                                <span class="stat-label">Просмотров</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-users" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="responses-count">0</span>
+                                <span class="stat-label">Откликов</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn-primary" onclick="vacancy_responses()">
+                        <i class="fas fa-users" aria-hidden="true"></i>
+                        <span>Отклики</span>
+                    </button>
+                    
+                    <button class="btn-secondary" onclick="edit_vacancy()">
+                        <i class="fas fa-edit" aria-hidden="true"></i>
+                        <span>Редактировать</span>
+                    </button>
+                    
+                    <button class="btn-danger" onclick="delete_vacancy()">
+                        <i class="fas fa-trash" aria-hidden="true"></i>
+                        <span>Удалить</span>
+                    </button>
+                    
+                    <button class="btn-back" onclick="window.location.href='/employer/my_vacancy7/show'">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>Назад к вакансиям</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loading">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p>Загрузка...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/description_vacancy.js"></script>
 </body>
 </html>
