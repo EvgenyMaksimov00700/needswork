@@ -8,54 +8,188 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="format-detection" content="telephone=no">
-    <title>Личный кабинет</title>
+    <title>Личный кабинет соискателя</title>
     <link rel="stylesheet" href="/css/job_seekers_menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6O1o6+K5W+SzN+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
 </head>
 <body>
-<div class="phone" id="phone">
-    <div class="screen">
-        <h2 class="header">Личный кабинет</h2>
-        <h4 class="headerh4">Список видеорезюме</h4>
-
-        <div class="resume-buttons" id="resume-buttons">
-            <!-- Место для подгрузки резюме -->
-        </div>
-
-        <!-- Все кнопки внизу -->
-        <div class="bottom-buttons">
-            <div
-                    class="button"
-                    onclick="addNewVideoCV()"
-            >
-                Добавить видеорезюме
+    <div class="app-container">
+        <!-- Skip Link for Accessibility -->
+        <a href="#main-content" class="skip-link">Перейти к основному содержимому</a>
+        
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="page-title">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                    <span>Личный кабинет</span>
+                </h1>
+                <a href="#" onclick="support()" id="support_button" class="header-button" aria-label="Поддержка">
+                    <i class="fa-solid fa-headset"></i>
+                </a>
             </div>
-            <button class="button large-button" onclick="triggerFileUpload()" id="resume-not-uploaded"> Загрузить текстовое резюме</button>
-            <div id="resume-uploaded" class="update-show-resume">
-                <button class="button update-resume" onclick="triggerFileUpload()">Обновить</button>
-                <a class="show-resume" id="resume-text">Мое текстовое резюме</a>
-            </div>
-            <input id="text-resume-upload" type="file" accept=".txt,.doc,.docx,.pdf" style="display: none;">
+        </header>
 
-            <button class="button" onclick="window.location.href='/jobSeeker/account/favorites'">Избранные вакансии</button>
-            <button class="button" onclick="support()">Поддержка</button>
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <div class="dashboard-container">
+                <!-- Video Resume Section -->
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-video" aria-hidden="true"></i>
+                        Видеорезюме
+                    </h2>
+                    <p class="section-description">Управляйте своими видеорезюме для привлечения работодателей</p>
+                </div>
+
+                <!-- Video Resume Cards -->
+                <div class="resume-cards" id="resume-buttons">
+                    <!-- Место для подгрузки видеорезюме -->
+                    <div class="empty-state" id="empty-video-resume">
+                        <div class="empty-icon">
+                            <i class="fas fa-video-slash" aria-hidden="true"></i>
+                        </div>
+                        <p class="empty-text">У вас пока нет видеорезюме</p>
+                        <p class="empty-subtext">Создайте первое видеорезюме, чтобы выделиться среди других кандидатов</p>
+                    </div>
+                </div>
+
+                <!-- Action Cards -->
+                <div class="action-cards">
+                    <!-- Добавить видеорезюме -->
+                    <div class="action-card primary" onclick="addNewVideoCV()">
+                        <div class="card-icon">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Добавить видеорезюме</h3>
+                            <p class="card-description">Создать новое видеорезюме для привлечения работодателей</p>
+                        </div>
+                        <div class="card-arrow">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <!-- Загрузить текстовое резюме -->
+                    <div class="action-card secondary" onclick="triggerFileUpload()" id="resume-not-uploaded">
+                        <div class="card-icon">
+                            <i class="fas fa-file-upload" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Загрузить текстовое резюме</h3>
+                            <p class="card-description">Загрузить документ с текстовым резюме в формате PDF, DOC или TXT</p>
+                        </div>
+                        <div class="card-arrow">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <!-- Обновить резюме (скрыто по умолчанию) -->
+                    <div class="action-card tertiary" id="resume-uploaded" style="display: none;">
+                        <div class="card-icon">
+                            <i class="fas fa-edit" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Обновить резюме</h3>
+                            <p class="card-description">Обновить загруженное текстовое резюме</p>
+                        </div>
+                        <div class="card-arrow">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <!-- Показать резюме (скрыто по умолчанию) -->
+                    <div class="action-card info" id="resume-text" style="display: none;">
+                        <div class="card-icon">
+                            <i class="fas fa-file-alt" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Мое текстовое резюме</h3>
+                            <p class="card-description">Просмотреть загруженное текстовое резюме</p>
+                        </div>
+                        <div class="card-arrow">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <!-- Избранные вакансии -->
+                    <div class="action-card success" onclick="window.location.href='/jobSeeker/account/favorites'">
+                        <div class="card-icon">
+                            <i class="fas fa-heart" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Избранные вакансии</h3>
+                            <p class="card-description">Просмотреть сохраненные вакансии</p>
+                        </div>
+                        <div class="card-arrow">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-section">
+                    <h2 class="stats-title">
+                        <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                        Краткая статистика
+                    </h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-video" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="total-video-resumes">0</span>
+                                <span class="stat-label">Видеорезюме</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="total-views">0</span>
+                                <span class="stat-label">Просмотров</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-heart" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="favorite-vacancies">0</span>
+                                <span class="stat-label">Избранных вакансий</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Hidden File Input -->
+        <input id="text-resume-upload" type="file" accept=".txt,.doc,.docx,.pdf" style="display: none;">
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay" role="status" aria-label="Загрузка">
+        <div class="loading-content">
+            <img src="/imag/DuckThink.gif" alt="Загрузка" class="loading-gif">
+            <p class="loading-text">Загрузка данных...</p>
         </div>
     </div>
-</div>
 
-<script src="/js/job_seekers_menu.js"></script>
-<script>
-    function triggerFileUpload() {
-        const fileInput = document.getElementById('text-resume-upload');
-        fileInput.click();
-        fileInput.onchange = () => {
-            if (fileInput.files.length > 0) {
-                const fileName = fileInput.files[0].name;
-                alert(`Вы выбрали файл: ${fileName}`);
-            }
-        };
-    }
-</script>
+    <script src="/js/job_seekers_menu.js"></script>
+    <script>
+        function triggerFileUpload() {
+            const fileInput = document.getElementById('text-resume-upload');
+            fileInput.click();
+            fileInput.onchange = () => {
+                if (fileInput.files.length > 0) {
+                    const fileName = fileInput.files[0].name;
+                    alert(`Вы выбрали файл: ${fileName}`);
+                }
+            };
+        }
+    </script>
 </body>
 </html>
