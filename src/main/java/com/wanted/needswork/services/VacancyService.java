@@ -79,8 +79,8 @@ public class VacancyService {
                         "\"inline_keyboard\":[[" +
                         "{\"text\":\"Открыть вакансию\",\"web_app\":{\"url\":\"https://tworker.ru/vacancy/description?id=%d\"}}" +
                         "],[" +
-                        "{\"text\":\"Подтвердить\",\"callback_data\":\"approve_%d\"}," +
-                        "{\"text\":\"Отклонить\",\"callback_data\":\"reject_%d\"}" +
+                        "{\"text\":\"Подтвердить\",\"callback_data\":\"vacancy|check|approve|%d\"}," +
+                        "{\"text\":\"Отклонить\",\"callback_data\":\"vacancy|check|reject|%d\"}" +
                         "]]" +
                         "}" +
                         "}",

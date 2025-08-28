@@ -7,13 +7,19 @@ import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.Industry;
 import com.wanted.needswork.models.Vacancy;
 import com.wanted.needswork.services.*;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.math.BigInteger;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -108,6 +114,29 @@ public class VacancyController {
     @DeleteMapping("/vacancy/{vacancyId}")
     public ResponseEntity<VacancyResponseDTO> deleteVacancyByID(@PathVariable BigInteger vacancyId) {
         vacancyService.deleteVacancy(vacancyId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/vacancy/reject/{vacancyId}")
+    public ResponseEntity<VacancyResponseDTO> rejectVacancyById(@PathVariable BigInteger vacancyId) {
+        Vacancy vacancy = vacancyService.getVacancy(vacancyId);
+        String text = "Вакансия удалена, свяжитесь с администратором @cherchent";
+        vacancyService.deleteVacancy(vacancyId);
+        HttpClient client = HttpClient.newHttpClient();
+        String requestBody = String.format("{\"chat_id\":\"%d\", \"text\":\"%s\"}", vacancy.getEmployer().getUser().getId(), text);
+        Dotenv dotenv=Dotenv.load();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://api.telegram.org/bot"+dotenv.get("TOKEN")+"/sendMessage"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .build();
+
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Ответ от Telegram: " + response.body());
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
