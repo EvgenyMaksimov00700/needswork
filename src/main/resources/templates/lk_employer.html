@@ -13,29 +13,144 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6O1o6+K5W+SzN+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<div class="container">
-    <h2>Личный кабинет работодателя</h2>
-    <form>
-        <div class="form-group">
-            <input type="button" value="Разместить вакансию" onclick="window.location.href='/employer/vacancy/create'">
-        </div>
-        <div class="form-group">
-            <input type="button" value="Мои вакансии" onclick="window.location.href='/employer/my_vacancy7/show'">
-        </div>
-        <div class="form-group">
-            <input type="button" value="Сведения о компании / Изменить" onclick="window.location.href='/employer/reg_employer1/reg'">
-        </div>
-        <div class="form-group">
-        <input type="button" value="Поддержка" onclick="support()">
-        </div>
-        <div class="form-group">
-            <input type="button" value="Удалить аккаунт" onclick="delete_employer()">
-        </div>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="page-title">
+                    <i class="fas fa-briefcase" aria-hidden="true"></i>
+                    <span>Личный кабинет работодателя</span>
+                </h1>
+                <a href="#" onclick="support()" id="support_button" class="header-button" aria-label="Поддержка">
+                    <i class="fa-solid fa-headset"></i>
+                </a>
+            </div>
+        </header>
 
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-container">
+                <!-- Action Cards -->
+                <div class="action-cards">
+                    <!-- Разместить вакансию -->
+                    <div class="action-card primary" onclick="window.location.href='/employer/vacancy/create'">
+                        <div class="card-icon">
+                            <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Разместить вакансию</h3>
+                            <p class="card-description">Создать новую вакансию для поиска сотрудников</p>
+                        </div>
+                        <div class="card-arrow">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
 
-    </form>
-</div>
+                    <!-- Мои вакансии -->
+                    <div class="action-card secondary" onclick="window.location.href='/employer/my_vacancy7/show'">
+                        <div class="card-icon">
+                            <i class="fas fa-list-alt" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Мои вакансии</h3>
+                            <p class="card-description">Управление размещенными вакансиями</p>
+                        </div>
+                        <div class="card-arrow">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <!-- Сведения о компании -->
+                    <div class="action-card tertiary" onclick="window.location.href='/employer/reg_employer1/reg'">
+                        <div class="card-icon">
+                            <i class="fas fa-building" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Сведения о компании</h3>
+                            <p class="card-description">Редактировать информацию о компании</p>
+                        </div>
+                        <div class="card-arrow">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <!-- Поддержка -->
+                    <div class="action-card info" onclick="support()">
+                        <div class="card-icon">
+                            <i class="fas fa-headset" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Поддержка</h3>
+                            <p class="card-description">Получить помощь по использованию сервиса</p>
+                        </div>
+                        <div class="card-arrow">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <!-- Удалить аккаунт -->
+                    <div class="action-card danger" onclick="delete_employer()">
+                        <div class="card-icon">
+                            <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Удалить аккаунт</h3>
+                            <p class="card-description">Безвозвратно удалить аккаунт работодателя</p>
+                        </div>
+                        <div class="card-arrow">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-section">
+                    <h2 class="stats-title">
+                        <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                        Краткая статистика
+                    </h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="total-views">0</span>
+                                <span class="stat-label">Просмотров вакансий</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="total-responses">0</span>
+                                <span class="stat-label">Откликов</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-briefcase" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="active-vacancies">0</span>
+                                <span class="stat-label">Активных вакансий</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay" role="status" aria-label="Загрузка">
+        <div class="loading-content">
+            <img src="/imag/DuckThink.gif" alt="Загрузка" class="loading-gif">
+            <p class="loading-text">Загрузка данных...</p>
+        </div>
+    </div>
+
+    <script src="/js/lk_employer.js"></script>
 </body>
-<script src = "/js/lk_employer.js"> </script>
-</html>
 </html>
