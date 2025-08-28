@@ -139,20 +139,32 @@ function animateElements() {
 
 // Функция создания карточки вакансии
 function createVacancyCard(vacancy) {
+    // Формируем зарплату как в старом коде
+    let salary = "";
+    if (vacancy.fromSalary != null) {
+        salary += `от ${vacancy.fromSalary}`;
+    }
+    if (vacancy.toSalary != null) {
+        salary += ` до ${vacancy.toSalary}`;
+    }
+    if (salary == "") {
+        salary = "Не указано";
+    }
+    
     return `
         <div class="vacancy-card" onclick="editVacancy(${vacancy.id})" data-id="${vacancy.id}">
             <div class="vacancy-header">
                 <div>
-                    <h3 class="vacancy-title">${vacancy.title || 'Название вакансии'}</h3>
-                    <p class="vacancy-company">${vacancy.company || 'Компания'}</p>
+                    <h3 class="vacancy-title">${vacancy.position || 'Название вакансии'}</h3>
+                    <p class="vacancy-company">${vacancy.employer ? vacancy.employer.name : 'Компания'}</p>
                 </div>
-                <span class="vacancy-salary">${vacancy.salary || 'Зарплата не указана'}</span>
+                <span class="vacancy-salary">${salary}</span>
             </div>
-            <p class="vacancy-description">${vacancy.description || 'Описание вакансии не указано'}</p>
+            <p class="vacancy-description">${vacancy.city || 'Город не указан'}</p>
             <div class="vacancy-footer">
                 <div class="vacancy-stats">
-                    <span><i class="fas fa-eye" aria-hidden="true"></i> ${vacancy.views || 0} просмотров</span>
-                    <span><i class="fas fa-user-check" aria-hidden="true"></i> ${vacancy.applications || 0} откликов</span>
+                    <span><i class="fas fa-map-marker-alt" aria-hidden="true"></i> ${vacancy.city || 'Город не указан'}</span>
+                    <span><i class="fas fa-building" aria-hidden="true"></i> ${vacancy.employer ? vacancy.employer.name : 'Компания'}</span>
                 </div>
                 <div class="vacancy-actions">
                     <button class="btn-edit" onclick="event.stopPropagation(); editVacancy(${vacancy.id})" aria-label="Редактировать вакансию">
@@ -170,7 +182,7 @@ function createVacancyCard(vacancy) {
 // Функция редактирования вакансии
 function editVacancy(vacancyId) {
     showLoading();
-    window.location.href = `/employer/vacancy/edit/${vacancyId}`;
+    window.location.href = `/employer/vacancy/description?id=${vacancyId}`;
 }
 
 // Функция удаления вакансии
@@ -178,7 +190,7 @@ function deleteVacancy(vacancyId) {
     if (confirm("Вы действительно хотите удалить эту вакансию?")) {
         showLoading();
         
-        fetch(`/employer/vacancy/${vacancyId}`, {
+        fetch(`/vacancy/${vacancyId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -238,7 +250,7 @@ function showVacanciesList() {
 // Основная инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     // Загружаем вакансии
-    fetch(`/employer/vacancies/${clientID}`, {
+    fetch(`/vacancy/user/${clientID}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
