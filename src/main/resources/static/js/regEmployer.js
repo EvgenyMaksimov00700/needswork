@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 user_id: clientID
             };
             
-
+            // ИСПРАВЛЕНО: Объявляем url перед использованием
             const url = "/employer/create";
             console.log('Отправляем данные:', formData);
             
@@ -333,7 +333,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     body: JSON.stringify(formData)
                 });
-
 
                 if (!response.ok) {
                     throw new Error(`HTTP error: ${response.status}`);
