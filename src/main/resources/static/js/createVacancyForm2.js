@@ -106,68 +106,6 @@ document.addEventListener('touchstart', function(event) {
     }
 });
 
-// Функция для заполнения выпадающего списка городов
-function populateCitySelect() {
-    fetch('/vacancy/city')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(russianCities => {
-            console.log('Cities loaded:', russianCities);
-            const citySelect = document.getElementById('city-select');
-            russianCities.forEach(city => {
-                const option = document.createElement('option');
-                option.value = city.name;
-                option.text = city.name;
-                citySelect.appendChild(option);
-            });
-        })
-        .catch(error => {
-            console.error('Error loading cities:', error);
-            showNotification('Ошибка загрузки списка городов', 'error');
-        });
-}
-
-// Функция для заполнения выпадающего списка отраслей
-function industrySelect() {
-    fetch('/industry/showall')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(industries => {
-            console.log('Industries loaded:', industries);
-            const industrySelect = document.getElementById('industry-select');
-            industries.forEach(industry => {
-                const option = document.createElement('option');
-                option.value = industry.id;
-                option.text = industry.category;
-                industrySelect.appendChild(option);
-            });
-        })
-        .catch(error => {
-            console.error('Error loading industries:', error);
-            showNotification('Ошибка загрузки списка отраслей', 'error');
-        });
-}
-
-// Функция для выбора опыта работы
-function chooseWorkExperience(button) {
-    // Убираем активный класс со всех кнопок
-    const allButtons = document.querySelectorAll('.experience-button');
-    allButtons.forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    // Добавляем активный класс к выбранной кнопке
-    button.classList.add('active');
-}
-
 // Функция для возврата назад
 function goBack() {
     window.location.href = '/employer/lk/';
@@ -177,9 +115,10 @@ function goBack() {
 function validateForm() {
     const requiredFields = [
         { id: 'name', label: 'Название вакансии' },
-        { id: 'industry-select', label: 'Отрасль' },
+        { id: 'industry', label: 'Отрасль' },
         { id: 'workSchedule', label: 'Тип занятости' },
-        { id: 'city-name', label: 'Город' }
+        { id: 'city', label: 'Город' },
+        { id: 'description', label: 'Описание вакансии' }
     ];
     
     const missingFields = [];
@@ -199,13 +138,6 @@ function validateForm() {
         return false;
     }
     
-    // Проверяем, выбран ли опыт работы
-    const activeExperience = document.querySelector('.experience-button.active');
-    if (!activeExperience) {
-        showNotification('Пожалуйста, выберите требуемый опыт работы', 'error');
-        return false;
-    }
-    
     return true;
 }
 
@@ -219,15 +151,11 @@ function submit() {
     
     const formData = {
         name: document.getElementById("name").value,
-        industryId: document.getElementById("industry-select").value,
+        industry: document.getElementById("industry").value,
         workSchedule: document.getElementById("workSchedule").value,
         remoteWork: document.getElementById("remoteWork").checked,
-        city: document.getElementById("city-name").value,
-        address: document.getElementById("address").value,
-        experience: document.querySelector('.experience-button.active')?.id || 'no-experience',
-        salaryFrom: document.getElementById("salaryfrom").value || null,
-        salaryTo: document.getElementById("salaryto").value || null,
-        description: document.getElementById("textarea").value,
+        city: document.getElementById("city").value,
+        description: document.getElementById("description").value,
         userId: clientID
     };
     
@@ -265,9 +193,6 @@ function submit() {
 
 // Инициализация при загрузке страницы
 function initializePage() {
-    industrySelect();
-    populateCitySelect();
-    
     // Добавляем обработчик отправки формы
     const form = document.getElementById('vacancyForm');
     if (form) {

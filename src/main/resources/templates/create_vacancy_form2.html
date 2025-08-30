@@ -1,35 +1,123 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>Создание вакансии</title>
     <link rel="stylesheet" href="/css/create_vacancy_form2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6O1o6+K5W+SzN+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <button class="back-button" onclick="goBack()" aria-label="Назад">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                </button>
+                <h1 class="page-title">
+                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                    <span>Создание вакансии</span>
+                </h1>
+                <a href="#" onclick="support()" class="header-button" aria-label="Поддержка">
+                    <i class="fa-solid fa-headset"></i>
+                </a>
+            </div>
+        </header>
 
-<div class="container">
-    <input type="text" placeholder="Наименование Вакансии">
-    <input type="text" placeholder="Укажите отрасль">
+        <!-- Main Content -->
+        <main class="main-content">
+            <form class="vacancy-form" id="vacancyForm">
+                <!-- Basic Information Section -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-info-circle"></i>
+                            Основная информация
+                        </h2>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name" class="form-label">Название вакансии</label>
+                        <input type="text" id="name" class="form-input" placeholder="Введите название вакансии" required>
+                    </div>
 
-    <select>
-        <option value="" disabled selected>Тип занятости</option>
-        <option value="fulltime">Полная занятость</option>
-        <option value="parttime">Частичная занятость</option>
-        <option value="freelance">Гибкий график</option>
-        <option value="project">Проект или разовое задание</option>
-        <option value="temporary">Вахта</option>
-    </select>
+                    <div class="form-group">
+                        <label for="industry" class="form-label">Отрасль</label>
+                        <input type="text" id="industry" class="form-input" placeholder="Введите отрасль" required>
+                    </div>
 
-    <div class="checkbox-container">
-        <input type="checkbox" id="remoteWork">
-        <label for="remoteWork">Возможность удаленной работы</label>
+                    <div class="form-group">
+                        <label for="workSchedule" class="form-label">Тип занятости</label>
+                        <select id="workSchedule" class="form-select" required>
+                            <option value="" disabled selected>Выберите тип занятости</option>
+                            <option value="fulltime">Полная занятость</option>
+                            <option value="parttime">Частичная занятость</option>
+                            <option value="freelance">Гибкий график</option>
+                            <option value="project">Проект или разовое задание</option>
+                            <option value="temporary">Вахта</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="remoteWork" class="form-checkbox">
+                            <label for="remoteWork" class="checkbox-label">
+                                <i class="fas fa-home"></i>
+                                Возможность удаленной работы
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city" class="form-label">Город</label>
+                        <input type="text" id="city" class="form-input" placeholder="Введите город" required>
+                    </div>
+                </section>
+
+                <!-- Description Section -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-file-alt"></i>
+                            Описание вакансии
+                        </h2>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description" class="form-label">Детальное описание</label>
+                        <textarea id="description" class="form-textarea" placeholder="Обязанности:&#10;Требования:&#10;Условия:&#10;Ключевые навыки:" rows="8"></textarea>
+                    </div>
+                </section>
+
+                <!-- Form Actions -->
+                <section class="form-actions">
+                    <button type="submit" class="action-button primary" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Опубликовать вакансию</span>
+                    </button>
+                    <button type="button" class="action-button secondary" onclick="goBack()">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Назад</span>
+                    </button>
+                </section>
+            </form>
+        </main>
     </div>
 
-    <input type="text" placeholder="Укажите город">
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay" role="status" aria-label="Загрузка">
+        <div class="loading-content">
+            <img src="/imag/DuckThink.gif" alt="Загрузка" class="loading-gif">
+            <p class="loading-text">Создание вакансии...</p>
+        </div>
+    </div>
 
-    <textarea placeholder="Обязанности:&#10;Требования:&#10;Условия:&#10;Ключевые навыки:"></textarea>
-</div>
-
+    <script src="/js/createVacancyForm2.js"></script>
 </body>
 </html>

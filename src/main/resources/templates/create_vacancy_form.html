@@ -3,67 +3,179 @@
 <head>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>Создание вакансии</title>
     <link rel="stylesheet" href="/css/create_vacancy_form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6O1o6+K5W+SzN+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<div class="container">
-    <h2>Создание вакансии</h2>
-    <h3>Основная информация</h3>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <button class="back-button" onclick="goBack()" aria-label="Назад">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                </button>
+                <h1 class="page-title">
+                    <i class="fas fa-plus-circle" aria-hidden="true"></i>
+                    <span>Создание вакансии</span>
+                </h1>
+                <a href="#" onclick="support()" class="header-button" aria-label="Поддержка">
+                    <i class="fa-solid fa-headset"></i>
+                </a>
+            </div>
+        </header>
 
-    <input type="text" placeholder="Название Вакансии" class="input-field" id="name">
+        <!-- Main Content -->
+        <main class="main-content">
+            <form class="vacancy-form" id="vacancyForm">
+                <!-- Basic Information Section -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-info-circle"></i>
+                            Основная информация
+                        </h2>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name" class="form-label">Название вакансии</label>
+                        <input type="text" id="name" class="form-input" placeholder="Введите название вакансии" required>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="industry-select" class="form-label">Отрасль</label>
+                        <select id="industry-select" class="form-select" required>
+                            <option value="" disabled selected>Выберите отрасль</option>
+                        </select>
+                    </div>
 
-    <select id='industry-select' class="input-field">
-        <option disabled selected>Укажите отрасль</option>
+                    <div class="form-group">
+                        <label for="workSchedule" class="form-label">Тип занятости</label>
+                        <select id="workSchedule" class="form-select" required>
+                            <option value="" disabled selected>Выберите тип занятости</option>
+                            <option value="fulltime">Полная занятость</option>
+                            <option value="parttime">Частичная занятость</option>
+                            <option value="freelance">Гибкий график</option>
+                            <option value="project">Проект или разовое задание</option>
+                            <option value="temporary">Вахта</option>
+                        </select>
+                    </div>
 
-    </select>
-    <select id="workSchedule">
-        <option value="" disabled selected>Тип занятости</option>
-        <option value="fulltime">Полная занятость</option>
-        <option value="parttime">Частичная занятость</option>
-        <option value="freelance">Гибкий график</option>
-        <option value="project">Проект или разовое задание</option>
-        <option value="temporary">Вахта</option>
+                    <div class="form-group">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="remoteWork" class="form-checkbox">
+                            <label for="remoteWork" class="checkbox-label">
+                                <i class="fas fa-home"></i>
+                                Возможность удаленной работы
+                            </label>
+                        </div>
+                    </div>
 
-    </select>
+                    <div class="form-group">
+                        <label for="city-name" class="form-label">Город</label>
+                        <input list="city-select" id="city-name" type="text" class="form-input" placeholder="Введите город" required>
+                        <datalist id="city-select"></datalist>
+                    </div>
 
-    <div class="checkbox-container">
-        <input type="checkbox" id="remoteWork">
-        <label for="remoteWork">Возможность удаленной работы</label>
-        <input list="city-select" id="city-name" type = 'text' placeholder="Укажите город">
+                    <div class="form-group">
+                        <label for="address" class="form-label">Адрес места работы</label>
+                        <input type="text" id="address" class="form-input" placeholder="Введите адрес места работы">
+                    </div>
+                </section>
 
-        <datalist id='city-select'>
+                <!-- Experience Section -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-briefcase"></i>
+                            Требуемый опыт работы
+                        </h2>
+                    </div>
+                    
+                    <div class="experience-group">
+                        <button type="button" id="no-experience" class="experience-button" onclick="chooseWorkExperience(this)">
+                            <i class="fas fa-star"></i>
+                            <span>Нет опыта</span>
+                        </button>
+                        <button type="button" id="1-3" class="experience-button" onclick="chooseWorkExperience(this)">
+                            <i class="fas fa-star"></i>
+                            <span>1-3 года</span>
+                        </button>
+                        <button type="button" id="3-5" class="experience-button" onclick="chooseWorkExperience(this)">
+                            <i class="fas fa-star"></i>
+                            <span>3-5 лет</span>
+                        </button>
+                        <button type="button" id="5+" class="experience-button" onclick="chooseWorkExperience(this)">
+                            <i class="fas fa-star"></i>
+                            <span>Более 5 лет</span>
+                        </button>
+                    </div>
+                </section>
 
-        </datalist>
+                <!-- Salary Section -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-money-bill-wave"></i>
+                            Уровень дохода (руб/мес)
+                        </h2>
+                    </div>
+                    
+                    <div class="salary-group">
+                        <div class="form-group">
+                            <label for="salaryfrom" class="form-label">От</label>
+                            <input type="number" id="salaryfrom" class="form-input salary-input" placeholder="0" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="salaryto" class="form-label">До</label>
+                            <input type="number" id="salaryto" class="form-input salary-input" placeholder="0" min="0">
+                        </div>
+                    </div>
+                </section>
 
-        <textarea placeholder="Обязанности:&#10;Требования:&#10;Условия:&#10;Ключевые навыки:" class="textarea-field"
-                  id="textarea"></textarea>
+                <!-- Description Section -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-file-alt"></i>
+                            Описание вакансии
+                        </h2>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="textarea" class="form-label">Детальное описание</label>
+                        <textarea id="textarea" class="form-textarea" placeholder="Обязанности:&#10;Требования:&#10;Условия:&#10;Ключевые навыки:" rows="8"></textarea>
+                    </div>
+                </section>
 
-        <input type="text" placeholder="Укажите адрес места работы" class="input-field" id="address">
-
-        <h3>Укажите требуемый опыт работы</h3>
-
-        <div class="experience-group">
-            <button id='no-experience' class="experience-button" onclick="chooseWorkExperience(this)">Нет опыта</button>
-            <button id='1-3' class="experience-button" onclick="chooseWorkExperience(this)">от 1 года до 3 лет</button>
-            <button id='3-5' class="experience-button" onclick="chooseWorkExperience(this)">от 3 до 5 лет</button>
-            <button id='5+' class="experience-button" onclick="chooseWorkExperience(this)">Более 5 лет</button>
-        </div>
-
-        <h3> уровень дохода месяц/обьем работы (руб)</h3>
-        <div class="salary-group">
-            <input type="number" placeholder="от" class="input-salary" id="salaryfrom">
-            <input type="number" placeholder="до" class="input-salary" id="salaryto">
-        </div>
-
-        <button class="submit-button" onclick="submit()">Опубликовать </button>
-        <button type="button" class="submit-button" onclick="window.location.href='/employer/lk/'">Назад</button>
+                <!-- Form Actions -->
+                <section class="form-actions">
+                    <button type="submit" class="action-button primary" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Опубликовать вакансию</span>
+                    </button>
+                    <button type="button" class="action-button secondary" onclick="goBack()">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Назад</span>
+                    </button>
+                </section>
+            </form>
+        </main>
     </div>
-</div>
-</body>
-</html>
-<script src="/js/createVacancyForm.js"></script>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay" role="status" aria-label="Загрузка">
+        <div class="loading-content">
+            <img src="/imag/DuckThink.gif" alt="Загрузка" class="loading-gif">
+            <p class="loading-text">Создание вакансии...</p>
+        </div>
+    </div>
+
+    <script src="/js/createVacancyForm.js"></script>
 </body>
 </html>
