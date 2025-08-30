@@ -322,6 +322,9 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             
 
+            const url = "/employer/create";
+            console.log('Отправляем данные:', formData);
+            
             try {
                 const response = await fetch(url, {
                     method: 'POST',
@@ -329,8 +332,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(formData)
-                });const url = "/employer/create";
-            console.log('Отправляем данные:', formData);
+                });
 
 
                 if (!response.ok) {
