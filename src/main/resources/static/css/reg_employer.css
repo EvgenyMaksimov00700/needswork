@@ -318,12 +318,15 @@ body {
 .input-icon {
     position: absolute;
     left: var(--spacing-md);
-    top: 50%;
+    top: 68%;
     transform: translateY(-50%);
     color: var(--tg-text-tertiary);
     font-size: var(--font-size-sm);
     pointer-events: none;
     transition: color var(--transition-fast);
+}
+.icon-edit{
+    top: 40% !important;
 }
 
 .input-group:focus-within .input-icon {
