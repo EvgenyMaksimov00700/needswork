@@ -33,7 +33,7 @@ public class CurrentStateController {
     public ResponseEntity<CurrentStateResponseDTO> getCurrentState(@PathVariable BigInteger userId) {
         CurrentState currentState = currentStateService.getCurrentStateByUser(userId);
         if (currentState == null) {
-            return new ResponseEntity<>(new CurrentStateResponseDTO(), HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         BigInteger vacancyId = currentState.getVacancyId();
         Vacancy vacancy = vacancyService.getVacancy(vacancyId);
