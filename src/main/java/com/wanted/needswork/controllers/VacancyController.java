@@ -71,7 +71,7 @@ public class VacancyController {
 
     @PostMapping("/vacancy")
     public ResponseEntity<Vacancy> addVacancy(@RequestBody VacancyDTO vacancyDTO) {
-        Employer employer = employerService.getEmployer(vacancyDTO.getEmployer_id());
+        Employer employer = employerService.getEmployerByUserId(vacancyDTO.getEmployer_user_id());
         if (employer == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -89,7 +89,7 @@ public class VacancyController {
         if (vacancy == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        Employer employer = employerService.getEmployer(vacancyDTO.getEmployer_id());
+        Employer employer = employerService.getEmployerByUserId(vacancyDTO.getEmployer_user_id());
         if (employer == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -218,22 +218,22 @@ function submit() {
     showLoading();
     
     const formData = {
-        name: document.getElementById("name").value,
-        industryId: document.getElementById("industry-select").value,
+        position: document.getElementById("name").value,
+        industry_id: document.getElementById("industry-select").value,
         workSchedule: document.getElementById("workSchedule").value,
-        remoteWork: document.getElementById("remoteWork").checked,
+        distantWork: document.getElementById("remoteWork").checked,
         city: document.getElementById("city-name").value,
         address: document.getElementById("address").value,
-        experience: document.querySelector('.experience-button.active')?.id || 'no-experience',
-        salaryFrom: document.getElementById("salaryfrom").value || null,
-        salaryTo: document.getElementById("salaryto").value || null,
-        description: document.getElementById("textarea").value,
-        userId: clientID
+        exp: document.querySelector('.experience-button.active')?.id || 'no-experience',
+        fromSalary: document.getElementById("salaryfrom").value || null,
+        toSalary: document.getElementById("salaryto").value || null,
+        responsibility: document.getElementById("textarea").value,
+        employer_user_id: clientID
     };
     
     console.log('Submitting vacancy data:', formData);
     
-    fetch('/vacancy/create', {
+    fetch('/vacancy', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

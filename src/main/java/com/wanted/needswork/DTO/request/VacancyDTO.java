@@ -9,7 +9,7 @@ import java.math.BigInteger;
 public class VacancyDTO {
 
     @Getter
-    private BigInteger employer_id;
+    private BigInteger employer_user_id;
     @Getter
     private String industry_id;
     @Getter

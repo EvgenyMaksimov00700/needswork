@@ -253,7 +253,7 @@ function submit() {
                    toSalary: salaryto,
                    distantWork:document.getElementById("remoteWork").checked,
                    workSchedule: selectElement.options[selectElement.selectedIndex].text,
-                   employer_id: employer.employer_id,
+                   employer_user_id: clientID,
              };
               console.log(data);
               if(unfield.length>0) {

@@ -81,5 +81,8 @@ public class EmployerService {
     public Employer getEmployerByEmail(String email) {
         return employerRepository.findByEmail(email);
     }
+    public Employer getEmployerByUserId(BigInteger userId) {
+        return employerRepository.findByUserId(userId);
+    }
 }
 
