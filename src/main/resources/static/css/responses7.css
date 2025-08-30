@@ -1,109 +1,636 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #2a2f33; /* Ночной фон Telegram */
-    color: #d1d1d1; /* Светлый текст */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 95vh;
-    overflow: hidden; /* Скрытый скроллинг */
+/* ===== TELEGRAM NIGHT THEME ===== */
+:root {
+    /* Telegram Night Colors */
+    --tg-bg-primary: #0f0f0f;
+    --tg-bg-secondary: #1a1a1a;
+    --tg-bg-tertiary: #2a2a2a;
+    --tg-bg-elevated: #323232;
+    --tg-bg-overlay: rgba(0, 0, 0, 0.8);
+    
+    /* Text Colors */
+    --tg-text-primary: #ffffff;
+    --tg-text-secondary: #b0b0b0;
+    --tg-text-tertiary: #8e8e8e;
+    --tg-text-accent: #0088cc;
+    
+    /* Accent Colors */
+    --tg-accent-primary: #0088cc;
+    --tg-accent-secondary: #007ab8;
+    --tg-accent-success: #4caf50;
+    --tg-accent-warning: #ff9800;
+    --tg-accent-danger: #f44336;
+    
+    /* Borders & Shadows */
+    --tg-border-light: #3a3a3a;
+    --tg-border-medium: #4a4a4a;
+    --tg-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --tg-shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --tg-shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.5);
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Desktop-specific variables */
+    --desktop-max-width: 800px;
+    --desktop-header-height: 80px;
+    --desktop-card-padding: 32px;
+    --desktop-font-size-base: 18px;
+    --desktop-font-size-large: 24px;
+    --desktop-font-size-small: 16px;
+    
+    /* Mobile-specific variables */
+    --mobile-header-height: 60px;
+    --mobile-touch-target: 44px;
+    --mobile-card-padding: 20px;
+    --mobile-font-size-base: 16px;
+    --mobile-font-size-large: 18px;
+    --mobile-font-size-small: 14px;
 }
 
-.container {
-    width: 90%;
-    max-width: 390px;
+/* ===== GLOBAL STYLES ===== */
+* {
     box-sizing: border-box;
-    background-color: #23272a; /* Контрастный фон контейнера */
-    border-radius: 10px;
-    overflow: hidden; /* Скрываем элементы, выходящие за пределы */
+    margin: 0;
+    padding: 0;
 }
 
-.container::-webkit-scrollbar {
-    display: none; /* Скрытие полосы прокрутки в Webkit-браузерах */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--tg-bg-primary) 0%, var(--tg-bg-secondary) 100%);
+    color: var(--tg-text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #ffffff; /* Белый текст заголовка */
+/* ===== APP CONTAINER ===== */
+.app-container {
+    max-width: 100%;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: var(--tg-bg-primary);
+    position: relative;
 }
 
-.response-list {
-    max-height: 75vh; /* Ограничиваем высоту для скроллинга */
-    overflow-y: auto;
-    margin-bottom: 15px;
-    padding-right: 10px; /* Чтобы текст не прилипал к краю */
+/* ===== HEADER ===== */
+.app-header {
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--tg-border-light);
+    padding: var(--spacing-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--tg-shadow-light);
 }
 
-.response {
-    background-color: #2f3438; /* Фон сообщения, схожий с Telegram */
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    text-align: center;
-    border: 1px solid #3c4043; /* Лёгкая обводка */
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.response:hover {
-    background-color: #3c4043; /* Подсветка сообщения при наведении */
-    transform: scale(1.02); /* Лёгкое увеличение */
-}
-
-.button-group {
+.header-content {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    margin-top: 10px;
+    max-width: var(--desktop-max-width);
+    margin: 0 auto;
+    gap: var(--spacing-md);
 }
 
-button.view-resume,
-button.open-chat {
-    width: 48%; /* Равное деление кнопок */
-    padding: 10px;
-    border: 1px solid #3c4043; /* Лёгкая обводка */
-    border-radius: 5px;
-    font-size: 14px;
+.back-button {
+    background: var(--tg-bg-tertiary);
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-md);
+    color: var(--tg-text-primary);
+    padding: var(--spacing-sm) var(--spacing-md);
     cursor: pointer;
-    background-color: #0088cc; /* Telegram-синий */
-    color: #ffffff;
-    transition: background-color 0.3s ease;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--mobile-font-size-base);
+    min-height: var(--mobile-touch-target);
 }
 
-button.view-resume:hover,
-button.open-chat:hover {
-    background-color: #007ab8; /* Светлее при наведении */
+.back-button:hover {
+    background: var(--tg-bg-elevated);
+    transform: translateY(-1px);
+    box-shadow: var(--tg-shadow-light);
 }
 
-button.cancel {
-    width: 100%;
-    margin-top: 5px;
-    padding: 10px;
-    border: 1px solid #3c4043;
-    border-radius: 5px;
-    font-size: 14px;
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--mobile-font-size-large);
+    font-weight: 600;
+    color: var(--tg-text-primary);
+    flex: 1;
+    justify-content: center;
+}
+
+.page-title i {
+    color: var(--tg-accent-primary);
+    font-size: 1.2em;
+}
+
+.header-button {
+    background: var(--tg-bg-tertiary);
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-md);
+    color: var(--tg-text-primary);
+    padding: var(--spacing-sm);
     cursor: pointer;
-    background-color: #e04343; /* Красный для отмены */
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--mobile-touch-target);
+    height: var(--mobile-touch-target);
+    text-decoration: none;
+}
+
+.header-button:hover {
+    background: var(--tg-bg-elevated);
+    transform: translateY(-1px);
+    box-shadow: var(--tg-shadow-light);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    max-width: var(--desktop-max-width);
+    margin: 0 auto;
+    padding: var(--spacing-md);
+    min-height: calc(100vh - var(--mobile-header-height));
+}
+
+.responses-container {
+    background: var(--tg-bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--tg-border-light);
+    overflow: hidden;
+    box-shadow: var(--tg-shadow-medium);
+}
+
+.responses-list {
+    padding: var(--spacing-md);
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+.responses-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.responses-list::-webkit-scrollbar-track {
+    background: var(--tg-bg-tertiary);
+    border-radius: var(--radius-sm);
+}
+
+.responses-list::-webkit-scrollbar-thumb {
+    background: var(--tg-border-medium);
+    border-radius: var(--radius-sm);
+}
+
+.responses-list::-webkit-scrollbar-thumb:hover {
+    background: var(--tg-accent-primary);
+}
+
+/* ===== RESPONSE CARD ===== */
+.response-card {
+    background: var(--tg-bg-tertiary);
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.response-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--tg-accent-primary), var(--tg-accent-secondary));
+    transform: scaleX(0);
+    transition: transform var(--transition-normal);
+}
+
+.response-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--tg-shadow-medium);
+    border-color: var(--tg-accent-primary);
+}
+
+.response-card:hover::before {
+    transform: scaleX(1);
+}
+
+.response-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+}
+
+.applicant-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.applicant-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--tg-accent-primary), var(--tg-accent-secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    font-size: var(--mobile-font-size-large);
 }
 
-button.cancel:hover {
-    background-color: #c03939; /* Темнее при наведении */
+.applicant-details h3 {
+    font-size: var(--mobile-font-size-base);
+    font-weight: 600;
+    color: var(--tg-text-primary);
+    margin-bottom: var(--spacing-xs);
 }
 
-button.back {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #3c4043;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #0088cc; /* Telegram-синий */
+.applicant-details p {
+    font-size: var(--mobile-font-size-small);
+    color: var(--tg-text-secondary);
+}
+
+.response-status {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--mobile-font-size-small);
+    font-weight: 500;
+    background: var(--tg-accent-success);
     color: white;
-    transition: background-color 0.3s ease;
 }
 
-button.back:hover {
-    background-color: #007ab8; /* Светлее при наведении */
+.response-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.action-button {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: var(--mobile-font-size-small);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    min-height: var(--mobile-touch-target);
+}
+
+.action-button.primary {
+    background: var(--tg-accent-primary);
+    color: white;
+}
+
+.action-button.primary:hover {
+    background: var(--tg-accent-secondary);
+    transform: translateY(-1px);
+    box-shadow: var(--tg-shadow-light);
+}
+
+.action-button.secondary {
+    background: var(--tg-bg-elevated);
+    color: var(--tg-text-primary);
+    border: 1px solid var(--tg-border-light);
+}
+
+.action-button.secondary:hover {
+    background: var(--tg-bg-tertiary);
+    transform: translateY(-1px);
+    box-shadow: var(--tg-shadow-light);
+}
+
+.action-button.danger {
+    background: var(--tg-accent-danger);
+    color: white;
+}
+
+.action-button.danger:hover {
+    background: #d32f2f;
+    transform: translateY(-1px);
+    box-shadow: var(--tg-shadow-light);
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+}
+
+.empty-state-content i {
+    font-size: 64px;
+    color: var(--tg-text-tertiary);
+    margin-bottom: var(--spacing-md);
+}
+
+.empty-state-content h3 {
+    font-size: var(--mobile-font-size-large);
+    color: var(--tg-text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.empty-state-content p {
+    font-size: var(--mobile-font-size-base);
+    color: var(--tg-text-secondary);
+}
+
+/* ===== LOADING OVERLAY ===== */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--tg-bg-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+}
+
+.loading-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loading-content {
+    background: var(--tg-bg-secondary);
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    text-align: center;
+    box-shadow: var(--tg-shadow-heavy);
+}
+
+.loading-gif {
+    width: 64px;
+    height: 64px;
+    margin-bottom: var(--spacing-md);
+}
+
+.loading-text {
+    color: var(--tg-text-primary);
+    font-size: var(--mobile-font-size-base);
+}
+
+/* ===== MODAL ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--tg-bg-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+    padding: var(--spacing-md);
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: var(--tg-bg-secondary);
+    border: 1px solid var(--tg-border-light);
+    border-radius: var(--radius-lg);
+    max-width: 500px;
+    width: 100%;
+    max-height: 80vh;
+    overflow: hidden;
+    box-shadow: var(--tg-shadow-heavy);
+    transform: scale(0.9);
+    transition: transform var(--transition-normal);
+}
+
+.modal-overlay.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--tg-border-light);
+}
+
+.modal-header h3 {
+    font-size: var(--mobile-font-size-large);
+    color: var(--tg-text-primary);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--tg-text-secondary);
+    font-size: var(--mobile-font-size-large);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+    background: var(--tg-bg-tertiary);
+    color: var(--tg-text-primary);
+}
+
+.modal-body {
+    padding: var(--spacing-md);
+    max-height: calc(80vh - 80px);
+    overflow-y: auto;
+}
+
+/* ===== DESKTOP STYLES ===== */
+@media (min-width: 768px) {
+    .app-container {
+        max-width: var(--desktop-max-width);
+        margin: 0 auto;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--tg-shadow-heavy);
+        margin-top: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+        min-height: calc(100vh - 2 * var(--spacing-md));
+    }
+    
+    .app-header {
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        padding: var(--spacing-lg);
+    }
+    
+    .header-content {
+        gap: var(--spacing-lg);
+    }
+    
+    .back-button {
+        font-size: var(--desktop-font-size-base);
+        padding: var(--spacing-md) var(--spacing-lg);
+        min-height: 48px;
+    }
+    
+    .page-title {
+        font-size: var(--desktop-font-size-large);
+    }
+    
+    .header-button {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .main-content {
+        padding: var(--spacing-lg);
+    }
+    
+    .responses-list {
+        padding: var(--spacing-lg);
+    }
+    
+    .response-card {
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .applicant-avatar {
+        width: 56px;
+        height: 56px;
+        font-size: var(--desktop-font-size-large);
+    }
+    
+    .applicant-details h3 {
+        font-size: var(--desktop-font-size-base);
+    }
+    
+    .applicant-details p {
+        font-size: var(--desktop-font-size-small);
+    }
+    
+    .action-button {
+        font-size: var(--desktop-font-size-small);
+        padding: var(--spacing-md) var(--spacing-lg);
+        min-height: 48px;
+    }
+    
+    .empty-state {
+        padding: var(--spacing-xl) var(--spacing-lg);
+    }
+    
+    .empty-state-content h3 {
+        font-size: var(--desktop-font-size-large);
+    }
+    
+    .empty-state-content p {
+        font-size: var(--desktop-font-size-base);
+    }
+    
+    .modal-content {
+        max-width: 600px;
+    }
+    
+    .modal-header {
+        padding: var(--spacing-lg);
+    }
+    
+    .modal-header h3 {
+        font-size: var(--desktop-font-size-large);
+    }
+    
+    .modal-body {
+        padding: var(--spacing-lg);
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.response-card {
+    animation: fadeInUp 0.3s ease forwards;
+}
+
+.response-card:nth-child(1) { animation-delay: 0.1s; }
+.response-card:nth-child(2) { animation-delay: 0.2s; }
+.response-card:nth-child(3) { animation-delay: 0.3s; }
+.response-card:nth-child(4) { animation-delay: 0.4s; }
+.response-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===== FOCUS STYLES ===== */
+.action-button:focus,
+.back-button:focus,
+.header-button:focus,
+.modal-close:focus {
+    outline: 2px solid var(--tg-accent-primary);
+    outline-offset: 2px;
+}
+
+/* ===== DARK MODE ENHANCEMENTS ===== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --tg-bg-primary: #000000;
+        --tg-bg-secondary: #0a0a0a;
+        --tg-bg-tertiary: #1a1a1a;
+    }
 }

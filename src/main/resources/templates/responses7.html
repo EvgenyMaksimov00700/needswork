@@ -3,20 +3,77 @@
 <head>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>Отклики по вакансии</title>
     <link rel="stylesheet" href="/css/responses7.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6O1o6+K5W+SzN+..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<div class="container" >
-    <h2>Отклики по вакансии</h2>
-    <div class="response-list" id="responses">
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <button class="back-button" onclick="back()" aria-label="Назад">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                </button>
+                <h1 class="page-title">
+                    <i class="fas fa-users" aria-hidden="true"></i>
+                    <span>Отклики по вакансии</span>
+                </h1>
+                <a href="#" onclick="support()" class="header-button" aria-label="Поддержка">
+                    <i class="fa-solid fa-headset"></i>
+                </a>
+            </div>
+        </header>
 
-
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Responses List -->
+            <div class="responses-container">
+                <div id="responses" class="responses-list" role="list" aria-label="Список откликов">
+                    <!-- Responses will be loaded here -->
+                </div>
+                
+                <!-- Empty State -->
+                <div id="empty-state" class="empty-state" style="display: none;">
+                    <div class="empty-state-content">
+                        <i class="fas fa-inbox" aria-hidden="true"></i>
+                        <h3>Пока нет откликов</h3>
+                        <p>Отклики на вашу вакансию появятся здесь</p>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
-    <button type="button" class="back" onclick="back()">Назад</button>
-</div>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay" role="status" aria-label="Загрузка">
+        <div class="loading-content">
+            <img src="/imag/DuckThink.gif" alt="Загрузка" class="loading-gif">
+            <p class="loading-text">Загрузка откликов...</p>
+        </div>
+    </div>
+
+    <!-- Response Modal -->
+    <div id="response-modal" class="modal-overlay" role="dialog" aria-label="Детали отклика">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Детали отклика</h3>
+                <button class="modal-close" onclick="closeModal()" aria-label="Закрыть">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Modal content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/responses7.js"></script>
 </body>
-<script src = "/js/responses7.js"> </script>
 </html>
 
