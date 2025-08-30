@@ -312,6 +312,10 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById("resume-text").onclick = () => {
                 window.open(data.textResumeLink, '_blank');
             };
+
+            const updateCard = document.getElementById("resume-uploaded");
+            updateCard.style.cursor = 'pointer';
+            updateCard.onclick = () => triggerFileUpload();
         }
         
         // Загружаем статистику после получения данных пользователя
