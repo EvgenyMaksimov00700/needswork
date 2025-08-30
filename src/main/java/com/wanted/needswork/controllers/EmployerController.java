@@ -60,10 +60,6 @@ public class EmployerController {
                 .body(new UrlResource(file.toUri()));
     }
 
-
-
-
-
     @GetMapping("/employer/get/{employerId}")
     public ResponseEntity<EmployerResponseDTO> getEmployerById(@PathVariable BigInteger employerId) {
         Employer employer = employerService.getEmployer(employerId);

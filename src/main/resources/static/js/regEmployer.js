@@ -25,7 +25,7 @@ try {
         window.Telegram.WebApp.requestFullscreen();
     }
 } catch(error) {
-    clientID = 159619887;
+    clientID = 7010938111;
     console.log('Using fallback clientID:', clientID);
 }
 
@@ -310,45 +310,52 @@ document.addEventListener('DOMContentLoaded', function() {
             
             showLoading();
             
-            // Собираем данные формы
-            const formData = {
-                inn: document.getElementById("inn").value,
-                ogrn: document.getElementById("ogrn").value,
-                name: document.getElementById("nameCompany").value,
-                description: document.getElementById("description").value,
-                email: document.getElementById("email").value,
-                phone: document.getElementById("phone").value,
-                user_id: clientID
-            };
-            
-            // ИСПРАВЛЕНО: Объявляем url перед использованием
+            // собираем multipart/form-data
+            const fd = new FormData();
+            fd.append("inn", document.getElementById("inn").value);
+            fd.append("ogrn", document.getElementById("ogrn").value);
+            fd.append("name", document.getElementById("nameCompany").value);
+            fd.append("description", document.getElementById("description").value);
+            fd.append("email", document.getElementById("email").value);
+            fd.append("phone", document.getElementById("phone").value);
+            fd.append("user_id", clientID);
+
+            // добавляем файл логотипа, если выбран
+            const logoInput = document.getElementById("logo");
+            if (logoInput && logoInput.files && logoInput.files[0]) {
+                // имя поля должно совпадать с названием поля в DTO: logo
+                fd.append("logo", logoInput.files[0]);
+            }
+
             const url = "/employer/create";
-            console.log('Отправляем данные:', formData);
-            
+
             try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
+            const response = await fetch(url, {
+                method: "POST",
+                body: fd
+            });
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error: ${response.status}`);
-                }
+            if (!response.ok) {
+              throw new Error(`HTTP error: ${response.status}`);
+            }
 
-                const jsonData = await response.json();
-                console.log("Ответ сервера:", jsonData);
-                
-                hideLoading();
-                showNotification('Регистрация успешно завершена!', 'success');
-                
-                // После успешной регистрации переходим в лк
-                setTimeout(() => {
-                    window.location.href = "/employer/lk/";
-                }, 1500);
-                
+            // если сервер возвращает json — прочитаем; если нет — просто продолжим
+            let jsonData = null;
+            const ct = response.headers.get('content-type') || '';
+            if (ct.includes('application/json')) {
+              jsonData = await response.json();
+              console.log("Ответ сервера:", jsonData);
+            } else {
+              console.log("Ответ сервера без JSON");
+            }
+
+            hideLoading();
+            showNotification('Регистрация успешно завершена!', 'success');
+
+            setTimeout(() => {
+              window.location.href = "/employer/lk/";
+            }, 1500);
+
             } catch (error) {
                 hideLoading();
                 console.error("Ошибка при регистрации:", error);
