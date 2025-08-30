@@ -132,11 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 logoInput.dispatchEvent(new Event('change'));
             }
         });
-        
-        // Клик по области загрузки
-        fileUploadArea.addEventListener('click', function() {
-            logoInput.click();
-        });
+
     }
 });
 

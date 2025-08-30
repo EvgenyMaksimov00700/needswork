@@ -132,17 +132,20 @@
                                 <i class="fas fa-image" aria-hidden="true"></i>
                                 Логотип компании
                             </label>
-                            <div class="file-upload-area" id="file-upload-area">
+
+                            <!-- кликабельная область теперь метка для input -->
+                            <label for="logo" class="file-upload-area" id="file-upload-area">
                                 <div class="file-upload-content" id="file-upload-content">
                                     <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
                                     <p>Нажмите для выбора файла или перетащите сюда</p>
                                     <span class="file-types">PNG, JPG, JPEG до 5MB</span>
                                 </div>
-                                <input type="file" id="logo" name="logo" accept=".png,.jpg,.jpeg" class="file-input">
-                            </div>
-                            
-                            <!-- Logo Preview -->
-                            <div class="logo-preview" id="logo-preview" style="display: none;">
+                            </label>
+
+                            <!-- инпут вынесен наружу и визуально скрыт, но не display:none -->
+                            <input type="file" id="logo" name="logo" accept=".png,.jpg,.jpeg" class="file-input-visually-hidden" />
+
+                            <div class="logo-preview" id="logo-preview" style="display:none;">
                                 <img id="logoPreview" alt="Логотип компании" class="preview-image">
                                 <button type="button" class="remove-logo" onclick="removeLogo()" aria-label="Убрать логотип">
                                     <i class="fas fa-times" aria-hidden="true"></i>
