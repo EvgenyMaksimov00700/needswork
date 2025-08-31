@@ -4,6 +4,7 @@ import com.wanted.needswork.models.*;
 //import com.wanted.needswork.repository.JobSeeker;
 import com.wanted.needswork.repository.ResponseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
@@ -16,7 +17,7 @@ public class ResponseService {
     @Autowired
     ResponseRepository responseRepository;
     public List<Response> getResponse() {
-        return responseRepository.findAll();
+        return responseRepository.findAll(Sort.by(Sort.Direction.DESC, "createdDateTime"));
     }
 
     public Response getResponse(Integer id) {

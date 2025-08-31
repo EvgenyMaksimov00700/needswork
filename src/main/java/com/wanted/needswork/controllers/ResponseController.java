@@ -7,13 +7,19 @@ import com.wanted.needswork.DTO.response.ResponseResponseDTO;
 import com.wanted.needswork.DTO.response.ResponseVacancyUserDTO;
 import com.wanted.needswork.models.*;
 import com.wanted.needswork.services.*;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.math.BigInteger;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.List;
 
 @RestController
@@ -43,9 +49,41 @@ public class ResponseController {
     @PostMapping("/response")
     public ResponseEntity <Response> addUser (@RequestBody ResponseDTO responseDTO) {
         JobSeeker jobSeeker = jobSeekerService.getJobSeeker(responseDTO.getJob_seeker_id());
-        if (jobSeeker == null) { return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (jobSeeker == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(responseService.addResponse(responseDTO.getVacancy_id(), jobSeeker, responseDTO.getComment()),
+        Response response = responseService.addResponse(responseDTO.getVacancy_id(), jobSeeker, responseDTO.getComment());
+        HttpClient client = HttpClient.newHttpClient();
+        String requestBody = String.format(
+                "{" +
+                        "\"chat_id\":\"%s\"," +
+                        "\"text\":\"%s\"," +
+                        "\"parse_mode\":\"HTML\"," +
+                        "\"reply_markup\":{" +
+                        "\"inline_keyboard\":[[" +
+                        "{\"text\":\"Открыть вакансию\",\"url\":\"https://tworker.ru/vacancy/description?id=%d\"}" +
+                        "]]" +
+                        "}" +
+                        "}",
+                "-1002705478587",
+                "Пользователь <a href='tg://user?id=" + response.getJob_seeker().getUser().getId() + "'>" +
+                        response.getJob_seeker().getUser().getFullName() + "</a> откликнулся на вакансию",
+                response.getVacancyId()
+        );
+
+        Dotenv dotenv=Dotenv.load();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://api.telegram.org/bot"+dotenv.get("TOKEN")+"/sendMessage"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .build();
+        try {
+            HttpResponse<String> resp = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Ответ от Telegram: " + resp.body());
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(response,
                 HttpStatus.OK);
     }
     @PutMapping ("/response/{responseId}")
