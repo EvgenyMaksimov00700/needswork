@@ -330,9 +330,14 @@ document.addEventListener('DOMContentLoaded', function(){
                     }
                 }
                 document.getElementById("city").innerHTML = "<b>Город: </b>" + data.city;
-                if (data.address!=null) {
-                document.getElementById("address").innerHTML = "<b>Адрес: </b>" + data.address;}
-
+                if (data.address && String(data.address).trim() !== "") {
+                    document.getElementById("address").innerHTML = "<b>Тел: </b>" + data.address;
+                } else {
+                    const addressItem = document.getElementById('address-item');
+                    if (addressItem && addressItem.parentNode) {
+                        addressItem.parentNode.removeChild(addressItem);
+                    }
+                }
                 document.getElementById("salary").innerHTML += "<b>Зарплата: </b>";
                 if (data.fromSalary!=null) {
                 document.getElementById("salary").innerHTML += "от " + data.fromSalary + " ";
