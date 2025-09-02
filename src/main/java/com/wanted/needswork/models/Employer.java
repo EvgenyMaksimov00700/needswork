@@ -46,6 +46,7 @@ public class Employer {
 
     @Getter
     @Setter
+    @Column(columnDefinition = "text")
     private String description;
 
     @Getter

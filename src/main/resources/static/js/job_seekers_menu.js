@@ -194,7 +194,8 @@ function animateElements() {
 }
 
 // Функция удаления видеорезюме
-function delete_videoCv(videoCvId) {
+function delete_videoCv(event, videoCvId) {
+    event.stopPropagation();
     if (confirm("Вы действительно хотите удалить Ваше резюме?")) {
         showLoading();
         
@@ -270,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <h3 class="resume-title">${videoCv.name}</h3>
                             <p class="resume-description">Видеорезюме</p>
                         </div>
-                        <button class="resume-delete" onclick="event.stopPropagation(); delete_videoCv(${videoCv.id})" aria-label="Удалить резюме">
+                        <button class="resume-delete" onclick="delete_videoCv(event, ${videoCv.id})" aria-label="Удалить резюме">
                             <i class="fas fa-trash" aria-hidden="true"></i>
                         </button>
                     </div>`;
