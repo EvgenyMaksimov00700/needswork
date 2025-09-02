@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,11 +31,12 @@ public class CurrentStateController {
     HHService hhService;
 
     @GetMapping("/state/user/{userId}")
-    public ResponseEntity<CurrentStateResponseDTO> getCurrentState(@PathVariable BigInteger userId) {
+    public ResponseEntity<Object> getCurrentState(@PathVariable BigInteger userId) {
         CurrentState currentState = currentStateService.getCurrentStateByUser(userId);
         if (currentState == null) {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok(Collections.emptyMap());
         }
+
         BigInteger vacancyId = currentState.getVacancyId();
         Vacancy vacancy = vacancyService.getVacancy(vacancyId);
         if (vacancy==null) {
