@@ -362,7 +362,8 @@ document.addEventListener('DOMContentLoaded', function(){
                       if (paragraph.trim() !== "") {
                           const p = document.createElement('p');
                           p.classList.add('paragraph');
-                          p.textContent = paragraph.trim();
+                          p.innerText = paragraph.trim();
+
                           outputDiv.appendChild(p);
                       }
                   });

@@ -224,7 +224,7 @@ function submit() {
         distantWork: document.getElementById("remoteWork").checked,
         city: document.getElementById("city-name").value,
         address: document.getElementById("address").value,
-        exp: document.querySelector('.experience-button.active')?.id || 'no-experience',
+        exp: document.querySelector('.experience-button.active span')?.innerText || 'Нет опыта',
         fromSalary: document.getElementById("salaryfrom").value || null,
         toSalary: document.getElementById("salaryto").value || null,
         responsibility: document.getElementById("textarea").value,

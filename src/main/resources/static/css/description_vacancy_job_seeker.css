@@ -1132,4 +1132,10 @@ body {
         transform: scale(0.98);
         transition: transform 0.1s ease;
     }
+
+}
+.paragraph {
+    white-space: pre-line; /* сохраняет переносы строк */
+    margin-bottom: 10px;   /* отступ между абзацами */
+    line-height: 1.5;      /* улучшает читаемость */
 }
