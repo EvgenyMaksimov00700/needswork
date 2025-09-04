@@ -79,7 +79,7 @@ public class VacancyController {
         if (industry == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(vacancyService.addVacancy(employer, industry, vacancyDTO.getPosition(),
+        return new ResponseEntity<>(vacancyService.addVacancy(employer, industry, vacancyDTO.getPosition().replaceAll("[\"']", ""),
                 vacancyDTO.getCity(), vacancyDTO.getFromSalary(), vacancyDTO.getToSalary(), vacancyDTO.getWorkSchedule(), vacancyDTO.getDistantWork(), vacancyDTO.getAddress(), vacancyDTO.getExp(), vacancyDTO.getResponsibility()), HttpStatus.OK);
     }
 
