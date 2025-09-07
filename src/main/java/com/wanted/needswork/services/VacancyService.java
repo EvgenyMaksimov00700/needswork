@@ -175,6 +175,9 @@ public class VacancyService {
     public List<Vacancy> getVacancyUser(BigInteger userId) {
         return vacancyRepository.findAllByEmployer_UserId(userId);
     }
+    public List<Vacancy> getVacancyEmployer(BigInteger userId) {
+        return vacancyRepository.findAllByEmployerId(userId);
+    }
 
     public void deleteVacancy(BigInteger vacancyId) {
         Optional<Vacancy> vacancy = vacancyRepository.findById(vacancyId);

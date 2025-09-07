@@ -2,11 +2,11 @@ package com.wanted.needswork.controllers;
 
 import com.wanted.needswork.DTO.request.EmployerDTO;
 import com.wanted.needswork.DTO.response.EmployerResponseDTO;
+import com.wanted.needswork.DTO.response.EmployerStatisticDTO;
 import com.wanted.needswork.models.Employer;
 import com.wanted.needswork.models.User;
-import com.wanted.needswork.services.EmployerService;
-import com.wanted.needswork.services.FileStorageService;
-import com.wanted.needswork.services.UserService;
+import com.wanted.needswork.models.Vacancy;
+import com.wanted.needswork.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -33,6 +33,13 @@ public class EmployerController {
     UserService userService;
     @Autowired
     FileStorageService fileStorageService;
+    @Autowired
+    VacancyService vacancyService;
+    @Autowired
+    ViewVacancyService viewVacancyService;
+    @Autowired
+    ResponseService responseService;
+
     @Value("${app.logo.base-path}")
     private String logoBasePath;
 
@@ -143,6 +150,18 @@ public class EmployerController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(employer.toResponseDTO(), HttpStatus.OK);
+
+    }
+    @GetMapping("/employer/statistics/{employerId}")
+    public ResponseEntity<EmployerStatisticDTO> getEmployerStatistic(@PathVariable BigInteger employerId) {
+        List <Vacancy> vacancies = vacancyService.getVacancyEmployer(employerId);
+        Integer totalViews = 0;
+        Integer totalResponses = 0;
+        for (Vacancy vacancy : vacancies) {
+            totalViews += viewVacancyService.getViewsForVacancy(vacancy.getId());
+            totalResponses += responseService.getResponsesByVacancyId(vacancy.getId()).size();
+        }
+        return new ResponseEntity<>(new EmployerStatisticDTO(totalViews, totalResponses, vacancies.size()), HttpStatus.OK);
 
     }
 }

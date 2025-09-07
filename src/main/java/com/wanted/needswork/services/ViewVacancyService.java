@@ -62,5 +62,6 @@ public class ViewVacancyService {
     public Integer getViewsForVacancy (BigInteger vacancyId) {
         return viewVacancyRepository.countByVacancyId(vacancyId);
     }
+
 }
 

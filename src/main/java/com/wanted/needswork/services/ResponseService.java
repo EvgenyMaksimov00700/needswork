@@ -42,10 +42,6 @@ public class ResponseService {
         return responseRepository.save(response);
     }
 
-    public List<Response> getResponsesByVacancyId(Integer vacancyId) {
-        return responseRepository.findAllResponsesByVacancyId(vacancyId);
-    }
-
     public Response deleteResponse(Integer responseId) {
 
         Response response = responseRepository.findById(responseId).orElse(null);
@@ -84,4 +80,7 @@ public class ResponseService {
         return withoutResume;
     }
 
+    public List<Response> getResponsesByVacancyId (BigInteger vacancyId) {
+        return responseRepository.findAllResponsesByVacancyId(vacancyId);
+    }
 }

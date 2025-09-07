@@ -10,4 +10,6 @@ import java.util.List;
 public interface VacancyRepository extends JpaRepository <Vacancy, BigInteger> {
 
     List<Vacancy> findAllByEmployer_UserId(BigInteger userId);
+
+    List<Vacancy> findAllByEmployerId(BigInteger userId);
 }

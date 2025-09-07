@@ -96,7 +96,7 @@ public class ResponseController {
                 HttpStatus.OK);
     }
     @GetMapping ("/response/vacancy/{vacancyId}")
-    public ResponseEntity <List<ResponseResponseDTO>> getResponseByVacancyID (@PathVariable Integer vacancyId) {
+    public ResponseEntity <List<ResponseResponseDTO>> getResponseByVacancyID (@PathVariable BigInteger vacancyId) {
         return new ResponseEntity<>(responseService.getResponsesByVacancyId(vacancyId).stream().map(Response::toResponseDTO).toList(), HttpStatus.OK);
     }
 
