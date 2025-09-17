@@ -146,9 +146,21 @@ let employerUserId;
     .catch(error => console.error(error));
 }
 function closeModal (){
-const resumeButtons = document.getElementById('resume-buttons');
-resumeModal.style.display = 'none';
+    const resumeButtons = document.getElementById('resume-buttons');
+    resumeModal.style.display = 'none';
 }
+
+function sendHhRespond(vacancyId, responseId) {
+  return fetch("/api/hh/respond-and-message", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      vacancyId: Number(vacancyId),         // BigInteger на бэке — отправляем числом
+      responseId: String(responseId)        // строкой
+    })
+  }).catch(err => console.error("HH respondAndMessage error:", err));
+}
+
 function sendVideo(videoCvName, vacancyName, vacancyId, from_hh, email, employerUserId) {
     console.log(from_hh)
     if (!from_hh || employerUserId!=null) {
@@ -201,7 +213,8 @@ function sendVideo(videoCvName, vacancyName, vacancyId, from_hh, email, employer
                                     'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
                                 },
                                 body: JSON.stringify(data1) // Данные, отправляемые в теле запроса, преобразованные в JSON
-                            });
+                            })
+                            .then(() => sendHhRespond(vacancyId, response1.id));
                           }
                       });
 
@@ -441,7 +454,7 @@ function vacancy_no_resume(vacancyName, vacancyId,  from_hh, email, employerUser
                               'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
                           },
                           body: JSON.stringify(data1) // Данные, отправляемые в теле запроса, преобразованные в JSON
-                      });
+                      }).then(() => sendHhRespond(vacancyId, response1.id));
                     }
               });
 
@@ -532,7 +545,7 @@ if (jobSeeker.textResume == null) {
                                         'Content-Type': 'application/json' // Заголовок, указывающий на тип содержимого
                                     },
                                     body: JSON.stringify(data1) // Данные, отправляемые в теле запроса, преобразованные в JSON
-                                });
+                                }).then(() => sendHhRespond(vacancyId, response1.id));
                               }
                         });
 

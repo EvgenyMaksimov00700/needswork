@@ -27,6 +27,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -537,6 +539,201 @@ public class HHService {
         return null;
 
     }
+    /**
+     * Отклик на вакансию (если уже откликались — просто найдём переписку)
+     * и отправим сервисное сообщение с ссылкой в Telegram.
+     *
+     * @param vacancyId  id вакансии (BigInteger из вашей модели)
+     * @param responseId ваш внутренний идентификатор отклика для телеграм-ссылки
+     * @return negotiationId и messageId для логирования
+     */
+    public Map<String, String> respondAndMessage(BigInteger vacancyId, String responseId) {
+        String vId = vacancyId.toString();
+        String text = "На вашу вакансию поступил отклик: https://t.me/tworker_ru_bot?start=response_" + responseId;
+
+        // 1) найдём существующую переписку по вакансии
+        String negotiationId = findNegotiationIdByVacancy(vId);
+
+        // 2) если переписки нет — создадим отклик (создаст переговорку)
+        if (negotiationId == null) {
+            String resumeId = getDefaultResumeId(); // выберем опубликованное резюме автоматически
+            System.out.println("resume_id " + resumeId );
+            negotiationId = createNegotiation(vId, resumeId, text);
+            Map<String, String> out = new HashMap<>();
+            out.put("negotiationId", negotiationId);
+            System.out.println(negotiationId);
+            return out;
+        }
+
+        // 3) отправим сообщение в чат
+
+        String messageId = sendMessageToNegotiation(negotiationId, text);
+
+        Map<String, String> out = new HashMap<>();
+        out.put("negotiationId", negotiationId);
+        out.put("messageId", messageId);
+        return out;
+    }
+    private HttpHeaders hhAuthHeaders() {
+        Dotenv dotenv = Dotenv.load();
+        String token = Objects.requireNonNull(dotenv.get("API_HH_TOKEN"), "API_HH_TOKEN is null");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(token);
+        headers.set(HttpHeaders.USER_AGENT, "needswork-app (t_worker@mail.ru)");
+        return headers;
+    }
+
+    /**
+     * Берём первое опубликованное резюме соискателя.
+     * Если опубликованных нет — берём первое доступное.
+     */
+    private String getDefaultResumeId() {
+        HttpEntity<Void> entity = new HttpEntity<>(hhAuthHeaders());
+        ResponseEntity<Map> resp = restTemplate.exchange(API_URL + "resumes/mine", HttpMethod.GET, entity, Map.class);
+
+        if (!resp.getStatusCode().is2xxSuccessful() || resp.getBody() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "Не удалось получить список резюме");
+        }
+
+        Object itemsObj = resp.getBody().get("items");
+        if (!(itemsObj instanceof List<?> items) || items.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "У аккаунта нет резюме");
+        }
+
+        // ищем опубликованное
+        for (Object it : items) {
+            if (it instanceof Map<?, ?> m) {
+                Object status = m.get("status");
+                Object id = m.get("id");
+                if (id != null && "published".equals(String.valueOf(status))) {
+                    return id.toString();
+                }
+            }
+        }
+        // иначе вернём первое попавшееся id
+        Object first = items.get(0);
+        if (first instanceof Map<?, ?> m && m.get("id") != null) {
+            return m.get("id").toString();
+        }
+
+        throw new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "Не найдено пригодное резюме");
+    }
+
+    /**
+     * Создаём отклик → переговорку. Если уже откликались, HH обычно вернёт 400/409/403 —
+     * тогда вернём null и попробуем найти переговорку отдельно.
+     */
+    private String createNegotiation(String vacancyId, String resumeId, String text) {
+        String url = API_URL + "negotiations";
+        HttpHeaders headers = hhAuthHeaders();              // ваш метод с Bearer и User-Agent
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
+        form.add("vacancy_id", String.valueOf(vacancyId)); // id можно строкой
+        form.add("resume_id", resumeId);                   // hash резюме
+        form.add("message", text);
+
+        HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(form, headers);
+
+        try {
+            ResponseEntity<Map> resp = restTemplate.postForEntity(url, entity, Map.class);
+            if (resp.getStatusCode().is2xxSuccessful() && resp.getBody() != null) {
+                Object id = resp.getBody().get("id");
+                if (id == null) id = resp.getBody().get("negotiation_id");
+                return id != null ? id.toString() : null;
+            }
+        } catch (HttpClientErrorException e) {
+            // уже есть отклик, прав нет и т.п. — просто пойдём искать переговорку
+            if (e.getStatusCode() == HttpStatus.CONFLICT ||
+                    e.getStatusCode() == HttpStatus.BAD_REQUEST ||
+                    e.getStatusCode() == HttpStatus.FORBIDDEN) {
+                System.out.println("Error 400/409/403: " + e.getStatusCode() + " " + e.getMessage());
+                return null;
+            }
+            throw e;
+        }
+        return null;
+    }
+
+    /**
+     * Перебираем переговорки и ищем ту, что относится к переданной вакансии.
+     * При необходимости можно добавить пагинацию.
+     */
+    private String findNegotiationIdByVacancy(String vacancyId) {
+        HttpEntity<Void> entity = new HttpEntity<>(hhAuthHeaders());
+        ResponseEntity<Map> resp = restTemplate.exchange(API_URL + "negotiations", HttpMethod.GET, entity, Map.class);
+
+        if (!resp.getStatusCode().is2xxSuccessful() || resp.getBody() == null) return null;
+
+
+        // разные аккаунты HH возвращают либо "items", либо "responses"/"invitations"
+        for (String bucket : List.of("items", "responses", "invitations")) {
+            Object bucketObj = resp.getBody().get(bucket);
+            if (bucketObj instanceof List<?> arr) {
+                for (Object it : arr) {
+                    if (it instanceof Map<?, ?> m) {
+                        Object vac = m.get("vacancy");
+                        if (vac instanceof Map<?, ?> vm) {
+                            Object vId = vm.get("id");
+                            if (vId != null && vacancyId.equals(vId.toString())) {
+                                Object nId = m.get("id");
+                                if (nId != null) return nId.toString();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * Отправка сообщения в переписку (чат по отклику) — форма, как в createNegotiation(...)
+     */
+    private String sendMessageToNegotiation(String negotiationId, String text) {
+        // без двойного слеша
+        String url = API_URL + "negotiations/" + negotiationId + "/messages";
+
+        HttpHeaders headers = hhAuthHeaders();              // Bearer + User-Agent
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+        // оформляем тело так же, как в createNegotiation(...)
+        MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
+        form.add("message", text); // ключ — такой же, как при создании отклика
+
+        HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(form, headers);
+
+        try {
+            ResponseEntity<Map> resp = restTemplate.postForEntity(url, entity, Map.class);
+            if (resp.getStatusCode().is2xxSuccessful() && resp.getBody() != null) {
+                // чаще всего приходит id сообщения в корне
+                Object id = resp.getBody().get("id");
+                if (id == null) {
+                    // на всякий случай попробуем достать из вложенного объекта
+                    Object messageObj = resp.getBody().get("message");
+                    if (messageObj instanceof Map<?, ?> m && m.get("id") != null) {
+                        id = m.get("id");
+                    }
+                }
+                return id != null ? id.toString() : null;
+            }
+        } catch (HttpClientErrorException e) {
+            // типовые ответы API HH при отсутствии прав, неверных данных, несуществующей переговорке и т.п.
+            if (e.getStatusCode() == HttpStatus.BAD_REQUEST ||
+                    e.getStatusCode() == HttpStatus.FORBIDDEN ||
+                    e.getStatusCode() == HttpStatus.NOT_FOUND ||
+                    e.getStatusCode() == HttpStatus.CONFLICT) {
+                System.out.println("sendMessage error: " + e.getStatusCode() + " " + e.getResponseBodyAsString());
+                return null;
+            }
+            throw e; // всё остальное — пробрасываем
+        }
+
+        return null;
+    }
+
+
 
 }
 
