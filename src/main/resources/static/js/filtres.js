@@ -369,22 +369,30 @@ function initSearchableSelect(wrapper) {
             return;
         }
 
-        // Если точных совпадений нет, фильтруем по подстроке
-        if (term.length > 0) {
-            opts
-                .filter(o => o.label.toLowerCase().includes(term))
-                .forEach(o => {
+        if (term.length === 0) {
+                opts.forEach(o => {
                     const div = document.createElement('div');
                     div.className = 'option';
                     div.textContent = o.label;
                     div.dataset.value = o.value;
                     list.appendChild(div);
                 });
-            list.classList.toggle('show', list.children.length > 0);
-        } else {
-            // Если поле пустое (никакого ввода), скрываем список
-            list.classList.remove('show');
-        }
+                list.classList.add('show');
+                return;
+            }
+
+        // Иначе фильтруем
+        opts
+            .filter(o => o.label.toLowerCase().includes(term))
+            .forEach(o => {
+                const div = document.createElement('div');
+                div.className = 'option';
+                div.textContent = o.label;
+                div.dataset.value = o.value;
+                list.appendChild(div);
+            });
+
+        list.classList.toggle('show', list.children.length > 0);
     }
 
   // События

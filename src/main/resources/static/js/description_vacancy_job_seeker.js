@@ -251,6 +251,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     catch(error) {clientID = 159619887
+    alert (error)
     }
     try {
         const webApp = window.Telegram.WebApp;

@@ -5,12 +5,15 @@ let employerUserId;
 try {
     clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
     
-    if (window.history.length > 1) {
-        window.Telegram.WebApp.BackButton.show();
-        window.Telegram.WebApp.BackButton.onClick(() => {
-            window.history.back();
-        });
-    }
+//    if (window.history.length > 1) {
+//        window.Telegram.WebApp.BackButton.show();
+//        window.Telegram.WebApp.BackButton.onClick(() => {
+//            window.history.back();
+//        });
+//    }
+    try { window.Telegram.WebApp.BackButton.hide(); } catch (e) {}
+
+    try { window.Telegram.WebApp.closeButton.show(); } catch (e) {}
     
     window.Telegram.WebApp.expand();
     
@@ -132,7 +135,7 @@ function delete_vacancy() {
             if (!response.ok) {
                 throw new Error(`Ошибка HTTP: ${response.status}`);
             }
-            return response.json();
+            return response;
         })
         .then(data => {
             hideLoading();

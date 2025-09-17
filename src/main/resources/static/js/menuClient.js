@@ -11,8 +11,10 @@ clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
         document.querySelector(".app-header").style.top = "120px";
         window.Telegram.WebApp.requestFullscreen();
     }
+    try { window.Telegram.WebApp.BackButton.hide(); } catch (e) {}
 
-window.Telegram.WebApp.expand();
+    try { window.Telegram.WebApp.closeButton.show(); } catch (e) {}
+    window.Telegram.WebApp.expand();
 }
 catch(error) {clientID = 159619887}
 console.log(clientID)
