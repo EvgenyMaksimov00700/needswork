@@ -13,7 +13,7 @@ clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
     }
     try { window.Telegram.WebApp.BackButton.hide(); } catch (e) {}
 
-    try { window.Telegram.WebApp.closeButton.show(); } catch (e) {}
+    try { window.Telegram.WebApp.CloseButton.show(); } catch (e) {}
     window.Telegram.WebApp.expand();
 }
 catch(error) {clientID = 159619887}
