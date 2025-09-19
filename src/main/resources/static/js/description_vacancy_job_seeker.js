@@ -269,6 +269,9 @@ document.addEventListener('DOMContentLoaded', function(){
     try {
         const webApp = window.Telegram.WebApp;
         const startParam = webApp.initDataUnsafe.start_param;
+         try { window.Telegram.WebApp.BackButton.hide(); } catch (e) {}
+
+            try { window.Telegram.WebApp.closeButton.show(); } catch (e) {}
 
         if (startApp && startApp.startsWith('vacancy_')) {
             const backBtn = document.getElementById('back-btn');
