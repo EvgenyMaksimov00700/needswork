@@ -156,6 +156,30 @@ public class HHService {
         if (employer == null) {
             employer = new Employer(employerName, employerLogo, email);
         }
+        // Извлекаем телефон(ы) работодателя, если есть
+        try {
+            List<Map<String, Object>> phones = (List<Map<String, Object>>) contacts.get("phones");
+            if (phones != null && !phones.isEmpty()) {
+                Map<String, Object> phoneObj = phones.get(0);
+                String countryCode = phoneObj.get("country") != null ? phoneObj.get("country").toString() : "";
+                String cityCode = phoneObj.get("city") != null ? phoneObj.get("city").toString() : "";
+                String numberRaw = phoneObj.get("number") != null ? phoneObj.get("number").toString() : "";
+                StringBuilder formatted = new StringBuilder();
+                if (!countryCode.isEmpty()) {
+                    formatted.append("+").append(countryCode).append(" ");
+                }
+                if (!cityCode.isEmpty()) {
+                    formatted.append("(").append(cityCode).append(") ");
+                }
+                formatted.append(numberRaw);
+                String phoneStr = formatted.toString().trim();
+                if (employer.getPhone() == null || employer.getPhone().isEmpty()) {
+                    employer.setPhone(phoneStr);
+                }
+            }
+        } catch (ClassCastException ignored) {
+            // Если структура phones неожиданная — просто пропускаем
+        }
 
 
         String position = (String) item.get("name");
