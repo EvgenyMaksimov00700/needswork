@@ -79,12 +79,20 @@ const page = parseInt(params.get("page"));
 return isNaN(page) || page < 1 ? 1 : page;
 }
 
+function getCursor() {
+    const params = new URLSearchParams(window.location.search);
+    const cursor = parseInt(params.get("cursor"));
+    return isNaN(cursor) || cursor < 0 ? 0 : cursor;
+}
+
+
 function updatePageNumberDisplay(page) {
 document.getElementById("page-number").textContent = page;
 }
 
 function goToPage(page) {
-window.location.search = `?page=${page}&${existParams.toString()}`;
+const cursor = getCursor();
+window.location.search = `?page=${page}&cursor=${cursor}&${existParams.toString()}`;
 }
 
 function prevPage() {
@@ -198,9 +206,14 @@ async function loadVacancies() {
         showLoading();
         
         const currentPage = getCurrentPage();
+        let currentCursor = getCursor();
         updatePageNumberDisplay(currentPage);
+        // Обновляем состояние кнопок сразу для Prev
+        const prevBtn = document.querySelector('.pagination-btn.prev');
+        const nextBtn = document.querySelector('.pagination-btn.next');
+        if (prevBtn) prevBtn.disabled = currentPage === 1;
         
-        const url = `/vacancy/filter?page=${currentPage}&${existParams.toString()}`;
+        const url = `/vacancy/filter?page=${currentPage}&cursor=${currentCursor}&${existParams.toString()}`;
         console.log('Loading vacancies from:', url);
         
         const response = await fetch(url, {
@@ -216,17 +229,31 @@ async function loadVacancies() {
         
         const data = await response.json();
         console.log('Vacancies loaded:', data);
+
+        // Новая форма ответа { items, cursor }
+        const items = Array.isArray(data.items) ? data.items : [];
+        currentCursor = Number.isInteger(data.cursor) ? data.cursor : currentCursor;
         
         const vacancies = document.getElementById("vacancies");
         
-        if (!Array.isArray(data) || data.length === 0) {
+        if (items.length === 0) {
             showEmptyState();
+            if (nextBtn) nextBtn.disabled = true;
         } else {
-            vacancies.innerHTML = data.map(vacancy => {
+            vacancies.innerHTML = items.map(vacancy => {
                 const vacancy_url = `/vacancy/description?id=${vacancy.id}&${existParams.toString()}`;
                 return createVacancyCard(vacancy, vacancy_url);
             }).join('');
+            // Если пришло меньше 20 вакансий, значит дальше страниц нет
+            if (nextBtn) nextBtn.disabled = items.length < 20;
         }
+
+        // Обновим URL, чтобы сохранить актуальные cursor/seen
+        const params = new URLSearchParams(window.location.search);
+        params.set('page', currentPage);
+        params.set('cursor', currentCursor);
+        params.delete('seen');
+        history.replaceState(null, '', `${window.location.pathname}?${params.toString()}`);
         
     } catch (error) {
         console.error('Error loading vacancies:', error);

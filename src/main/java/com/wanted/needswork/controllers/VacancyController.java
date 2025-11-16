@@ -25,6 +25,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Map;
+import java.util.Set;
 
 import static java.lang.Integer.parseInt;
 
@@ -141,7 +143,7 @@ public class VacancyController {
     }
 
     @GetMapping("/vacancy/filter")
-    public ResponseEntity<List<VacancyResponseDTO>> filter(
+    public ResponseEntity<Map<String, Object>> filter(
             @RequestParam(value = "city", required = false, defaultValue = "") String city,
             @RequestParam(value = "industry", required = false, defaultValue = "") String industry,
             @RequestParam(value = "company", required = false, defaultValue = "") String company,
@@ -150,7 +152,8 @@ public class VacancyController {
             @RequestParam(value = "exp", required = false, defaultValue = "") String exp,
             @RequestParam(value = "bus", required = false, defaultValue = "") String workSchedule,
             @RequestParam(value = "time", required = false, defaultValue = "") String date,
-            @RequestParam(value = "page", defaultValue = "1") Integer page
+            @RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "cursor", required = false, defaultValue = "0") Integer cursor
     ) {
 
 
@@ -162,6 +165,10 @@ public class VacancyController {
             jsonArray = vacancyService.filterVacancyByKeyword(position, vacancies);
         }
         List<VacancyResponseDTO> vacancyResponseDTOs = new ArrayList<>();
+        final int targetPerPage = 20;
+
+        // Локальная дедупликация в пределах одного ответа
+        Set<BigInteger> usedIds = new java.util.HashSet<>();
         for (int i = 0; i < vacancies.size(); i++) {
             Vacancy vacancy = vacancies.get(i);
             boolean is_fits = true;
@@ -205,21 +212,62 @@ public class VacancyController {
             }
 
             if (is_fits) {
-                vacancyResponseDTOs.add(vacancy.toResponseDTO());
+                if (!usedIds.contains(vacancy.getId()) && vacancyResponseDTOs.size() < targetPerPage) {
+                    usedIds.add(vacancy.getId());
+                    vacancyResponseDTOs.add(vacancy.toResponseDTO());
+                }
             }
         }
+
+        int nextCursor = cursor != null ? cursor : 0;
+
         if (page == 1) {
-            vacancyResponseDTOs.addAll(
-                    hhService.fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, 0)
-                            .stream().map(Vacancy::toResponseDTO).toList()
-            );
+            int hhPageIndex = nextCursor;
+            while (vacancyResponseDTOs.size() < targetPerPage) {
+                List<Vacancy> hhList = hhService
+                        .fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, hhPageIndex);
+                if (hhList == null) {
+                    break;
+                }
+                for (Vacancy v : hhList) {
+                    if (!usedIds.contains(v.getId()) && vacancyResponseDTOs.size() < targetPerPage) {
+                        usedIds.add(v.getId());
+                        vacancyResponseDTOs.add(v.toResponseDTO());
+                    }
+                }
+                hhPageIndex++;
+            }
+            nextCursor = hhPageIndex;
+        } else {
+            List<VacancyResponseDTO> pageResult = new ArrayList<>();
+            int hhPageIndex = Math.max(nextCursor, page - 1);
+            while (pageResult.size() < targetPerPage) {
+                List<Vacancy> hhList = hhService
+                        .fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, hhPageIndex);
+                if (hhList == null) {
+                    break;
+                }
+                for (Vacancy v : hhList) {
+                    if (!usedIds.contains(v.getId()) && pageResult.size() < targetPerPage) {
+                        usedIds.add(v.getId());
+                        pageResult.add(v.toResponseDTO());
+                    }
+                }
+                hhPageIndex++;
+            }
+            vacancyResponseDTOs = pageResult;
+            nextCursor = hhPageIndex;
         }
-        else
-        {
-            vacancyResponseDTOs= hhService.fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, page-1)
-                    .stream().map(Vacancy::toResponseDTO).toList();
+
+        if (vacancyResponseDTOs.size() > targetPerPage) {
+            vacancyResponseDTOs = vacancyResponseDTOs.subList(0, targetPerPage);
         }
-        return new ResponseEntity<>(vacancyResponseDTOs, HttpStatus.OK);
+
+        Map<String, Object> payload = new java.util.HashMap<>();
+        payload.put("items", vacancyResponseDTOs);
+        payload.put("cursor", nextCursor);
+
+        return new ResponseEntity<>(payload, HttpStatus.OK);
     }
 }
 

@@ -333,6 +333,10 @@ public class HHService {
         ResponseEntity<Map> response = restTemplate.exchange(
                 API_URL + url, HttpMethod.GET, entity, Map.class);
 
+        if (response.getStatusCode() != HttpStatus.OK || response.getBody() == null) {
+            return null;
+        }
+
         List<Vacancy> result = new ArrayList<>();
 
         if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
@@ -361,6 +365,10 @@ public class HHService {
 
         ResponseEntity<Map> response = restTemplate.exchange(
                 API_URL + "vacancies?currency=RUR&per_page=100&order_by=publication_time&area=113", HttpMethod.GET, entity, Map.class);
+
+        if (response.getStatusCode() != HttpStatus.OK || response.getBody() == null) {
+            return null;
+        }
 
         List<Vacancy> result = new ArrayList<>();
 
