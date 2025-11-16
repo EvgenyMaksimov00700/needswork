@@ -244,28 +244,34 @@ function formatDateTime(isoString) {
 }
 document.addEventListener('DOMContentLoaded', function(){
     try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
-    if (window.history.length > 1) {
+
+
+    }
+
+    catch(error) {clientID = 159619887
+        alert (error)
+    }
+    try {    if (window.history.length > 1) {
             window.Telegram.WebApp.BackButton.show();
             window.Telegram.WebApp.BackButton.onClick(() => {
                 window.history.back();
             });
         }
-    function isDesktop() {
+        function isDesktop() {
             const userAgent = navigator.userAgent.toLowerCase();
             return userAgent.includes("windows") || userAgent.includes("macintosh") || userAgent.includes("linux");
         }
         console.log(isDesktop());
         if (!isDesktop()) {
-        document.querySelector('.app-header').style.top="100px";
-        document.querySelector('.main-content').style.marginTop="100px";
+            document.querySelector('.app-header').style.top="100px";
+            document.querySelector('.main-content').style.marginTop="100px";
             window.Telegram.WebApp.requestFullscreen();
-        }
-
+        }}
+    catch (e){
+        console.warn('Telegram WebApp init error', e);
     }
+  
 
-    catch(error) {clientID = 159619887
-    alert (error)
-    }
     try {
         const webApp = window.Telegram.WebApp;
         const startParam = webApp.initDataUnsafe.start_param;
