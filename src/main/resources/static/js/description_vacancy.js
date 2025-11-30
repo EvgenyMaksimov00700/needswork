@@ -200,22 +200,37 @@ function formatSalary(fromSalary, toSalary) {
 }
 
 // Функция для обновления статистики откликов
-function updateResponsesCount() {
-    // Здесь можно добавить запрос для получения количества откликов
-    // Пока используем заглушку
+async function updateResponsesCount() {
     const responsesCount = document.getElementById('responses-count');
-    if (responsesCount) {
-        responsesCount.textContent = '0';
+    if (responsesCount && vacancyId) {
+        try {
+            const response = await fetch(`/response/vacancy/${vacancyId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                const responses = await response.json();
+                responsesCount.textContent = responses ? responses.length : 0;
+            } else {
+                responsesCount.textContent = '0';
+            }
+        } catch (error) {
+            console.error('Ошибка при загрузке количества откликов:', error);
+            responsesCount.textContent = '0';
+        }
     }
 }
 
 // Функция для обновления просмотров
-function updateViewsCount() {
-    // Здесь можно добавить запрос для получения количества просмотров
-    // Пока используем заглушку
-    const viewsCount = document.querySelector('.stat-number');
-    if (viewsCount) {
-        viewsCount.textContent = '83';
+function updateViewsCount(views) {
+    const viewsCount = document.getElementById('views-count');
+    if (viewsCount && views !== undefined && views !== null) {
+        viewsCount.textContent = views.toString();
+    } else if (viewsCount) {
+        viewsCount.textContent = '0';
     }
 }
 
@@ -309,9 +324,13 @@ function loadVacancyData() {
             createDateElement.textContent = formatDateTime(data.createdDateTime);
         }
         
-        // Обновляем статистику
+        // Обновляем статистику просмотров (берем из данных вакансии)
+        if (data.views !== undefined && data.views !== null) {
+            updateViewsCount(data.views);
+        }
+        
+        // Обновляем статистику откликов
         updateResponsesCount();
-        updateViewsCount();
         
         hideLoading();
         

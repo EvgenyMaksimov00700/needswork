@@ -99,9 +99,23 @@ public class VideoCvService {
         if (vacancy != null) {
             User employer_user = vacancy.getEmployer().getUser();
 
+            // Формируем ссылку для ФИО
+            String fioLink;
+            if (user.getUsername() != null && !user.getUsername().isEmpty()) {
+                fioLink = String.format("<a href='https://t.me/%s'>%s</a>", user.getUsername(), user.getFullName());
+            } else {
+                fioLink = String.format("<a href='tg://user?id=%d'>%s</a>", user.getId(), user.getFullName());
+            }
+
+            // Формируем номер телефона с + если его нет
+            String phone = user.getPhone();
+            if (phone != null && !phone.isEmpty() && !phone.startsWith("+")) {
+                phone = "+" + phone;
+            }
+
             String textMessage = String.format(
-                    "Отклик по вакансии <b>%s</b>\nФИО: <a href='tg://user?id=%d'>%s</a>\nтел: %s",
-                    vacancy.getPosition(), user.getId(), user.getFullName(), user.getPhone()
+                    "Отклик по вакансии <b>%s</b>\nФИО: %s\nтел: %s",
+                    vacancy.getPosition(), fioLink, phone != null ? phone : "не указан"
             );
 
 

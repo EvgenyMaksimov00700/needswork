@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -224,36 +225,52 @@ public class VacancyController {
         if (page == 1) {
             int hhPageIndex = nextCursor;
             while (vacancyResponseDTOs.size() < targetPerPage) {
-                List<Vacancy> hhList = hhService
-                        .fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, hhPageIndex);
-                if (hhList == null) {
-                    break;
-                }
-                for (Vacancy v : hhList) {
-                    if (!usedIds.contains(v.getId()) && vacancyResponseDTOs.size() < targetPerPage) {
-                        usedIds.add(v.getId());
-                        vacancyResponseDTOs.add(v.toResponseDTO());
+                try {
+                    List<Vacancy> hhList = hhService
+                            .fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, hhPageIndex);
+                    if (hhList == null) {
+                        break;
                     }
+                    for (Vacancy v : hhList) {
+                        if (!usedIds.contains(v.getId()) && vacancyResponseDTOs.size() < targetPerPage) {
+                            usedIds.add(v.getId());
+                            vacancyResponseDTOs.add(v.toResponseDTO());
+                        }
+                    }
+                    hhPageIndex++;
+                } catch (ResponseStatusException e) {
+                    // Если возникла ошибка о превышении лимита 2000 элементов, возвращаем то, что уже есть
+                    if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
+                        break;
+                    }
+                    throw e;
                 }
-                hhPageIndex++;
             }
             nextCursor = hhPageIndex;
         } else {
             List<VacancyResponseDTO> pageResult = new ArrayList<>();
             int hhPageIndex = Math.max(nextCursor, page - 1);
             while (pageResult.size() < targetPerPage) {
-                List<Vacancy> hhList = hhService
-                        .fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, hhPageIndex);
-                if (hhList == null) {
-                    break;
-                }
-                for (Vacancy v : hhList) {
-                    if (!usedIds.contains(v.getId()) && pageResult.size() < targetPerPage) {
-                        usedIds.add(v.getId());
-                        pageResult.add(v.toResponseDTO());
+                try {
+                    List<Vacancy> hhList = hhService
+                            .fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, hhPageIndex);
+                    if (hhList == null) {
+                        break;
                     }
+                    for (Vacancy v : hhList) {
+                        if (!usedIds.contains(v.getId()) && pageResult.size() < targetPerPage) {
+                            usedIds.add(v.getId());
+                            pageResult.add(v.toResponseDTO());
+                        }
+                    }
+                    hhPageIndex++;
+                } catch (ResponseStatusException e) {
+                    // Если возникла ошибка о превышении лимита 2000 элементов, возвращаем то, что уже есть
+                    if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
+                        break;
+                    }
+                    throw e;
                 }
-                hhPageIndex++;
             }
             vacancyResponseDTOs = pageResult;
             nextCursor = hhPageIndex;

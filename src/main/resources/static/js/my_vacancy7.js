@@ -54,8 +54,30 @@ function hideLoading() {
 
 // Функция загрузки статистики
 async function loadStatistics() {
+    // Сначала получаем employerId из API
     try {
-        const response = await fetch(`/employer/statistics/${clientID}`, {
+        const employerResponse = await fetch(`/employer/user/${clientID}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!employerResponse.ok) {
+            console.log('Работодатель не найден');
+            updateStatisticsDisplay({
+                activeVacancies: 0,
+                totalViews: 0,
+                totalResponses: 0
+            });
+            return;
+        }
+        
+        const employerData = await employerResponse.json();
+        employerId = employerData.employer_id;
+        
+        // Теперь загружаем статистику с правильным employerId
+        const response = await fetch(`/employer/statistics/${employerId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -68,17 +90,17 @@ async function loadStatistics() {
         } else {
             console.log('Статистика недоступна, используем заглушки');
             updateStatisticsDisplay({
-                totalVacancies: 0,
+                activeVacancies: 0,
                 totalViews: 0,
-                totalApplications: 0
+                totalResponses: 0
             });
         }
     } catch (error) {
         console.log('Ошибка загрузки статистики, используем заглушки:', error);
         updateStatisticsDisplay({
-            totalVacancies: 0,
+            activeVacancies: 0,
             totalViews: 0,
-            totalApplications: 0
+            totalResponses: 0
         });
     }
 }
@@ -89,9 +111,10 @@ function updateStatisticsDisplay(stats) {
     const totalViews = document.getElementById('total-views');
     const totalApplications = document.getElementById('total-applications');
     
-    if (totalVacancies) totalVacancies.textContent = stats.totalVacancies || 0;
+    // API возвращает: totalViews, totalResponses, activeVacancies
+    if (totalVacancies) totalVacancies.textContent = stats.activeVacancies || 0;
     if (totalViews) totalViews.textContent = stats.totalViews || 0;
-    if (totalApplications) totalApplications.textContent = stats.totalApplications || 0;
+    if (totalApplications) totalApplications.textContent = stats.totalResponses || 0;
 }
 
 // Функция анимации появления элементов
@@ -249,12 +272,31 @@ function showVacanciesList() {
 
 // Основная инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-    // Загружаем вакансии
-    fetch(`/vacancy/user/${clientID}`, {
+    // Сначала получаем employerId, затем загружаем вакансии и статистику
+    fetch(`/employer/user/${clientID}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
         }
+    })
+    .then(response => {
+        if (!response.ok) {
+            console.log('Работодатель не найден');
+            throw new Error(`Ошибка HTTP: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(employerData => {
+        employerId = employerData.employer_id;
+        console.log('Employer ID:', employerId);
+        
+        // Загружаем вакансии
+        return fetch(`/vacancy/user/${clientID}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
     })
     .then(response => {
         if (!response.ok) {
@@ -279,12 +321,13 @@ document.addEventListener('DOMContentLoaded', function() {
             showEmptyState();
         }
         
-        // Загружаем статистику
+        // Загружаем статистику после получения employerId
         loadStatistics();
     })
     .catch(error => {
-        console.error('Ошибка при загрузке вакансий:', error);
+        console.error('Ошибка при загрузке данных:', error);
         showEmptyState();
+        // Пытаемся загрузить статистику даже при ошибке
         loadStatistics();
     });
     
@@ -315,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Функция для обновления статистики в реальном времени (опционально)
 function refreshStatistics() {
-    if (clientID) {
+    if (employerId) {
         loadStatistics();
     }
 }

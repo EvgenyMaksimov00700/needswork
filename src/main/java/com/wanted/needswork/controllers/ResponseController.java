@@ -54,6 +54,16 @@ public class ResponseController {
         }
         Response response = responseService.addResponse(responseDTO.getVacancy_id(), jobSeeker, responseDTO.getComment());
         HttpClient client = HttpClient.newHttpClient();
+        
+        // Формируем ссылку для ФИО
+        User user = response.getJob_seeker().getUser();
+        String userLink;
+        if (user.getUsername() != null && !user.getUsername().isEmpty()) {
+            userLink = String.format("<a href='https://t.me/%s'>%s</a>", user.getUsername(), user.getFullName());
+        } else {
+            userLink = String.format("<a href='tg://user?id=%d'>%s</a>", user.getId(), user.getFullName());
+        }
+        
         String requestBody = String.format(
                 "{" +
                         "\"chat_id\":\"%s\"," +
@@ -66,8 +76,7 @@ public class ResponseController {
                         "}" +
                         "}",
                 "-1002705478587",
-                "Пользователь <a href='tg://user?id=" + response.getJob_seeker().getUser().getId() + "'>" +
-                        response.getJob_seeker().getUser().getFullName() + "</a> откликнулся на вакансию",
+                "Пользователь " + userLink + " откликнулся на вакансию",
                 response.getVacancyId()
         );
 

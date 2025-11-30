@@ -239,7 +239,7 @@ function createResponseCard(response) {
                 <i class="fas fa-eye"></i>
                 <span>Резюме</span>
             </button>
-            <button class="action-button secondary" onclick="openChat('${response.job_seeker.user.username}')">
+            <button class="action-button secondary" onclick="openChat('${response.job_seeker.user.username || ''}', ${response.job_seeker.user.id})">
                 <i class="fas fa-comments"></i>
                 <span>Чат</span>
             </button>
@@ -274,11 +274,13 @@ function viewResume(comment, applicantName) {
 }
 
 // Функция для открытия чата
-function openChat(username) {
-    if (username) {
+function openChat(username, userId) {
+    if (username && username.trim() !== '') {
         window.Telegram.WebApp.openTelegramLink(`https://t.me/${username}`);
+    } else if (userId) {
+        window.Telegram.WebApp.openTelegramLink(`tg://user?id=${userId}`);
     } else {
-        showNotification('Username не найден', 'error');
+        showNotification('Не удалось открыть чат', 'error');
     }
 }
 

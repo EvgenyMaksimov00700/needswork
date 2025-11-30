@@ -223,3 +223,4 @@ function initializePage() {
 
 // Вызываем инициализацию после загрузки страницы
 document.addEventListener('DOMContentLoaded', initializePage);
+

@@ -355,12 +355,18 @@ body {
     text-decoration: none;
 }
 
-.pagination-btn:hover,
-.pagination-btn:active {
+.pagination-btn:hover:not(:disabled),
+.pagination-btn:active:not(:disabled) {
     background: var(--tg-bg-elevated);
     border-color: var(--tg-border-medium);
     transform: translateY(-1px);
     box-shadow: var(--tg-shadow-light);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 .pagination-btn i {
@@ -369,8 +375,8 @@ body {
     flex-shrink: 0;
 }
 
-.pagination-btn:hover i,
-.pagination-btn:active i {
+.pagination-btn:hover:not(:disabled) i,
+.pagination-btn:active:not(:disabled) i {
     transform: scale(1.2);
 }
 

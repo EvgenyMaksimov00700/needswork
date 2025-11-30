@@ -354,31 +354,45 @@ public class HHService {
 
         }
         System.out.println(url);
-        ResponseEntity<Map> response = restTemplate.exchange(
-                API_URL + url, HttpMethod.GET, entity, Map.class);
+        try {
+            ResponseEntity<Map> response = restTemplate.exchange(
+                    API_URL + url, HttpMethod.GET, entity, Map.class);
 
-        if (response.getStatusCode() != HttpStatus.OK || response.getBody() == null) {
-            return null;
-        }
+            if (response.getStatusCode() != HttpStatus.OK || response.getBody() == null) {
+                return null;
+            }
 
-        List<Vacancy> result = new ArrayList<>();
+            List<Vacancy> result = new ArrayList<>();
 
-        if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
-            Map<String, Object> responseBody = (Map<String, Object>) response.getBody();
+            if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+                Map<String, Object> responseBody = (Map<String, Object>) response.getBody();
 
-            // Проверяем, есть ли ключ "items"
-            if (responseBody.containsKey("items")) {
-                List<Map<String, Object>> items = (List<Map<String, Object>>) responseBody.get("items");
+                // Проверяем, есть ли ключ "items"
+                if (responseBody.containsKey("items")) {
+                    List<Map<String, Object>> items = (List<Map<String, Object>>) responseBody.get("items");
 
-                for (Map<String, Object> item : items) {
-                    Vacancy vacancy = parseVacancy(item);
-                    if (vacancy != null) {
-                        result.add(vacancy);
+                    for (Map<String, Object> item : items) {
+                        Vacancy vacancy = parseVacancy(item);
+                        if (vacancy != null) {
+                            result.add(vacancy);
+                        }
                     }
                 }
             }
+            return result;
+        } catch (HttpClientErrorException e) {
+            // Проверяем, является ли это ошибкой о превышении лимита 2000 элементов
+            if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
+                String responseBody = e.getResponseBodyAsString();
+                if (responseBody != null && responseBody.contains("you can't look up more than 2000 items in the list")) {
+                    // Выбрасываем специальное исключение, чтобы контроллер мог вернуть уже собранные результаты
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, 
+                        "Превышен лимит запросов к API HeadHunter. Показаны доступные результаты.", e);
+                }
+            }
+            // Для других ошибок возвращаем null
+            return null;
         }
-        return result;
     }
 
     public List<Vacancy> fetchVacancies() {
