@@ -242,14 +242,32 @@ function formatDateTime(isoString) {
     // Собираем строку в нужном формате
     return `${day}.${month}.${year} ${hours}:${minutes}`;
 }
+function resolveClientId() {
+    if (!window.Telegram || !window.Telegram.WebApp) {
+        throw new Error('Telegram WebApp unavailable');
+    }
+    try {
+        window.Telegram.WebApp.ready();
+    } catch (e) {
+        console.warn('Telegram WebApp.ready() failed', e);
+    }
+    const userId = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+    if (!userId) {
+        throw new Error('Telegram user id missing in initData');
+    }
+    return userId;
+}
+
 document.addEventListener('DOMContentLoaded', function(){
-    try {clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
+    try {clientID = resolveClientId();
 
 
     }
 
-    catch(error) {clientID = 159619887
-        alert (error)
+    catch(error) {
+        console.error('Failed to read Telegram user id', error);
+        clientID = null;
+        alert('Не удалось авторизироваться. Пожалуйста, обновите страницу');
     }
     try {    if (window.history.length > 1) {
             window.Telegram.WebApp.BackButton.show();

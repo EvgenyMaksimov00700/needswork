@@ -1,6 +1,22 @@
 let clientID;
+
+function resolveClientId() {
+    if (!window.Telegram || !window.Telegram.WebApp) {
+        throw new Error('Telegram WebApp unavailable');
+    }
+    try {
+        window.Telegram.WebApp.ready();
+    } catch (e) {
+        console.warn('Telegram WebApp.ready() failed', e);
+    }
+    const userId = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+    if (!userId) {
+        throw new Error('Telegram user id missing in initData');
+    }
+    return userId;
+}
 try {
-    clientID = window.Telegram.WebApp.initDataUnsafe.user.id;
+    clientID = resolveClientId();
     if (window.history.length > 1) {
         window.Telegram.WebApp.BackButton.show();
         window.Telegram.WebApp.BackButton.onClick(() => {
@@ -19,7 +35,9 @@ try {
         window.Telegram.WebApp.requestFullscreen();
     }
 } catch (error) {
-    clientID = 159619887;
+    clientID = null;
+    console.error('Failed to read Telegram user id', error);
+    alert('Не удалось авторизироваться. Пожалуйста, обновите страницу');
 }
  window.Telegram.WebApp.expand();
 console.log(clientID);
