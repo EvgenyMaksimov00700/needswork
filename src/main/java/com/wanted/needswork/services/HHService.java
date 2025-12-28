@@ -145,41 +145,41 @@ public class HHService {
             employerLogo = (String) logo_urls.get("original");
         }
         Map<String, Object> contacts = (Map<String, Object>) item.get("contacts");
-        if (contacts == null) {
-            return null;
-        }
-        String email = (String) contacts.get("email");
-        if (email == null) {
-            return null;
-        }
-        Employer employer = employerRepository.findByEmail(email);
-        if (employer == null) {
-            employer = new Employer(employerName, employerLogo, email);
-        }
+//        if (contacts == null) {
+//            return null;
+//        }
+//        String email = (String) contacts.get("email");
+//        if (email == null) {
+//            return null;
+//        }
+//        Employer employer = employerRepository.findByEmail(email);
+//        if (employer == null) {
+          Employer employer = new Employer(employerName, employerLogo, null);
+//        }
         // Извлекаем телефон(ы) работодателя, если есть
-        try {
-            List<Map<String, Object>> phones = (List<Map<String, Object>>) contacts.get("phones");
-            if (phones != null && !phones.isEmpty()) {
-                Map<String, Object> phoneObj = phones.get(0);
-                String countryCode = phoneObj.get("country") != null ? phoneObj.get("country").toString() : "";
-                String cityCode = phoneObj.get("city") != null ? phoneObj.get("city").toString() : "";
-                String numberRaw = phoneObj.get("number") != null ? phoneObj.get("number").toString() : "";
-                StringBuilder formatted = new StringBuilder();
-                if (!countryCode.isEmpty()) {
-                    formatted.append("+").append(countryCode).append(" ");
-                }
-                if (!cityCode.isEmpty()) {
-                    formatted.append("(").append(cityCode).append(") ");
-                }
-                formatted.append(numberRaw);
-                String phoneStr = formatted.toString().trim();
-                if (employer.getPhone() == null || employer.getPhone().isEmpty()) {
-                    employer.setPhone(phoneStr);
-                }
-            }
-        } catch (ClassCastException ignored) {
-            // Если структура phones неожиданная — просто пропускаем
-        }
+//        try {
+//            List<Map<String, Object>> phones = (List<Map<String, Object>>) contacts.get("phones");
+//            if (phones != null && !phones.isEmpty()) {
+//                Map<String, Object> phoneObj = phones.get(0);
+//                String countryCode = phoneObj.get("country") != null ? phoneObj.get("country").toString() : "";
+//                String cityCode = phoneObj.get("city") != null ? phoneObj.get("city").toString() : "";
+//                String numberRaw = phoneObj.get("number") != null ? phoneObj.get("number").toString() : "";
+//                StringBuilder formatted = new StringBuilder();
+//                if (!countryCode.isEmpty()) {
+//                    formatted.append("+").append(countryCode).append(" ");
+//                }
+//                if (!cityCode.isEmpty()) {
+//                    formatted.append("(").append(cityCode).append(") ");
+//                }
+//                formatted.append(numberRaw);
+//                String phoneStr = formatted.toString().trim();
+//                if (employer.getPhone() == null || employer.getPhone().isEmpty()) {
+//                    employer.setPhone(phoneStr);
+//                }
+//            }
+//        } catch (ClassCastException ignored) {
+//            // Если структура phones неожиданная — просто пропускаем
+//        }
 
 
         String position = (String) item.get("name");
