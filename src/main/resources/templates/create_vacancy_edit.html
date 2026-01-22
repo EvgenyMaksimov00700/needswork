@@ -15,10 +15,8 @@
     <input type="text" placeholder="Название Вакансии" class="input-field" id="name">
 
 
-    <select id='industry-select' class="input-field">
-        <option disabled selected>Укажите отрасль</option>
-
-    </select>
+    <input list="industry-select" id="industry-name" type="text" class="input-field" placeholder="Введите отрасль">
+    <datalist id="industry-select"></datalist>
     <select id="workSchedule">
         <option value="" disabled selected>Тип занятости</option>
         <option value="fulltime">Полная занятость</option>

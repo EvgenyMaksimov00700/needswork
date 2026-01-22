@@ -62,25 +62,39 @@ console.log(vacancyId);
 window.location.href=`/employer/vacancy/description?id=${vacancyId}`
 }
 
+// Глобальный массив отраслей для поиска ID по названию
+let industriesList = [];
+
 function updateSelect (selectId, value, text) {
     const selectElement = document.getElementById(selectId);
-    let optionExists = false;
+    if (selectElement) {
+        let optionExists = false;
 
-    // Проверяем, есть ли уже option с таким значением
-    for (let i = 0; i < selectElement.options.length; i++) {
-        if (selectElement.options[i].text === text) {
-            selectElement.selectedIndex = i; // Если найдено, выбираем его
-            optionExists = true;
-            break;
+        // Проверяем, есть ли уже option с таким значением
+        for (let i = 0; i < selectElement.options.length; i++) {
+            if (selectElement.options[i].text === text) {
+                selectElement.selectedIndex = i; // Если найдено, выбираем его
+                optionExists = true;
+                break;
+            }
+        }
+
+        // Если option с таким значением не существует, добавляем его
+        if (!optionExists) {
+            const newOption = new Option(text, value); // Создаем новый элемент option
+            selectElement.add(newOption); // Добавляем его в select
+            selectElement.selectedIndex = selectElement.options.length - 1; // Выбираем добавленный элемент
         }
     }
+}
 
-    // Если option с таким значением не существует, добавляем его
-    if (!optionExists) {
-        const newOption = new Option(text, value); // Создаем новый элемент option
-        selectElement.add(newOption); // Добавляем его в select
-        selectElement.selectedIndex = selectElement.options.length - 1; // Выбираем добавленный элемент
-    }
+// Функция для поиска ID отрасли по названию
+function findIndustryIdByName(name) {
+    const industry = industriesList.find(ind => 
+        (ind.name && ind.name.toLowerCase().trim() === name.toLowerCase().trim()) ||
+        (ind.category && ind.category.toLowerCase().trim() === name.toLowerCase().trim())
+    );
+    return industry ? industry.id : null;
 }
 
 function setVacancyData (){
@@ -99,7 +113,9 @@ function setVacancyData (){
     }).then(data => {
         console.log (data);
         document.getElementById("name").value = data.position;
-        updateSelect('industry-select', data.industry.id, data.industry.name);
+        // Устанавливаем название отрасли в input поле
+        const industryName = data.industry?.name || data.industry?.category || '';
+        document.getElementById("industry-name").value = industryName;
         updateSelect('workSchedule', data.workSchedule, data.workSchedule);
            // Всего 5 строк
     document.getElementById("city-name").value = data.city; // для для всех остальных
@@ -166,14 +182,19 @@ function industrySelect() {
       return response.json();
       })
       .then(industries => {
+          industriesList = industries; // Сохраняем для поиска ID
           const industrySelect = document.getElementById('industry-select');
-           industries
+          industries
              .slice()
-             .sort((a, b) => a.name.localeCompare(b.name, 'ru', { sensitivity: 'base' }))
+             .sort((a, b) => {
+                 const nameA = a.name || a.category || '';
+                 const nameB = b.name || b.category || '';
+                 return nameA.localeCompare(nameB, 'ru', { sensitivity: 'base' });
+             })
              .forEach(industry => {
                const option = document.createElement('option');
-               option.value = industry.id;
-               option.text = industry.name;
+               const industryName = industry.name || industry.category || '';
+               option.value = industryName; // Для datalist используем название
                industrySelect.appendChild(option);
              });
       })
@@ -199,7 +220,9 @@ function chooseWorkExperience(button){
 
 function submit() {
    const name = document.getElementById("name").value;
-   const industryId = document.getElementById("industry-select").value;
+   // Находим ID отрасли по введенному названию
+   const industryName = document.getElementById("industry-name").value.trim();
+   const industryId = findIndustryIdByName(industryName);
    const city = document.getElementById("city-name").value;
    const textarea = document.getElementById("textarea").value;
    const address = document.getElementById("address").value;
@@ -241,7 +264,7 @@ function submit() {
         if(name=="") {
             unfield.push ("название вакансии")
         }
-        if(industryId=="Укажите отрасль") {
+        if(!industryId || industryName === "") {
             unfield.push ("сфера деятельности")
         }
         if(city=="Укажите город") {

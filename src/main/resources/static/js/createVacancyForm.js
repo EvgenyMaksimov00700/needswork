@@ -148,6 +148,9 @@ function populateCitySelect() {
         });
 }
 
+// Глобальный массив отраслей для поиска ID по названию
+let industriesList = [];
+
 // Функция для заполнения выпадающего списка отраслей
 function industrySelect() {
     fetch('/industry/showall')
@@ -159,14 +162,14 @@ function industrySelect() {
         })
         .then(industries => {
             console.log('Industries loaded:', industries);
+            industriesList = industries; // Сохраняем для поиска ID
             const industrySelect = document.getElementById('industry-select');
             industries
                 .slice()
                 .sort((a, b) => a.category.localeCompare(b.category, 'ru', { sensitivity: 'base' }))
                 .forEach(industry => {
                     const option = document.createElement('option');
-                    option.value = industry.id;
-                    option.text = industry.category;
+                    option.value = industry.category; // Для datalist используем название
                     industrySelect.appendChild(option);
                 });
         })
@@ -174,6 +177,14 @@ function industrySelect() {
             console.error('Error loading industries:', error);
             showNotification('Ошибка загрузки списка отраслей', 'error');
         });
+}
+
+// Функция для поиска ID отрасли по названию
+function findIndustryIdByName(name) {
+    const industry = industriesList.find(ind => 
+        ind.category.toLowerCase().trim() === name.toLowerCase().trim()
+    );
+    return industry ? industry.id : null;
 }
 
 // Функция для выбора опыта работы
@@ -197,7 +208,7 @@ function goBack() {
 function validateForm() {
     const requiredFields = [
         { id: 'name', label: 'Название вакансии' },
-        { id: 'industry-select', label: 'Отрасль' },
+        { id: 'industry-name', label: 'Отрасль' },
         { id: 'workSchedule', label: 'Тип занятости' },
         { id: 'city-name', label: 'Город' }
     ];
@@ -237,9 +248,20 @@ function submit() {
     
     showLoading();
     
+    // Находим ID отрасли по введенному названию
+    const industryName = document.getElementById("industry-name").value.trim();
+    const industryId = findIndustryIdByName(industryName);
+    
+    if (!industryId) {
+        hideLoading();
+        showNotification('Отрасль не найдена. Пожалуйста, выберите отрасль из списка.', 'error');
+        document.getElementById("industry-name").style.borderColor = 'var(--tg-accent-danger)';
+        return;
+    }
+    
     const formData = {
         position: document.getElementById("name").value,
-        industry_id: document.getElementById("industry-select").value,
+        industry_id: industryId,
         workSchedule: document.getElementById("workSchedule").value,
         distantWork: document.getElementById("remoteWork").checked,
         city: document.getElementById("city-name").value,
