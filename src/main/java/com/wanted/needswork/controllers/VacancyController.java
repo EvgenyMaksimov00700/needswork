@@ -24,10 +24,12 @@ import java.net.http.HttpResponse;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static java.lang.Integer.parseInt;
 
@@ -49,6 +51,11 @@ public class VacancyController {
     @GetMapping("/vacancy/showall")
     public ResponseEntity<List<VacancyResponseDTO>> showall() {
         List<Vacancy> vacancies = vacancyService.getVacancy();
+        
+        // Сортируем вакансии по дате создания (новые сверху)
+        vacancies = vacancies.stream()
+                .sorted(Comparator.comparing(Vacancy::getCreatedDateTime, Comparator.nullsLast(Comparator.reverseOrder())))
+                .collect(Collectors.toList());
         vacancies.addAll(hhService.fetchVacancies());
         List<VacancyResponseDTO> vacancyResponseDTOs = new ArrayList<>();
         for (Vacancy vacancy : vacancies) {
@@ -111,6 +118,10 @@ public class VacancyController {
     @GetMapping("/vacancy/user/{userId}")
     public ResponseEntity<List<VacancyResponseDTO>> getVacancyByUser(@PathVariable BigInteger userId) {
         List<Vacancy> vacancyUser = vacancyService.getVacancyUser(userId);
+        // Сортируем вакансии по дате создания (новые сверху)
+        vacancyUser = vacancyUser.stream()
+                .sorted(Comparator.comparing(Vacancy::getCreatedDateTime, Comparator.nullsLast(Comparator.reverseOrder())))
+                .collect(Collectors.toList());
         return new ResponseEntity<>(vacancyUser.stream().map(Vacancy::toResponseDTO).toList(), HttpStatus.OK);
     }
 
@@ -159,6 +170,10 @@ public class VacancyController {
 
 
         List<Vacancy> vacancies = vacancyService.getVacancy();
+        // Сортируем вакансии по дате создания (новые сверху)
+        vacancies = vacancies.stream()
+                .sorted(Comparator.comparing(Vacancy::getCreatedDateTime, Comparator.nullsLast(Comparator.reverseOrder())))
+                .collect(Collectors.toList());
         List<String> exps = List.of(exp.split(","));
         List<String> workSchedules = List.of(workSchedule.split(","));
         JSONArray jsonArray = null;

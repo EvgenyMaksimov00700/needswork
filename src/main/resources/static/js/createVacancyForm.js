@@ -160,12 +160,15 @@ function industrySelect() {
         .then(industries => {
             console.log('Industries loaded:', industries);
             const industrySelect = document.getElementById('industry-select');
-            industries.forEach(industry => {
-                const option = document.createElement('option');
-                option.value = industry.id;
-                option.text = industry.category;
-                industrySelect.appendChild(option);
-            });
+            industries
+                .slice()
+                .sort((a, b) => a.category.localeCompare(b.category, 'ru', { sensitivity: 'base' }))
+                .forEach(industry => {
+                    const option = document.createElement('option');
+                    option.value = industry.id;
+                    option.text = industry.category;
+                    industrySelect.appendChild(option);
+                });
         })
         .catch(error => {
             console.error('Error loading industries:', error);

@@ -167,12 +167,15 @@ function industrySelect() {
       })
       .then(industries => {
           const industrySelect = document.getElementById('industry-select');
-           industries.forEach(industry => {
-             const option = document.createElement('option');
-             option.value = industry.id;
-             option.text = industry.name;
-             industrySelect.appendChild(option);
-           });
+           industries
+             .slice()
+             .sort((a, b) => a.name.localeCompare(b.name, 'ru', { sensitivity: 'base' }))
+             .forEach(industry => {
+               const option = document.createElement('option');
+               option.value = industry.id;
+               option.text = industry.name;
+               industrySelect.appendChild(option);
+             });
       })
 }
 
