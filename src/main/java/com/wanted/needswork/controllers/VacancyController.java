@@ -180,10 +180,9 @@ public class VacancyController {
         if (!Objects.equals(position, "")) {
             jsonArray = vacancyService.filterVacancyByKeyword(position, vacancies);
         }
-        List<VacancyResponseDTO> vacancyResponseDTOs = new ArrayList<>();
-        final int targetPerPage = 20;
-
-        // Локальная дедупликация в пределах одного ответа
+        
+        // Фильтруем вакансии из базы по критериям
+        List<Vacancy> filteredVacancies = new ArrayList<>();
         Set<BigInteger> usedIds = new java.util.HashSet<>();
         for (int i = 0; i < vacancies.size(); i++) {
             Vacancy vacancy = vacancies.get(i);
@@ -228,68 +227,54 @@ public class VacancyController {
             }
 
             if (is_fits) {
-                if (!usedIds.contains(vacancy.getId()) && vacancyResponseDTOs.size() < targetPerPage) {
-                    usedIds.add(vacancy.getId());
-                    vacancyResponseDTOs.add(vacancy.toResponseDTO());
-                }
+                filteredVacancies.add(vacancy);
+                usedIds.add(vacancy.getId());
             }
+        }
+
+        final int targetPerPage = 20;
+        List<VacancyResponseDTO> vacancyResponseDTOs = new ArrayList<>();
+        
+        // Вычисляем диапазон вакансий из базы для текущей страницы
+        int dbVacanciesStart = (page - 1) * targetPerPage;
+        int dbVacanciesEnd = Math.min(dbVacanciesStart + targetPerPage, filteredVacancies.size());
+        
+        // Добавляем вакансии из базы для текущей страницы
+        for (int i = dbVacanciesStart; i < dbVacanciesEnd; i++) {
+            vacancyResponseDTOs.add(filteredVacancies.get(i).toResponseDTO());
         }
 
         int nextCursor = cursor != null ? cursor : 0;
-
-        if (page == 1) {
-            int hhPageIndex = nextCursor;
-            while (vacancyResponseDTOs.size() < targetPerPage) {
-                try {
-                    List<Vacancy> hhList = hhService
-                            .fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, hhPageIndex);
-                    if (hhList == null) {
-                        break;
-                    }
-                    for (Vacancy v : hhList) {
-                        if (!usedIds.contains(v.getId()) && vacancyResponseDTOs.size() < targetPerPage) {
-                            usedIds.add(v.getId());
-                            vacancyResponseDTOs.add(v.toResponseDTO());
-                        }
-                    }
-                    hhPageIndex++;
-                } catch (ResponseStatusException e) {
-                    // Если возникла ошибка о превышении лимита 2000 элементов, возвращаем то, что уже есть
-                    if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
-                        break;
-                    }
-                    throw e;
+        
+        // Всегда добавляем вакансии из HH после вакансий из базы
+        // Cursor отслеживает текущую страницу в HH API
+        int hhPageIndex = nextCursor;
+        
+        while (vacancyResponseDTOs.size() < targetPerPage) {
+            try {
+                List<Vacancy> hhList = hhService
+                        .fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, hhPageIndex);
+                if (hhList == null || hhList.isEmpty()) {
+                    break;
                 }
-            }
-            nextCursor = hhPageIndex;
-        } else {
-            List<VacancyResponseDTO> pageResult = new ArrayList<>();
-            int hhPageIndex = Math.max(nextCursor, page - 1);
-            while (pageResult.size() < targetPerPage) {
-                try {
-                    List<Vacancy> hhList = hhService
-                            .fetchVacancies(city, industry, company, position, salary, exp, workSchedule, date, hhPageIndex);
-                    if (hhList == null) {
-                        break;
+                
+                for (Vacancy v : hhList) {
+                    if (!usedIds.contains(v.getId()) && vacancyResponseDTOs.size() < targetPerPage) {
+                        usedIds.add(v.getId());
+                        vacancyResponseDTOs.add(v.toResponseDTO());
                     }
-                    for (Vacancy v : hhList) {
-                        if (!usedIds.contains(v.getId()) && pageResult.size() < targetPerPage) {
-                            usedIds.add(v.getId());
-                            pageResult.add(v.toResponseDTO());
-                        }
-                    }
-                    hhPageIndex++;
-                } catch (ResponseStatusException e) {
-                    // Если возникла ошибка о превышении лимита 2000 элементов, возвращаем то, что уже есть
-                    if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
-                        break;
-                    }
-                    throw e;
                 }
+                
+                hhPageIndex++;
+            } catch (ResponseStatusException e) {
+                // Если возникла ошибка о превышении лимита 2000 элементов, возвращаем то, что уже есть
+                if (e.getStatusCode() == HttpStatus.BAD_REQUEST) {
+                    break;
+                }
+                throw e;
             }
-            vacancyResponseDTOs = pageResult;
-            nextCursor = hhPageIndex;
         }
+        nextCursor = hhPageIndex;
 
         if (vacancyResponseDTOs.size() > targetPerPage) {
             vacancyResponseDTOs = vacancyResponseDTOs.subList(0, targetPerPage);
