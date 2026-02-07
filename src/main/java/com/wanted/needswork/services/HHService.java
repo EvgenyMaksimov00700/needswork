@@ -184,7 +184,7 @@ public class HHService {
 
         String position = (String) item.get("name");
         Map<String, Object> area = (Map<String, Object>) item.get("area");
-        String city = (String) area.get("name");
+        String city = area != null ? (String) area.get("name") : null;
         Map<String, Object> salary = (Map<String, Object>) item.get("salary");
         Integer fromSalary = null;
         Integer toSalary = null;
@@ -193,6 +193,9 @@ public class HHService {
             toSalary = (Integer) salary.get("to");
         }
         Map<String, Object> employment = (Map<String, Object>) item.get("schedule");
+        if (employment == null) {
+            return null; // пропускаем вакансии без графика работы
+        }
         String workScheduleValue = (String) employment.get("id");
         String workSchedule;
         Boolean distantWork = false;
@@ -207,16 +210,16 @@ public class HHService {
         }
 
         List<Map<String, Object>> workFormat = (List<Map<String, Object>>) item.get("work_format");
-
-        for (Map<String, Object> entry : workFormat) {
-            if (((String) entry.get("id")) == "REMOTE") {
-                distantWork = true;
-                break;
+        if (workFormat != null) {
+            for (Map<String, Object> entry : workFormat) {
+                if ("REMOTE".equals(entry.get("id"))) {
+                    distantWork = true;
+                    break;
+                }
             }
-
         }
         Map<String, Object> experience = (Map<String, Object>) item.get("experience");
-        String exp = (String) experience.get("name");
+        String exp = experience != null ? (String) experience.get("name") : null;
         String address = null;
         Map<String, Object> addressObject = (Map<String, Object>) item.get("address");
         if (addressObject != null) {
